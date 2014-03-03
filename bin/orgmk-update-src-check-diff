@@ -1,0 +1,57 @@
+#!/bin/sh
+
+ask () {
+    while true; do
+        if [ "${2:-}" = "Y" ]; then
+            prompt="Y/n"
+            default=Y
+        elif [ "${2:-}" = "N" ]; then
+            prompt="y/N"
+            default=N
+        else
+            prompt="y/n"
+            default=
+        fi
+
+        # ask the question (without the need to press RET)
+        printf "$1 ($prompt): "
+        read -n 1 -r REPLY
+        printf "\n" # just a final linefeed
+
+        # default?
+        if [ -z "$REPLY" ]; then
+            REPLY=$default
+        fi
+
+        # check if the reply is valid
+        case "$REPLY" in
+            y*|Y*) return 0 ;;
+            n*|N*) return 1 ;;
+        esac
+    done
+}
+
+FILE_SRC_ORIG=$1
+FILE_SRC_UPDT=$2
+
+# set a default value
+: ${UPDATE_SRC:="query"}
+
+if [ ! -r "$FILE_SRC_UPDT" ]; then
+    printf "Cannot read file $FILE_SRC_UPDT\n"
+else
+    if diff -q "$FILE_SRC_ORIG" "$FILE_SRC_UPDT" > /dev/null; then
+        rm "$FILE_SRC_UPDT"
+    else
+        if [[ "$UPDATE_SRC" = "query" ]]; then
+            ask "Update source file?" && UPDATE_SRC="yes" || UPDATE_SRC="no"
+        fi
+
+        if [[ "$UPDATE_SRC" = "yes" ]]; then
+            mv "$FILE_SRC_UPDT" "$FILE_SRC_ORIG"
+            printf "${C_INFO}Dynamic blocks and tables in \`$FILE_SRC_ORIG' successfully updated${C_RESET}\n"
+        else
+            printf "Nothing gets updated...\n"
+        fi
+    fi
+fi

@@ -1,0 +1,1378 @@
+#+TITLE:     Export Org documents (to HTML, PDF, etc.)
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:3 toc:nil
+
+#+PROPERTY:  eval     no
+#+PROPERTY:  noweb    yes
+#+PROPERTY:  comments no
+#+SETUPFILE: bigblow-pirilampo.setup
+
+* Overview
+
+** Description
+
+Orgmk is a suite of Bash scripts for *automating the conversion of Org
+documents to different formats*, such as HTML or PDF.
+
+The scripts run on both Unix and Microsoft Windows (with Cygwin).
+
+** Objectives
+
+The first goal is to *be more productive*, by running the export only when the
+source Org files are updated.
+
+The second goal is to *share some common Emacs and Org configuration inside your*
+*team*, separately of what you have in your personal Emacs configuration file.
+
+Finally, the third goal is also to *offload compilation into an external batch
+Emacs process*, allowing you to go on editing or working while exporting the
+documents.
+
+** Requirements
+   :PROPERTIES:
+   :tangle:   no
+   :END:
+
+*** Emacs 24
+
+Emacs version 24 (for the "package" facility) must be in your =PATH=.
+
+*** Org 8
+
+Org mode version 8 (or later) is required.
+
+If such a version is not bundled with your Emacs, Org 8 will be automatically
+installed -- if you accept it! -- through ELPA.
+
+*** LaTeX (PDF)
+
+A working LaTeX installation is required for exporting to PDF. If it is not
+yet installed on your system, install (for example) [[http://www.tug.org/texlive/][TeX Live]].
+
+** Note
+
+This program is in a TEST stage, but you can already work with it.
+
+* Usage
+
+Org files can have the extension ~.org~ or ~.txt~.
+
+** Standalone scripts
+
+#+begin_src sh
+org2html [OPTION] FILE
+org2latex [OPTION] FILE
+org2pdf [OPTION] FILE
+org2beamerpdf [OPTION] FILE
+org2odt [OPTION] FILE
+org2txt [OPTION] FILE
+#+end_src
+
+** Makefile wrapper
+
+#+begin_src sh
+orgmk [OPTION]
+orgmk [OPTION] [html | pdf]
+orgmk [OPTION] [FILE]
+#+end_src
+
+* Options
+
+** Standalone scripts
+
+- =-h=, =--help= ::
+     Print usage information and exit.
+
+- =-y= ::
+     Authorize the update of the source file (update of dynamic blocks and
+     re-computation of tables) without confirmation.
+
+     Before the conversion, the standalone scripts will try to *update all
+     dynamic blocks and recompute all tables* in the source Org file, a
+     *potentially destructive operation* for which the programs require
+     confirmation: in case the source file gets updated, you will be queried to
+     overwrite the source file with the update version of the file -- that's
+     because the environment variable =UPDATE_SRC= defaults to =query=.
+
+     To avoid the question, you can also set that variable to =yes= or =no= in a
+     personal configuration file, =~/.orgmk-rc=.
+
+     Note that, by design, the command line argument =-y= is passed to every
+     =org2<BACKEND>= script called from =orgmk=, so that =orgmk= doesn't wait for
+     answers.
+
+** Makefile wrapper
+
+- =-h=, =--help= ::
+     Print usage information and exit.
+
+- =-r=, =--recursive= ::
+     Export all Org files *under each directory, recursively*.
+
+     It just calls =orgmk.mk= with the argument =ALLSUBDIRS=yes=.
+
+     By default, =orgmk= exports all Org files (which need it) in the current
+     directory only.
+
+* Files
+
+[[$HOME/.orgmk-rc]]
+
+* Examples
+
+** Update all documents
+
+Regenerate HTML and/or PDF files for Org files that have been modified.
+
+#+begin_src sh
+orgmk
+#+end_src
+
+** Update specific types of documents
+
+Regenerate HTML only for the Org files that have been changed.
+
+#+begin_src sh
+orgmk html
+#+end_src
+
+** Update specific document
+
+Regenerate (or create for the first time) the file ~thesis.pdf~ from the Org file
+~thesis.org~ or ~thesis.txt~. *Don't require confirmation for updating the source
+file.*
+
+#+begin_src sh
+orgmk thesis.pdf
+#+end_src
+
+Regenerate (or create for the first time) the file ~thesis.pdf~ from the Org file
+~thesis.org~. Require confirmation for updating the source file.
+
+#+begin_src sh
+org2pdf thesis.org
+#+end_src
+
+* Installation
+
+The installation process consists of creating symbolic links from the standard
+*final directories* on your machine to the =orgmk= executables.
+
+** New install
+
+1. *Extract* the latest version of =orgmk=.
+
+   #+begin_src sh
+   git clone git@github.com:fniessen/orgmk.git
+   #+end_src
+
+2. Create configuration files which record where =orgmk= has been extracted
+   on your host machine.
+
+   #+begin_src sh
+   make
+   #+end_src
+
+3. By default, the =orgmk= executable and the standalone scripts (=org2html=,
+   =org2pdf=, etc.) are installed to the ~/usr/local/bin~ so that all users are
+   able to run them.
+
+   If you want to *change the destination directory*, create a ~Make.params~ file
+   with the target directory. For example:
+
+   #+begin_src makefile
+   BIN_DIR=~/bin
+   #+end_src
+
+   If needed, add that directory to your =PATH=.
+
+   *Install* =orgmk= (executable and standalone scripts that you run) to the
+   =BIN_DIR= location by typing:
+
+   #+begin_src sh
+   make install
+   #+end_src
+
+At this point, everything should be ready for use.
+
+** Makefile for installation
+   :PROPERTIES:
+   :shebang:  ""
+   :tangle:   Makefile
+   :END:
+
+#+begin_src makefile
+### -*- Makefile -*- definition file for Orgmk
+
+# To install `orgmk', type `make' and then `make install'.
+
+PWD=$(shell pwd)
+
+BIN_DIR=/usr/local/bin
+
+-include Make.params
+
+ORGMK_ROOT=$(PWD)
+ORGMK_EL=$(ORGMK_ROOT)/site-lisp/orgmk.el
+
+# WARNING: ORGMK_EL must contain the correct path to the
+# `orgmk.el' file according to the Emacs version used (Windows,
+# Cygwin or Linux path)
+EMACS_SYSTEM_TYPE=$(shell emacs -batch --eval "(message \"%s\" system-type)" 2>&1)
+ifeq ($(EMACS_SYSTEM_TYPE),windows-nt)
+    ORGMK_EL:="$(shell cygpath --mixed $(ORGMK_EL))"
+endif
+
+ORGMK_INIT=orgmk-init
+ORGMK_SYSTEM_CONFIG=orgmk.conf
+ORGMK_UPDATE=orgmk-update-src
+ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
+ORG2HTML=org2html
+ORG2LATEX=org2latex
+ORG2PDF=org2pdf
+ORG2BEAMERPDF=org2beamerpdf
+ORG2ODT=org2odt
+ORG2TXT=org2txt
+ORGMK_MAKE_SETUP=orgmk-stow-orgmk.mk
+ORGMK_MAKE_RUN=orgmk
+
+## MAKE
+
+# Ensure `all' is the default target
+all: orgmk-system-config orgmk-stow-mk  # Create Orgmk system files
+
+.PHONY: orgmk-system-config
+orgmk-system-config:                    # Create file with location of `orgmk.el'
+	@echo "Generating system-wide configuration file..."
+	echo "ORGMK_EL=$(ORGMK_EL)" > bin/$(ORGMK_SYSTEM_CONFIG)
+	@echo
+
+.PHONY: orgmk-stow-mk
+orgmk-stow-mk:                          # Create core file for `orgmk'
+	@echo "Generating setup file..."
+	echo "#!/bin/sh" > bin/$(ORGMK_MAKE_SETUP)
+	echo "ln -f -s $(PWD)/bin/orgmk.mk orgmk.mk" >> bin/$(ORGMK_MAKE_SETUP)
+	chmod +x bin/$(ORGMK_MAKE_SETUP)
+	@echo
+
+## MAKE INSTALL
+
+.PHONY: install
+install:                                # Create symlinks to Orgmk scripts
+	@echo "Creating symlinks..."
+	ln -f -s $(PWD)/bin/$(ORGMK_INIT)              $(BIN_DIR)/$(ORGMK_INIT)
+	ln -f -s $(PWD)/bin/$(ORGMK_SYSTEM_CONFIG)     $(BIN_DIR)/$(ORGMK_SYSTEM_CONFIG)
+	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE)            $(BIN_DIR)/$(ORGMK_UPDATE)
+	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE_CHECK_DIFF) $(BIN_DIR)/$(ORGMK_UPDATE_CHECK_DIFF)
+	ln -f -s $(PWD)/bin/$(ORG2HTML)                $(BIN_DIR)/$(ORG2HTML)
+	ln -f -s $(PWD)/bin/$(ORG2LATEX)               $(BIN_DIR)/$(ORG2LATEX)
+	ln -f -s $(PWD)/bin/$(ORG2PDF)                 $(BIN_DIR)/$(ORG2PDF)
+	ln -f -s $(PWD)/bin/$(ORG2BEAMERPDF)           $(BIN_DIR)/$(ORG2BEAMERPDF)
+	ln -f -s $(PWD)/bin/$(ORG2ODT)                 $(BIN_DIR)/$(ORG2ODT)
+	ln -f -s $(PWD)/bin/$(ORG2TXT)                 $(BIN_DIR)/$(ORG2TXT)
+	ln -f -s $(PWD)/bin/$(ORGMK_MAKE_SETUP)        $(BIN_DIR)/$(ORGMK_MAKE_SETUP)
+	ln -f -s $(PWD)/bin/$(ORGMK_MAKE_RUN)          $(BIN_DIR)/$(ORGMK_MAKE_RUN)
+
+### Makefile ends here
+#+end_src
+
+* Standalone scripts
+  :PROPERTIES:
+  :shebang:  "#!/bin/sh\n"
+  :END:
+
+** Orgmk-init
+   :PROPERTIES:
+   :tangle:   bin/orgmk-init
+   :END:
+
+The =orgmk-init= script contains the common part used to setup Emacs
+and Org in order to export to HTML, PDF, etc.
+
+*** Functions
+
+#+begin_src sh
+Usage ()
+{
+    cat << EOF 1>&2
+Usage: $(basename $0) [OPTION] FILE
+Convert FILE to another format.
+
+  -h, --help     display this help and exit
+  -y             authorize update of the source file without confirmation
+
+Report $(basename $0) bugs to fni@missioncriticalit.com
+EOF
+    exit 1
+}
+#+end_src
+
+#+begin_src sh
+die () {
+    printf "$(basename $0): $@\n" > /dev/stderr
+    exit 2 # an error occurred
+}
+#+end_src
+
+#+begin_src sh
+CleanUp ()
+{
+    # restore backed up target file if it hasn't been produced
+    if [ ! -z $FILE_TARGET ]; then
+        if [ -r $FILE_TARGET.bak ]; then
+            if [ ! -r $FILE_TARGET ]; then
+                printf "Recovering OLD file $FILE_TARGET...\n"
+                mv $FILE_TARGET.bak $FILE_TARGET
+            else
+                rm $FILE_TARGET.bak
+            fi
+        fi
+    fi
+
+    # display log file, if present
+    if [ ! -z $FILE_LOG ]; then
+        if [ -r $FILE_LOG ]; then
+            grep -e "^!.*" -A 3 -B 1 $FILE_LOG
+        fi
+    fi
+
+    # remove the temporary copy of the source Org file
+    if [ ! -z $FILE_SRC_UPDT ]; then
+        rm -f $FILE_SRC_UPDT
+    fi
+}
+#+end_src
+
+*** Runtime
+
+#+name: current-time
+#+begin_src sh :eval yes :results silent :tangle no
+echo "$(date '+%Y%m%d.%H%M')"
+#+end_src
+
+#+begin_src sh
+    cat << EOF
+This is $(basename $0), version: <<current-time()>>.
+EOF
+#+end_src
+
+#+begin_src sh
+# perform housekeeping on program exit or a variety of signals
+# (EXIT, HUP, INT, QUIT, TERM)
+trap CleanUp 0 1 2 3 15
+#+end_src
+
+#+begin_src sh
+# load the system-wide config file (definition of `ORGMK_EL')
+. orgmk.conf
+
+if [ "$ORGMK_EL" = "" ]; then
+    printf "ORGMK_EL variable not defined, please check your setup!\n"
+    exit 2
+fi
+
+# source the user config file (default for `UPDATE_SRC', etc.)
+ORGMK_USER_CONF=$HOME/.orgmk-rc
+if [ -r $ORGMK_USER_CONF ]; then
+    . $ORGMK_USER_CONF
+fi
+
+export UPDATE_SRC
+
+while true; do
+    case "$1" in
+        -y ) UPDATE_SRC="yes"; shift ;;
+        -h | --help ) Usage ;;
+        ,* ) break ;;
+    esac
+done
+# now do something with $@
+#+end_src
+
+#+begin_src sh
+if [ $# -ne 1 ]; then
+    Usage
+fi
+
+FILE_SRC_ORIG=$1
+if [ ! -r "$FILE_SRC_ORIG" ]; then
+    die "Cannot read file $FILE_SRC_ORIG"
+fi
+
+FILE_SRC_UPDT="${FILE_SRC_ORIG%.*}.orgmk" # replace extension
+# The temporary file only differ by its extension (`.orgmk'), so that the
+# exported file will be named <orig file name>.<backend ext>.
+#+end_src
+
+#+begin_src sh
+FILE_LOG="${FILE_SRC_ORIG%.*}.log"
+rm -f $FILE_LOG
+#+end_src
+
+If the PDF file isn't produced (for example, because of an /undefined control
+sequence/), there is no PDF file anymore; hence, =orgmk= would ignore the source
+file in future calls, and the PDF file (now, missing...) would completely
+disappear from the user attention.
+
+To avoid that, we must make a backup of the target file before the export, and
+put it back if there is no target file produced.
+
+#+begin_src sh
+FILE_TARGET="${FILE_SRC_ORIG%.*}.$TARGET_EXT"
+
+# back up previous version of target file
+if [ -r $FILE_TARGET ]; then
+    mv $FILE_TARGET $FILE_TARGET.bak
+fi
+#+end_src
+
+#+begin_src sh
+EMACS=emacs
+
+WHICH_EMACS=$(which $EMACS)
+EMACS_FLAGS="--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""
+EMACS_BATCH="emacs --batch -Q $EMACS_FLAGS"
+ORG_FLAGS=""
+ORGMK="$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"
+ORGMK_UPDATE_FLAGS="-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\"" # base name
+#+end_src
+
+** org2html
+   :PROPERTIES:
+   :tangle:   bin/org2html
+   :END:
+
+The =org2html= script converts an Org file to HTML.
+
+#+begin_src sh
+TARGET_EXT=html
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-html-export-to-html \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+end_src
+
+** org2latex
+   :PROPERTIES:
+   :tangle:   bin/org2latex
+   :END:
+
+The =org2latex= script converts an Org file to LaTeX.
+
+#+begin_src sh
+TARGET_EXT=tex
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+end_src
+
+** org2pdf
+   :PROPERTIES:
+   :tangle:   bin/org2pdf
+   :END:
+
+The =org2pdf= script converts an Org file to PDF.
+
+It tries to detect whether the target is a standard LaTeX document or a Beamer
+presentation by searching for the string =#+BEAMER_THEME:= inside the Org source.
+
+#+begin_src sh
+TARGET_EXT=pdf
+. orgmk-init
+
+if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG > /dev/null; then
+    eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-latex \
+        || die "Exported file wasn't produced"
+else
+    eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
+        || die "Exported file wasn't produced"
+fi
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+end_src
+
+** org2beamerpdf
+   :PROPERTIES:
+   :tangle:   bin/org2beamerpdf
+   :END:
+
+The =org2beamerpdf= script converts an Org file to a Beamer presentation (PDF).
+
+#+begin_src sh
+TARGET_EXT=pdf
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-pdf \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+end_src
+
+** org2odt
+   :PROPERTIES:
+   :tangle:   bin/org2odt
+   :END:
+
+The =org2odt= script converts an Org file to ODT.
+
+#+begin_src sh
+TARGET_EXT=odt
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-odt-export-to-odt \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+end_src
+
+** org2txt
+   :PROPERTIES:
+   :tangle:   bin/org2txt
+   :END:
+
+The =org2txt= script converts an Org file to text.
+
+#+begin_src sh
+TARGET_EXT=txt
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-ascii-export-to-ascii \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+end_src
+
+** Orgmk-update-src-check-diff
+   :PROPERTIES:
+   :tangle:   bin/orgmk-update-src-check-diff
+   :END:
+
+Check whether dynamic blocks and tables have been updated, and (if yes) propose
+to overwrite the source Org file.
+
+*** Functions
+
+#+begin_src sh
+ask () {
+    while true; do
+        if [ "${2:-}" = "Y" ]; then
+            prompt="Y/n"
+            default=Y
+        elif [ "${2:-}" = "N" ]; then
+            prompt="y/N"
+            default=N
+        else
+            prompt="y/n"
+            default=
+        fi
+
+        # ask the question (without the need to press RET)
+        printf "$1 ($prompt): "
+        read -n 1 -r REPLY
+        printf "\n" # just a final linefeed
+
+        # default?
+        if [ -z "$REPLY" ]; then
+            REPLY=$default
+        fi
+
+        # check if the reply is valid
+        case "$REPLY" in
+            y*|Y*) return 0 ;;
+            n*|N*) return 1 ;;
+        esac
+    done
+}
+#+end_src
+
+*** Runtime
+
+#+begin_src sh
+FILE_SRC_ORIG=$1
+FILE_SRC_UPDT=$2
+
+# set a default value
+: ${UPDATE_SRC:="query"}
+
+if [ ! -r "$FILE_SRC_UPDT" ]; then
+    printf "Cannot read file $FILE_SRC_UPDT\n"
+else
+    if diff -q "$FILE_SRC_ORIG" "$FILE_SRC_UPDT" > /dev/null; then
+        rm "$FILE_SRC_UPDT"
+    else
+        if [[ "$UPDATE_SRC" = "query" ]]; then
+            ask "Update source file?" && UPDATE_SRC="yes" || UPDATE_SRC="no"
+        fi
+
+        if [[ "$UPDATE_SRC" = "yes" ]]; then
+            mv "$FILE_SRC_UPDT" "$FILE_SRC_ORIG"
+            printf "${C_INFO}Dynamic blocks and tables in \`$FILE_SRC_ORIG' successfully updated${C_RESET}\n"
+        else
+            printf "Nothing gets updated...\n"
+        fi
+    fi
+fi
+#+end_src
+
+In order to avoid "file changed on disk" messages (and be forced to revert
+open buffers) when nothing changed, we save the file with another name, and
+diff it with the original file. If there is no change, the new file is
+dropped.
+
+#+begin_note
+The time stamps in "Clock summary at ..." will be different, each time dynamic
+blocks are updated (if not done during the same minute). In that case, =diff=
+will always "succeed".
+#+end_note
+
+* Orgmk
+
+** Orgmk.mk
+   :PROPERTIES:
+   :tangle:   bin/orgmk.mk
+   :END:
+
+Here is the "ultimate" Makefile to *automate the generation of HTML or PDF*
+versions from your Org mode files.
+
+It is designed to solve tedious tasks nicely, such as updating:
+
+- [X] table of contents,
+- [X] cross-references,
+- [ ] index,
+- [ ] list of figures,
+- [ ] BibTeX references,
+- [X] Org dynamic blocks,
+- [X] tables with formulas, and
+- [ ] extracting (tangle) code blocks.
+
+*************** TODO Test whether Orgmk works with symbolic links
+Does their modification time change to reflect the latest modification of the
+source?
+*************** END
+
+*** Some system-dependent stuff
+
+#+begin_src makefile
+### -*- Makefile -*- definition file for Orgmk
+#+end_src
+
+**** Default shell
+
+#+begin_src makefile
+SHELL = /bin/sh
+#+end_src
+
+**** Exportation scripts
+
+By default, the =orgmk.mk= will overwrite the Org source file if it has changed
+after dblocks update and tables re-computation.
+
+#+begin_src makefile
+ORG2_FLAGS=-y
+
+ORG2HTML=org2html $(ORG2_FLAGS)
+ORG2PDF=org2pdf $(ORG2_FLAGS)
+#+end_src
+
+**** Viewing stuff
+
+#+begin_src makefile
+VIEW_HTML ?= firefox
+VIEW_PDF ?= xpdf
+#+end_src
+
+**** Color output
+
+#+begin_src makefile :tangle no
+ifdef NO_COLOR
+    tput =
+else
+    tput = $(shell $(TPUT) $1)
+endif
+
+black	:= $(call tput,setaf 0)
+red	:= $(call tput,setaf 1)
+green	:= $(call tput,setaf 2)
+yellow	:= $(call tput,setaf 3)
+blue	:= $(call tput,setaf 4)
+magenta	:= $(call tput,setaf 5)
+cyan	:= $(call tput,setaf 6)
+white	:= $(call tput,setaf 7)
+bold	:= $(call tput,bold)
+uline	:= $(call tput,smul)
+reset	:= $(call tput,sgr0)
+#+end_src
+
+#+begin_src makefile
+C_INFO="\\e[32m"
+C_WARNING="\\e[35m"
+C_SUCCESS="\\e[1\;32m"
+C_FAILURE="\\e[1\;31m"
+C_RESET="\\e[0m"
+#+end_src
+
+*** Basic configuration
+
+**** Org Sources
+
+Discover and process all Org files in the current directory (or in the current
+subtree).
+
+#+begin_src makefile
+ifeq ($(ALLSUBDIRS),yes)
+    TXT_FILES=$(shell find . -name \*.txt)
+    ORG_FILES=$(shell find . -name \*.org)
+    HTML_FILES=$(shell find . -name \*.html)
+    PDF_FILES=$(shell find . -name \*.pdf)
+else
+    TXT_FILES=$(shell find . -maxdepth 1 -name \*.txt)
+    ORG_FILES=$(shell find . -maxdepth 1 -name \*.org)
+    HTML_FILES=$(shell find . -maxdepth 1 -name \*.html)
+    PDF_FILES=$(shell find . -maxdepth 1 -name \*.pdf)
+endif
+
+FILES_TO_TANGLE := $(join $(ORG_FILES), $(TXT_FILES))
+#+end_src
+
+*************** TODO Add Org_DIRS defaulting to .
+Use Org_DIRS with foreach (?) in the following lists
+*************** END
+
+*************** TODO Fix problem of Orgfile with .org/.txt extension
+If an Org file exists with the 2 file extensions =.txt= and =.org= (same base
+name), then we get messages such as:
+
+Makefile:102: warning: overriding recipe for target `plot.html'
+Makefile:89: warning: ignoring old recipe for target `plot.html'
+*************** END
+
+**** HTML Targets
+
+List of HTML files which can be generated:
+
+#+begin_src makefile
+HTML_FILES_FROM_ORG = $(patsubst %.org,%.html,$(ORG_FILES))
+HTML_FILES_FROM_TXT = $(patsubst %.txt,%.html,$(TXT_FILES))
+#+end_src
+
+List of HTML files to be re-generated (if they have an Org counterpart):
+
+#+begin_src makefile
+CUR_HTML_FILES := $(HTML_FILES)
+#+end_src
+
+**** PDF Targets
+
+List of PDF files which can be generated:
+
+#+begin_src makefile
+PDF_FILES_FROM_ORG = $(patsubst %.org,%.pdf,$(ORG_FILES))
+PDF_FILES_FROM_TXT = $(patsubst %.txt,%.pdf,$(TXT_FILES))
+#+end_src
+
+List of PDF files to be re-generated (if they have an Org counterpart):
+
+#+begin_src makefile
+CUR_PDF_FILES := $(PDF_FILES)
+#+end_src
+
+**** Debugging
+
+#+begin_src makefile
+# turn command echo'ing back on with VERBOSE=1
+ifndef VERBOSE
+    QUIET := @
+endif
+#+end_src
+
+*Everything* is echo'ed, even =$(shell ...)= invocations:
+
+#+begin_src makefile
+# turn on shell debugging with SHELL_DEBUG=1
+ifdef SHELL_DEBUG
+    SHELL += -x
+endif
+#+end_src
+
+**** Commands
+
+Define variables for each command used in targets:
+
+#+begin_src makefile
+PRINTF=$(QUIET)printf
+EGREP=$(QUIET)egrep
+LS=$(QUIET)ls
+#+end_src
+
+*** All
+
+#+begin_src makefile
+.PHONY: all
+all: html pdf                           # Regenerate all HTML and PDF files
+#+end_src
+
+*** Help
+
+Get help.
+
+#+begin_src makefile
+.PHONY: help
+help:                                   # Display callable targets
+	$(PRINTF) "Usage: orgmk [OPTION]... [TARGET]...\n" > /dev/stderr
+	$(PRINTF) "\n"
+	$(PRINTF) "What target do you want?\n" > /dev/stderr
+	$(EGREP) "^[^	#A-Z]+:" [Mm]akefile \
+	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' > /dev/stderr
+#+end_src
+
+*** Dynamic dependencies
+
+*************** TODO Generate a list of prerequisites!
+If some file includes other files, we need to depend on them before updating
+the dynamic blocks.
+*************** END
+
+It is essential that included files are determined "on the fly" so that
+generated files are correct in all cases.
+
+#+name: recipe-depends-on
+#+begin_src makefile :tangle no
+#	$(PRINTF) "$(C_WARNING)$< Depends on $(shell grep '#+INCLUDE' $< | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(C_RESET)\n"
+#+end_src
+
+Therefore, we produce "dot d" files, which may be merged to construct an
+"includable" dependency file.
+
+... A first (much simpler) approach would be, in case of external
+files on which we depend (for the prestations, for example), to simply
+=touch= the master Org file, and let it regenerate the PDF. Of course,
+that wouldn't be performant... each such file being always regenerated.
+
+#+begin_src makefile :tangle no
+%.d: %.txt                              # Generate list of prerequisite makefiles
+	printf "$@: " > $@
+	@grep "#+INCLUDE:" $< | cut -d'"' -f 2 | sort | uniq | paste -d' ' -s >> $@
+	@printf "-- Generated list of prerequisites --\n"
+	@cat $@
+	@printf "-- Generated list of prerequisites --\n"
+#+end_src
+
+*************** TODO Add other files we depend on
+For example, in "clocktable", we can include external files through the
+":scope" parameter.
+*************** END
+
+*** HTML
+
+=orgmk html= will regenerate all HTML files which *currently exist* in the
+directory, and whose source Org file has changed.
+
+#+begin_src makefile
+.PHONY: html
+html: $(CUR_HTML_FILES)                 # Regenerate all HTML documents from Org
+#+end_src
+
+To create an HTML file for the *first time*, type =orgmk file.html=. It will
+ignore other Org files in the directory.
+
+#+begin_src makefile
+$(HTML_FILES_FROM_ORG): %.html: %.org   # Export an Org document to HTML
+<<recipe-depends-on>>
+<<recipe-convert-to-html>>
+
+$(HTML_FILES_FROM_TXT): %.html: %.txt   # Export an Org document to HTML
+<<recipe-depends-on>>
+<<recipe-convert-to-html>>
+#+end_src
+
+The recipe to *convert Org to HTML* is:
+
+#+name: recipe-convert-to-html
+#+begin_src makefile :tangle no
+	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to HTML...$(C_RESET)\n"
+	$(ORG2HTML) $<
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" > /dev/null \
+	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
+	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
+#+end_src
+
+What about =org-export-as-html-batch= and =org-export-as-html-and-open=?
+
+#+begin_src makefile
+view-html:                              # Generate the HTML files, then show the result
+#+end_src
+
+*** PDF
+
+=orgmk pdf= will find out which PDF files have to be regenerated, and will
+regenerate all of them.
+
+#+begin_src makefile
+.PHONY: pdf
+pdf: $(CUR_PDF_FILES)                   # Regenerate all PDF documents from Org
+#+end_src
+
+Type =orgmk file.pdf= to generate only the specified PDF file.
+
+#+begin_src makefile
+$(PDF_FILES_FROM_ORG): %.pdf: %.org     # Export an Org document to PDF
+<<recipe-depends-on>>
+<<recipe-convert-to-pdf>>
+
+$(PDF_FILES_FROM_TXT): %.pdf: %.txt     # Export an Org document to PDF
+<<recipe-depends-on>>
+<<recipe-convert-to-pdf>>
+#+end_src
+
+#+begin_note
+The drawback of updating the dblocks inside the the recipes for HTML and PDF
+means that, if we have a file that's *converted to both file formats*, the
+update will be done twice (so, once at least for nothing): once for HTML, then
+once again for PDF. Though, this case is quite uncommon.
+#+end_note
+
+The recipe to *convert Org to PDF* is:
+
+#+name: recipe-convert-to-pdf
+#+begin_src makefile :tangle no
+	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to PDF...$(C_RESET)\n"
+	$(ORG2PDF) $<
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" > /dev/null \
+	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
+	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
+#+end_src
+
+*************** TODO Export as LaTeX?
+Maybe the export should be done to TeX, and then call (the minimum number of
+times) PDFLaTeX from the =orgmk.mk=? Check out if this is as robust as using Org
+to build the PDF... (which goes on, even with some errors occurring)
+*************** END
+
+I've observed cases where =orgmk pdf= was reporting that "Exporting to
+PDF...done", but I was left with the previous PDF file. Hence, every call to
+=orgmk= tried to redo them...
+
+On deleting the PDF, and relaunching =orgmk= on that file, I had an error
+during the "Processing LaTeX file".
+
+Workaround, to be sure that an old PDF does not stay in the way, remove the
+PDF output upon startup of the recipe. The TeX file was well updated. Hence,
+no need to delete it at startup...
+
+*Problem*: when the PDF file is not generated anymore, it won't be remade with
+=orgmk pdf=. We then have to explicitly =orgmk file.pdf=.
+
+*** Clean
+
+#+begin_src makefile
+.PHONY: clean
+clean:                                  # Delete all temporary files created by Org export
+#+end_src
+
+*** TODO Orgmk init file
+
+Here, we should *make a symlink*, if it does not exist yet. Would then be used
+just once...
+
+The only thing that's not done yet automatically is: tangling this file!
+
+*** Footer
+
+#+begin_src makefile
+### orgmk.mk ends here
+#+end_src
+
+** Makefile wrapper
+   :PROPERTIES:
+   :tangle:   bin/orgmk
+   :shebang:  "#!/bin/sh\n"
+   :END:
+
+As you could want to run the batch scripts from a (development) directory
+where there is already a ~Makefile~, you must install the ~Makefile~ under a
+different name: ~orgmk.mk~.
+
+An addition is to create a symbolic link to the ~orgmk.mk~ into the
+directory of your Org files just for the duration of the script execution
+(on-the-fly install). The links can be safely removed after =make= has been run.
+
+#+begin_src sh
+Usage ()
+{
+    cat << EOF 1>&2
+Usage: $(basename $0) [OPTION] FILE
+Export Org source files whenever they are updated.
+
+  -h, --help          display this help and exit
+  -r, --recursive     export all Org files under each directory, recursively
+
+Report $(basename $0) bugs to fni@missioncriticalit.com
+EOF
+    exit 1
+}
+#+end_src
+
+#+begin_src sh
+CleanUp ()
+{
+    # remove the Makefile
+    rm orgmk.mk
+}
+
+# perform housekeeping on program exit or a variety of signals
+# (EXIT, HUP, INT, QUIT, TERM)
+trap CleanUp 0 1 2 3 15
+#+end_src
+
+#+begin_src sh
+# install the Makefile where you are
+orgmk-stow-orgmk.mk
+
+FLAGS=""
+while true; do
+    case "$1" in
+        -h | --help ) Usage ;;
+        -r | --recursive) FLAGS="ALLSUBDIRS=yes"; shift ;;
+        ,* ) break ;;
+    esac
+done
+
+make -f orgmk.mk $FLAGS $*
+#+end_src
+
+* Orgmk configuration file
+  :PROPERTIES:
+  :tangle:   site-lisp/orgmk.el
+  :END:
+
+I use a setup file =orgmk.el= to hold minimal customization.
+
+#+begin_info
+In batch mode, [...] Emacs functions that normally print a message in the echo
+area will print to either the standard output stream (=stdout=) or the standard
+error stream (=stderr=) instead. (To be precise, functions like =prin1=, =princ= and
+=print= print to =stdout=, while =message= and =error= print to =stderr=.)
+#+end_info
+
+** Common
+
+#+begin_src emacs-lisp
+;;; orgmk.el --- Emacs configuration file for `orgmk'
+#+end_src
+
+*** Library Search
+
+Remember current directory.
+
+#+begin_src emacs-lisp
+;; remember this directory
+(defconst orgmk-el-directory
+  (file-name-directory (or load-file-name (buffer-file-name)))
+  "Directory path of Orgmk.")
+#+end_src
+
+*** Feedback
+
+#+begin_src emacs-lisp
+;; ;; activate debugging
+;; (setq debug-on-error t)
+
+;; no limit when printing values
+(setq eval-expression-print-length nil)
+(setq eval-expression-print-level nil)
+#+end_src
+
+*** Auto Save
+
+#+begin_src emacs-lisp
+;; don't make a backup of files
+(setq backup-inhibited t)
+#+end_src
+
+*** Initialization for MS Windows
+
+When running an native Microsoft Windows version of Emacs:
+
+#+begin_src emacs-lisp
+;; ;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)
+;; (add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; <- adjust
+;; (when (eq system-type 'windows-nt)
+;;   (when (try-require 'cygwin-mount)
+;;     (cygwin-mount-activate)))
+#+end_src
+
+*** Shell
+
+Fix the shell to use: the *default value of shell-file-name* (that is the
+program =/bin/bash=) is not found under Windows Emacs.
+
+#+begin_src emacs-lisp
+;; shell
+(message "Current value of `shell-file-name': %s" shell-file-name)
+(unless (equal shell-file-name "bash")
+  (setq shell-file-name "bash")
+  (message "... changed to: %s" shell-file-name))
+#+end_src
+
+This is important when launching external tools, such as ~PDFLaTeX~ or ~Latexmk~.
+
+*** Installation of version 8 or later
+
+Ensure that a recent version of Org mode is installed and loaded.
+
+#+begin_src emacs-lisp
+(when (locate-library "package")
+  (require 'package)
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (package-initialize))
+
+;; version info
+(let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
+      (org-dir (file-name-directory (locate-library "org")))) ;; org.(el|elc)
+  (message "Org mode version %s (org @ %s)"
+           (org-version)
+           (if (string= org-dir org-install-dir)
+               org-install-dir
+             (concat "mixed installation! " org-install-dir " and " org-dir))))
+
+(unless (string-match "^8" (org-version))
+  (message "This version of Org mode is no longer supported")
+  (when (locate-library "package")
+    (if (yes-or-no-p (format "Install package `%s'? " 'org))
+        (ignore-errors
+          (package-install 'org))
+      (setq debug-on-error nil)
+      (error "Please upgrade to 8 or later"))))
+
+(when (locate-library "package")
+  (unless (locate-library "htmlize")    ; for org2html
+    (let ((pkg 'htmlize))
+      (if (yes-or-no-p (format "Install package `%s'? " pkg))
+          (ignore-errors
+            (package-install pkg))))))
+#+end_src
+
+*** Activation
+
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
+#+end_src
+
+*** Language Environment
+
+#+begin_src emacs-lisp
+;; make sure that timestamps appear in English
+(setq system-time-locale "C")           ; [default: nil]
+#+end_src
+
+*** Clock table
+
+#+begin_src emacs-lisp
+;; format string used when creating CLOCKSUM lines and when generating a
+;; time duration (avoid showing days)
+(setq org-time-clocksum-format
+      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
+;; format string for the total time cells
+(setq org-clock-total-time-cell-format "%s")
+
+;; format string for the file time cells
+(setq org-clock-file-time-cell-format "%s")
+#+end_src
+
+*** Markup
+
+#+begin_src emacs-lisp
+;; hide the emphasis marker characters
+(setq org-hide-emphasis-markers t)      ; impact on table alignment!
+#+end_src
+
+*** Export options
+
+#+begin_src emacs-lisp
+;; allow #+BIND to define local variable values for export
+(setq org-export-allow-bind-keywords t)
+#+end_src
+
+*** Org-Babel
+
+#+begin_src emacs-lisp
+;; configure Babel to support most languages
+(if (locate-library "ob-shell")         ; ob-sh renamed on Dec 13th, 2013
+    (org-babel-do-load-languages        ; loads org, gnus-sum, etc...
+     'org-babel-load-languages
+     '((R          . t)                 ; requires R and ess-mode
+       (awk        . t)
+       (ditaa      . t)                 ; sudo aptitude install openjdk-6-jre
+       (dot        . t)
+       (emacs-lisp . t)
+       (latex      . t)                 ; shouldn't you use #+begin/end_latex blocks instead?
+       (ledger     . t)                 ; requires ledger
+       (org        . t)
+       (shell      . t)
+       (sql        . t)))
+  ;; XXX (in the future) message saying "Upgrade to Org 8.3"
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((R          . t)
+     (awk        . t)
+     (ditaa      . t)
+     (dot        . t)
+     (emacs-lisp . t)
+     (latex      . t)
+     (ledger     . t)
+     (org        . t)
+     (sh         . t)
+     (sql        . t))))
+
+;; accented characters on graphics
+(setq org-babel-R-command
+      (concat org-babel-R-command " --encoding=UTF-8"))
+
+;; don't require confirmation before evaluating code blocks
+(setq org-confirm-babel-evaluate nil)
+#+end_src
+
+*** Library of Babel
+
+#+begin_src emacs-lisp
+;; load up Babel libraries
+(let ((lob-file (concat (file-name-directory (locate-library "org"))
+                        "../doc/library-of-babel.org")))
+  (when (file-exists-p lob-file)
+    (org-babel-lob-ingest lob-file)))
+#+end_src
+
+** HTML export
+
+*************** TODO Understand the hidden xx used for spacing levels in column views
+Depending on interactive vs batch export to HTML, we still have the above
+difference in the resulting HTML file.
+*************** END
+
+#+begin_src emacs-lisp
+(when (require 'ox-html)
+
+  ;; XML encoding
+  (setq org-html-xml-declaration
+        '(("html" . "<!-- <xml version=\"1.0\" encoding=\"%s\"> -->")))
+
+  ;; don't include the JavaScript snippets in exported HTML files
+  (setq org-html-head-include-scripts nil)
+
+  ;; turn inclusion of the default CSS style off
+  (setq org-html-head-include-default-style nil)
+
+  ;; coding system for HTML export
+  (setq org-html-coding-system 'utf-8)
+
+  ;; format for the HTML postamble
+  (setq org-html-postamble
+        "  <div id=\"copyright\">\n    &copy; %d %a\n  </div>")
+
+  ;; XXX export the CSS selectors only, when formatting code snippets
+  (setq org-export-htmlize-output-type 'css))
+#+end_src
+
+** PDF LaTeX export
+
+*************** TODO Since [2012-10-26 Fri], the %b now means the real base name (no full part).
+*************** END
+
+#+begin_src emacs-lisp
+(when (require 'ox-latex)
+
+  ;; ;; This is disturbing when calling `org2html'.
+  ;; (when (executable-find "latexmk")
+  ;;   (message "%s" (shell-command-to-string "latexmk --version")))
+
+  (setq org-latex-pdf-process
+        (if (eq system-type 'cygwin) ;; running a Cygwin version of Emacs
+            ;; use Latexmk (if installed with LaTeX)
+            (if (executable-find "latexmk")
+                '("latexmk -CF -pdf $(cygpath -m %f) && latexmk -c")
+              '("pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
+                "pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
+                "pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"))
+          (if (executable-find "latexmk")
+              '("latexmk -CF -pdf %f && latexmk -c")
+            '("pdflatex -interaction=nonstopmode -output-directory=%o %f"
+              "pdflatex -interaction=nonstopmode -output-directory=%o %f"
+              "pdflatex -interaction=nonstopmode -output-directory=%o %f"))))
+
+  (message "LaTeX command: %S" org-latex-pdf-process)
+
+  ;; tell org to use `listings' (instead of `verbatim') for source code
+  (setq org-latex-listings t)
+
+  ;; default packages to be inserted in the header
+  ;; include the `listings' package for fontified source code
+  (add-to-list 'org-latex-packages-alist '("" "listings") t)
+
+  ;; include the `xcolor' package for colored source code
+  (add-to-list 'org-latex-packages-alist '("" "xcolor") t)
+
+  ;; default position for LaTeX figures
+  (setq org-latex-default-figure-position "!htbp"))
+#+end_src
+
+** Extra customization files
+
+To allow you to easily add extra settings to the above "standard" ones, you can
+create several files in the =lisp= directory. All of them will be loaded at the
+end of =orgmk='s initialization.
+
+#+begin_src emacs-lisp
+;; require all files from `lisp' directory
+(dolist (file (directory-files
+               (concat orgmk-el-directory "../lisp/") t ".+\\.elc?$"))
+  (load-file file))
+#+end_src
+
+#+begin_src emacs-lisp
+;;; orgmk.el ends here
+#+end_src
+
+* Sample parameters
+
+** Custom LaTeX classes
+   :PROPERTIES:
+   :tangle:   lisp/org-latex-classes.el
+   :END:
+
+#+begin_src emacs-lisp
+;;; org-latex-classes.el --- Sample configuration file for LaTeX
+
+(add-to-list 'org-latex-classes
+             '("koma-article"
+               "\\documentclass{scrartcl}
+               [NO-DEFAULT-PACKAGES]
+               [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+;;; org-latex-classes.el ends here
+#+end_src
+
+* Standard disclaimer
+
+I am furnishing this item "as is". I do *NOT* provide *ANY WARRANTY* of the item
+whatsoever, whether express, implied, or statutory, including, but not limited
+to, any warranty of *MERCHANTABILITY* or *FITNESS FOR A PARTICULAR PURPOSE* or any
+warranty that the contents of the item will be error-free.
+
+In no respect shall I incur any liability for any damages, including, but
+limited to, direct, indirect, special, or consequential damages arising out of,
+resulting from, or any way connected to the use of the item, whether or not
+based upon warranty, contract, tort, or otherwise; whether or not injury was
+sustained by persons or property or otherwise; and whether or not loss was
+sustained from, or arose out of, the results of, the item, or any services that
+may be provided by me.

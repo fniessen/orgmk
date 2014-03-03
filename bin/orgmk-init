@@ -1,0 +1,112 @@
+#!/bin/sh
+
+Usage ()
+{
+    cat << EOF 1>&2
+Usage: $(basename $0) [OPTION] FILE
+Convert FILE to another format.
+
+  -h, --help     display this help and exit
+  -y             authorize update of the source file without confirmation
+
+Report $(basename $0) bugs to fni@missioncriticalit.com
+EOF
+    exit 1
+}
+
+die () {
+    printf "$(basename $0): $@\n" > /dev/stderr
+    exit 2 # an error occurred
+}
+
+CleanUp ()
+{
+    # restore backed up target file if it hasn't been produced
+    if [ ! -z $FILE_TARGET ]; then
+        if [ -r $FILE_TARGET.bak ]; then
+            if [ ! -r $FILE_TARGET ]; then
+                printf "Recovering OLD file $FILE_TARGET...\n"
+                mv $FILE_TARGET.bak $FILE_TARGET
+            else
+                rm $FILE_TARGET.bak
+            fi
+        fi
+    fi
+
+    # display log file, if present
+    if [ ! -z $FILE_LOG ]; then
+        if [ -r $FILE_LOG ]; then
+            grep -e "^!.*" -A 3 -B 1 $FILE_LOG
+        fi
+    fi
+
+    # remove the temporary copy of the source Org file
+    if [ ! -z $FILE_SRC_UPDT ]; then
+        rm -f $FILE_SRC_UPDT
+    fi
+}
+
+    cat << EOF
+This is $(basename $0), version: 20140303.1357.
+EOF
+
+# perform housekeeping on program exit or a variety of signals
+# (EXIT, HUP, INT, QUIT, TERM)
+trap CleanUp 0 1 2 3 15
+
+# load the system-wide config file (definition of `ORGMK_EL')
+. orgmk.conf
+
+if [ "$ORGMK_EL" = "" ]; then
+    printf "ORGMK_EL variable not defined, please check your setup!\n"
+    exit 2
+fi
+
+# source the user config file (default for `UPDATE_SRC', etc.)
+ORGMK_USER_CONF=$HOME/.orgmk-rc
+if [ -r $ORGMK_USER_CONF ]; then
+    . $ORGMK_USER_CONF
+fi
+
+export UPDATE_SRC
+
+while true; do
+    case "$1" in
+        -y ) UPDATE_SRC="yes"; shift ;;
+        -h | --help ) Usage ;;
+        * ) break ;;
+    esac
+done
+# now do something with $@
+
+if [ $# -ne 1 ]; then
+    Usage
+fi
+
+FILE_SRC_ORIG=$1
+if [ ! -r "$FILE_SRC_ORIG" ]; then
+    die "Cannot read file $FILE_SRC_ORIG"
+fi
+
+FILE_SRC_UPDT="${FILE_SRC_ORIG%.*}.orgmk" # replace extension
+# The temporary file only differ by its extension (`.orgmk'), so that the
+# exported file will be named <orig file name>.<backend ext>.
+
+FILE_LOG="${FILE_SRC_ORIG%.*}.log"
+rm -f $FILE_LOG
+
+FILE_TARGET="${FILE_SRC_ORIG%.*}.$TARGET_EXT"
+
+# back up previous version of target file
+if [ -r $FILE_TARGET ]; then
+    mv $FILE_TARGET $FILE_TARGET.bak
+fi
+
+EMACS=emacs
+
+WHICH_EMACS=$(which $EMACS)
+EMACS_FLAGS="--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""
+EMACS_BATCH="emacs --batch -Q $EMACS_FLAGS"
+ORG_FLAGS=""
+ORGMK="$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"
+ORGMK_UPDATE_FLAGS="-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\"" # base name

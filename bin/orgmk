@@ -1,0 +1,39 @@
+#!/bin/sh
+
+Usage ()
+{
+    cat << EOF 1>&2
+Usage: $(basename $0) [OPTION] FILE
+Export Org source files whenever they are updated.
+
+  -h, --help          display this help and exit
+  -r, --recursive     export all Org files under each directory, recursively
+
+Report $(basename $0) bugs to fni@missioncriticalit.com
+EOF
+    exit 1
+}
+
+CleanUp ()
+{
+    # remove the Makefile
+    rm orgmk.mk
+}
+
+# perform housekeeping on program exit or a variety of signals
+# (EXIT, HUP, INT, QUIT, TERM)
+trap CleanUp 0 1 2 3 15
+
+# install the Makefile where you are
+orgmk-stow-orgmk.mk
+
+FLAGS=""
+while true; do
+    case "$1" in
+        -h | --help ) Usage ;;
+        -r | --recursive) FLAGS="ALLSUBDIRS=yes"; shift ;;
+        * ) break ;;
+    esac
+done
+
+make -f orgmk.mk $FLAGS $*
