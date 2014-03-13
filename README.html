@@ -8,7 +8,7 @@
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
   <title>Export Org mode documents to HTML, PDF, etc.</title>
-  <!-- 2014-03-13 Thu 14:30 -->
+  <!-- 2014-03-13 Thu 15:09 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -653,7 +653,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span style=
-"color: #0000ff; background-color: #EEF5FE;">This is $(basename $0), version: 20140313.1429.</span>
+"color: #0000ff; background-color: #EEF5FE;">This is $(basename $0), version: 20140313.1509.</span>
 <span style="color: #0000ff; background-color: #EEF5FE;">EOF</span>
 </pre>
             </div>
@@ -1522,105 +1522,9 @@ endif
 
         <div id="outline-container-sec-8-1-5" class="outline-4">
           <h4 id="sec-8-1-5"><span class="section-number-4">8.1.5</span>
-          Dynamic dependencies</h4>
-
-          <div class="outline-text-4" id="text-8-1-5">
-            <table class="inlinetask" width="100%">
-              <tr>
-                <td valign="top"><b><span class=
-                "todo TODO">TODO</span></b></td>
-
-                <td width="100%">
-                  <b>Generate a list of prerequisites!</b><br />
-
-                  <p>If some file includes other files, we need to depend on
-                  them before updating the dynamic blocks.</p>
-                </td>
-              </tr>
-            </table>
-
-            <p>It is essential that included files are determined “on the fly”
-            so that generated files are correct in all cases.</p>
-
-            <div class="org-src-container">
-              <pre class="src src-makefile" id="recipe-depends-on">
-<span style="color: #8D8D84;">#</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">       </span><span style=
-"color: #8D8D84; font-style: italic;">$(</span><span style=
-"color: #BA36A5; font-style: italic;">PRINTF</span><span style=
-"color: #8D8D84; font-style: italic;">) "$(</span><span style=
-"color: #BA36A5; font-style: italic;">C_</span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">WARNING</span><span style="color: #8D8D84; font-style: italic;">)$</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> Depends on $(</span><span style="color: #BA36A5; font-style: italic;">shell</span><span style="color: #8D8D84; font-style: italic;"> grep '#+INCLUDE' $</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(</span><span style="color: #BA36A5; font-style: italic;">C_RESET</span><span style="color: #8D8D84; font-style: italic;">)\n"</span>
-</pre>
-            </div>
-
-            <p>Therefore, we produce “dot d” files, which may be merged to
-            construct an “includable” dependency file.</p>
-
-            <p>… A first (much simpler) approach would be, in case of external
-            files on which we depend (for the prestations, for example), to
-            simply <code>touch</code> the master Org file, and let it
-            regenerate the PDF. Of course, that wouldn’t be performant… each
-            such file being always regenerated.</p>
-
-            <div class="org-src-container">
-              <pre class="src src-makefile">
-<span style=
-"color: #0000ff; font-weight: bold;">%.d</span>: %.txt                              <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Generate list of prerequisite makefiles</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>printf <span style=
-"color: #036A07;">"</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">: "</span> &gt; <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>grep <span style=
-"color: #036A07;">"#+INCLUDE:"</span> $<span style=
-"color: #D0372D;">&lt;</span> | cut -d<span style=
-"color: #036A07;">'"'</span> -f 2 | sort | uniq | paste -d<span style=
-"color: #036A07;">' '</span> -s &gt;&gt; <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>printf <span style=
-"color: #036A07;">"-- Generated list of prerequisites --\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>cat <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>printf <span style=
-"color: #036A07;">"-- Generated list of prerequisites --\n"</span>
-</pre>
-            </div>
-
-            <table class="inlinetask" width="100%">
-              <tr>
-                <td valign="top"><b><span class=
-                "todo TODO">TODO</span></b></td>
-
-                <td width="100%">
-                  <b>Add other files we depend on</b><br />
-
-                  <p>For example, in “clocktable”, we can include external
-                  files through the “:scope” parameter.</p>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <div id="outline-container-sec-8-1-6" class="outline-4">
-          <h4 id="sec-8-1-6"><span class="section-number-4">8.1.6</span>
           HTML</h4>
 
-          <div class="outline-text-4" id="text-8-1-6">
+          <div class="outline-text-4" id="text-8-1-5">
             <p><code>orgmk html</code> will regenerate all HTML files which
             <b>currently exist</b> in the directory, and whose source Org file
             has changed.</p>
@@ -1643,13 +1547,6 @@ endif
               <pre class="src src-makefile">
 <span style=
 "color: #0000ff; font-weight: bold;">$(HTML_FILES_FROM_ORG)</span>: %.html: %.org   <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Export an Org document to HTML</span>
-<span style="color: #8D8D84;">#</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">       </span><span style=
-"color: #8D8D84; font-style: italic;">$(</span><span style=
-"color: #BA36A5; font-style: italic;">PRINTF</span><span style=
-"color: #8D8D84; font-style: italic;">) "$(</span><span style=
-"color: #BA36A5; font-style: italic;">C_</span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">WARNING</span><span style="color: #8D8D84; font-style: italic;">)$</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> Depends on $(</span><span style="color: #BA36A5; font-style: italic;">shell</span><span style="color: #8D8D84; font-style: italic;"> grep '#+INCLUDE' $</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(</span><span style="color: #BA36A5; font-style: italic;">C_RESET</span><span style="color: #8D8D84; font-style: italic;">)\n"</span>
 <span style=
 "color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
 "color: #BA36A5;">PRINTF</span>) <span style=
@@ -1690,13 +1587,6 @@ endif
 "color: #0000ff; font-weight: bold;">)</span>: %.html: %.txt   <span style=
 "color: #8D8D84;"># </span><span style=
 "color: #8D8D84; font-style: italic;">Export an Org document to HTML</span>
-<span style="color: #8D8D84;">#</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">       </span><span style=
-"color: #8D8D84; font-style: italic;">$(</span><span style=
-"color: #BA36A5; font-style: italic;">PRINTF</span><span style=
-"color: #8D8D84; font-style: italic;">) "$(</span><span style=
-"color: #BA36A5; font-style: italic;">C_</span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">WARNING</span><span style="color: #8D8D84; font-style: italic;">)$</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> Depends on $(</span><span style="color: #BA36A5; font-style: italic;">shell</span><span style="color: #8D8D84; font-style: italic;"> grep '#+INCLUDE' $</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(</span><span style="color: #BA36A5; font-style: italic;">C_RESET</span><span style="color: #8D8D84; font-style: italic;">)\n"</span>
 <span style=
 "color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
 "color: #BA36A5;">PRINTF</span>) <span style=
@@ -1787,11 +1677,11 @@ endif
           </div>
         </div>
 
-        <div id="outline-container-sec-8-1-7" class="outline-4">
-          <h4 id="sec-8-1-7"><span class="section-number-4">8.1.7</span>
+        <div id="outline-container-sec-8-1-6" class="outline-4">
+          <h4 id="sec-8-1-6"><span class="section-number-4">8.1.6</span>
           PDF</h4>
 
-          <div class="outline-text-4" id="text-8-1-7">
+          <div class="outline-text-4" id="text-8-1-6">
             <p><code>orgmk pdf</code> will find out which PDF files have to be
             regenerated, and will regenerate all of them.</p>
 
@@ -1812,13 +1702,6 @@ endif
               <pre class="src src-makefile">
 <span style=
 "color: #0000ff; font-weight: bold;">$(PDF_FILES_FROM_ORG)</span>: %.pdf: %.org     <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Export an Org document to PDF</span>
-<span style="color: #8D8D84;">#</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">       </span><span style=
-"color: #8D8D84; font-style: italic;">$(</span><span style=
-"color: #BA36A5; font-style: italic;">PRINTF</span><span style=
-"color: #8D8D84; font-style: italic;">) "$(</span><span style=
-"color: #BA36A5; font-style: italic;">C_</span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">WARNING</span><span style="color: #8D8D84; font-style: italic;">)$</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> Depends on $(</span><span style="color: #BA36A5; font-style: italic;">shell</span><span style="color: #8D8D84; font-style: italic;"> grep '#+INCLUDE' $</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(</span><span style="color: #BA36A5; font-style: italic;">C_RESET</span><span style="color: #8D8D84; font-style: italic;">)\n"</span>
 <span style=
 "color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
 "color: #BA36A5;">PRINTF</span>) <span style=
@@ -1859,13 +1742,6 @@ endif
 "color: #0000ff; font-weight: bold;">)</span>: %.pdf: %.txt     <span style=
 "color: #8D8D84;"># </span><span style=
 "color: #8D8D84; font-style: italic;">Export an Org document to PDF</span>
-<span style="color: #8D8D84;">#</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">       </span><span style=
-"color: #8D8D84; font-style: italic;">$(</span><span style=
-"color: #BA36A5; font-style: italic;">PRINTF</span><span style=
-"color: #8D8D84; font-style: italic;">) "$(</span><span style=
-"color: #BA36A5; font-style: italic;">C_</span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">WARNING</span><span style="color: #8D8D84; font-style: italic;">)$</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> Depends on $(</span><span style="color: #BA36A5; font-style: italic;">shell</span><span style="color: #8D8D84; font-style: italic;"> grep '#+INCLUDE' $</span><span style="color: #D0372D; font-style: italic;">&lt;</span><span style="color: #8D8D84; font-style: italic;"> | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(</span><span style="color: #BA36A5; font-style: italic;">C_RESET</span><span style="color: #8D8D84; font-style: italic;">)\n"</span>
 <span style=
 "color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
 "color: #BA36A5;">PRINTF</span>) <span style=
@@ -1987,11 +1863,11 @@ endif
           </div>
         </div>
 
-        <div id="outline-container-sec-8-1-8" class="outline-4">
-          <h4 id="sec-8-1-8"><span class="section-number-4">8.1.8</span>
+        <div id="outline-container-sec-8-1-7" class="outline-4">
+          <h4 id="sec-8-1-7"><span class="section-number-4">8.1.7</span>
           Clean</h4>
 
-          <div class="outline-text-4" id="text-8-1-8">
+          <div class="outline-text-4" id="text-8-1-7">
             <div class="org-src-container">
               <pre class="src src-makefile">
 <span style="color: #0000ff; font-weight: bold;">.PHONY</span>: clean
@@ -2002,11 +1878,11 @@ endif
           </div>
         </div>
 
-        <div id="outline-container-sec-8-1-9" class="outline-4">
-          <h4 id="sec-8-1-9"><span class="section-number-4">8.1.9</span>
+        <div id="outline-container-sec-8-1-8" class="outline-4">
+          <h4 id="sec-8-1-8"><span class="section-number-4">8.1.8</span>
           <span class="todo TODO">TODO</span> Orgmk init file</h4>
 
-          <div class="outline-text-4" id="text-8-1-9">
+          <div class="outline-text-4" id="text-8-1-8">
             <p>Here, we should <b>make a symlink</b>, if it does not exist yet.
             Would then be used just once…</p>
 
@@ -2015,11 +1891,11 @@ endif
           </div>
         </div>
 
-        <div id="outline-container-sec-8-1-10" class="outline-4">
-          <h4 id="sec-8-1-10"><span class="section-number-4">8.1.10</span>
+        <div id="outline-container-sec-8-1-9" class="outline-4">
+          <h4 id="sec-8-1-9"><span class="section-number-4">8.1.9</span>
           Footer</h4>
 
-          <div class="outline-text-4" id="text-8-1-10">
+          <div class="outline-text-4" id="text-8-1-9">
             <div class="org-src-container">
               <pre class="src src-makefile">
 <span style="color: #8D8D84;">### </span><span style=

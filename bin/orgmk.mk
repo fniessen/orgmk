@@ -69,7 +69,6 @@ help:                                   # Display callable targets
 html: $(CUR_HTML_FILES)                 # Regenerate all HTML documents from Org
 
 $(HTML_FILES_FROM_ORG): %.html: %.org   # Export an Org document to HTML
-#	$(PRINTF) "$(C_WARNING)$< Depends on $(shell grep '#+INCLUDE' $< | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(C_RESET)\n"
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to HTML...$(C_RESET)\n"
 	$(ORG2HTML) $<
 	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" > /dev/null \
@@ -77,7 +76,6 @@ $(HTML_FILES_FROM_ORG): %.html: %.org   # Export an Org document to HTML
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 
 $(HTML_FILES_FROM_TXT): %.html: %.txt   # Export an Org document to HTML
-#	$(PRINTF) "$(C_WARNING)$< Depends on $(shell grep '#+INCLUDE' $< | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(C_RESET)\n"
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to HTML...$(C_RESET)\n"
 	$(ORG2HTML) $<
 	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" > /dev/null \
@@ -90,7 +88,6 @@ view-html:                              # Generate the HTML files, then show the
 pdf: $(CUR_PDF_FILES)                   # Regenerate all PDF documents from Org
 
 $(PDF_FILES_FROM_ORG): %.pdf: %.org     # Export an Org document to PDF
-#	$(PRINTF) "$(C_WARNING)$< Depends on $(shell grep '#+INCLUDE' $< | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(C_RESET)\n"
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to PDF...$(C_RESET)\n"
 	$(ORG2PDF) $<
 	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" > /dev/null \
@@ -98,7 +95,6 @@ $(PDF_FILES_FROM_ORG): %.pdf: %.org     # Export an Org document to PDF
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 
 $(PDF_FILES_FROM_TXT): %.pdf: %.txt     # Export an Org document to PDF
-#	$(PRINTF) "$(C_WARNING)$< Depends on $(shell grep '#+INCLUDE' $< | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(C_RESET)\n"
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to PDF...$(C_RESET)\n"
 	$(ORG2PDF) $<
 	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" > /dev/null \

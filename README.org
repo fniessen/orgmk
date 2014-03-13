@@ -829,43 +829,6 @@ help:                                   # Display callable targets
 	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' > /dev/stderr
 #+end_src
 
-*** Dynamic dependencies
-
-*************** TODO Generate a list of prerequisites!
-If some file includes other files, we need to depend on them before updating
-the dynamic blocks.
-*************** END
-
-It is essential that included files are determined "on the fly" so that
-generated files are correct in all cases.
-
-#+name: recipe-depends-on
-#+begin_src makefile :tangle no
-#	$(PRINTF) "$(C_WARNING)$< Depends on $(shell grep '#+INCLUDE' $< | cut -d'\"' -f 2 | sort | uniq | paste -d' ' -s)$(C_RESET)\n"
-#+end_src
-
-Therefore, we produce "dot d" files, which may be merged to construct an
-"includable" dependency file.
-
-... A first (much simpler) approach would be, in case of external
-files on which we depend (for the prestations, for example), to simply
-=touch= the master Org file, and let it regenerate the PDF. Of course,
-that wouldn't be performant... each such file being always regenerated.
-
-#+begin_src makefile :tangle no
-%.d: %.txt                              # Generate list of prerequisite makefiles
-	printf "$@: " > $@
-	@grep "#+INCLUDE:" $< | cut -d'"' -f 2 | sort | uniq | paste -d' ' -s >> $@
-	@printf "-- Generated list of prerequisites --\n"
-	@cat $@
-	@printf "-- Generated list of prerequisites --\n"
-#+end_src
-
-*************** TODO Add other files we depend on
-For example, in "clocktable", we can include external files through the
-":scope" parameter.
-*************** END
-
 *** HTML
 
 =orgmk html= will regenerate all HTML files which *currently exist* in the
@@ -881,11 +844,9 @@ ignore other Org files in the directory.
 
 #+begin_src makefile
 $(HTML_FILES_FROM_ORG): %.html: %.org   # Export an Org document to HTML
-<<recipe-depends-on>>
 <<recipe-convert-to-html>>
 
 $(HTML_FILES_FROM_TXT): %.html: %.txt   # Export an Org document to HTML
-<<recipe-depends-on>>
 <<recipe-convert-to-html>>
 #+end_src
 
@@ -920,11 +881,9 @@ Type =orgmk file.pdf= to generate only the specified PDF file.
 
 #+begin_src makefile
 $(PDF_FILES_FROM_ORG): %.pdf: %.org     # Export an Org document to PDF
-<<recipe-depends-on>>
 <<recipe-convert-to-pdf>>
 
 $(PDF_FILES_FROM_TXT): %.pdf: %.txt     # Export an Org document to PDF
-<<recipe-depends-on>>
 <<recipe-convert-to-pdf>>
 #+end_src
 
