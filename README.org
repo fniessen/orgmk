@@ -1,4 +1,4 @@
-#+TITLE:     Export Org documents (to HTML, PDF, etc.)
+#+TITLE:     Export Org mode documents to HTML, PDF, etc.
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION:
@@ -15,8 +15,8 @@
 
 ** Description
 
-Orgmk is a suite of Bash scripts for *automating the conversion of Org
-documents to different formats*, such as HTML or PDF.
+Orgmk is a suite of Bash scripts for *automating the conversion of Org mode
+documents to different formats* (such as HTML or PDF) from the command line.
 
 The scripts run on both Unix and Microsoft Windows (with Cygwin).
 
