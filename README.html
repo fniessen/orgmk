@@ -8,7 +8,6 @@
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
   <title>Export Org mode documents to HTML, PDF, etc.</title>
-  <!-- 2014-03-13 Thu 15:09 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -118,23 +117,13 @@
           </div>
         </div>
       </div>
-
-      <div id="outline-container-sec-1-4" class="outline-3">
-        <h3 id="sec-1-4"><span class="section-number-3">1.4</span> Note</h3>
-
-        <div class="outline-text-3" id="text-1-4">
-          <p>This program is in a TEST stage, but you can already work with
-          it.</p>
-        </div>
-      </div>
     </div>
 
     <div id="outline-container-sec-2" class="outline-2">
       <h2 id="sec-2"><span class="section-number-2">2</span> Usage</h2>
 
       <div class="outline-text-2" id="text-2">
-        <p>Org files can have the extension <code>.org</code> or
-        <code>.txt</code>.</p>
+        <p>Org files can have the extension ~.org~ or ~.txt~.</p>
       </div>
 
       <div id="outline-container-sec-2-1" class="outline-3">
@@ -182,11 +171,11 @@ orgmk [OPTION] [FILE]
 
         <div class="outline-text-3" id="text-3-1">
           <dl class="org-dl">
-            <dt><code>-h</code>, <code>--help</code></dt>
+            <dt>=-h=, =–help=</dt>
 
             <dd>Print usage information and exit.</dd>
 
-            <dt><code>-y</code></dt>
+            <dt>=-y=</dt>
 
             <dd>
               Authorize the update of the source file (update of dynamic blocks
@@ -205,9 +194,8 @@ orgmk [OPTION] [FILE]
               <code>yes</code> or <code>no</code> in a personal configuration
               file, <code>~/.orgmk-rc</code>.</p>
 
-              <p>Note that, by design, the command line argument
-              <code>-y</code> is passed to every
-              <code>org2&lt;BACKEND&gt;</code> script called from
+              <p>Note that, by design, the command line argument =-y= is passed
+              to every <code>org2&lt;BACKEND&gt;</code> script called from
               <code>orgmk</code>, so that <code>orgmk</code> doesn’t wait for
               answers.</p>
             </dd>
@@ -221,11 +209,11 @@ orgmk [OPTION] [FILE]
 
         <div class="outline-text-3" id="text-3-2">
           <dl class="org-dl">
-            <dt><code>-h</code>, <code>--help</code></dt>
+            <dt>=-h=, =–help=</dt>
 
             <dd>Print usage information and exit.</dd>
 
-            <dt><code>-r</code>, <code>--recursive</code></dt>
+            <dt>=-r=, =–recursive=</dt>
 
             <dd>
               Export all Org files <b>under each directory, recursively</b>.
@@ -653,7 +641,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span style=
-"color: #0000ff; background-color: #EEF5FE;">This is $(basename $0), version: 20140313.1509.</span>
+"color: #0000ff; background-color: #EEF5FE;">This is $(basename $0), version: 20140327.2336.</span>
 <span style="color: #0000ff; background-color: #EEF5FE;">EOF</span>
 </pre>
             </div>
@@ -1134,23 +1122,16 @@ orgmk-update-src-check-diff <span style=
                   <td valign="top"><b><span class=
                   "todo TODO">TODO</span></b></td>
 
-                  <td width="100%"><b>Test whether Orgmk works with symbolic
-                  links</b><br /></td>
+                  <td width="100%">
+                    <b>Test whether Orgmk works with symbolic links</b><br />
+
+                    <p>Does their modification time change to reflect the
+                    latest modification of the source?</p>
+                  </td>
                 </tr>
               </table>
             </li>
           </ul>
-
-          <p>Does their modification time change to reflect the latest
-          modification of the source?</p>
-
-          <table class="inlinetask" width="100%">
-            <tr>
-              <td valign="top"></td>
-
-              <td width="100%"><b>END</b><br /></td>
-            </tr>
-          </table>
         </div>
 
         <div id="outline-container-sec-8-1-1" class="outline-4">
@@ -1345,9 +1326,9 @@ endif
                     <b>Fix problem of Orgfile with .org/.txt
                     extension</b><br />
 
-                    <p>If an Org file exists with the 2 file extensions
-                    <code>.txt</code> and <code>.org</code> (same base name),
-                    then we get messages such as:</p>
+                    <p>If an Org file exists with the 2 file extensions =.txt=
+                    and =.org= (same base name), then we get messages such
+                    as:</p>
 
                     <p>Makefile:102: warning: overriding recipe for target
                     `plot.html’ Makefile:89: warning: ignoring old recipe for
@@ -2640,8 +2621,10 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
   </div>
 
   <div id="postamble" class="status">
-    <div id="copyright">
-      © Fabrice Niessen
+    <div id="footer">
+      <div id="copyright">
+        Copyright © Fabrice Niessen
+      </div>
     </div>
   </div>
 </body>

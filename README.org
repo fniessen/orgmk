@@ -53,10 +53,6 @@ installed -- if you accept it! -- through ELPA.
 A working LaTeX installation is required for exporting to PDF. If it is not
 yet installed on your system, install (for example) [[http://www.tug.org/texlive/][TeX Live]].
 
-** Note
-
-This program is in a TEST stage, but you can already work with it.
-
 * Usage
 
 Org files can have the extension ~.org~ or ~.txt~.
