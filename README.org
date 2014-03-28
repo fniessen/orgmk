@@ -51,7 +51,7 @@ installed -- if you accept it! -- through ELPA.
 *** LaTeX (PDF)
 
 A working LaTeX installation is required for exporting to PDF. If it is not
-yet installed on your system, install (for example) [[http://www.tug.org/texlive/][TeX Live]].
+yet installed on your system, install [[http://www.tug.org/texlive/][TeX Live]] (for example).
 
 * Usage
 
