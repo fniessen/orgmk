@@ -59,14 +59,22 @@ Org files can have the extension ~.org~ or ~.txt~.
 
 ** Standalone scripts
 
-#+begin_src sh
-org2html [OPTION] FILE
-org2latex [OPTION] FILE
-org2pdf [OPTION] FILE
-org2beamerpdf [OPTION] FILE
-org2odt [OPTION] FILE
-org2txt [OPTION] FILE
-#+end_src
+- For "weaving" files (producing the formatted documentation files):
+
+  #+begin_src sh
+  org2html [OPTION] FILE
+  org2latex [OPTION] FILE
+  org2pdf [OPTION] FILE
+  org2beamerpdf [OPTION] FILE
+  org2odt [OPTION] FILE
+  org2txt [OPTION] FILE
+  #+end_src
+
+- For "tangling" files:
+
+  #+begin_src sh
+  org-tangle FILE
+  #+end_src
 
 ** Makefile wrapper
 
@@ -75,6 +83,8 @@ orgmk [OPTION]
 orgmk [OPTION] [html | pdf]
 orgmk [OPTION] [FILE]
 #+end_src
+
+Currently, =orgmk= does not tangle Org files.
 
 * Options
 

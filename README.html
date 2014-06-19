@@ -132,8 +132,12 @@
         scripts</h3>
 
         <div class="outline-text-3" id="text-2-1">
-          <div class="org-src-container">
-            <pre class="src src-sh">
+          <ul class="org-ul">
+            <li>For “weaving” files (producing the formatted documentation
+            files):
+
+              <div class="org-src-container">
+                <pre class="src src-sh">
 org2html [OPTION] FILE
 org2latex [OPTION] FILE
 org2pdf [OPTION] FILE
@@ -141,7 +145,18 @@ org2beamerpdf [OPTION] FILE
 org2odt [OPTION] FILE
 org2txt [OPTION] FILE
 </pre>
-          </div>
+              </div>
+            </li>
+
+            <li>For “tangling” files:
+
+              <div class="org-src-container">
+                <pre class="src src-sh">
+org-tangle FILE
+</pre>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -157,6 +172,8 @@ orgmk [OPTION] [html | pdf]
 orgmk [OPTION] [FILE]
 </pre>
           </div>
+
+          <p>Currently, <code>orgmk</code> does not tangle Org files.</p>
         </div>
       </div>
     </div>
@@ -681,7 +698,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140619.144.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140619.1453.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
