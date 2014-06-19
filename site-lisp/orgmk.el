@@ -77,6 +77,9 @@
 ;; hide the emphasis marker characters
 (setq org-hide-emphasis-markers t)      ; impact on table alignment!
 
+;; don't insert a time stamp into the exported file
+(setq org-export-time-stamp-file nil)
+
 ;; allow #+BIND to define local variable values for export
 (setq org-export-allow-bind-keywords t)
 
@@ -123,25 +126,25 @@
 
 (when (require 'ox-html)
 
+  ;; export the CSS selectors only, when formatting code snippets
+  (setq org-html-htmlize-output-type 'css)
+
   ;; XML encoding
   (setq org-html-xml-declaration
         '(("html" . "<!-- <xml version=\"1.0\" encoding=\"%s\"> -->")))
-
-  ;; don't include the JavaScript snippets in exported HTML files
-  (setq org-html-head-include-scripts nil)
-
-  ;; turn inclusion of the default CSS style off
-  (setq org-html-head-include-default-style nil)
 
   ;; coding system for HTML export
   (setq org-html-coding-system 'utf-8)
 
   ;; format for the HTML postamble
   (setq org-html-postamble
-        "  <div id=\"copyright\">\n    &copy; %d %a\n  </div>")
+        "  <div id=\"footer\"><div id=\"copyright\">\n    Copyright &copy; %d %a\n  </div></div>")
 
-  ;; XXX export the CSS selectors only, when formatting code snippets
-  (setq org-export-htmlize-output-type 'css))
+  ;; don't include the JavaScript snippets in exported HTML files
+  (setq org-html-head-include-scripts nil)
+
+  ;; turn inclusion of the default CSS style off
+  (setq org-html-head-include-default-style nil))
 
 (when (require 'ox-latex)
 

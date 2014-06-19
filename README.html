@@ -1,4 +1,4 @@
-<!-- <xml version="1.0"> -->
+<!-- <xml version="1.0" encoding="utf-8"> -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -123,7 +123,8 @@
       <h2 id="sec-2"><span class="section-number-2">2</span> Usage</h2>
 
       <div class="outline-text-2" id="text-2">
-        <p>Org files can have the extension ~.org~ or ~.txt~.</p>
+        <p>Org files can have the extension <code>.org</code> or
+        <code>.txt</code>.</p>
       </div>
 
       <div id="outline-container-sec-2-1" class="outline-3">
@@ -171,11 +172,11 @@ orgmk [OPTION] [FILE]
 
         <div class="outline-text-3" id="text-3-1">
           <dl class="org-dl">
-            <dt>=-h=, =–help=</dt>
+            <dt><code>-h</code>, <code>--help</code></dt>
 
             <dd>Print usage information and exit.</dd>
 
-            <dt>=-y=</dt>
+            <dt><code>-y</code></dt>
 
             <dd>
               Authorize the update of the source file (update of dynamic blocks
@@ -194,8 +195,9 @@ orgmk [OPTION] [FILE]
               <code>yes</code> or <code>no</code> in a personal configuration
               file, <code>~/.orgmk-rc</code>.</p>
 
-              <p>Note that, by design, the command line argument =-y= is passed
-              to every <code>org2&lt;BACKEND&gt;</code> script called from
+              <p>Note that, by design, the command line argument
+              <code>-y</code> is passed to every
+              <code>org2&lt;BACKEND&gt;</code> script called from
               <code>orgmk</code>, so that <code>orgmk</code> doesn’t wait for
               answers.</p>
             </dd>
@@ -209,11 +211,11 @@ orgmk [OPTION] [FILE]
 
         <div class="outline-text-3" id="text-3-2">
           <dl class="org-dl">
-            <dt>=-h=, =–help=</dt>
+            <dt><code>-h</code>, <code>--help</code></dt>
 
             <dd>Print usage information and exit.</dd>
 
-            <dt>=-r=, =–recursive=</dt>
+            <dt><code>-r</code>, <code>--recursive</code></dt>
 
             <dd>
               Export all Org files <b>under each directory, recursively</b>.
@@ -348,7 +350,7 @@ make
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">BIN_DIR</span>=~/bin
+<span class="org-variable-name">BIN_DIR</span>=~/bin
 </pre>
               </div>
 
@@ -377,141 +379,173 @@ make install
         <div class="outline-text-3" id="text-6-2">
           <div class="org-src-container">
             <pre class="src src-makefile">
-<span style="color: #8D8D84;">### </span><span style=
-"color: #8D8D84; font-style: italic;">-*- Makefile -*- definition file for Orgmk</span>
+<span class="org-comment-delimiter">### </span><span class=
+"org-comment">-*- Makefile -*- definition file for Orgmk</span>
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">To install `orgmk', type `make' and then `make install'.</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">To install `orgmk', type `make' and then `make install'.</span>
 
-<span style="color: #BA36A5;">PWD</span>=$(<span style=
-"color: #BA36A5;">shell</span> pwd)
+<span class="org-variable-name">PWD</span>=$(<span class=
+"org-variable-name">shell</span> pwd)
 
-<span style="color: #BA36A5;">BIN_DIR</span>=/usr/local/bin
+<span class="org-variable-name">BIN_DIR</span>=/usr/local/bin
 
 -include Make.params
 
-<span style="color: #BA36A5;">ORGMK_ROOT</span>=$(<span style=
-"color: #BA36A5;">PWD</span>)
-<span style="color: #BA36A5;">ORGMK_EL</span>=$(<span style=
-"color: #BA36A5;">ORGMK_ROOT</span>)/site-lisp/orgmk.el
+<span class="org-variable-name">ORGMK_ROOT</span>=$(<span class=
+"org-variable-name">PWD</span>)
+<span class="org-variable-name">ORGMK_EL</span>=$(<span class=
+"org-variable-name">ORGMK_ROOT</span>)/site-lisp/orgmk.el
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">WARNING</span><span style="color: #8D8D84; font-style: italic;">: ORGMK_EL must contain the correct path to the</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">`orgmk.el' file according to the Emacs version used (Windows,</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Cygwin or Linux path)</span>
-<span style="color: #BA36A5;">EMACS_SYSTEM_TYPE</span>=$(<span style=
-"color: #BA36A5;">shell</span> emacs -batch --eval <span style=
-"color: #036A07;">"(message \"%s\" system-type)"</span> 2&gt;&amp;1)
-ifeq ($(<span style="color: #BA36A5;">EMACS_SYSTEM_TYPE</span>),windows-nt)
-    <span style="color: #BA36A5;">ORGMK_EL</span>:=<span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">shell</span><span style=
-"color: #036A07;"> cygpath --mixed $(</span><span style=
-"color: #BA36A5;">ORGMK_EL</span><span style="color: #036A07;">))"</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment"><span class=
+"org-leuven-highlight">WARNING</span></span><span class=
+"org-comment">: ORGMK_EL must contain the correct path to the</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">`orgmk.el' file according to the Emacs version used (Windows,</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">Cygwin or Linux path)</span>
+<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>=$(<span class=
+"org-variable-name">shell</span> emacs -batch --eval <span class=
+"org-string">"(message \"%s\" system-type)"</span> 2&gt;&amp;1)
+ifeq ($(<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>),windows-nt)
+    <span class="org-variable-name">ORGMK_EL</span>:=<span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">shell</span></span><span class=
+"org-string"> cygpath --mixed $(</span><span class="org-string"><span class=
+"org-variable-name">ORGMK_EL</span></span><span class="org-string">))"</span>
 endif
 
-<span style="color: #BA36A5;">ORGMK_INIT</span>=orgmk-init
-<span style="color: #BA36A5;">ORGMK_SYSTEM_CONFIG</span>=orgmk.conf
-<span style="color: #BA36A5;">ORGMK_UPDATE</span>=orgmk-update-src
-<span style=
-"color: #BA36A5;">ORGMK_UPDATE_CHECK_DIFF</span>=orgmk-update-src-check-diff
-<span style="color: #BA36A5;">ORG2HTML</span>=org2html
-<span style="color: #BA36A5;">ORG2LATEX</span>=org2latex
-<span style="color: #BA36A5;">ORG2PDF</span>=org2pdf
-<span style="color: #BA36A5;">ORG2BEAMERPDF</span>=org2beamerpdf
-<span style="color: #BA36A5;">ORG2ODT</span>=org2odt
-<span style="color: #BA36A5;">ORG2TXT</span>=org2txt
-<span style="color: #BA36A5;">ORGMK_MAKE_SETUP</span>=orgmk-stow-orgmk.mk
-<span style="color: #BA36A5;">ORGMK_MAKE_RUN</span>=orgmk
+<span class="org-variable-name">ORGMK_INIT</span>=orgmk-init
+<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>=orgmk.conf
+<span class="org-variable-name">ORGMK_UPDATE</span>=orgmk-update-src
+<span class=
+"org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>=orgmk-update-src-check-diff
+<span class="org-variable-name">ORG2HTML</span>=org2html
+<span class="org-variable-name">ORG2LATEX</span>=org2latex
+<span class="org-variable-name">ORG2PDF</span>=org2pdf
+<span class="org-variable-name">ORG2BEAMERPDF</span>=org2beamerpdf
+<span class="org-variable-name">ORG2ODT</span>=org2odt
+<span class="org-variable-name">ORG2TXT</span>=org2txt
+<span class="org-variable-name">ORGMK_MAKE_SETUP</span>=orgmk-stow-orgmk.mk
+<span class="org-variable-name">ORGMK_MAKE_RUN</span>=orgmk
 
-<span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">MAKE</span>
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">MAKE</span>
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Ensure `all' is the default target</span>
-<span style=
-"color: #0000ff; font-weight: bold;">all</span>: orgmk-system-config orgmk-stow-mk  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Create Orgmk system files</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">Ensure `all' is the default target</span>
+<span class=
+"org-makefile-targets">all</span>: orgmk-system-config orgmk-stow-mk  <span class="org-comment-delimiter"># </span><span class="org-comment">Create Orgmk system files</span>
 
-<span style=
-"color: #0000ff; font-weight: bold;">.PHONY</span>: orgmk-system-config
-<span style=
-"color: #0000ff; font-weight: bold;">orgmk-system-config</span>:                    <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Create file with location of `orgmk.el'</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>echo <span style=
-"color: #036A07;">"Generating system-wide configuration file..."</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>echo <span style=
-"color: #036A07;">"ORGMK_EL=$(</span><span style=
-"color: #BA36A5;">ORGMK_EL</span><span style=
-"color: #036A07;">)"</span> &gt; bin/$(<span style=
-"color: #BA36A5;">ORGMK_SYSTEM_CONFIG</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>echo
+<span class="org-makefile-targets">.PHONY</span>: orgmk-system-config
+<span class=
+"org-makefile-targets">orgmk-system-config</span>:                    <span class="org-comment-delimiter"># </span><span class="org-comment">Create file with location of `orgmk.el'</span>
+<span class="org-whitespace-tab">        </span><span class=
+"org-type">@</span><span class="org-makefile-shell">echo </span><span class=
+"org-string"><span class=
+"org-makefile-shell">"Generating system-wide configuration file..."</span></span>
+<span class="org-whitespace-tab">        </span>echo <span class=
+"org-string">"ORGMK_EL=$(</span><span class="org-string"><span class=
+"org-variable-name">ORGMK_EL</span></span><span class=
+"org-string">)"</span> &gt; bin/$(<span class=
+"org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
+<span class="org-whitespace-tab">        </span><span class=
+"org-type">@</span><span class="org-makefile-shell">echo</span>
 
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: orgmk-stow-mk
-<span style=
-"color: #0000ff; font-weight: bold;">orgmk-stow-mk</span>:                          <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Create core file for `orgmk'</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>echo <span style=
-"color: #036A07;">"Generating setup file..."</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>echo <span style=
-"color: #036A07;">"#!/bin/sh"</span> &gt; bin/$(<span style=
-"color: #BA36A5;">ORGMK_MAKE_SETUP</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>echo <span style=
-"color: #036A07;">"ln -f -s $(</span><span style=
-"color: #BA36A5;">PWD</span><span style=
-"color: #036A07;">)/bin/orgmk.mk orgmk.mk"</span> &gt;&gt; bin/$(<span style=
-"color: #BA36A5;">ORGMK_MAKE_SETUP</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>chmod +x bin/$(<span style="color: #BA36A5;">ORGMK_MAKE_SETUP</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>echo
+<span class="org-makefile-targets">.PHONY</span>: orgmk-stow-mk
+<span class=
+"org-makefile-targets">orgmk-stow-mk</span>:                          <span class="org-comment-delimiter"># </span><span class="org-comment">Create core file for `orgmk'</span>
+<span class="org-whitespace-tab">        </span><span class=
+"org-type">@</span><span class="org-makefile-shell">echo </span><span class=
+"org-string"><span class=
+"org-makefile-shell">"Generating setup file..."</span></span>
+<span class="org-whitespace-tab">        </span>echo <span class=
+"org-string">"#!/bin/sh"</span> &gt; bin/$(<span class=
+"org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-tab">        </span>echo <span class=
+"org-string">"ln -f -s $(</span><span class="org-string"><span class=
+"org-variable-name">PWD</span></span><span class=
+"org-string">)/bin/orgmk.mk orgmk.mk"</span> &gt;&gt; bin/$(<span class=
+"org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-tab">        </span>chmod +x bin/$(<span class=
+"org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-tab">        </span><span class=
+"org-type">@</span><span class="org-makefile-shell">echo</span>
 
-<span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">MAKE INSTALL</span>
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">MAKE INSTALL</span>
 
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: install
-<span style=
-"color: #0000ff; font-weight: bold;">install</span>:                                <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Create symlinks to Orgmk scripts</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span><span style=
-"color: #6434A3;">@</span>echo <span style=
-"color: #036A07;">"Creating symlinks..."</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORGMK_INIT</span>)              $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORGMK_INIT</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORGMK_SYSTEM_CONFIG</span>)     $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORGMK_SYSTEM_CONFIG</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORGMK_UPDATE</span>)            $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORGMK_UPDATE</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORGMK_UPDATE_CHECK_DIFF</span>) $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORGMK_UPDATE_CHECK_DIFF</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORG2HTML</span>)                $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORG2HTML</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORG2LATEX</span>)               $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORG2LATEX</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORG2PDF</span>)                 $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORG2PDF</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORG2BEAMERPDF</span>)           $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORG2BEAMERPDF</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORG2ODT</span>)                 $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORG2ODT</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORG2TXT</span>)                 $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORG2TXT</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORGMK_MAKE_SETUP</span>)        $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORGMK_MAKE_SETUP</span>)
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>ln -f -s $(<span style="color: #BA36A5;">PWD</span>)/bin/$(<span style="color: #BA36A5;">ORGMK_MAKE_RUN</span>)          $(<span style="color: #BA36A5;">BIN_DIR</span>)/$(<span style="color: #BA36A5;">ORGMK_MAKE_RUN</span>)
+<span class="org-makefile-targets">.PHONY</span>: install
+<span class=
+"org-makefile-targets">install</span>:                                <span class="org-comment-delimiter"># </span><span class="org-comment">Create symlinks to Orgmk scripts</span>
+<span class="org-whitespace-tab">        </span><span class=
+"org-type">@</span><span class="org-makefile-shell">echo </span><span class=
+"org-string"><span class=
+"org-makefile-shell">"Creating symlinks..."</span></span>
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORGMK_INIT</span>)              $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORGMK_INIT</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORGMK_SYSTEM_CONFIG</span>)     $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORGMK_UPDATE</span>)            $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORGMK_UPDATE</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>) $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORG2HTML</span>)                $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORG2HTML</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORG2LATEX</span>)               $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORG2LATEX</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORG2PDF</span>)                 $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORG2PDF</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORG2BEAMERPDF</span>)           $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORG2BEAMERPDF</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORG2ODT</span>)                 $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORG2ODT</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORG2TXT</span>)                 $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORG2TXT</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORGMK_MAKE_SETUP</span>)        $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
+"org-variable-name">PWD</span>)/bin/$(<span class=
+"org-variable-name">ORGMK_MAKE_RUN</span>)          $(<span class=
+"org-variable-name">BIN_DIR</span>)/$(<span class=
+"org-variable-name">ORGMK_MAKE_RUN</span>)
 
-<span style="color: #8D8D84;">### </span><span style=
-"color: #8D8D84; font-style: italic;">Makefile ends here</span>
+<span class="org-comment-delimiter">### </span><span class=
+"org-comment">Makefile ends here</span>
 </pre>
           </div>
         </div>
@@ -540,85 +574,85 @@ endif
           <div class="outline-text-4" id="text-7-1-1">
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #006699;">Usage</span> ()
+<span class="org-function-name">Usage</span> ()
 {
     cat &lt;&lt; EOF 1&gt;&amp;2
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">Usage: $(basename $0) [OPTION] FILE</span>
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">Convert FILE to another format.</span>
+<span class="org-sh-heredoc">Usage: $(basename $0) [OPTION] FILE</span>
+<span class="org-sh-heredoc">Convert FILE to another format.</span>
 
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">  -h, --help     display this help and exit</span>
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">  -y             authorize update of the source file without confirmation</span>
+<span class="org-sh-heredoc">  -h, --help     display this help and exit</span>
+<span class=
+"org-sh-heredoc">  -y             authorize update of the source file without confirmation</span>
 
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
-<span style="color: #0000ff; background-color: #EEF5FE;">EOF</span>
-    <span style="color: #0000FF;">exit</span> 1
+<span class=
+"org-sh-heredoc">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
+<span class="org-sh-heredoc">EOF</span>
+    <span class="org-keyword">exit</span> 1
 }
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #006699;">die</span> () {
-    printf <span style=
-"color: #036A07;">"$(basename $0): $@\n"</span> &gt; /dev/stderr
-    <span style="color: #0000FF;">exit</span> 2 <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">an </span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">error</span><span style="color: #8D8D84; font-style: italic;"> occurred</span>
+<span class="org-function-name">die</span> () {
+    printf <span class=
+"org-string">"$(basename $0): $@\n"</span> &gt; /dev/stderr
+    <span class="org-keyword">exit</span> 2 <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">an </span><span class="org-comment"><span class=
+"org-leuven-highlight">error</span></span><span class=
+"org-comment"> occurred</span>
 }
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #006699;">CleanUp</span> ()
+<span class="org-function-name">CleanUp</span> ()
 {
-    <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">restore backed up target file if it hasn't been produced</span>
-    <span style="color: #0000FF;">if</span> [ ! -z $<span style=
-"color: #BA36A5;">FILE_TARGET</span> ]; <span style=
-"color: #0000FF;">then</span>
-        <span style="color: #0000FF;">if</span> [ -r $<span style=
-"color: #BA36A5;">FILE_TARGET</span>.bak ]; <span style=
-"color: #0000FF;">then</span>
-            <span style="color: #0000FF;">if</span> [ ! -r $<span style=
-"color: #BA36A5;">FILE_TARGET</span> ]; <span style=
-"color: #0000FF;">then</span>
-                printf <span style=
-"color: #036A07;">"Recovering OLD file $FILE_TARGET...\n"</span>
-                mv $<span style=
-"color: #BA36A5;">FILE_TARGET</span>.bak $<span style=
-"color: #BA36A5;">FILE_TARGET</span>
-            <span style="color: #0000FF;">else</span>
-                rm $<span style="color: #BA36A5;">FILE_TARGET</span>.bak
-            <span style="color: #0000FF;">fi</span>
-        <span style="color: #0000FF;">fi</span>
-    <span style="color: #0000FF;">fi</span>
+    <span class="org-comment-delimiter"># </span><span class=
+"org-comment">restore backed up target file if it hasn't been produced</span>
+    <span class="org-keyword">if</span> [ <span class=
+"org-negation-char">!</span> -z $<span class=
+"org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
+        <span class="org-keyword">if</span> [ -r $<span class=
+"org-variable-name">FILE_TARGET</span>.bak ]; <span class=
+"org-keyword">then</span>
+            <span class="org-keyword">if</span> [ <span class=
+"org-negation-char">!</span> -r $<span class=
+"org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
+                printf <span class=
+"org-string">"Recovering OLD file $FILE_TARGET...\n"</span>
+                mv $<span class=
+"org-variable-name">FILE_TARGET</span>.bak $<span class=
+"org-variable-name">FILE_TARGET</span>
+            <span class="org-keyword">else</span>
+                rm $<span class="org-variable-name">FILE_TARGET</span>.bak
+            <span class="org-keyword">fi</span>
+        <span class="org-keyword">fi</span>
+    <span class="org-keyword">fi</span>
 
-    <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">display log file, if present</span>
-    <span style="color: #0000FF;">if</span> [ ! -z $<span style=
-"color: #BA36A5;">FILE_LOG</span> ]; <span style="color: #0000FF;">then</span>
-        <span style="color: #0000FF;">if</span> [ -r $<span style=
-"color: #BA36A5;">FILE_LOG</span> ]; <span style="color: #0000FF;">then</span>
-            grep -e <span style=
-"color: #036A07;">"^!.*"</span> -A 3 -B 1 $<span style=
-"color: #BA36A5;">FILE_LOG</span>
-        <span style="color: #0000FF;">fi</span>
-    <span style="color: #0000FF;">fi</span>
+    <span class="org-comment-delimiter"># </span><span class=
+"org-comment">display log file, if present</span>
+    <span class="org-keyword">if</span> [ <span class=
+"org-negation-char">!</span> -z $<span class=
+"org-variable-name">FILE_LOG</span> ]; <span class="org-keyword">then</span>
+        <span class="org-keyword">if</span> [ -r $<span class=
+"org-variable-name">FILE_LOG</span> ]; <span class="org-keyword">then</span>
+            grep -e <span class=
+"org-string">"^!.*"</span> -A 3 -B 1 $<span class=
+"org-variable-name">FILE_LOG</span>
+        <span class="org-keyword">fi</span>
+    <span class="org-keyword">fi</span>
 
-    <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">remove the temporary copy of the source Org file</span>
-    <span style="color: #0000FF;">if</span> [ ! -z $<span style=
-"color: #BA36A5;">FILE_SRC_UPDT</span> ]; <span style=
-"color: #0000FF;">then</span>
-        rm -f $<span style="color: #BA36A5;">FILE_SRC_UPDT</span>
-    <span style="color: #0000FF;">fi</span>
+    <span class="org-comment-delimiter"># </span><span class=
+"org-comment">remove the temporary copy of the source Org file</span>
+    <span class="org-keyword">if</span> [ <span class=
+"org-negation-char">!</span> -z $<span class=
+"org-variable-name">FILE_SRC_UPDT</span> ]; <span class=
+"org-keyword">then</span>
+        rm -f $<span class="org-variable-name">FILE_SRC_UPDT</span>
+    <span class="org-keyword">fi</span>
 }
 </pre>
             </div>
@@ -632,102 +666,102 @@ endif
           <div class="outline-text-4" id="text-7-1-2">
             <div class="org-src-container">
               <pre class="src src-sh" id="current-time">
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"$(date '+%Y%m%d.%H%M')"</span>
+<span class="org-builtin">echo</span> <span class=
+"org-string">"$(date '+%Y%m%d.%H%M')"</span>
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
     cat &lt;&lt; EOF
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">This is $(basename $0), version: 20140328.1411.</span>
-<span style="color: #0000ff; background-color: #EEF5FE;">EOF</span>
+<span class=
+"org-sh-heredoc">This is $(basename $0), version: 20140619.1416.</span>
+<span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">perform housekeeping on program exit or a variety of signals</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">(EXIT, HUP, INT, QUIT, TERM)</span>
-<span style="color: #0000FF;">trap</span> CleanUp 0 1 2 3 15
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">perform housekeeping on program exit or a variety of signals</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">(EXIT, HUP, INT, QUIT, TERM)</span>
+<span class="org-keyword">trap</span> CleanUp 0 1 2 3 15
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">load the system-wide config file (definition of `ORGMK_EL')</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">load the system-wide config file (definition of `ORGMK_EL')</span>
 . orgmk.conf
 
-<span style="color: #0000FF;">if</span> [ <span style=
-"color: #036A07;">"$ORGMK_EL"</span> = <span style=
-"color: #036A07;">""</span> ]; <span style="color: #0000FF;">then</span>
-    printf <span style=
-"color: #036A07;">"ORGMK_EL variable not defined, please check your setup!\n"</span>
-    <span style="color: #0000FF;">exit</span> 2
-<span style="color: #0000FF;">fi</span>
+<span class="org-keyword">if</span> [ <span class=
+"org-string">"$ORGMK_EL"</span> = <span class=
+"org-string">""</span> ]; <span class="org-keyword">then</span>
+    printf <span class=
+"org-string">"ORGMK_EL variable not defined, please check your setup!\n"</span>
+    <span class="org-keyword">exit</span> 2
+<span class="org-keyword">fi</span>
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">source the user config file (default for `UPDATE_SRC', etc.)</span>
-<span style="color: #BA36A5;">ORGMK_USER_CONF</span>=$<span style=
-"color: #BA36A5;">HOME</span>/.orgmk-rc
-<span style="color: #0000FF;">if</span> [ -r $<span style=
-"color: #BA36A5;">ORGMK_USER_CONF</span> ]; <span style=
-"color: #0000FF;">then</span>
-    . $<span style="color: #BA36A5;">ORGMK_USER_CONF</span>
-<span style="color: #0000FF;">fi</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">source the user config file (default for `UPDATE_SRC', etc.)</span>
+<span class="org-variable-name">ORGMK_USER_CONF</span>=$<span class=
+"org-variable-name">HOME</span>/.orgmk-rc
+<span class="org-keyword">if</span> [ -r $<span class=
+"org-variable-name">ORGMK_USER_CONF</span> ]; <span class=
+"org-keyword">then</span>
+    . $<span class="org-variable-name">ORGMK_USER_CONF</span>
+<span class="org-keyword">fi</span>
 
-<span style="color: #006FE0;">export</span> UPDATE_SRC
+<span class="org-builtin">export</span> UPDATE_SRC
 
-<span style="color: #0000FF;">while </span><span style=
-"color: #006FE0;">true</span>; <span style="color: #0000FF;">do</span>
-    <span style="color: #0000FF;">case</span> <span style=
-"color: #036A07;">"$1"</span><span style="color: #0000FF;"> in</span>
-        -y ) <span style="color: #BA36A5;">UPDATE_SRC</span>=<span style=
-"color: #036A07;">"yes"</span>; <span style="color: #006FE0;">shift</span> ;;
+<span class="org-keyword">while </span><span class=
+"org-builtin">true</span>; <span class="org-keyword">do</span>
+    <span class="org-keyword">case</span> <span class=
+"org-string">"$1"</span><span class="org-keyword"> in</span>
+        -y ) <span class="org-variable-name">UPDATE_SRC</span>=<span class=
+"org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
         -h | --help ) Usage ;;
-        * ) <span style="color: #0000FF;">break</span> ;;
-    <span style="color: #0000FF;">esac</span>
-<span style="color: #0000FF;">done</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">now do something with $@</span>
+        * ) <span class="org-keyword">break</span> ;;
+    <span class="org-keyword">esac</span>
+<span class="org-keyword">done</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">now do something with $@</span>
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #0000FF;">if</span> [ $<span style=
-"color: #BA36A5;">#</span> -ne 1 ]; <span style="color: #0000FF;">then</span>
+<span class="org-keyword">if</span> [ $<span class=
+"org-variable-name">#</span> -ne 1 ]; <span class="org-keyword">then</span>
     Usage
-<span style="color: #0000FF;">fi</span>
+<span class="org-keyword">fi</span>
 
-<span style="color: #BA36A5;">FILE_SRC_ORIG</span>=$<span style=
-"color: #BA36A5;">1</span>
-<span style="color: #0000FF;">if</span> [ ! -r <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> ]; <span style=
-"color: #0000FF;">then</span>
-    die <span style="color: #036A07;">"Cannot read file $FILE_SRC_ORIG"</span>
-<span style="color: #0000FF;">fi</span>
+<span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class=
+"org-variable-name">1</span>
+<span class="org-keyword">if</span> [ <span class=
+"org-negation-char">!</span> -r <span class=
+"org-string">"$FILE_SRC_ORIG"</span> ]; <span class="org-keyword">then</span>
+    die <span class="org-string">"Cannot read file $FILE_SRC_ORIG"</span>
+<span class="org-keyword">fi</span>
 
-<span style="color: #BA36A5;">FILE_SRC_UPDT</span>=<span style=
-"color: #036A07;">"${FILE_SRC_ORIG%.*}.orgmk"</span> <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">replace extension</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">The temporary file only differ by its extension (`.orgmk'), so that the</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">exported file will be named &lt;orig file name&gt;.&lt;backend ext&gt;.</span>
+<span class="org-variable-name">FILE_SRC_UPDT</span>=<span class=
+"org-string">"${FILE_SRC_ORIG%.*}.orgmk"</span> <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">replace extension</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">The temporary file only differ by its extension (`.orgmk'), so that the</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">exported file will be named &lt;orig file name&gt;.&lt;backend ext&gt;.</span>
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #BA36A5;">FILE_LOG</span>=<span style=
-"color: #036A07;">"${FILE_SRC_ORIG%.*}.log"</span>
-rm -f $<span style="color: #BA36A5;">FILE_LOG</span>
+<span class="org-variable-name">FILE_LOG</span>=<span class=
+"org-string">"${FILE_SRC_ORIG%.*}.log"</span>
+rm -f $<span class="org-variable-name">FILE_LOG</span>
 </pre>
             </div>
 
@@ -743,36 +777,35 @@ rm -f $<span style="color: #BA36A5;">FILE_LOG</span>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #BA36A5;">FILE_TARGET</span>=<span style=
-"color: #036A07;">"${FILE_SRC_ORIG%.*}.$TARGET_EXT"</span>
+<span class="org-variable-name">FILE_TARGET</span>=<span class=
+"org-string">"${FILE_SRC_ORIG%.*}.$TARGET_EXT"</span>
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">back up previous version of target file</span>
-<span style="color: #0000FF;">if</span> [ -r $<span style=
-"color: #BA36A5;">FILE_TARGET</span> ]; <span style=
-"color: #0000FF;">then</span>
-    mv $<span style="color: #BA36A5;">FILE_TARGET</span> $<span style=
-"color: #BA36A5;">FILE_TARGET</span>.bak
-<span style="color: #0000FF;">fi</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">back up previous version of target file</span>
+<span class="org-keyword">if</span> [ -r $<span class=
+"org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
+    mv $<span class="org-variable-name">FILE_TARGET</span> $<span class=
+"org-variable-name">FILE_TARGET</span>.bak
+<span class="org-keyword">fi</span>
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #BA36A5;">EMACS</span>=emacs
+<span class="org-variable-name">EMACS</span>=emacs
 
-<span style="color: #BA36A5;">WHICH_EMACS</span>=$(<span style=
-"color: #006FE0;">which</span> $<span style="color: #BA36A5;">EMACS</span>)
-<span style="color: #BA36A5;">EMACS_FLAGS</span>=<span style=
-"color: #036A07;">"--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""</span>
-<span style="color: #BA36A5;">EMACS_BATCH</span>=<span style=
-"color: #036A07;">"emacs --batch -Q $EMACS_FLAGS"</span>
-<span style="color: #BA36A5;">ORG_FLAGS</span>=<span style=
-"color: #036A07;">""</span>
-<span style="color: #BA36A5;">ORGMK</span>=<span style=
-"color: #036A07;">"$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"</span>
-<span style="color: #BA36A5;">ORGMK_UPDATE_FLAGS</span>=<span style=
-"color: #036A07;">"-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\""</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">base name</span>
+<span class="org-variable-name">WHICH_EMACS</span>=$(<span class=
+"org-builtin">which</span> $<span class="org-variable-name">EMACS</span>)
+<span class="org-variable-name">EMACS_FLAGS</span>=<span class=
+"org-string">"--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""</span>
+<span class="org-variable-name">EMACS_BATCH</span>=<span class=
+"org-string">"emacs --batch -Q $EMACS_FLAGS"</span>
+<span class="org-variable-name">ORG_FLAGS</span>=<span class=
+"org-string">""</span>
+<span class="org-variable-name">ORGMK</span>=<span class=
+"org-string">"$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"</span>
+<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span>=<span class=
+"org-string">"-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\""</span> <span class="org-comment-delimiter"># </span><span class="org-comment">base name</span>
 </pre>
             </div>
           </div>
@@ -788,17 +821,17 @@ rm -f $<span style="color: #BA36A5;">FILE_LOG</span>
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #BA36A5;">TARGET_EXT</span>=html
+<span class="org-variable-name">TARGET_EXT</span>=html
 . orgmk-init
 
-<span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-html-export-to-html <span style="color: #036A07;">\</span>
-    || die <span style="color: #036A07;">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span>
+<span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-to-html <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span>
 </pre>
           </div>
         </div>
@@ -814,17 +847,17 @@ orgmk-update-src-check-diff <span style=
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #BA36A5;">TARGET_EXT</span>=tex
+<span class="org-variable-name">TARGET_EXT</span>=tex
 . orgmk-init
 
-<span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span style="color: #036A07;">\</span>
-    || die <span style="color: #036A07;">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span>
+<span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span>
 </pre>
           </div>
         </div>
@@ -842,30 +875,28 @@ orgmk-update-src-check-diff <span style=
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #BA36A5;">TARGET_EXT</span>=pdf
+<span class="org-variable-name">TARGET_EXT</span>=pdf
 . orgmk-init
 
-<span style="color: #0000FF;">if</span> grep -E <span style=
-"color: #036A07;">"^#\+BEAMER_THEME: "</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> &gt; /dev/null; <span style=
-"color: #0000FF;">then</span>
-    <span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-latex <span style="color: #036A07;">\</span>
-        || die <span style=
-"color: #036A07;">"Exported file wasn't produced"</span>
-<span style="color: #0000FF;">else</span>
-    <span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span style="color: #036A07;">\</span>
-        || die <span style=
-"color: #036A07;">"Exported file wasn't produced"</span>
-<span style="color: #0000FF;">fi</span>
-orgmk-update-src-check-diff <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span>
+<span class="org-keyword">if</span> grep -E <span class=
+"org-string">"^#\+BEAMER_THEME: "</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> &gt; /dev/null; <span class=
+"org-keyword">then</span>
+    <span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-latex <span class="org-sh-escaped-newline">\</span>
+        || die <span class="org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">else</span>
+    <span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
+        || die <span class="org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">fi</span>
+orgmk-update-src-check-diff <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span>
 </pre>
           </div>
         </div>
@@ -881,17 +912,17 @@ orgmk-update-src-check-diff <span style=
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #BA36A5;">TARGET_EXT</span>=pdf
+<span class="org-variable-name">TARGET_EXT</span>=pdf
 . orgmk-init
 
-<span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-pdf <span style="color: #036A07;">\</span>
-    || die <span style="color: #036A07;">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span>
+<span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-pdf <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span>
 </pre>
           </div>
         </div>
@@ -905,17 +936,17 @@ orgmk-update-src-check-diff <span style=
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #BA36A5;">TARGET_EXT</span>=odt
+<span class="org-variable-name">TARGET_EXT</span>=odt
 . orgmk-init
 
-<span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-odt-export-to-odt <span style="color: #036A07;">\</span>
-    || die <span style="color: #036A07;">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span>
+<span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-odt-export-to-odt <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span>
 </pre>
           </div>
         </div>
@@ -929,17 +960,17 @@ orgmk-update-src-check-diff <span style=
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #BA36A5;">TARGET_EXT</span>=txt
+<span class="org-variable-name">TARGET_EXT</span>=txt
 . orgmk-init
 
-<span style="color: #006FE0;">eval</span> $<span style=
-"color: #BA36A5;">ORGMK</span> $<span style=
-"color: #BA36A5;">FILE_SRC_ORIG</span> $<span style=
-"color: #BA36A5;">ORGMK_UPDATE_FLAGS</span> -f org-ascii-export-to-ascii <span style="color: #036A07;">\</span>
-    || die <span style="color: #036A07;">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span>
+<span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-ascii-export-to-ascii <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span>
 </pre>
           </div>
         </div>
@@ -961,51 +992,51 @@ orgmk-update-src-check-diff <span style=
           <div class="outline-text-4" id="text-7-8-1">
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #006699;">ask</span> () {
-    <span style="color: #0000FF;">while </span><span style=
-"color: #006FE0;">true</span>; <span style="color: #0000FF;">do</span>
-        <span style="color: #0000FF;">if</span> [ <span style=
-"color: #036A07;">"${2:-}"</span> = <span style=
-"color: #036A07;">"Y"</span> ]; <span style="color: #0000FF;">then</span>
-            <span style="color: #BA36A5;">prompt</span>=<span style=
-"color: #036A07;">"Y/n"</span>
-            <span style="color: #BA36A5;">default</span>=Y
-        <span style="color: #0000FF;">elif</span> [ <span style=
-"color: #036A07;">"${2:-}"</span> = <span style=
-"color: #036A07;">"N"</span> ]; <span style="color: #0000FF;">then</span>
-            <span style="color: #BA36A5;">prompt</span>=<span style=
-"color: #036A07;">"y/N"</span>
-            <span style="color: #BA36A5;">default</span>=N
-        <span style="color: #0000FF;">else</span>
-            <span style="color: #BA36A5;">prompt</span>=<span style=
-"color: #036A07;">"y/n"</span>
-            <span style="color: #BA36A5;">default</span>=
-        <span style="color: #0000FF;">fi</span>
+<span class="org-function-name">ask</span> () {
+    <span class="org-keyword">while </span><span class=
+"org-builtin">true</span>; <span class="org-keyword">do</span>
+        <span class="org-keyword">if</span> [ <span class=
+"org-string">"${2:-}"</span> = <span class=
+"org-string">"Y"</span> ]; <span class="org-keyword">then</span>
+            <span class="org-variable-name">prompt</span>=<span class=
+"org-string">"Y/n"</span>
+            <span class="org-variable-name">default</span>=Y
+        <span class="org-keyword">elif</span> [ <span class=
+"org-string">"${2:-}"</span> = <span class=
+"org-string">"N"</span> ]; <span class="org-keyword">then</span>
+            <span class="org-variable-name">prompt</span>=<span class=
+"org-string">"y/N"</span>
+            <span class="org-variable-name">default</span>=N
+        <span class="org-keyword">else</span>
+            <span class="org-variable-name">prompt</span>=<span class=
+"org-string">"y/n"</span>
+            <span class="org-variable-name">default</span>=
+        <span class="org-keyword">fi</span>
 
-        <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">ask the question (without the need to press RET)</span>
-        printf <span style="color: #036A07;">"$1 ($prompt): "</span>
-        <span style="color: #006FE0;">read</span> -n 1 -r REPLY
-        printf <span style="color: #036A07;">"\n"</span> <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">just a final linefeed</span>
+        <span class="org-comment-delimiter"># </span><span class=
+"org-comment">ask the question (without the need to press RET)</span>
+        printf <span class="org-string">"$1 ($prompt): "</span>
+        <span class="org-builtin">read</span> -n 1 -r REPLY
+        printf <span class="org-string">"\n"</span> <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">just a final linefeed</span>
 
-        <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">default?</span>
-        <span style="color: #0000FF;">if</span> [ -z <span style=
-"color: #036A07;">"$REPLY"</span> ]; <span style="color: #0000FF;">then</span>
-            <span style="color: #BA36A5;">REPLY</span>=$<span style=
-"color: #BA36A5;">default</span>
-        <span style="color: #0000FF;">fi</span>
+        <span class="org-comment-delimiter"># </span><span class=
+"org-comment">default?</span>
+        <span class="org-keyword">if</span> [ -z <span class=
+"org-string">"$REPLY"</span> ]; <span class="org-keyword">then</span>
+            <span class="org-variable-name">REPLY</span>=$<span class=
+"org-variable-name">default</span>
+        <span class="org-keyword">fi</span>
 
-        <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">check if the reply is valid</span>
-        <span style="color: #0000FF;">case</span> <span style=
-"color: #036A07;">"$REPLY"</span><span style="color: #0000FF;"> in</span>
-            y*|Y*) <span style="color: #0000FF;">return</span> 0 ;;
-            n*|N*) <span style="color: #0000FF;">return</span> 1 ;;
-        <span style="color: #0000FF;">esac</span>
-    <span style="color: #0000FF;">done</span>
+        <span class="org-comment-delimiter"># </span><span class=
+"org-comment">check if the reply is valid</span>
+        <span class="org-keyword">case</span> <span class=
+"org-string">"$REPLY"</span><span class="org-keyword"> in</span>
+            y*|Y*) <span class="org-keyword">return</span> 0 ;;
+            n*|N*) <span class="org-keyword">return</span> 1 ;;
+        <span class="org-keyword">esac</span>
+    <span class="org-keyword">done</span>
 }
 </pre>
             </div>
@@ -1019,52 +1050,49 @@ orgmk-update-src-check-diff <span style=
           <div class="outline-text-4" id="text-7-8-2">
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #BA36A5;">FILE_SRC_ORIG</span>=$<span style=
-"color: #BA36A5;">1</span>
-<span style="color: #BA36A5;">FILE_SRC_UPDT</span>=$<span style=
-"color: #BA36A5;">2</span>
+<span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class=
+"org-variable-name">1</span>
+<span class="org-variable-name">FILE_SRC_UPDT</span>=$<span class=
+"org-variable-name">2</span>
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">set a default value</span>
-: ${<span style="color: #BA36A5;">UPDATE_SRC</span>:=<span style=
-"color: #036A07;">"query"</span>}
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">set a default value</span>
+: ${<span class="org-variable-name">UPDATE_SRC</span>:=<span class=
+"org-string">"query"</span>}
 
-<span style="color: #0000FF;">if</span> [ ! -r <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span> ]; <span style=
-"color: #0000FF;">then</span>
-    printf <span style=
-"color: #036A07;">"Cannot read file $FILE_SRC_UPDT\n"</span>
-<span style="color: #0000FF;">else</span>
-    <span style="color: #0000FF;">if</span> diff -q <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span> <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span> &gt; /dev/null; <span style=
-"color: #0000FF;">then</span>
-        rm <span style="color: #036A07;">"$FILE_SRC_UPDT"</span>
-    <span style="color: #0000FF;">else</span>
-        <span style="color: #0000FF;">if</span> [[ <span style=
-"color: #036A07;">"$UPDATE_SRC"</span> = <span style=
-"color: #036A07;">"query"</span> ]]; <span style="color: #0000FF;">then</span>
-            ask <span style=
-"color: #036A07;">"Update source file?"</span> &amp;&amp; <span style=
-"color: #BA36A5;">UPDATE_SRC</span>=<span style=
-"color: #036A07;">"yes"</span> || <span style=
-"color: #BA36A5;">UPDATE_SRC</span>=<span style="color: #036A07;">"no"</span>
-        <span style="color: #0000FF;">fi</span>
+<span class="org-keyword">if</span> [ <span class=
+"org-negation-char">!</span> -r <span class=
+"org-string">"$FILE_SRC_UPDT"</span> ]; <span class="org-keyword">then</span>
+    printf <span class="org-string">"Cannot read file $FILE_SRC_UPDT\n"</span>
+<span class="org-keyword">else</span>
+    <span class="org-keyword">if</span> diff -q <span class=
+"org-string">"$FILE_SRC_ORIG"</span> <span class=
+"org-string">"$FILE_SRC_UPDT"</span> &gt; /dev/null; <span class=
+"org-keyword">then</span>
+        rm <span class="org-string">"$FILE_SRC_UPDT"</span>
+    <span class="org-keyword">else</span>
+        <span class="org-keyword">if</span> [[ <span class=
+"org-string">"$UPDATE_SRC"</span> = <span class=
+"org-string">"query"</span> ]]; <span class="org-keyword">then</span>
+            ask <span class=
+"org-string">"Update source file?"</span> &amp;&amp; <span class=
+"org-variable-name">UPDATE_SRC</span>=<span class=
+"org-string">"yes"</span> || <span class=
+"org-variable-name">UPDATE_SRC</span>=<span class="org-string">"no"</span>
+        <span class="org-keyword">fi</span>
 
-        <span style="color: #0000FF;">if</span> [[ <span style=
-"color: #036A07;">"$UPDATE_SRC"</span> = <span style=
-"color: #036A07;">"yes"</span> ]]; <span style="color: #0000FF;">then</span>
-            mv <span style=
-"color: #036A07;">"$FILE_SRC_UPDT"</span> <span style=
-"color: #036A07;">"$FILE_SRC_ORIG"</span>
-            printf <span style=
-"color: #036A07;">"${C_INFO}Dynamic blocks and tables in \`$FILE_SRC_ORIG' successfully updated${C_RESET}\n"</span>
-        <span style="color: #0000FF;">else</span>
-            printf <span style=
-"color: #036A07;">"Nothing gets updated...\n"</span>
-        <span style="color: #0000FF;">fi</span>
-    <span style="color: #0000FF;">fi</span>
-<span style="color: #0000FF;">fi</span>
+        <span class="org-keyword">if</span> [[ <span class=
+"org-string">"$UPDATE_SRC"</span> = <span class=
+"org-string">"yes"</span> ]]; <span class="org-keyword">then</span>
+            mv <span class="org-string">"$FILE_SRC_UPDT"</span> <span class=
+"org-string">"$FILE_SRC_ORIG"</span>
+            printf <span class=
+"org-string">"${C_INFO}Dynamic blocks and tables in \`$FILE_SRC_ORIG' successfully updated${C_RESET}\n"</span>
+        <span class="org-keyword">else</span>
+            printf <span class="org-string">"Nothing gets updated...\n"</span>
+        <span class="org-keyword">fi</span>
+    <span class="org-keyword">fi</span>
+<span class="org-keyword">fi</span>
 </pre>
             </div>
 
@@ -1101,21 +1129,21 @@ orgmk-update-src-check-diff <span style=
           updating:</p>
 
           <ul class="org-ul">
-            <li>☑ table of contents,</li>
+            <li class="on">☑ table of contents,</li>
 
-            <li>☑ cross-references,</li>
+            <li class="on">☑ cross-references,</li>
 
-            <li>☐ index,</li>
+            <li class="off">☐ index,</li>
 
-            <li>☐ list of figures,</li>
+            <li class="off">☐ list of figures,</li>
 
-            <li>☐ BibTeX references,</li>
+            <li class="off">☐ BibTeX references,</li>
 
-            <li>☑ Org dynamic blocks,</li>
+            <li class="on">☑ Org dynamic blocks,</li>
 
-            <li>☑ tables with formulas, and</li>
+            <li class="on">☑ tables with formulas, and</li>
 
-            <li>☐ extracting (tangle) code blocks.
+            <li class="off">☐ extracting (tangle) code blocks.
 
               <table class="inlinetask" width="100%">
                 <tr>
@@ -1141,8 +1169,8 @@ orgmk-update-src-check-diff <span style=
           <div class="outline-text-4" id="text-8-1-1">
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #8D8D84;">### </span><span style=
-"color: #8D8D84; font-style: italic;">-*- Makefile -*- definition file for Orgmk</span>
+<span class="org-comment-delimiter">### </span><span class=
+"org-comment">-*- Makefile -*- definition file for Orgmk</span>
 </pre>
             </div>
           </div>
@@ -1153,7 +1181,7 @@ orgmk-update-src-check-diff <span style=
             <div class="outline-text-5" id="text-8-1-1-1">
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">SHELL</span> = /bin/sh
+<span class="org-variable-name">SHELL</span> = /bin/sh
 </pre>
               </div>
             </div>
@@ -1169,12 +1197,12 @@ orgmk-update-src-check-diff <span style=
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">ORG2_FLAGS</span>=-y
+<span class="org-variable-name">ORG2_FLAGS</span>=-y
 
-<span style="color: #BA36A5;">ORG2HTML</span>=org2html $(<span style=
-"color: #BA36A5;">ORG2_FLAGS</span>)
-<span style="color: #BA36A5;">ORG2PDF</span>=org2pdf $(<span style=
-"color: #BA36A5;">ORG2_FLAGS</span>)
+<span class="org-variable-name">ORG2HTML</span>=org2html $(<span class=
+"org-variable-name">ORG2_FLAGS</span>)
+<span class="org-variable-name">ORG2PDF</span>=org2pdf $(<span class=
+"org-variable-name">ORG2_FLAGS</span>)
 </pre>
               </div>
             </div>
@@ -1186,8 +1214,8 @@ orgmk-update-src-check-diff <span style=
             <div class="outline-text-5" id="text-8-1-1-3">
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">VIEW_HTML</span> ?= firefox
-<span style="color: #BA36A5;">VIEW_PDF</span> ?= xpdf
+<span class="org-variable-name">VIEW_HTML</span> ?= firefox
+<span class="org-variable-name">VIEW_PDF</span> ?= xpdf
 </pre>
               </div>
             </div>
@@ -1200,62 +1228,63 @@ orgmk-update-src-check-diff <span style=
               <div class="org-src-container">
                 <pre class="src src-makefile">
 ifdef NO_COLOR
-    <span style="color: #BA36A5;">tput</span> =
+    <span class="org-variable-name">tput</span> =
 else
-    <span style="color: #BA36A5;">tput</span> = $(<span style=
-"color: #BA36A5;">shell</span> $(<span style=
-"color: #BA36A5;">TPUT</span>) $<span style="color: #D0372D;">1</span>)
+    <span class="org-variable-name">tput</span> = $(<span class=
+"org-variable-name">shell</span> $(<span class=
+"org-variable-name">TPUT</span>) $<span class="org-constant">1</span>)
 endif
 
-<span style="color: #BA36A5;">black</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">   </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 0)
-<span style="color: #BA36A5;">red</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">     </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 1)
-<span style="color: #BA36A5;">green</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">   </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 2)
-<span style="color: #BA36A5;">yellow</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">  </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 3)
-<span style="color: #BA36A5;">blue</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">    </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 4)
-<span style="color: #BA36A5;">magenta</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;"> </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 5)
-<span style="color: #BA36A5;">cyan</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">    </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 6)
-<span style="color: #BA36A5;">white</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">   </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,setaf 7)
-<span style="color: #BA36A5;">bold</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">    </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,bold)
-<span style="color: #BA36A5;">uline</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">   </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,smul)
-<span style="color: #BA36A5;">reset</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">   </span>:= $(<span style=
-"color: #BA36A5;">call</span> tput,sgr0)
+<span class="org-variable-name">black</span><span class=
+"org-whitespace-tab">   </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 0)
+<span class="org-variable-name">red</span><span class=
+"org-whitespace-tab">     </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 1)
+<span class="org-variable-name">green</span><span class=
+"org-whitespace-tab">   </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 2)
+<span class="org-variable-name">yellow</span><span class=
+"org-whitespace-tab">  </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 3)
+<span class="org-variable-name">blue</span><span class=
+"org-whitespace-tab">    </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 4)
+<span class="org-variable-name">magenta</span><span class=
+"org-whitespace-tab"> </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 5)
+<span class="org-variable-name">cyan</span><span class=
+"org-whitespace-tab">    </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 6)
+<span class="org-variable-name">white</span><span class=
+"org-whitespace-tab">   </span>:= $(<span class=
+"org-variable-name">call</span> tput,setaf 7)
+<span class="org-variable-name">bold</span><span class=
+"org-whitespace-tab">    </span>:= $(<span class=
+"org-variable-name">call</span> tput,bold)
+<span class="org-variable-name">uline</span><span class=
+"org-whitespace-tab">   </span>:= $(<span class=
+"org-variable-name">call</span> tput,smul)
+<span class="org-variable-name">reset</span><span class=
+"org-whitespace-tab">   </span>:= $(<span class=
+"org-variable-name">call</span> tput,sgr0)
 </pre>
               </div>
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">C_INFO</span>=<span style=
-"color: #036A07;">"\\e[32m"</span>
-<span style="color: #BA36A5;">C_</span><span style=
-"color: #CC0000; background-color: #FFFF88;">WARNING</span>=<span style=
-"color: #036A07;">"\\e[35m"</span>
-<span style="color: #BA36A5;">C_SUCCESS</span>=<span style=
-"color: #036A07;">"\\e[1\;32m"</span>
-<span style="color: #BA36A5;">C_FAILURE</span>=<span style=
-"color: #036A07;">"\\e[1\;31m"</span>
-<span style="color: #BA36A5;">C_RESET</span>=<span style=
-"color: #036A07;">"\\e[0m"</span>
+<span class="org-variable-name">C_INFO</span>=<span class=
+"org-string">"\\e[32m"</span>
+<span class="org-variable-name">C_</span><span class=
+"org-variable-name"><span class=
+"org-leuven-highlight">WARNING</span></span>=<span class=
+"org-string">"\\e[35m"</span>
+<span class="org-variable-name">C_SUCCESS</span>=<span class=
+"org-string">"\\e[1\;32m"</span>
+<span class="org-variable-name">C_FAILURE</span>=<span class=
+"org-string">"\\e[1\;31m"</span>
+<span class="org-variable-name">C_RESET</span>=<span class=
+"org-string">"\\e[0m"</span>
 </pre>
               </div>
             </div>
@@ -1277,30 +1306,30 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-ifeq ($(<span style="color: #BA36A5;">ALLSUBDIRS</span>),yes)
-    <span style="color: #BA36A5;">TXT_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -name \*.txt)
-    <span style="color: #BA36A5;">ORG_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -name \*.org)
-    <span style="color: #BA36A5;">HTML_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -name \*.html)
-    <span style="color: #BA36A5;">PDF_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -name \*.pdf)
+ifeq ($(<span class="org-variable-name">ALLSUBDIRS</span>),yes)
+    <span class="org-variable-name">TXT_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -name \*.txt)
+    <span class="org-variable-name">ORG_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -name \*.org)
+    <span class="org-variable-name">HTML_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -name \*.html)
+    <span class="org-variable-name">PDF_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -name \*.pdf)
 else
-    <span style="color: #BA36A5;">TXT_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -maxdepth 1 -name \*.txt)
-    <span style="color: #BA36A5;">ORG_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -maxdepth 1 -name \*.org)
-    <span style="color: #BA36A5;">HTML_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -maxdepth 1 -name \*.html)
-    <span style="color: #BA36A5;">PDF_FILES</span>=$(<span style=
-"color: #BA36A5;">shell</span> find . -maxdepth 1 -name \*.pdf)
+    <span class="org-variable-name">TXT_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -maxdepth 1 -name \*.txt)
+    <span class="org-variable-name">ORG_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -maxdepth 1 -name \*.org)
+    <span class="org-variable-name">HTML_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -maxdepth 1 -name \*.html)
+    <span class="org-variable-name">PDF_FILES</span>=$(<span class=
+"org-variable-name">shell</span> find . -maxdepth 1 -name \*.pdf)
 endif
 
-<span style="color: #BA36A5;">FILES_TO_TANGLE</span> := $(<span style=
-"color: #BA36A5;">join</span> $(<span style=
-"color: #BA36A5;">ORG_FILES</span>), $(<span style=
-"color: #BA36A5;">TXT_FILES</span>))
+<span class="org-variable-name">FILES_TO_TANGLE</span> := $(<span class=
+"org-variable-name">join</span> $(<span class=
+"org-variable-name">ORG_FILES</span>), $(<span class=
+"org-variable-name">TXT_FILES</span>))
 </pre>
               </div>
 
@@ -1326,9 +1355,9 @@ endif
                     <b>Fix problem of Orgfile with .org/.txt
                     extension</b><br />
 
-                    <p>If an Org file exists with the 2 file extensions =.txt=
-                    and =.org= (same base name), then we get messages such
-                    as:</p>
+                    <p>If an Org file exists with the 2 file extensions
+                    <code>.txt</code> and <code>.org</code> (same base name),
+                    then we get messages such as:</p>
 
                     <p>Makefile:102: warning: overriding recipe for target
                     `plot.html’ Makefile:89: warning: ignoring old recipe for
@@ -1347,12 +1376,12 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">HTML_FILES_FROM_ORG</span> = $(<span style=
-"color: #BA36A5;">patsubst</span> %.org,%.html,$(<span style=
-"color: #BA36A5;">ORG_FILES</span>))
-<span style="color: #BA36A5;">HTML_FILES_FROM_TXT</span> = $(<span style=
-"color: #BA36A5;">patsubst</span> %.txt,%.html,$(<span style=
-"color: #BA36A5;">TXT_FILES</span>))
+<span class="org-variable-name">HTML_FILES_FROM_ORG</span> = $(<span class=
+"org-variable-name">patsubst</span> %.org,%.html,$(<span class=
+"org-variable-name">ORG_FILES</span>))
+<span class="org-variable-name">HTML_FILES_FROM_TXT</span> = $(<span class=
+"org-variable-name">patsubst</span> %.txt,%.html,$(<span class=
+"org-variable-name">TXT_FILES</span>))
 </pre>
               </div>
 
@@ -1361,8 +1390,8 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">CUR_HTML_FILES</span> := $(<span style=
-"color: #BA36A5;">HTML_FILES</span>)
+<span class="org-variable-name">CUR_HTML_FILES</span> := $(<span class=
+"org-variable-name">HTML_FILES</span>)
 </pre>
               </div>
             </div>
@@ -1376,12 +1405,12 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">PDF_FILES_FROM_ORG</span> = $(<span style=
-"color: #BA36A5;">patsubst</span> %.org,%.pdf,$(<span style=
-"color: #BA36A5;">ORG_FILES</span>))
-<span style="color: #BA36A5;">PDF_FILES_FROM_TXT</span> = $(<span style=
-"color: #BA36A5;">patsubst</span> %.txt,%.pdf,$(<span style=
-"color: #BA36A5;">TXT_FILES</span>))
+<span class="org-variable-name">PDF_FILES_FROM_ORG</span> = $(<span class=
+"org-variable-name">patsubst</span> %.org,%.pdf,$(<span class=
+"org-variable-name">ORG_FILES</span>))
+<span class="org-variable-name">PDF_FILES_FROM_TXT</span> = $(<span class=
+"org-variable-name">patsubst</span> %.txt,%.pdf,$(<span class=
+"org-variable-name">TXT_FILES</span>))
 </pre>
               </div>
 
@@ -1390,8 +1419,8 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">CUR_PDF_FILES</span> := $(<span style=
-"color: #BA36A5;">PDF_FILES</span>)
+<span class="org-variable-name">CUR_PDF_FILES</span> := $(<span class=
+"org-variable-name">PDF_FILES</span>)
 </pre>
               </div>
             </div>
@@ -1403,10 +1432,10 @@ endif
             <div class="outline-text-5" id="text-8-1-2-4">
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">turn command echo'ing back on with VERBOSE=1</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">turn command echo'ing back on with VERBOSE=1</span>
 ifndef VERBOSE
-    <span style="color: #BA36A5;">QUIET</span> := @
+    <span class="org-variable-name">QUIET</span> := @
 endif
 </pre>
               </div>
@@ -1416,11 +1445,12 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">turn on shell debugging with SHELL_DE</span><span style="color: #CC0000; background-color: #FFFF88; font-style: italic;">BUG</span><span style="color: #8D8D84; font-style: italic;">=1</span>
-ifdef SHELL_DE<span style=
-"color: #CC0000; background-color: #FFFF88;">BUG</span>
-    <span style="color: #BA36A5;">SHELL</span> += -x
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">turn on shell debugging with SHELL_DE</span><span class=
+"org-comment"><span class="org-leuven-highlight">BUG</span></span><span class=
+"org-comment">=1</span>
+ifdef SHELL_DE<span class="org-leuven-highlight">BUG</span>
+    <span class="org-variable-name">SHELL</span> += -x
 endif
 </pre>
               </div>
@@ -1435,12 +1465,12 @@ endif
 
               <div class="org-src-container">
                 <pre class="src src-makefile">
-<span style="color: #BA36A5;">PRINTF</span>=$(<span style=
-"color: #BA36A5;">QUIET</span>)printf
-<span style="color: #BA36A5;">EGREP</span>=$(<span style=
-"color: #BA36A5;">QUIET</span>)egrep
-<span style="color: #BA36A5;">LS</span>=$(<span style=
-"color: #BA36A5;">QUIET</span>)ls
+<span class="org-variable-name">PRINTF</span>=$(<span class=
+"org-variable-name">QUIET</span>)printf
+<span class="org-variable-name">EGREP</span>=$(<span class=
+"org-variable-name">QUIET</span>)egrep
+<span class="org-variable-name">LS</span>=$(<span class=
+"org-variable-name">QUIET</span>)ls
 </pre>
               </div>
             </div>
@@ -1454,9 +1484,9 @@ endif
           <div class="outline-text-4" id="text-8-1-3">
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: all
-<span style=
-"color: #0000ff; font-weight: bold;">all</span>: html pdf                           <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Regenerate all HTML and PDF files</span>
+<span class="org-makefile-targets">.PHONY</span>: all
+<span class=
+"org-makefile-targets">all</span>: html pdf                           <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all HTML and PDF files</span>
 </pre>
             </div>
           </div>
@@ -1471,31 +1501,25 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: help
-<span style=
-"color: #0000ff; font-weight: bold;">help</span>:                                   <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Display callable targets</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"Usage: orgmk [OPTION]... [TARGET]...\n"</span> &gt; /dev/stderr
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style="color: #036A07;">"\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"What target do you want?\n"</span> &gt; /dev/stderr
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">EGREP</span>) <span style=
-"color: #036A07;">"^[^</span><span style=
-"color: #d3d3d3; background-color: #f5f5dc;">   </span><span style=
-"color: #036A07;">#A-Z]+:"</span> [Mm]akefile \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>| sed <span style=
-"color: #036A07;">'s/:[^#]*//'</span> | sed <span style=
-"color: #036A07;">'s/^/\n/g'</span> | sed <span style=
-"color: #036A07;">'s/# /\n\t/g'</span> &gt; /dev/stderr
+<span class="org-makefile-targets">.PHONY</span>: help
+<span class=
+"org-makefile-targets">help</span>:                                   <span class="org-comment-delimiter"># </span><span class="org-comment">Display callable targets</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"Usage: orgmk [OPTION]... [TARGET]...\n"</span> &gt; /dev/stderr
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class="org-string">"\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"What target do you want?\n"</span> &gt; /dev/stderr
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">EGREP</span>) <span class=
+"org-string">"^[^</span><span class="org-whitespace-tab">   </span><span class=
+"org-string">#A-Z]+:"</span> [Mm]akefile \
+<span class="org-whitespace-tab">        </span>| sed <span class=
+"org-string">'s/:[^#]*//'</span> | sed <span class=
+"org-string">'s/^/\n/g'</span> | sed <span class=
+"org-string">'s/# /\n\t/g'</span> &gt; /dev/stderr
 </pre>
             </div>
           </div>
@@ -1512,11 +1536,11 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: html
-<span style="color: #0000ff; font-weight: bold;">html</span>: $(<span style=
-"color: #BA36A5;">CUR_HTML_FILES</span>)                 <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Regenerate all HTML documents from Org</span>
+<span class="org-makefile-targets">.PHONY</span>: html
+<span class="org-makefile-targets">html</span>: $(<span class=
+"org-variable-name">CUR_HTML_FILES</span>)                 <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">Regenerate all HTML documents from Org</span>
 </pre>
             </div>
 
@@ -1526,82 +1550,97 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style=
-"color: #0000ff; font-weight: bold;">$(HTML_FILES_FROM_ORG)</span>: %.html: %.org   <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Export an Org document to HTML</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_INFO</span><span style=
-"color: #036A07;">)Exporting \`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/$</span><span style=
-"color: #D0372D;">&lt;</span><span style=
-"color: #036A07;">' to HTML...$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">ORG2HTML</span>) $<span style="color: #D0372D;">&lt;</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">LS</span>) -l -t $<span style=
-"color: #D0372D;">&lt;</span> <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span> | head -n 1 | grep -E <span style="color: #036A07;">"\.html"</span> &gt; /dev/null \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>|| { printf <span style="color: #036A07;">"$(</span><span style="color: #BA36A5;">C_FAILURE</span><span style="color: #036A07;">)\`$(</span><span style="color: #BA36A5;">CURDIR</span><span style="color: #036A07;">)/</span><span style="color: #036A07; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span><span style="color: #036A07;">' is NOT up to date$(</span><span style="color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>; exit 1; }
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_SUCCESS</span><span style=
-"color: #036A07;">)\`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">' successfully generated$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
+<span class=
+"org-makefile-targets">$(HTML_FILES_FROM_ORG)</span>: %.html: %.org   <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to HTML</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-string"><span class=
+"org-constant">&lt;</span></span><span class=
+"org-string">' to HTML...$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">LS</span>) -l -t $<span class=
+"org-constant">&lt;</span> <span class=
+"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
+"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-string">"\.html"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' successfully generated$(</span><span class=
+"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>
 
-<span style="color: #0000ff; font-weight: bold;">$(</span><span style=
-"color: #0000ff; font-weight: bold;">HTML_FILES_FROM_TXT</span><span style=
-"color: #0000ff; font-weight: bold;">)</span>: %.html: %.txt   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Export an Org document to HTML</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_INFO</span><span style=
-"color: #036A07;">)Exporting \`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/$</span><span style=
-"color: #D0372D;">&lt;</span><span style=
-"color: #036A07;">' to HTML...$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">ORG2HTML</span>) $<span style="color: #D0372D;">&lt;</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">LS</span>) -l -t $<span style=
-"color: #D0372D;">&lt;</span> <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span> | head -n 1 | grep -E <span style="color: #036A07;">"\.html"</span> &gt; /dev/null \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>|| { printf <span style="color: #036A07;">"$(</span><span style="color: #BA36A5;">C_FAILURE</span><span style="color: #036A07;">)\`$(</span><span style="color: #BA36A5;">CURDIR</span><span style="color: #036A07;">)/</span><span style="color: #036A07; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span><span style="color: #036A07;">' is NOT up to date$(</span><span style="color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>; exit 1; }
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_SUCCESS</span><span style=
-"color: #036A07;">)\`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">' successfully generated$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
+<span class="org-makefile-targets">$(</span><span class=
+"org-variable-name"><span class=
+"org-makefile-targets">HTML_FILES_FROM_TXT</span></span><span class=
+"org-makefile-targets">)</span>: %.html: %.txt   <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">Export an Org document to HTML</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-string"><span class=
+"org-constant">&lt;</span></span><span class=
+"org-string">' to HTML...$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">LS</span>) -l -t $<span class=
+"org-constant">&lt;</span> <span class=
+"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
+"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-string">"\.html"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' successfully generated$(</span><span class=
+"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>
 </pre>
             </div>
 
@@ -1609,40 +1648,47 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile" id="recipe-convert-to-html">
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_INFO</span><span style=
-"color: #036A07;">)Exporting \`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/$</span><span style=
-"color: #D0372D;">&lt;</span><span style=
-"color: #036A07;">' to HTML...$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">ORG2HTML</span>) $<span style="color: #D0372D;">&lt;</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">LS</span>) -l -t $<span style=
-"color: #D0372D;">&lt;</span> <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span> | head -n 1 | grep -E <span style="color: #036A07;">"\.html"</span> &gt; /dev/null \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>|| { printf <span style="color: #036A07;">"$(</span><span style="color: #BA36A5;">C_FAILURE</span><span style="color: #036A07;">)\`$(</span><span style="color: #BA36A5;">CURDIR</span><span style="color: #036A07;">)/</span><span style="color: #036A07; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span><span style="color: #036A07;">' is NOT up to date$(</span><span style="color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>; exit 1; }
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_SUCCESS</span><span style=
-"color: #036A07;">)\`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">' successfully generated$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-string"><span class=
+"org-constant">&lt;</span></span><span class=
+"org-string">' to HTML...$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">LS</span>) -l -t $<span class=
+"org-constant">&lt;</span> <span class=
+"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
+"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-string">"\.html"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' successfully generated$(</span><span class=
+"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>
 </pre>
             </div>
 
@@ -1651,8 +1697,8 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style=
-"color: #0000ff; font-weight: bold;">view-html</span>:                              <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Generate the HTML files, then show the result</span>
+<span class=
+"org-makefile-targets">view-html</span>:                              <span class="org-comment-delimiter"># </span><span class="org-comment">Generate the HTML files, then show the result</span>
 </pre>
             </div>
           </div>
@@ -1668,11 +1714,11 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: pdf
-<span style="color: #0000ff; font-weight: bold;">pdf</span>: $(<span style=
-"color: #BA36A5;">CUR_PDF_FILES</span>)                   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Regenerate all PDF documents from Org</span>
+<span class="org-makefile-targets">.PHONY</span>: pdf
+<span class="org-makefile-targets">pdf</span>: $(<span class=
+"org-variable-name">CUR_PDF_FILES</span>)                   <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">Regenerate all PDF documents from Org</span>
 </pre>
             </div>
 
@@ -1681,82 +1727,97 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style=
-"color: #0000ff; font-weight: bold;">$(PDF_FILES_FROM_ORG)</span>: %.pdf: %.org     <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Export an Org document to PDF</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_INFO</span><span style=
-"color: #036A07;">)Exporting \`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/$</span><span style=
-"color: #D0372D;">&lt;</span><span style=
-"color: #036A07;">' to PDF...$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">ORG2PDF</span>) $<span style="color: #D0372D;">&lt;</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">LS</span>) -l -t $<span style=
-"color: #D0372D;">&lt;</span> <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span> | head -n 1 | grep -E <span style="color: #036A07;">"\.pdf"</span> &gt; /dev/null \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>|| { printf <span style="color: #036A07;">"$(</span><span style="color: #BA36A5;">C_FAILURE</span><span style="color: #036A07;">)\`$(</span><span style="color: #BA36A5;">CURDIR</span><span style="color: #036A07;">)/</span><span style="color: #036A07; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span><span style="color: #036A07;">' is NOT up to date$(</span><span style="color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>; exit 1; }
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_SUCCESS</span><span style=
-"color: #036A07;">)\`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">' successfully generated$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
+<span class=
+"org-makefile-targets">$(PDF_FILES_FROM_ORG)</span>: %.pdf: %.org     <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to PDF</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-string"><span class=
+"org-constant">&lt;</span></span><span class=
+"org-string">' to PDF...$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">LS</span>) -l -t $<span class=
+"org-constant">&lt;</span> <span class=
+"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
+"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-string">"\.pdf"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' successfully generated$(</span><span class=
+"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>
 
-<span style="color: #0000ff; font-weight: bold;">$(</span><span style=
-"color: #0000ff; font-weight: bold;">PDF_FILES_FROM_TXT</span><span style=
-"color: #0000ff; font-weight: bold;">)</span>: %.pdf: %.txt     <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Export an Org document to PDF</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_INFO</span><span style=
-"color: #036A07;">)Exporting \`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/$</span><span style=
-"color: #D0372D;">&lt;</span><span style=
-"color: #036A07;">' to PDF...$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">ORG2PDF</span>) $<span style="color: #D0372D;">&lt;</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">LS</span>) -l -t $<span style=
-"color: #D0372D;">&lt;</span> <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span> | head -n 1 | grep -E <span style="color: #036A07;">"\.pdf"</span> &gt; /dev/null \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>|| { printf <span style="color: #036A07;">"$(</span><span style="color: #BA36A5;">C_FAILURE</span><span style="color: #036A07;">)\`$(</span><span style="color: #BA36A5;">CURDIR</span><span style="color: #036A07;">)/</span><span style="color: #036A07; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span><span style="color: #036A07;">' is NOT up to date$(</span><span style="color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>; exit 1; }
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_SUCCESS</span><span style=
-"color: #036A07;">)\`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">' successfully generated$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
+<span class="org-makefile-targets">$(</span><span class=
+"org-variable-name"><span class=
+"org-makefile-targets">PDF_FILES_FROM_TXT</span></span><span class=
+"org-makefile-targets">)</span>: %.pdf: %.txt     <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">Export an Org document to PDF</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-string"><span class=
+"org-constant">&lt;</span></span><span class=
+"org-string">' to PDF...$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">LS</span>) -l -t $<span class=
+"org-constant">&lt;</span> <span class=
+"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
+"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-string">"\.pdf"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' successfully generated$(</span><span class=
+"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>
 </pre>
             </div>
 
@@ -1772,40 +1833,47 @@ endif
 
             <div class="org-src-container">
               <pre class="src src-makefile" id="recipe-convert-to-pdf">
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_INFO</span><span style=
-"color: #036A07;">)Exporting \`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/$</span><span style=
-"color: #D0372D;">&lt;</span><span style=
-"color: #036A07;">' to PDF...$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">ORG2PDF</span>) $<span style="color: #D0372D;">&lt;</span>
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">LS</span>) -l -t $<span style=
-"color: #D0372D;">&lt;</span> <span style=
-"color: #0000ff; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span> | head -n 1 | grep -E <span style="color: #036A07;">"\.pdf"</span> &gt; /dev/null \
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>|| { printf <span style="color: #036A07;">"$(</span><span style="color: #BA36A5;">C_FAILURE</span><span style="color: #036A07;">)\`$(</span><span style="color: #BA36A5;">CURDIR</span><span style="color: #036A07;">)/</span><span style="color: #036A07; font-weight: bold;">$</span><span style="color: #D0372D; font-weight: bold;">@</span><span style="color: #036A07;">' is NOT up to date$(</span><span style="color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>; exit 1; }
-<span style=
-"color: #d3d3d3; background-color: #f5f5dc;">        </span>$(<span style=
-"color: #BA36A5;">PRINTF</span>) <span style=
-"color: #036A07;">"$(</span><span style=
-"color: #BA36A5;">C_SUCCESS</span><span style=
-"color: #036A07;">)\`$(</span><span style=
-"color: #BA36A5;">CURDIR</span><span style=
-"color: #036A07;">)/</span><span style=
-"color: #036A07; font-weight: bold;">$</span><span style=
-"color: #D0372D; font-weight: bold;">@</span><span style=
-"color: #036A07;">' successfully generated$(</span><span style=
-"color: #BA36A5;">C_RESET</span><span style="color: #036A07;">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-string"><span class=
+"org-constant">&lt;</span></span><span class=
+"org-string">' to PDF...$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">LS</span>) -l -t $<span class=
+"org-constant">&lt;</span> <span class=
+"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
+"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-string">"\.pdf"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
+"org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class=
+"org-variable-name">PRINTF</span>) <span class=
+"org-string">"$(</span><span class="org-string"><span class=
+"org-variable-name">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-string"><span class=
+"org-variable-name">CURDIR</span></span><span class=
+"org-string">)/</span><span class="org-makefile-targets"><span class=
+"org-string">$</span></span><span class="org-makefile-targets"><span class=
+"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">' successfully generated$(</span><span class=
+"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-string">)\n"</span>
 </pre>
             </div>
 
@@ -1851,9 +1919,9 @@ endif
           <div class="outline-text-4" id="text-8-1-7">
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #0000ff; font-weight: bold;">.PHONY</span>: clean
-<span style=
-"color: #0000ff; font-weight: bold;">clean</span>:                                  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Delete all temporary files created by Org export</span>
+<span class="org-makefile-targets">.PHONY</span>: clean
+<span class=
+"org-makefile-targets">clean</span>:                                  <span class="org-comment-delimiter"># </span><span class="org-comment">Delete all temporary files created by Org export</span>
 </pre>
             </div>
           </div>
@@ -1879,8 +1947,8 @@ endif
           <div class="outline-text-4" id="text-8-1-9">
             <div class="org-src-container">
               <pre class="src src-makefile">
-<span style="color: #8D8D84;">### </span><span style=
-"color: #8D8D84; font-style: italic;">orgmk.mk ends here</span>
+<span class="org-comment-delimiter">### </span><span class=
+"org-comment">orgmk.mk ends here</span>
 </pre>
             </div>
           </div>
@@ -1904,67 +1972,64 @@ endif
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #006699;">Usage</span> ()
+<span class="org-function-name">Usage</span> ()
 {
     cat &lt;&lt; EOF 1&gt;&amp;2
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">Usage: $(basename $0) [OPTION] FILE</span>
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">Export Org source files whenever they are updated.</span>
+<span class="org-sh-heredoc">Usage: $(basename $0) [OPTION] FILE</span>
+<span class=
+"org-sh-heredoc">Export Org source files whenever they are updated.</span>
 
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">  -h, --help          display this help and exit</span>
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">  -r, --recursive     export all Org files under each directory, recursively</span>
+<span class=
+"org-sh-heredoc">  -h, --help          display this help and exit</span>
+<span class=
+"org-sh-heredoc">  -r, --recursive     export all Org files under each directory, recursively</span>
 
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
-<span style="color: #0000ff; background-color: #EEF5FE;">EOF</span>
-    <span style="color: #0000FF;">exit</span> 1
+<span class=
+"org-sh-heredoc">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
+<span class="org-sh-heredoc">EOF</span>
+    <span class="org-keyword">exit</span> 1
 }
 </pre>
           </div>
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #006699;">CleanUp</span> ()
+<span class="org-function-name">CleanUp</span> ()
 {
-    <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">remove the Makefile</span>
+    <span class="org-comment-delimiter"># </span><span class=
+"org-comment">remove the Makefile</span>
     rm orgmk.mk
 }
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">perform housekeeping on program exit or a variety of signals</span>
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">(EXIT, HUP, INT, QUIT, TERM)</span>
-<span style="color: #0000FF;">trap</span> CleanUp 0 1 2 3 15
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">perform housekeeping on program exit or a variety of signals</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">(EXIT, HUP, INT, QUIT, TERM)</span>
+<span class="org-keyword">trap</span> CleanUp 0 1 2 3 15
 </pre>
           </div>
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">install the Makefile where you are</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">install the Makefile where you are</span>
 orgmk-stow-orgmk.mk
 
-<span style="color: #BA36A5;">FLAGS</span>=<span style=
-"color: #036A07;">""</span>
-<span style="color: #0000FF;">while </span><span style=
-"color: #006FE0;">true</span>; <span style="color: #0000FF;">do</span>
-    <span style="color: #0000FF;">case</span> <span style=
-"color: #036A07;">"$1"</span><span style="color: #0000FF;"> in</span>
+<span class="org-variable-name">FLAGS</span>=<span class="org-string">""</span>
+<span class="org-keyword">while </span><span class=
+"org-builtin">true</span>; <span class="org-keyword">do</span>
+    <span class="org-keyword">case</span> <span class=
+"org-string">"$1"</span><span class="org-keyword"> in</span>
         -h | --help ) Usage ;;
-        -r | --recursive) <span style=
-"color: #BA36A5;">FLAGS</span>=<span style=
-"color: #036A07;">"ALLSUBDIRS=yes"</span>; <span style=
-"color: #006FE0;">shift</span> ;;
-        * ) <span style="color: #0000FF;">break</span> ;;
-    <span style="color: #0000FF;">esac</span>
-<span style="color: #0000FF;">done</span>
+        -r | --recursive) <span class=
+"org-variable-name">FLAGS</span>=<span class=
+"org-string">"ALLSUBDIRS=yes"</span>; <span class="org-builtin">shift</span> ;;
+        * ) <span class="org-keyword">break</span> ;;
+    <span class="org-keyword">esac</span>
+<span class="org-keyword">done</span>
 
-make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
-"color: #BA36A5;">*</span>
+make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
+"org-variable-name">*</span>
 </pre>
           </div>
         </div>
@@ -1996,8 +2061,10 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
         <div class="outline-text-3" id="text-9-1">
           <div class="org-src-container">
             <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;;; </span><span style=
-"color: #8D8D84; font-style: italic;">orgmk.el --- Emacs configuration file for `</span><span style="color: #D0372D; font-style: italic;">orgmk</span><span style="color: #8D8D84; font-style: italic;">'</span>
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">orgmk.el --- Emacs configuration file for `</span><span class=
+"org-comment"><span class="org-constant">orgmk</span></span><span class=
+"org-comment">'</span>
 </pre>
           </div>
         </div>
@@ -2011,12 +2078,12 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">remember this directory</span>
-(<span style="color: #0000FF;">defconst</span> <span style=
-"color: #BA36A5;">orgmk-el-directory</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">remember this directory</span>
+(<span class="org-keyword">defconst</span> <span class=
+"org-variable-name">orgmk-el-directory</span>
   (file-name-directory (or load-file-name (buffer-file-name)))
-  <span style="color: #008000;">"Directory path of Orgmk."</span>)
+  <span class="org-doc">"Directory path of Orgmk."</span>)
 </pre>
             </div>
           </div>
@@ -2029,14 +2096,14 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-2">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">;; activate debugging</span>
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">(setq debug-on-</span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">error</span><span style="color: #8D8D84; font-style: italic;"> t)</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">;; activate debugging</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">(setq debug-on-</span><span class="org-comment"><span class=
+"org-leuven-highlight">error</span></span><span class="org-comment"> t)</span>
 
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">no limit when printing values</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">no limit when printing values</span>
 (setq eval-expression-print-length nil)
 (setq eval-expression-print-level nil)
 </pre>
@@ -2051,8 +2118,8 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-3">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">don't make a backup of files</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">don't make a backup of files</span>
 (setq backup-inhibited t)
 </pre>
             </div>
@@ -2068,16 +2135,16 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)</span>
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">(add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; &lt;- adjust</span>
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">(when (eq system-type 'windows-nt)</span>
-<span style="color: #8D8D84;">;;   </span><span style=
-"color: #8D8D84; font-style: italic;">(when (try-require 'cygwin-mount)</span>
-<span style="color: #8D8D84;">;;     </span><span style=
-"color: #8D8D84; font-style: italic;">(cygwin-mount-activate)))</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">(add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; &lt;- adjust</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">(when (eq system-type 'windows-nt)</span>
+<span class="org-comment-delimiter">;;   </span><span class=
+"org-comment">(when (try-require 'cygwin-mount)</span>
+<span class="org-comment-delimiter">;;     </span><span class=
+"org-comment">(cygwin-mount-activate)))</span>
 </pre>
             </div>
           </div>
@@ -2094,16 +2161,17 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">shell</span>
-(message <span style="color: #036A07;">"Current value of `</span><span style=
-"color: #D0372D;">shell-file-name</span><span style=
-"color: #036A07;">': %s"</span> shell-file-name)
-(<span style=
-"color: #0000FF;">unless</span> (equal shell-file-name <span style="color: #036A07;">"bash"</span>)
-  (setq shell-file-name <span style="color: #036A07;">"bash"</span>)
-  (message <span style=
-"color: #036A07;">"... changed to: %s"</span> shell-file-name))
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">shell</span>
+(message <span class="org-string">"Current value of `</span><span class=
+"org-string"><span class=
+"org-constant">shell-file-name</span></span><span class=
+"org-string">': %s"</span> shell-file-name)
+(<span class="org-keyword">unless</span> (equal shell-file-name <span class=
+"org-string">"bash"</span>)
+  (setq shell-file-name <span class="org-string">"bash"</span>)
+  (message <span class=
+"org-string">"... changed to: %s"</span> shell-file-name))
 </pre>
             </div>
 
@@ -2122,66 +2190,64 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-(<span style="color: #0000FF;">when</span> (locate-library <span style=
-"color: #036A07;">"package"</span>)
-  (<span style="color: #0000FF;">require</span> '<span style=
-"color: #D0372D;">package</span>)
-  (add-to-list 'package-archives '(<span style=
-"color: #036A07;">"org"</span> . <span style=
-"color: #036A07;">"http://orgmode.org/elpa/"</span>))
-  (add-to-list 'package-archives '(<span style=
-"color: #036A07;">"melpa"</span> . <span style=
-"color: #036A07;">"http://melpa.milkbox.net/packages/"</span>))
+(<span class="org-keyword">when</span> (locate-library <span class=
+"org-string">"package"</span>)
+  (<span class="org-keyword">require</span> '<span class=
+"org-constant">package</span>)
+  (add-to-list 'package-archives '(<span class=
+"org-string">"org"</span> . <span class=
+"org-string">"http://orgmode.org/elpa/"</span>))
+  (add-to-list 'package-archives '(<span class=
+"org-string">"melpa"</span> . <span class=
+"org-string">"http://melpa.milkbox.net/packages/"</span>))
   (package-initialize))
 
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">version info</span>
-(<span style=
-"color: #0000FF;">let</span> ((org-install-dir (file-name-directory (locate-library <span style="color: #036A07;">"org-loaddefs"</span>)))
-      (org-dir (file-name-directory (locate-library <span style=
-"color: #036A07;">"org"</span>)))) <span style=
-"color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">org.(el|elc)</span>
-  (message <span style=
-"color: #036A07;">"Org mode version %s (org @ %s)"</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">version info</span>
+(<span class=
+"org-keyword">let</span> ((org-install-dir (file-name-directory (locate-library <span class="org-string">"org-loaddefs"</span>)))
+      (org-dir (file-name-directory (locate-library <span class=
+"org-string">"org"</span>)))) <span class=
+"org-comment-delimiter">;; </span><span class="org-comment">org.(el|elc)</span>
+  (message <span class="org-string">"Org mode version %s (org @ %s)"</span>
            (org-version)
-           (<span style=
-"color: #0000FF;">if</span> (string= org-dir org-install-dir)
+           (<span class=
+"org-keyword">if</span> (string= org-dir org-install-dir)
                org-install-dir
-             (concat <span style=
-"color: #036A07;">"mixed installation! "</span> org-install-dir <span style=
-"color: #036A07;">" and "</span> org-dir))))
+             (concat <span class=
+"org-string">"mixed installation! "</span> org-install-dir <span class=
+"org-string">" and "</span> org-dir))))
 
-(<span style="color: #0000FF;">unless</span> (string-match <span style=
-"color: #036A07;">"^8"</span> (org-version))
-  (message <span style=
-"color: #036A07;">"This version of Org mode is no longer supported"</span>)
-  (<span style="color: #0000FF;">when</span> (locate-library <span style=
-"color: #036A07;">"package"</span>)
-    (<span style="color: #0000FF;">if</span> (yes-or-no-p (format <span style=
-"color: #036A07;">"Install package `</span><span style=
-"color: #D0372D;">%s</span><span style="color: #036A07;">'? "</span> 'org))
-        (<span style="color: #0000FF;">ignore-</span><span style=
-"color: #CC0000; background-color: #FFFF88;">error</span><span style=
-"color: #0000FF;">s</span>
+(<span class="org-keyword">unless</span> (string-match <span class=
+"org-string">"^8"</span> (org-version))
+  (message <span class=
+"org-string">"This version of Org mode is no longer supported"</span>)
+  (<span class="org-keyword">when</span> (locate-library <span class=
+"org-string">"package"</span>)
+    (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
+"org-string">"Install package `</span><span class="org-string"><span class=
+"org-constant">%s</span></span><span class="org-string">'? "</span> 'org))
+        (<span class="org-keyword">ignore-</span><span class=
+"org-keyword"><span class=
+"org-leuven-highlight">error</span></span><span class="org-keyword">s</span>
           (package-install 'org))
-      (setq debug-on-<span style=
-"color: #CC0000; background-color: #FFFF88;">error</span> nil)
-      (<span style=
-"color: #CC0000; background-color: #FFFF88; font-weight: bold;">error</span> <span style="color: #036A07;">"Please upgrade to 8 or later"</span>))))
+      (setq debug-on-<span class="org-leuven-highlight">error</span> nil)
+      (<span class="org-warning"><span class=
+"org-leuven-highlight">error</span></span> <span class=
+"org-string">"Please upgrade to 8 or later"</span>))))
 
-(<span style="color: #0000FF;">when</span> (locate-library <span style=
-"color: #036A07;">"package"</span>)
-  (<span style="color: #0000FF;">unless</span> (locate-library <span style=
-"color: #036A07;">"htmlize"</span>)    <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">for org2html</span>
-    (<span style="color: #0000FF;">let</span> ((pkg 'htmlize))
-      (<span style=
-"color: #0000FF;">if</span> (yes-or-no-p (format <span style="color: #036A07;">"Install package `</span><span style="color: #D0372D;">%s</span><span style="color: #036A07;">'? "</span> pkg))
-          (<span style="color: #0000FF;">ignore-</span><span style=
-"color: #CC0000; background-color: #FFFF88;">error</span><span style=
-"color: #0000FF;">s</span>
+(<span class="org-keyword">when</span> (locate-library <span class=
+"org-string">"package"</span>)
+  (<span class="org-keyword">unless</span> (locate-library <span class=
+"org-string">"htmlize"</span>)    <span class=
+"org-comment-delimiter">; </span><span class="org-comment">for org2html</span>
+    (<span class="org-keyword">let</span> ((pkg 'htmlize))
+      (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
+"org-string">"Install package `</span><span class="org-string"><span class=
+"org-constant">%s</span></span><span class="org-string">'? "</span> pkg))
+          (<span class="org-keyword">ignore-</span><span class=
+"org-keyword"><span class=
+"org-leuven-highlight">error</span></span><span class="org-keyword">s</span>
             (package-install pkg))))))
 </pre>
             </div>
@@ -2195,8 +2261,8 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-7">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-(add-to-list 'auto-mode-alist '(<span style=
-"color: #036A07;">"\\.txt\\'"</span> . org-mode))
+(add-to-list 'auto-mode-alist '(<span class=
+"org-string">"\\.txt\\'"</span> . org-mode))
 </pre>
             </div>
           </div>
@@ -2209,12 +2275,12 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-8">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">make sure that timestamps appear in English</span>
-(setq system-time-locale <span style=
-"color: #036A07;">"C"</span>)           <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">[default: nil]</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">make sure that timestamps appear in English</span>
+(setq system-time-locale <span class=
+"org-string">"C"</span>)           <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">[default: nil]</span>
 </pre>
             </div>
           </div>
@@ -2227,27 +2293,25 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-9">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">format string used when creating CLOCKSUM lines and when generating a</span>
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">time duration (avoid showing days)</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">format string used when creating CLOCKSUM lines and when generating a</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">time duration (avoid showing days)</span>
 (setq org-time-clocksum-format
-      '(<span style="color: #006FE0;">:hours</span> <span style=
-"color: #036A07;">"%d"</span> <span style=
-"color: #006FE0;">:require-hours</span> t <span style=
-"color: #006FE0;">:minutes</span> <span style=
-"color: #036A07;">":%02d"</span> <span style=
-"color: #006FE0;">:require-minutes</span> t))
+      '(<span class="org-builtin">:hours</span> <span class=
+"org-string">"%d"</span> <span class=
+"org-builtin">:require-hours</span> t <span class=
+"org-builtin">:minutes</span> <span class=
+"org-string">":%02d"</span> <span class=
+"org-builtin">:require-minutes</span> t))
 
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">format string for the total time cells</span>
-(setq org-clock-total-time-cell-format <span style=
-"color: #036A07;">"%s"</span>)
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">format string for the total time cells</span>
+(setq org-clock-total-time-cell-format <span class="org-string">"%s"</span>)
 
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">format string for the file time cells</span>
-(setq org-clock-file-time-cell-format <span style=
-"color: #036A07;">"%s"</span>)
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">format string for the file time cells</span>
+(setq org-clock-file-time-cell-format <span class="org-string">"%s"</span>)
 </pre>
             </div>
           </div>
@@ -2260,11 +2324,11 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-10">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">hide the emphasis marker characters</span>
-(setq org-hide-emphasis-markers t)      <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">impact on table alignment!</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">hide the emphasis marker characters</span>
+(setq org-hide-emphasis-markers t)      <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">impact on table alignment!</span>
 </pre>
             </div>
           </div>
@@ -2277,8 +2341,12 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-11">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">allow #+BIND to define local variable values for export</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">don't insert a time stamp into the exported file</span>
+(setq org-export-time-stamp-file nil)
+
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">allow #+BIND to define local variable values for export</span>
 (setq org-export-allow-bind-keywords t)
 </pre>
             </div>
@@ -2292,36 +2360,37 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-12">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">configure Babel to support most languages</span>
-(<span style="color: #0000FF;">if</span> (locate-library <span style=
-"color: #036A07;">"ob-shell"</span>)         <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">ob-sh renamed on Dec 13th, 2013</span>
-    (org-babel-do-load-languages        <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">loads org, gnus-sum, etc...</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">configure Babel to support most languages</span>
+(<span class="org-keyword">if</span> (locate-library <span class=
+"org-string">"ob-shell"</span>)         <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">ob-sh renamed on Dec 13th, 2013</span>
+    (org-babel-do-load-languages        <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">loads org, gnus-sum, etc...</span>
      'org-babel-load-languages
-     '((R          . t)                 <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">requires R and ess-mode</span>
+     '((R          . t)                 <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">requires R and ess-mode</span>
        (awk        . t)
-       (ditaa      . t)                 <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">sudo aptitude install openjdk-6-jre</span>
+       (ditaa      . t)                 <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">sudo aptitude install openjdk-6-jre</span>
        (dot        . t)
        (emacs-lisp . t)
-       (latex      . t)                 <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">shouldn't you use #+begin/end_latex blocks instead?</span>
-       (ledger     . t)                 <span style=
-"color: #8D8D84;">; </span><span style=
-"color: #8D8D84; font-style: italic;">requires ledger</span>
+       (latex      . t)                 <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">shouldn't you use #+begin/end_latex blocks instead?</span>
+       (ledger     . t)                 <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">requires ledger</span>
        (org        . t)
        (shell      . t)
        (sql        . t)))
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">XXX</span><span style="color: #8D8D84; font-style: italic;"> (in the future) message saying "Upgrade to Org 8.3"</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment"><span class="org-leuven-highlight">XXX</span></span><span class=
+"org-comment"> (in the future) message saying "Upgrade to Org 8.3"</span>
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((R          . t)
@@ -2335,14 +2404,14 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
      (sh         . t)
      (sql        . t))))
 
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">accented characters on graphics</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">accented characters on graphics</span>
 (setq org-babel-R-command
-      (concat org-babel-R-command <span style=
-"color: #036A07;">" --encoding=UTF-8"</span>))
+      (concat org-babel-R-command <span class=
+"org-string">" --encoding=UTF-8"</span>))
 
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">don't require confirmation before evaluating code blocks</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">don't require confirmation before evaluating code blocks</span>
 (setq org-confirm-babel-evaluate nil)
 </pre>
             </div>
@@ -2356,13 +2425,13 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
           <div class="outline-text-4" id="text-9-1-13">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">load up Babel libraries</span>
-(<span style=
-"color: #0000FF;">let</span> ((lob-file (concat (file-name-directory (locate-library <span style="color: #036A07;">"org"</span>))
-                        <span style=
-"color: #036A07;">"../doc/library-of-babel.org"</span>)))
-  (<span style="color: #0000FF;">when</span> (file-exists-p lob-file)
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">load up Babel libraries</span>
+(<span class=
+"org-keyword">let</span> ((lob-file (concat (file-name-directory (locate-library <span class="org-string">"org"</span>))
+                        <span class=
+"org-string">"../doc/library-of-babel.org"</span>)))
+  (<span class="org-keyword">when</span> (file-exists-p lob-file)
     (org-babel-lob-ingest lob-file)))
 </pre>
             </div>
@@ -2391,36 +2460,36 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
           <div class="org-src-container">
             <pre class="src src-emacs-lisp">
-(<span style="color: #0000FF;">when</span> (<span style=
-"color: #0000FF;">require</span> '<span style="color: #D0372D;">ox-html</span>)
+(<span class="org-keyword">when</span> (<span class=
+"org-keyword">require</span> '<span class="org-constant">ox-html</span>)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">XML encoding</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">export the CSS selectors only, when formatting code snippets</span>
+  (setq org-html-htmlize-output-type 'css)
+
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">XML encoding</span>
   (setq org-html-xml-declaration
-        '((<span style="color: #036A07;">"html"</span> . <span style=
-"color: #036A07;">"&lt;!-- &lt;xml version=\"1.0\" encoding=\"%s\"&gt; --&gt;"</span>)))
+        '((<span class="org-string">"html"</span> . <span class=
+"org-string">"&lt;!-- &lt;xml version=\"1.0\" encoding=\"%s\"&gt; --&gt;"</span>)))
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">don't include the JavaScript snippets in exported HTML files</span>
-  (setq org-html-head-include-scripts nil)
-
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">turn inclusion of the default CSS style off</span>
-  (setq org-html-head-include-default-style nil)
-
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">coding system for HTML export</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">coding system for HTML export</span>
   (setq org-html-coding-system 'utf-8)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">format for the HTML postamble</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">format for the HTML postamble</span>
   (setq org-html-postamble
-        <span style=
-"color: #036A07;">"  &lt;div id=\"copyright\"&gt;\n    &amp;copy; %d %a\n  &lt;/div&gt;"</span>)
+        <span class=
+"org-string">"  &lt;div id=\"footer\"&gt;&lt;div id=\"copyright\"&gt;\n    Copyright &amp;copy; %d %a\n  &lt;/div&gt;&lt;/div&gt;"</span>)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #CC0000; background-color: #FFFF88; font-style: italic;">XXX</span><span style="color: #8D8D84; font-style: italic;"> export the CSS selectors only, when formatting code snippets</span>
-  (setq org-export-htmlize-output-type 'css))
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">don't include the JavaScript snippets in exported HTML files</span>
+  (setq org-html-head-include-scripts nil)
+
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">turn inclusion of the default CSS style off</span>
+  (setq org-html-head-include-default-style nil))
 </pre>
           </div>
         </div>
@@ -2444,77 +2513,77 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
           <div class="org-src-container">
             <pre class="src src-emacs-lisp">
-(<span style="color: #0000FF;">when</span> (<span style=
-"color: #0000FF;">require</span> '<span style=
-"color: #D0372D;">ox-latex</span>)
+(<span class="org-keyword">when</span> (<span class=
+"org-keyword">require</span> '<span class="org-constant">ox-latex</span>)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">;; This is disturbing when calling `</span><span style="color: #D0372D; font-style: italic;">org2html</span><span style="color: #8D8D84; font-style: italic;">'.</span>
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">(when (executable-find "latexmk")</span>
-  <span style="color: #8D8D84;">;;   </span><span style=
-"color: #8D8D84; font-style: italic;">(message "%s" (shell-command-to-string "latexmk --version")))</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">;; This is disturbing when calling `</span><span class=
+"org-comment"><span class="org-constant">org2html</span></span><span class=
+"org-comment">'.</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">(when (executable-find "latexmk")</span>
+  <span class="org-comment-delimiter">;;   </span><span class=
+"org-comment">(message "%s" (shell-command-to-string "latexmk --version")))</span>
 
   (setq org-latex-pdf-process
-        (<span style=
-"color: #0000FF;">if</span> (eq system-type 'cygwin) <span style=
-"color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">running a Cygwin version of Emacs</span>
-            <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">use Latexmk (if installed with LaTeX)</span>
-            (<span style=
-"color: #0000FF;">if</span> (executable-find <span style=
-"color: #036A07;">"latexmk"</span>)
-                '(<span style=
-"color: #036A07;">"latexmk -CF -pdf $(cygpath -m %f) &amp;&amp; latexmk -c"</span>)
-              '(<span style=
-"color: #036A07;">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
-                <span style=
-"color: #036A07;">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
-                <span style=
-"color: #036A07;">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>))
-          (<span style=
-"color: #0000FF;">if</span> (executable-find <span style="color: #036A07;">"latexmk"</span>)
-              '(<span style=
-"color: #036A07;">"latexmk -CF -pdf %f &amp;&amp; latexmk -c"</span>)
-            '(<span style=
-"color: #036A07;">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
-              <span style=
-"color: #036A07;">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
-              <span style=
-"color: #036A07;">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>))))
+        (<span class=
+"org-keyword">if</span> (eq system-type 'cygwin) <span class=
+"org-comment-delimiter">;; </span><span class=
+"org-comment">running a Cygwin version of Emacs</span>
+            <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">use Latexmk (if installed with LaTeX)</span>
+            (<span class="org-keyword">if</span> (executable-find <span class=
+"org-string">"latexmk"</span>)
+                '(<span class=
+"org-string">"latexmk -CF -pdf $(cygpath -m %f) &amp;&amp; latexmk -c"</span>)
+              '(<span class=
+"org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
+                <span class=
+"org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
+                <span class=
+"org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>))
+          (<span class="org-keyword">if</span> (executable-find <span class=
+"org-string">"latexmk"</span>)
+              '(<span class=
+"org-string">"latexmk -CF -pdf %f &amp;&amp; latexmk -c"</span>)
+            '(<span class=
+"org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
+              <span class=
+"org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
+              <span class=
+"org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>))))
 
-  (message <span style=
-"color: #036A07;">"LaTeX command: %S"</span> org-latex-pdf-process)
+  (message <span class=
+"org-string">"LaTeX command: %S"</span> org-latex-pdf-process)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">tell org to use `</span><span style=
-"color: #D0372D; font-style: italic;">listings</span><span style=
-"color: #8D8D84; font-style: italic;">' (instead of `</span><span style=
-"color: #D0372D; font-style: italic;">verbatim</span><span style=
-"color: #8D8D84; font-style: italic;">') for source code</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">tell org to use `</span><span class="org-comment"><span class=
+"org-constant">listings</span></span><span class=
+"org-comment">' (instead of `</span><span class="org-comment"><span class=
+"org-constant">verbatim</span></span><span class=
+"org-comment">') for source code</span>
   (setq org-latex-listings t)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">default packages to be inserted in the header</span>
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">include the `</span><span style=
-"color: #D0372D; font-style: italic;">listings</span><span style=
-"color: #8D8D84; font-style: italic;">' package for fontified source code</span>
-  (add-to-list 'org-latex-packages-alist '(<span style=
-"color: #036A07;">""</span> <span style="color: #036A07;">"listings"</span>) t)
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">default packages to be inserted in the header</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">include the `</span><span class="org-comment"><span class=
+"org-constant">listings</span></span><span class=
+"org-comment">' package for fontified source code</span>
+  (add-to-list 'org-latex-packages-alist '(<span class=
+"org-string">""</span> <span class="org-string">"listings"</span>) t)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">include the `</span><span style=
-"color: #D0372D; font-style: italic;">xcolor</span><span style=
-"color: #8D8D84; font-style: italic;">' package for colored source code</span>
-  (add-to-list 'org-latex-packages-alist '(<span style=
-"color: #036A07;">""</span> <span style="color: #036A07;">"xcolor"</span>) t)
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">include the `</span><span class="org-comment"><span class=
+"org-constant">xcolor</span></span><span class=
+"org-comment">' package for colored source code</span>
+  (add-to-list 'org-latex-packages-alist '(<span class=
+"org-string">""</span> <span class="org-string">"xcolor"</span>) t)
 
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">default position for LaTeX figures</span>
-  (setq org-latex-default-figure-position <span style=
-"color: #036A07;">"!htbp"</span>))
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">default position for LaTeX figures</span>
+  (setq org-latex-default-figure-position <span class=
+"org-string">"!htbp"</span>))
 </pre>
           </div>
         </div>
@@ -2532,20 +2601,22 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
 
           <div class="org-src-container">
             <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">require all files from `</span><span style="color: #D0372D; font-style: italic;">lisp</span><span style="color: #8D8D84; font-style: italic;">' directory</span>
-(<span style="color: #0000FF;">dolist</span> (file (directory-files
-               (concat orgmk-el-directory <span style=
-"color: #036A07;">"../lisp/"</span>) t <span style=
-"color: #036A07;">".+\\.elc?$"</span>))
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">require all files from `</span><span class=
+"org-comment"><span class="org-constant">lisp</span></span><span class=
+"org-comment">' directory</span>
+(<span class="org-keyword">dolist</span> (file (directory-files
+               (concat orgmk-el-directory <span class=
+"org-string">"../lisp/"</span>) t <span class=
+"org-string">".+\\.elc?$"</span>))
   (load-file file))
 </pre>
           </div>
 
           <div class="org-src-container">
             <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;;; </span><span style=
-"color: #8D8D84; font-style: italic;">orgmk.el ends here</span>
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">orgmk.el ends here</span>
 </pre>
           </div>
         </div>
@@ -2565,32 +2636,30 @@ make -f orgmk.mk $<span style="color: #BA36A5;">FLAGS</span> $<span style=
         <div class="outline-text-3" id="text-10-1">
           <div class="org-src-container">
             <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;;; </span><span style=
-"color: #8D8D84; font-style: italic;">org-latex-classes.el --- Sample configuration file for LaTeX</span>
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">org-latex-classes.el --- Sample configuration file for LaTeX</span>
 
 (add-to-list 'org-latex-classes
-             '(<span style="color: #036A07;">"koma-article"</span>
-               <span style="color: #036A07;">"\\documentclass{scrartcl}</span>
-<span style="color: #036A07;">               [NO-DEFAULT-PACKAGES]</span>
-<span style="color: #036A07;">               [EXTRA]"</span>
-               (<span style=
-"color: #036A07;">"\\section{%s}"</span> . <span style=
-"color: #036A07;">"\\section*{%s}"</span>)
-               (<span style=
-"color: #036A07;">"\\subsection{%s}"</span> . <span style=
-"color: #036A07;">"\\subsection*{%s}"</span>)
-               (<span style=
-"color: #036A07;">"\\subsubsection{%s}"</span> . <span style=
-"color: #036A07;">"\\subsubsection*{%s}"</span>)
-               (<span style=
-"color: #036A07;">"\\paragraph{%s}"</span> . <span style=
-"color: #036A07;">"\\paragraph*{%s}"</span>)
-               (<span style=
-"color: #036A07;">"\\subparagraph{%s}"</span> . <span style=
-"color: #036A07;">"\\subparagraph*{%s}"</span>)))
+             '(<span class="org-string">"koma-article"</span>
+               <span class="org-string">"\\documentclass{scrartcl}</span>
+<span class="org-string">               [NO-DEFAULT-PACKAGES]</span>
+<span class="org-string">               [EXTRA]"</span>
+               (<span class="org-string">"\\section{%s}"</span> . <span class=
+"org-string">"\\section*{%s}"</span>)
+               (<span class=
+"org-string">"\\subsection{%s}"</span> . <span class=
+"org-string">"\\subsection*{%s}"</span>)
+               (<span class=
+"org-string">"\\subsubsection{%s}"</span> . <span class=
+"org-string">"\\subsubsection*{%s}"</span>)
+               (<span class=
+"org-string">"\\paragraph{%s}"</span> . <span class="org-string">"\\paragraph*{%s}"</span>)
+               (<span class=
+"org-string">"\\subparagraph{%s}"</span> . <span class=
+"org-string">"\\subparagraph*{%s}"</span>)))
 
-<span style="color: #8D8D84;">;;; </span><span style=
-"color: #8D8D84; font-style: italic;">org-latex-classes.el ends here</span>
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">org-latex-classes.el ends here</span>
 </pre>
           </div>
         </div>
