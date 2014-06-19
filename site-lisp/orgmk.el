@@ -80,6 +80,9 @@
 ;; don't insert a time stamp into the exported file
 (setq org-export-time-stamp-file nil)
 
+;; activate smart quotes during export (convert " to \og, \fg in French)
+(setq org-export-with-smart-quotes t)
+
 ;; allow #+BIND to define local variable values for export
 (setq org-export-allow-bind-keywords t)
 
@@ -92,6 +95,7 @@
        (ditaa      . t)                 ; sudo aptitude install openjdk-6-jre
        (dot        . t)
        (emacs-lisp . t)
+       (java       . t)
        (latex      . t)                 ; shouldn't you use #+begin/end_latex blocks instead?
        (ledger     . t)                 ; requires ledger
        (org        . t)
@@ -105,6 +109,7 @@
      (ditaa      . t)
      (dot        . t)
      (emacs-lisp . t)
+     (java       . t)
      (latex      . t)
      (ledger     . t)
      (org        . t)

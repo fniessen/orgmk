@@ -1,3 +1,4 @@
+Config: unknown option: preserve-entities
 <!-- <xml version="1.0" encoding="utf-8"> -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -698,7 +699,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140619.1453.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140619.1626.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -2392,6 +2393,10 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 (setq org-export-time-stamp-file nil)
 
 <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">activate smart quotes during export (convert " to \og, \fg in French)</span>
+(setq org-export-with-smart-quotes t)
+
+<span class="org-comment-delimiter">;; </span><span class=
 "org-comment">allow #+BIND to define local variable values for export</span>
 (setq org-export-allow-bind-keywords t)
 </pre>
@@ -2425,6 +2430,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-comment">sudo aptitude install openjdk-6-jre</span>
        (dot        . t)
        (emacs-lisp . t)
+       (java       . t)
        (latex      . t)                 <span class=
 "org-comment-delimiter">; </span><span class=
 "org-comment">shouldn't you use #+begin/end_latex blocks instead?</span>
@@ -2444,6 +2450,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
      (ditaa      . t)
      (dot        . t)
      (emacs-lisp . t)
+     (java       . t)
      (latex      . t)
      (ledger     . t)
      (org        . t)
