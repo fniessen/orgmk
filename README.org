@@ -233,6 +233,7 @@ ORG2PDF=org2pdf
 ORG2BEAMERPDF=org2beamerpdf
 ORG2ODT=org2odt
 ORG2TXT=org2txt
+ORGTANGLE=org-tangle
 ORGMK_MAKE_SETUP=orgmk-stow-orgmk.mk
 ORGMK_MAKE_RUN=orgmk
 
@@ -270,6 +271,7 @@ install:                                # Create symlinks to Orgmk scripts
 	ln -f -s $(PWD)/bin/$(ORG2BEAMERPDF)           $(BIN_DIR)/$(ORG2BEAMERPDF)
 	ln -f -s $(PWD)/bin/$(ORG2ODT)                 $(BIN_DIR)/$(ORG2ODT)
 	ln -f -s $(PWD)/bin/$(ORG2TXT)                 $(BIN_DIR)/$(ORG2TXT)
+	ln -f -s $(PWD)/bin/$(ORGTANGLE)               $(BIN_DIR)/$(ORGTANGLE)
 	ln -f -s $(PWD)/bin/$(ORGMK_MAKE_SETUP)        $(BIN_DIR)/$(ORGMK_MAKE_SETUP)
 	ln -f -s $(PWD)/bin/$(ORGMK_MAKE_RUN)          $(BIN_DIR)/$(ORGMK_MAKE_RUN)
 
@@ -623,6 +625,21 @@ The time stamps in "Clock summary at ..." will be different, each time dynamic
 blocks are updated (if not done during the same minute). In that case, =diff=
 will always "succeed".
 #+end_note
+
+** org-tangle
+   :PROPERTIES:
+   :tangle:   bin/org-tangle
+   :END:
+
+The =org-tangle= tangles an Org file.
+
+#+begin_src sh
+TARGET_EXT=
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-babel-tangle \
+    || die "File wasn't tangled"
+#+end_src
 
 * Orgmk
 

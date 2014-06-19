@@ -29,6 +29,7 @@ ORG2PDF=org2pdf
 ORG2BEAMERPDF=org2beamerpdf
 ORG2ODT=org2odt
 ORG2TXT=org2txt
+ORGTANGLE=org-tangle
 ORGMK_MAKE_SETUP=orgmk-stow-orgmk.mk
 ORGMK_MAKE_RUN=orgmk
 
@@ -66,6 +67,7 @@ install:                                # Create symlinks to Orgmk scripts
 	ln -f -s $(PWD)/bin/$(ORG2BEAMERPDF)           $(BIN_DIR)/$(ORG2BEAMERPDF)
 	ln -f -s $(PWD)/bin/$(ORG2ODT)                 $(BIN_DIR)/$(ORG2ODT)
 	ln -f -s $(PWD)/bin/$(ORG2TXT)                 $(BIN_DIR)/$(ORG2TXT)
+	ln -f -s $(PWD)/bin/$(ORGTANGLE)               $(BIN_DIR)/$(ORGTANGLE)
 	ln -f -s $(PWD)/bin/$(ORGMK_MAKE_SETUP)        $(BIN_DIR)/$(ORGMK_MAKE_SETUP)
 	ln -f -s $(PWD)/bin/$(ORGMK_MAKE_RUN)          $(BIN_DIR)/$(ORGMK_MAKE_RUN)
 

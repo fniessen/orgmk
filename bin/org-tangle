@@ -1,0 +1,7 @@
+#!/bin/sh
+
+TARGET_EXT=
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-babel-tangle \
+    || die "File wasn't tangled"
