@@ -1,4 +1,3 @@
-Config: unknown option: preserve-entities
 <!-- <xml version="1.0" encoding="utf-8"> -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -699,7 +698,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140619.1626.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140620.0941.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -831,6 +830,14 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
 <span class="org-variable-name">ORGMK_UPDATE_FLAGS</span>=<span class=
 "org-string">"-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\""</span> <span class="org-comment-delimiter"># </span><span class="org-comment">base name</span>
 </pre>
+            </div>
+
+            <div class="note">
+              <p><b>Batch option</b><br />
+              Font Lock mode is disabled by default in batch mode. That
+              generates errors with some Java code blocks. Hence, one
+              workaround, in that case, is to call Emacs without batch
+              mode.</p>
             </div>
           </div>
         </div>
@@ -2394,7 +2401,9 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">activate smart quotes during export (convert " to \og, \fg in French)</span>
-(setq org-export-with-smart-quotes t)
+(setq org-export-with-smart-quotes t)   <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">curly quotes in HTML</span>
 
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">allow #+BIND to define local variable values for export</span>

@@ -449,6 +449,13 @@ ORGMK="$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")
 ORGMK_UPDATE_FLAGS="-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\"" # base name
 #+end_src
 
+#+begin_note
+*Batch option* \\
+Font Lock mode is disabled by default in batch mode.  That generates errors
+with some Java code blocks.  Hence, one workaround, in that case, is to call
+Emacs without batch mode.
+#+end_note
+
 ** org2html
    :PROPERTIES:
    :tangle:   bin/org2html
@@ -1181,7 +1188,7 @@ Ensure that a recent version of Org mode is installed and loaded.
 (setq org-export-time-stamp-file nil)
 
 ;; activate smart quotes during export (convert " to \og, \fg in French)
-(setq org-export-with-smart-quotes t)
+(setq org-export-with-smart-quotes t)   ; curly quotes in HTML
 
 ;; allow #+BIND to define local variable values for export
 (setq org-export-allow-bind-keywords t)

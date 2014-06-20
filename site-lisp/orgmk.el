@@ -81,7 +81,7 @@
 (setq org-export-time-stamp-file nil)
 
 ;; activate smart quotes during export (convert " to \og, \fg in French)
-(setq org-export-with-smart-quotes t)
+(setq org-export-with-smart-quotes t)   ; curly quotes in HTML
 
 ;; allow #+BIND to define local variable values for export
 (setq org-export-allow-bind-keywords t)
