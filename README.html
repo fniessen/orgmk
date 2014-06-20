@@ -698,7 +698,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140620.0941.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140620.1431.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -2404,6 +2404,10 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 (setq org-export-with-smart-quotes t)   <span class=
 "org-comment-delimiter">; </span><span class=
 "org-comment">curly quotes in HTML</span>
+
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">interpret "_" and "^" for export when braces are used</span>
+(setq org-export-with-sub-superscripts '{})
 
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">allow #+BIND to define local variable values for export</span>

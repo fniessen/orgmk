@@ -83,6 +83,9 @@
 ;; activate smart quotes during export (convert " to \og, \fg in French)
 (setq org-export-with-smart-quotes t)   ; curly quotes in HTML
 
+;; interpret "_" and "^" for export when braces are used
+(setq org-export-with-sub-superscripts '{})
+
 ;; allow #+BIND to define local variable values for export
 (setq org-export-allow-bind-keywords t)
 
