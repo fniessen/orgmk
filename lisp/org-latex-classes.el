@@ -1,5 +1,11 @@
 ;;; org-latex-classes.el --- Sample configuration file for LaTeX
 
+;;; Commentary:
+
+;;; Code:
+
+(require 'ox-latex)
+
 (add-to-list 'org-latex-classes
              '("koma-article"
                "\\documentclass{scrartcl}

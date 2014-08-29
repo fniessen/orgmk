@@ -49,7 +49,7 @@ orgmk-stow-mk:                          # Create core file for `orgmk'
 	@echo "Generating setup file..."
 	echo "#!/bin/sh" > bin/$(ORGMK_MAKE_SETUP)
 	echo "ln -f -s $(PWD)/bin/orgmk.mk orgmk.mk" >> bin/$(ORGMK_MAKE_SETUP)
-	chmod +x bin/$(ORGMK_MAKE_SETUP)
+	chmod u+x bin/$(ORGMK_MAKE_SETUP)
 	@echo
 
 ## MAKE INSTALL

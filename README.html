@@ -89,8 +89,8 @@
           24</h4>
 
           <div class="outline-text-4" id="text-1-3-1">
-            <p>Emacs version 24 (for the “package” facility) must be in your
-            <code>PATH</code>.</p>
+            Emacs version 24 (for the “package” facility) must be in your
+            <code>PATH</code>.
           </div>
         </div>
 
@@ -111,9 +111,9 @@
           (PDF)</h4>
 
           <div class="outline-text-4" id="text-1-3-3">
-            <p>A working LaTeX installation is required for exporting to PDF.
-            If it is not yet installed on your system, install <a href=
-            "http://www.tug.org/texlive/">TeX Live</a> (for example).</p>
+            A working LaTeX installation is required for exporting to PDF. If
+            it is not yet installed on your system, install <a href=
+            "http://www.tug.org/texlive/">TeX Live</a> (for example).
           </div>
         </div>
       </div>
@@ -123,8 +123,8 @@
       <h2 id="sec-2"><span class="section-number-2">2</span> Usage</h2>
 
       <div class="outline-text-2" id="text-2">
-        <p>Org files can have the extension <code>.org</code> or
-        <code>.txt</code>.</p>
+        Org files can have the extension <code>.org</code> or
+        <code>.txt</code>.
       </div>
 
       <div id="outline-container-sec-2-1" class="outline-3">
@@ -133,8 +133,9 @@
 
         <div class="outline-text-3" id="text-2-1">
           <ul class="org-ul">
-            <li>For “weaving” files (producing the formatted documentation
-            files):
+            <li>
+              <p>For “weaving” files (producing the formatted documentation
+              files):</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
@@ -148,7 +149,8 @@ org2txt [OPTION] FILE
               </div>
             </li>
 
-            <li>For “tangling” files:
+            <li>
+              <p>For “tangling” files:</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
@@ -196,8 +198,8 @@ orgmk [OPTION] [FILE]
             <dt><code>-y</code></dt>
 
             <dd>
-              Authorize the update of the source file (update of dynamic blocks
-              and re-computation of tables) without confirmation.
+              <p>Authorize the update of the source file (update of dynamic
+              blocks and re-computation of tables) without confirmation.</p>
 
               <p>Before the conversion, the standalone scripts will try to
               <b>update all dynamic blocks and recompute all tables</b> in the
@@ -235,7 +237,8 @@ orgmk [OPTION] [FILE]
             <dt><code>-r</code>, <code>--recursive</code></dt>
 
             <dd>
-              Export all Org files <b>under each directory, recursively</b>.
+              <p>Export all Org files <b>under each directory,
+              recursively</b>.</p>
 
               <p>It just calls <code>orgmk.mk</code> with the argument
               <code>ALLSUBDIRS=yes</code>.</p>
@@ -252,7 +255,7 @@ orgmk [OPTION] [FILE]
       <h2 id="sec-4"><span class="section-number-2">4</span> Files</h2>
 
       <div class="outline-text-2" id="text-4">
-        <p><i>$HOME/.orgmk-rc</i></p>
+        <i>$HOME/.orgmk-rc</i>
       </div>
     </div>
 
@@ -325,9 +328,9 @@ org2pdf thesis.org
       <h2 id="sec-6"><span class="section-number-2">6</span> Installation</h2>
 
       <div class="outline-text-2" id="text-6">
-        <p>The installation process consists of creating symbolic links from
-        the standard <b>final directories</b> on your machine to the
-        <code>orgmk</code> executables.</p>
+        The installation process consists of creating symbolic links from the
+        standard <b>final directories</b> on your machine to the
+        <code>orgmk</code> executables.
       </div>
 
       <div id="outline-container-sec-6-1" class="outline-3">
@@ -337,7 +340,7 @@ org2pdf thesis.org
         <div class="outline-text-3" id="text-6-1">
           <ol class="org-ol">
             <li>
-              <b>Extract</b> the latest version of <code>orgmk</code>.
+              <p><b>Extract</b> the latest version of <code>orgmk</code>.</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
@@ -346,8 +349,9 @@ git clone git@github.com:fniessen/orgmk.git
               </div>
             </li>
 
-            <li>Create configuration files which record where
-            <code>orgmk</code> has been extracted on your host machine.
+            <li>
+              <p>Create configuration files which record where
+              <code>orgmk</code> has been extracted on your host machine.</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
@@ -356,10 +360,11 @@ make
               </div>
             </li>
 
-            <li>By default, the <code>orgmk</code> executable and the
-            standalone scripts (<code>org2html</code>, <code>org2pdf</code>,
-            etc.) are installed to the <code>/usr/local/bin</code> so that all
-            users are able to run them.
+            <li>
+              <p>By default, the <code>orgmk</code> executable and the
+              standalone scripts (<code>org2html</code>, <code>org2pdf</code>,
+              etc.) are installed to the <code>/usr/local/bin</code> so that
+              all users are able to run them.</p>
 
               <p>If you want to <b>change the destination directory</b>, create
               a <code>Make.params</code> file with the target directory. For
@@ -415,9 +420,7 @@ make install
 "org-variable-name">ORGMK_ROOT</span>)/site-lisp/orgmk.el
 
 <span class="org-comment-delimiter"># </span><span class=
-"org-comment"><span class=
-"org-leuven-highlight">WARNING</span></span><span class=
-"org-comment">: ORGMK_EL must contain the correct path to the</span>
+"org-comment">WARNING: ORGMK_EL must contain the correct path to the</span>
 <span class="org-comment-delimiter"># </span><span class=
 "org-comment">`orgmk.el' file according to the Emacs version used (Windows,</span>
 <span class="org-comment-delimiter"># </span><span class=
@@ -486,7 +489,7 @@ endif
 "org-variable-name">PWD</span></span><span class=
 "org-string">)/bin/orgmk.mk orgmk.mk"</span> &gt;&gt; bin/$(<span class=
 "org-variable-name">ORGMK_MAKE_SETUP</span>)
-<span class="org-whitespace-tab">        </span>chmod +x bin/$(<span class=
+<span class="org-whitespace-tab">        </span>chmod u+x bin/$(<span class=
 "org-variable-name">ORGMK_MAKE_SETUP</span>)
 <span class="org-whitespace-tab">        </span><span class=
 "org-type">@</span><span class="org-makefile-shell">echo</span>
@@ -586,8 +589,8 @@ endif
         Orgmk-init</h3>
 
         <div class="outline-text-3" id="text-7-1">
-          <p>The <code>orgmk-init</code> script contains the common part used
-          to setup Emacs and Org in order to export to HTML, PDF, etc.</p>
+          The <code>orgmk-init</code> script contains the common part used to
+          setup Emacs and Org in order to export to HTML, PDF, etc.
         </div>
 
         <div id="outline-container-sec-7-1-1" class="outline-4">
@@ -622,9 +625,7 @@ endif
 "org-string">"$(basename $0): $@\n"</span> &gt; /dev/stderr
     <span class="org-keyword">exit</span> 2 <span class=
 "org-comment-delimiter"># </span><span class=
-"org-comment">an </span><span class="org-comment"><span class=
-"org-leuven-highlight">error</span></span><span class=
-"org-comment"> occurred</span>
+"org-comment">an error occurred</span>
 }
 </pre>
             </div>
@@ -639,7 +640,7 @@ endif
 "org-negation-char">!</span> -z $<span class=
 "org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
         <span class="org-keyword">if</span> [ -r $<span class=
-"org-variable-name">FILE_TARGET</span>.bak ]; <span class=
+"org-variable-name">FILE_TARGET</span>.orig ]; <span class=
 "org-keyword">then</span>
             <span class="org-keyword">if</span> [ <span class=
 "org-negation-char">!</span> -r $<span class=
@@ -647,10 +648,10 @@ endif
                 printf <span class=
 "org-string">"Recovering OLD file $FILE_TARGET...\n"</span>
                 mv $<span class=
-"org-variable-name">FILE_TARGET</span>.bak $<span class=
+"org-variable-name">FILE_TARGET</span>.orig $<span class=
 "org-variable-name">FILE_TARGET</span>
             <span class="org-keyword">else</span>
-                rm $<span class="org-variable-name">FILE_TARGET</span>.bak
+                rm $<span class="org-variable-name">FILE_TARGET</span>.orig
             <span class="org-keyword">fi</span>
         <span class="org-keyword">fi</span>
     <span class="org-keyword">fi</span>
@@ -698,7 +699,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140620.1431.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140829.1446.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -808,10 +809,13 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
 <span class="org-keyword">if</span> [ -r $<span class=
 "org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
     mv $<span class="org-variable-name">FILE_TARGET</span> $<span class=
-"org-variable-name">FILE_TARGET</span>.bak
+"org-variable-name">FILE_TARGET</span>.orig
 <span class="org-keyword">fi</span>
 </pre>
             </div>
+
+            <p>Note that, like with the <code>patch</code> command, the
+            original file is saved with the <code>.orig</code> extension.</p>
 
             <div class="org-src-container">
               <pre class="src src-sh">
@@ -833,11 +837,12 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
             </div>
 
             <div class="note">
-              <p><b>Batch option</b><br />
+              <b>Batch option</b><br />
               Font Lock mode is disabled by default in batch mode. That
               generates errors with some Java code blocks. Hence, one
-              workaround, in that case, is to call Emacs without batch
-              mode.</p>
+              workaround, in that case, is to call Emacs without batch mode
+              (and, then, to add <code>-f kill-emacs</code> at the end of the
+              command line).
             </div>
           </div>
         </div>
@@ -1012,8 +1017,8 @@ orgmk-update-src-check-diff <span class=
         Orgmk-update-src-check-diff</h3>
 
         <div class="outline-text-3" id="text-7-8">
-          <p>Check whether dynamic blocks and tables have been updated, and (if
-          yes) propose to overwrite the source Org file.</p>
+          Check whether dynamic blocks and tables have been updated, and (if
+          yes) propose to overwrite the source Org file.
         </div>
 
         <div id="outline-container-sec-7-8-1" class="outline-4">
@@ -1133,10 +1138,9 @@ orgmk-update-src-check-diff <span class=
             change, the new file is dropped.</p>
 
             <div class="note">
-              <p>The time stamps in “Clock summary at …” will be different,
-              each time dynamic blocks are updated (if not done during the same
-              minute). In that case, <code>diff</code> will always
-              “succeed”.</p>
+              The time stamps in “Clock summary at …” will be different, each
+              time dynamic blocks are updated (if not done during the same
+              minute). In that case, <code>diff</code> will always “succeed”.
             </div>
           </div>
         </div>
@@ -1197,19 +1201,19 @@ orgmk-update-src-check-diff <span class=
 
             <li class="on">☑ tables with formulas, and</li>
 
-            <li class="off">☐ extracting (tangle) code blocks.
+            <li class="off">☐
+
+              <p>extracting (tangle) code blocks.</p>
 
               <table class="inlinetask" width="100%">
                 <tr>
                   <td valign="top"><b><span class=
                   "todo TODO">TODO</span></b></td>
 
-                  <td width="100%">
-                    <b>Test whether Orgmk works with symbolic links</b><br />
-
-                    <p>Does their modification time change to reflect the
-                    latest modification of the source?</p>
-                  </td>
+                  <td width="100%"><b>Test whether Orgmk works with symbolic
+                  links</b><br />
+                  Does their modification time change to reflect the latest
+                  modification of the source?</td>
                 </tr>
               </table>
             </li>
@@ -1329,9 +1333,7 @@ endif
                 <pre class="src src-makefile">
 <span class="org-variable-name">C_INFO</span>=<span class=
 "org-string">"\\e[32m"</span>
-<span class="org-variable-name">C_</span><span class=
-"org-variable-name"><span class=
-"org-leuven-highlight">WARNING</span></span>=<span class=
+<span class="org-variable-name">C_WARNING</span>=<span class=
 "org-string">"\\e[35m"</span>
 <span class="org-variable-name">C_SUCCESS</span>=<span class=
 "org-string">"\\e[1\;32m"</span>
@@ -1392,11 +1394,8 @@ endif
                   <td valign="top"><b><span class=
                   "todo TODO">TODO</span></b></td>
 
-                  <td width="100%">
-                    <b>Add Org_DIRS defaulting to .</b><br />
-
-                    <p>Use Org_DIRS with foreach (?) in the following lists</p>
-                  </td>
+                  <td width="100%"><b>Add Org_DIRS defaulting to .</b><br />
+                  Use Org_DIRS with foreach (?) in the following lists</td>
                 </tr>
               </table>
 
@@ -1876,11 +1875,11 @@ endif
             </div>
 
             <div class="note">
-              <p>The drawback of updating the dblocks inside the the recipes
-              for HTML and PDF means that, if we have a file that’s
-              <b>converted to both file formats</b>, the update will be done
-              twice (so, once at least for nothing): once for HTML, then once
-              again for PDF. Though, this case is quite uncommon.</p>
+              The drawback of updating the dblocks inside the the recipes for
+              HTML and PDF means that, if we have a file that’s <b>converted to
+              both file formats</b>, the update will be done twice (so, once at
+              least for nothing): once for HTML, then once again for PDF.
+              Though, this case is quite uncommon.
             </div>
 
             <p>The recipe to <b>convert Org to PDF</b> is:</p>
@@ -1936,15 +1935,12 @@ endif
                 <td valign="top"><b><span class=
                 "todo TODO">TODO</span></b></td>
 
-                <td width="100%">
-                  <b>Export as LaTeX?</b><br />
-
-                  <p>Maybe the export should be done to TeX, and then call (the
-                  minimum number of times) PDFLaTeX from the
-                  <code>orgmk.mk</code>? Check out if this is as robust as
-                  using Org to build the PDF… (which goes on, even with some
-                  errors occurring)</p>
-                </td>
+                <td width="100%"><b>Export as LaTeX?</b><br />
+                Maybe the export should be done to TeX, and then call (the
+                minimum number of times) PDFLaTeX from the
+                <code>orgmk.mk</code>? Check out if this is as robust as using
+                Org to build the PDF… (which goes on, even with some errors
+                occurring)</td>
               </tr>
             </table>
 
@@ -2099,13 +2095,13 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
         customization.</p>
 
         <div class="info">
-          <p>In batch mode, […] Emacs functions that normally print a message
-          in the echo area will print to either the standard output stream
+          In batch mode, […] Emacs functions that normally print a message in
+          the echo area will print to either the standard output stream
           (<code>stdout</code>) or the standard error stream
           (<code>stderr</code>) instead. (To be precise, functions like
           <code>prin1</code>, <code>princ</code> and <code>print</code> print
           to <code>stdout</code>, while <code>message</code> and
-          <code>error</code> print to <code>stderr</code>.)</p>
+          <code>error</code> print to <code>stderr</code>.)
         </div>
       </div>
 
@@ -2119,6 +2115,15 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-comment">orgmk.el --- Emacs configuration file for `</span><span class=
 "org-comment"><span class="org-constant">orgmk</span></span><span class=
 "org-comment">'</span>
+
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">Commentary:</span>
+
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">Code:</span>
+
+(<span class="org-keyword">require</span> '<span class=
+"org-constant">ob-lob</span>)
 </pre>
           </div>
         </div>
@@ -2153,8 +2158,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">;; activate debugging</span>
 <span class="org-comment-delimiter">;; </span><span class=
-"org-comment">(setq debug-on-</span><span class="org-comment"><span class=
-"org-leuven-highlight">error</span></span><span class="org-comment"> t)</span>
+"org-comment">(setq debug-on-error t)</span>
 
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">no limit when printing values</span>
@@ -2281,27 +2285,23 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
     (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
 "org-string">"Install package `</span><span class="org-string"><span class=
 "org-constant">%s</span></span><span class="org-string">'? "</span> 'org))
-        (<span class="org-keyword">ignore-</span><span class=
-"org-keyword"><span class=
-"org-leuven-highlight">error</span></span><span class="org-keyword">s</span>
+        (<span class="org-keyword">ignore-errors</span>
           (package-install 'org))
-      (setq debug-on-<span class="org-leuven-highlight">error</span> nil)
-      (<span class="org-warning"><span class=
-"org-leuven-highlight">error</span></span> <span class=
+      (setq debug-on-error nil)
+      (<span class="org-warning">error</span> <span class=
 "org-string">"Please upgrade to 8 or later"</span>))))
 
 (<span class="org-keyword">when</span> (locate-library <span class=
 "org-string">"package"</span>)
   (<span class="org-keyword">unless</span> (locate-library <span class=
 "org-string">"htmlize"</span>)    <span class=
-"org-comment-delimiter">; </span><span class="org-comment">for org2html</span>
+"org-comment-delimiter">; </span><span class=
+"org-comment">for syntax highlighting in org2html</span>
     (<span class="org-keyword">let</span> ((pkg 'htmlize))
       (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
 "org-string">"Install package `</span><span class="org-string"><span class=
 "org-constant">%s</span></span><span class="org-string">'? "</span> pkg))
-          (<span class="org-keyword">ignore-</span><span class=
-"org-keyword"><span class=
-"org-leuven-highlight">error</span></span><span class="org-keyword">s</span>
+          (<span class="org-keyword">ignore-errors</span>
             (package-install pkg))))))
 </pre>
             </div>
@@ -2315,6 +2315,15 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
           <div class="outline-text-4" id="text-9-1-7">
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
+(<span class="org-keyword">require</span> '<span class=
+"org-constant">org</span>)
+(<span class="org-keyword">require</span> '<span class=
+"org-constant">org-clock</span>)
+(<span class="org-keyword">require</span> '<span class=
+"org-constant">ox</span>)
+(<span class="org-keyword">require</span> '<span class=
+"org-constant">ob-R</span>)
+
 (add-to-list 'auto-mode-alist '(<span class=
 "org-string">"\\.txt\\'"</span> . org-mode))
 </pre>
@@ -2514,13 +2523,10 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
             <tr>
               <td valign="top"><b><span class="todo TODO">TODO</span></b></td>
 
-              <td width="100%">
-                <b>Understand the hidden xx used for spacing levels in column
-                views</b><br />
-
-                <p>Depending on interactive vs batch export to HTML, we still
-                have the above difference in the resulting HTML file.</p>
-              </td>
+              <td width="100%"><b>Understand the hidden xx used for spacing
+              levels in column views</b><br />
+              Depending on interactive vs batch export to HTML, we still have
+              the above difference in the resulting HTML file.</td>
             </tr>
           </table>
 
@@ -2647,6 +2653,15 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-string">""</span> <span class="org-string">"xcolor"</span>) t)
 
   <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">include the `</span><span class="org-comment"><span class=
+"org-constant">babel</span></span><span class=
+"org-comment">' package for language-specific hyphenation and</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">typography</span>
+  (add-to-list 'org-latex-packages-alist '(<span class=
+"org-string">"english"</span> <span class="org-string">"babel"</span>) t)
+
+  <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">default position for LaTeX figures</span>
   (setq org-latex-default-figure-position <span class=
 "org-string">"!htbp"</span>))
@@ -2704,6 +2719,15 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
             <pre class="src src-emacs-lisp">
 <span class="org-comment-delimiter">;;; </span><span class=
 "org-comment">org-latex-classes.el --- Sample configuration file for LaTeX</span>
+
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">Commentary:</span>
+
+<span class="org-comment-delimiter">;;; </span><span class=
+"org-comment">Code:</span>
+
+(<span class="org-keyword">require</span> '<span class=
+"org-constant">ox-latex</span>)
 
 (add-to-list 'org-latex-classes
              '(<span class="org-string">"koma-article"</span>

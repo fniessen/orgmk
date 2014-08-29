@@ -23,12 +23,12 @@ CleanUp ()
 {
     # restore backed up target file if it hasn't been produced
     if [ ! -z $FILE_TARGET ]; then
-        if [ -r $FILE_TARGET.bak ]; then
+        if [ -r $FILE_TARGET.orig ]; then
             if [ ! -r $FILE_TARGET ]; then
                 printf "Recovering OLD file $FILE_TARGET...\n"
-                mv $FILE_TARGET.bak $FILE_TARGET
+                mv $FILE_TARGET.orig $FILE_TARGET
             else
-                rm $FILE_TARGET.bak
+                rm $FILE_TARGET.orig
             fi
         fi
     fi
@@ -47,7 +47,7 @@ CleanUp ()
 }
 
     cat << EOF
-This is $(basename $0), version: 20140619.1416.
+This is $(basename $0), version: 20140829.1445.
 EOF
 
 # perform housekeeping on program exit or a variety of signals
@@ -99,7 +99,7 @@ FILE_TARGET="${FILE_SRC_ORIG%.*}.$TARGET_EXT"
 
 # back up previous version of target file
 if [ -r $FILE_TARGET ]; then
-    mv $FILE_TARGET $FILE_TARGET.bak
+    mv $FILE_TARGET $FILE_TARGET.orig
 fi
 
 EMACS=emacs

@@ -1,5 +1,11 @@
 ;;; orgmk.el --- Emacs configuration file for `orgmk'
 
+;;; Commentary:
+
+;;; Code:
+
+(require 'ob-lob)
+
 ;; remember this directory
 (defconst orgmk-el-directory
   (file-name-directory (or load-file-name (buffer-file-name)))
@@ -52,11 +58,16 @@
       (error "Please upgrade to 8 or later"))))
 
 (when (locate-library "package")
-  (unless (locate-library "htmlize")    ; for org2html
+  (unless (locate-library "htmlize")    ; for syntax highlighting in org2html
     (let ((pkg 'htmlize))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
             (package-install pkg))))))
+
+(require 'org)
+(require 'org-clock)
+(require 'ox)
+(require 'ob-R)
 
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 
@@ -185,6 +196,10 @@
 
   ;; include the `xcolor' package for colored source code
   (add-to-list 'org-latex-packages-alist '("" "xcolor") t)
+
+  ;; include the `babel' package for language-specific hyphenation and
+  ;; typography
+  (add-to-list 'org-latex-packages-alist '("english" "babel") t)
 
   ;; default position for LaTeX figures
   (setq org-latex-default-figure-position "!htbp"))

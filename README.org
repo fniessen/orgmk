@@ -263,7 +263,7 @@ orgmk-stow-mk:                          # Create core file for `orgmk'
 	@echo "Generating setup file..."
 	echo "#!/bin/sh" > bin/$(ORGMK_MAKE_SETUP)
 	echo "ln -f -s $(PWD)/bin/orgmk.mk orgmk.mk" >> bin/$(ORGMK_MAKE_SETUP)
-	chmod +x bin/$(ORGMK_MAKE_SETUP)
+	chmod u+x bin/$(ORGMK_MAKE_SETUP)
 	@echo
 
 ## MAKE INSTALL
@@ -331,12 +331,12 @@ CleanUp ()
 {
     # restore backed up target file if it hasn't been produced
     if [ ! -z $FILE_TARGET ]; then
-        if [ -r $FILE_TARGET.bak ]; then
+        if [ -r $FILE_TARGET.orig ]; then
             if [ ! -r $FILE_TARGET ]; then
                 printf "Recovering OLD file $FILE_TARGET...\n"
-                mv $FILE_TARGET.bak $FILE_TARGET
+                mv $FILE_TARGET.orig $FILE_TARGET
             else
-                rm $FILE_TARGET.bak
+                rm $FILE_TARGET.orig
             fi
         fi
     fi
@@ -434,9 +434,12 @@ FILE_TARGET="${FILE_SRC_ORIG%.*}.$TARGET_EXT"
 
 # back up previous version of target file
 if [ -r $FILE_TARGET ]; then
-    mv $FILE_TARGET $FILE_TARGET.bak
+    mv $FILE_TARGET $FILE_TARGET.orig
 fi
 #+end_src
+
+Note that, like with the ~patch~ command, the original file is saved with the
+=.orig= extension.
 
 #+begin_src sh
 EMACS=emacs
@@ -453,7 +456,8 @@ ORGMK_UPDATE_FLAGS="-f org-update-all-dblocks -f org-table-iterate-buffer-tables
 *Batch option* \\
 Font Lock mode is disabled by default in batch mode.  That generates errors
 with some Java code blocks.  Hence, one workaround, in that case, is to call
-Emacs without batch mode.
+Emacs without batch mode (and, then, to add ~-f kill-emacs~ at the end of the
+command line).
 #+end_note
 
 ** org2html
@@ -1051,6 +1055,12 @@ error stream (=stderr=) instead. (To be precise, functions like =prin1=, =princ=
 
 #+begin_src emacs-lisp
 ;;; orgmk.el --- Emacs configuration file for `orgmk'
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'ob-lob)
 #+end_src
 
 *** Library Search
@@ -1139,7 +1149,7 @@ Ensure that a recent version of Org mode is installed and loaded.
       (error "Please upgrade to 8 or later"))))
 
 (when (locate-library "package")
-  (unless (locate-library "htmlize")    ; for org2html
+  (unless (locate-library "htmlize")    ; for syntax highlighting in org2html
     (let ((pkg 'htmlize))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
@@ -1149,6 +1159,11 @@ Ensure that a recent version of Org mode is installed and loaded.
 *** Activation
 
 #+begin_src emacs-lisp
+(require 'org)
+(require 'org-clock)
+(require 'ox)
+(require 'ob-R)
+
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 #+end_src
 
@@ -1317,6 +1332,10 @@ difference in the resulting HTML file.
   ;; include the `xcolor' package for colored source code
   (add-to-list 'org-latex-packages-alist '("" "xcolor") t)
 
+  ;; include the `babel' package for language-specific hyphenation and
+  ;; typography
+  (add-to-list 'org-latex-packages-alist '("english" "babel") t)
+
   ;; default position for LaTeX figures
   (setq org-latex-default-figure-position "!htbp"))
 #+end_src
@@ -1347,6 +1366,12 @@ end of =orgmk='s initialization.
 
 #+begin_src emacs-lisp
 ;;; org-latex-classes.el --- Sample configuration file for LaTeX
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'ox-latex)
 
 (add-to-list 'org-latex-classes
              '("koma-article"
