@@ -689,9 +689,8 @@ endif
 
           <div class="outline-text-4" id="text-7-1-2">
             <div class="org-src-container">
-              <pre class="src src-sh" id="current-time">
-<span class="org-builtin">echo</span> <span class=
-"org-string">"$(date '+%Y%m%d.%H%M')"</span>
+              <pre class="src src-emacs-lisp" id="current-time">
+(format-time-string <span class="org-string">"%Y%m%d.%H%M"</span>)
 </pre>
             </div>
 
@@ -699,7 +698,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140829.1446.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140829.1453.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>

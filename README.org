@@ -358,8 +358,8 @@ CleanUp ()
 *** Runtime
 
 #+name: current-time
-#+begin_src sh :eval yes :results silent :tangle no
-echo "$(date '+%Y%m%d.%H%M')"
+#+begin_src emacs-lisp :eval yes :results silent :tangle no
+(format-time-string "%Y%m%d.%H%M")
 #+end_src
 
 #+begin_src sh
