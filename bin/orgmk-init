@@ -8,6 +8,7 @@ Convert FILE to another format.
 
   -h, --help     display this help and exit
   -y             authorize update of the source file without confirmation
+  --body-only    export only body (for HTML and LaTeX exports)
 
 Report $(basename $0) bugs to fni@missioncriticalit.com
 EOF
@@ -47,7 +48,7 @@ CleanUp ()
 }
 
     cat << EOF
-This is $(basename $0), version: 20140829.1445.
+This is $(basename $0), version: 20140905.2156.
 EOF
 
 # perform housekeeping on program exit or a variety of signals
@@ -70,9 +71,13 @@ fi
 
 export UPDATE_SRC
 
+# set a default value
+export BODY_ONLY="no"
+
 while true; do
     case "$1" in
         -y ) UPDATE_SRC="yes"; shift ;;
+        --body-only ) BODY_ONLY="yes"; shift ;;
         -h | --help ) Usage ;;
         * ) break ;;
     esac

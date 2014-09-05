@@ -101,7 +101,7 @@ Currently, =orgmk= does not tangle Org files.
      dynamic blocks and recompute all tables* in the source Org file, a
      *potentially destructive operation* for which the programs require
      confirmation: in case the source file gets updated, you will be queried to
-     overwrite the source file with the update version of the file -- that's
+     overwrite the source file with the updated version of the file -- that's
      because the environment variable =UPDATE_SRC= defaults to =query=.
 
      To avoid the question, you can also set that variable to =yes= or =no= in a
@@ -110,6 +110,9 @@ Currently, =orgmk= does not tangle Org files.
      Note that, by design, the command line argument =-y= is passed to every
      =org2<BACKEND>= script called from =orgmk=, so that =orgmk= doesn't wait for
      answers.
+
+- =--body-only= ::
+     Export only body (for HTML and LaTeX).
 
 ** Makefile wrapper
 
@@ -312,6 +315,7 @@ Convert FILE to another format.
 
   -h, --help     display this help and exit
   -y             authorize update of the source file without confirmation
+  --body-only    export only body (for HTML and LaTeX exports)
 
 Report $(basename $0) bugs to fni@missioncriticalit.com
 EOF
@@ -391,9 +395,13 @@ fi
 
 export UPDATE_SRC
 
+# set a default value
+export BODY_ONLY="no"
+
 while true; do
     case "$1" in
         -y ) UPDATE_SRC="yes"; shift ;;
+        --body-only ) BODY_ONLY="yes"; shift ;;
         -h | --help ) Usage ;;
         ,* ) break ;;
     esac
@@ -471,8 +479,16 @@ The =org2html= script converts an Org file to HTML.
 TARGET_EXT=html
 . orgmk-init
 
-eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-html-export-to-html \
-    || die "Exported file wasn't produced"
+case $BODY_ONLY in
+    "yes")
+        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-html-export-body-only-to-html \
+            || die "Exported file wasn't produced"
+        ;;
+    "no")
+        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-html-export-to-html \
+            || die "Exported file wasn't produced"
+esac
+
 orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 #+end_src
 
@@ -487,8 +503,16 @@ The =org2latex= script converts an Org file to LaTeX.
 TARGET_EXT=tex
 . orgmk-init
 
-eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
-    || die "Exported file wasn't produced"
+case $BODY_ONLY in
+    "yes")
+        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-body-only-to-latex \
+            || die "Exported file wasn't produced"
+        ;;
+    "no")
+        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
+            || die "Exported file wasn't produced"
+esac
+
 orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 #+end_src
 
@@ -1129,10 +1153,12 @@ Ensure that a recent version of Org mode is installed and loaded.
   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
   (package-initialize))
+#+end_src
 
+#+begin_src emacs-lisp
 ;; version info
 (let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
-      (org-dir (file-name-directory (locate-library "org")))) ;; org.(el|elc)
+      (org-dir (file-name-directory (locate-library "org")))) ; org.(el|elc)
   (message "Org mode version %s (org @ %s)"
            (org-version)
            (if (string= org-dir org-install-dir)
@@ -1147,7 +1173,9 @@ Ensure that a recent version of Org mode is installed and loaded.
           (package-install 'org))
       (setq debug-on-error nil)
       (error "Please upgrade to 8 or later"))))
+#+end_src
 
+#+begin_src emacs-lisp
 (when (locate-library "package")
   (unless (locate-library "htmlize")    ; for syntax highlighting in org2html
     (let ((pkg 'htmlize))
@@ -1291,7 +1319,12 @@ difference in the resulting HTML file.
   (setq org-html-head-include-scripts nil)
 
   ;; turn inclusion of the default CSS style off
-  (setq org-html-head-include-default-style nil))
+  (setq org-html-head-include-default-style nil)
+
+  (defun org-html-export-body-only-to-html ()
+    "Export only code between between \"<body>\" and \"</body>\" tags to a HTML file."
+    (interactive)
+    (org-html-export-to-html nil nil nil t))))
 #+end_src
 
 ** PDF LaTeX export
@@ -1337,7 +1370,12 @@ difference in the resulting HTML file.
   (add-to-list 'org-latex-packages-alist '("english" "babel") t)
 
   ;; default position for LaTeX figures
-  (setq org-latex-default-figure-position "!htbp"))
+  (setq org-latex-default-figure-position "!htbp")
+
+  (defun org-latex-export-body-only-to-latex ()
+    "Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."
+    (interactive)
+    (org-latex-export-to-latex nil nil nil t)))
 #+end_src
 
 ** Extra customization files

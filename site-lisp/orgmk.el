@@ -41,7 +41,7 @@
 
 ;; version info
 (let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
-      (org-dir (file-name-directory (locate-library "org")))) ;; org.(el|elc)
+      (org-dir (file-name-directory (locate-library "org")))) ; org.(el|elc)
   (message "Org mode version %s (org @ %s)"
            (org-version)
            (if (string= org-dir org-install-dir)
@@ -163,7 +163,12 @@
   (setq org-html-head-include-scripts nil)
 
   ;; turn inclusion of the default CSS style off
-  (setq org-html-head-include-default-style nil))
+  (setq org-html-head-include-default-style nil)
+
+  (defun org-html-export-body-only-to-html ()
+    "Export only code between between \"<body>\" and \"</body>\" tags to a HTML file."
+    (interactive)
+    (org-html-export-to-html nil nil nil t))))
 
 (when (require 'ox-latex)
 
@@ -202,7 +207,12 @@
   (add-to-list 'org-latex-packages-alist '("english" "babel") t)
 
   ;; default position for LaTeX figures
-  (setq org-latex-default-figure-position "!htbp"))
+  (setq org-latex-default-figure-position "!htbp")
+
+  (defun org-latex-export-body-only-to-latex ()
+    "Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."
+    (interactive)
+    (org-latex-export-to-latex nil nil nil t)))
 
 ;; require all files from `lisp' directory
 (dolist (file (directory-files

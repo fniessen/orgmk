@@ -206,7 +206,7 @@ orgmk [OPTION] [FILE]
               source Org file, a <b>potentially destructive operation</b> for
               which the programs require confirmation: in case the source file
               gets updated, you will be queried to overwrite the source file
-              with the update version of the file – that’s because the
+              with the updated version of the file – that’s because the
               environment variable <code>UPDATE_SRC</code> defaults to
               <code>query</code>.</p>
 
@@ -220,6 +220,10 @@ orgmk [OPTION] [FILE]
               <code>orgmk</code>, so that <code>orgmk</code> doesn’t wait for
               answers.</p>
             </dd>
+
+            <dt><code>--body-only</code></dt>
+
+            <dd>Export only body (for HTML and LaTeX).</dd>
           </dl>
         </div>
       </div>
@@ -430,10 +434,11 @@ make install
 "org-string">"(message \"%s\" system-type)"</span> 2&gt;&amp;1)
 ifeq ($(<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>),windows-nt)
     <span class="org-variable-name">ORGMK_EL</span>:=<span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">shell</span></span><span class=
-"org-string"> cygpath --mixed $(</span><span class="org-string"><span class=
-"org-variable-name">ORGMK_EL</span></span><span class="org-string">))"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">shell</span></span><span class=
+"org-string"> cygpath --mixed $(</span><span class=
+"org-variable-name"><span class="org-string">ORGMK_EL</span></span><span class=
+"org-string">))"</span>
 endif
 
 <span class="org-variable-name">ORGMK_INIT</span>=orgmk-init
@@ -464,11 +469,11 @@ endif
 "org-makefile-targets">orgmk-system-config</span>:                    <span class="org-comment-delimiter"># </span><span class="org-comment">Create file with location of `orgmk.el'</span>
 <span class="org-whitespace-tab">        </span><span class=
 "org-type">@</span><span class="org-makefile-shell">echo </span><span class=
-"org-string"><span class=
-"org-makefile-shell">"Generating system-wide configuration file..."</span></span>
+"org-makefile-shell"><span class=
+"org-string">"Generating system-wide configuration file..."</span></span>
 <span class="org-whitespace-tab">        </span>echo <span class=
-"org-string">"ORGMK_EL=$(</span><span class="org-string"><span class=
-"org-variable-name">ORGMK_EL</span></span><span class=
+"org-string">"ORGMK_EL=$(</span><span class="org-variable-name"><span class=
+"org-string">ORGMK_EL</span></span><span class=
 "org-string">)"</span> &gt; bin/$(<span class=
 "org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
 <span class="org-whitespace-tab">        </span><span class=
@@ -479,14 +484,14 @@ endif
 "org-makefile-targets">orgmk-stow-mk</span>:                          <span class="org-comment-delimiter"># </span><span class="org-comment">Create core file for `orgmk'</span>
 <span class="org-whitespace-tab">        </span><span class=
 "org-type">@</span><span class="org-makefile-shell">echo </span><span class=
-"org-string"><span class=
-"org-makefile-shell">"Generating setup file..."</span></span>
+"org-makefile-shell"><span class=
+"org-string">"Generating setup file..."</span></span>
 <span class="org-whitespace-tab">        </span>echo <span class=
 "org-string">"#!/bin/sh"</span> &gt; bin/$(<span class=
 "org-variable-name">ORGMK_MAKE_SETUP</span>)
 <span class="org-whitespace-tab">        </span>echo <span class=
-"org-string">"ln -f -s $(</span><span class="org-string"><span class=
-"org-variable-name">PWD</span></span><span class=
+"org-string">"ln -f -s $(</span><span class="org-variable-name"><span class=
+"org-string">PWD</span></span><span class=
 "org-string">)/bin/orgmk.mk orgmk.mk"</span> &gt;&gt; bin/$(<span class=
 "org-variable-name">ORGMK_MAKE_SETUP</span>)
 <span class="org-whitespace-tab">        </span>chmod u+x bin/$(<span class=
@@ -502,8 +507,8 @@ endif
 "org-makefile-targets">install</span>:                                <span class="org-comment-delimiter"># </span><span class="org-comment">Create symlinks to Orgmk scripts</span>
 <span class="org-whitespace-tab">        </span><span class=
 "org-type">@</span><span class="org-makefile-shell">echo </span><span class=
-"org-string"><span class=
-"org-makefile-shell">"Creating symlinks..."</span></span>
+"org-makefile-shell"><span class=
+"org-string">"Creating symlinks..."</span></span>
 <span class="org-whitespace-tab">        </span>ln -f -s $(<span class=
 "org-variable-name">PWD</span>)/bin/$(<span class=
 "org-variable-name">ORGMK_INIT</span>)              $(<span class=
@@ -609,6 +614,8 @@ endif
 <span class="org-sh-heredoc">  -h, --help     display this help and exit</span>
 <span class=
 "org-sh-heredoc">  -y             authorize update of the source file without confirmation</span>
+<span class=
+"org-sh-heredoc">  --body-only    export only body (for HTML and LaTeX exports)</span>
 
 <span class=
 "org-sh-heredoc">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
@@ -698,7 +705,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140829.1453.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140905.2156.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -739,11 +746,19 @@ endif
 
 <span class="org-builtin">export</span> UPDATE_SRC
 
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">set a default value</span>
+<span class="org-builtin">export</span> <span class=
+"org-variable-name">BODY_ONLY</span>=<span class="org-string">"no"</span>
+
 <span class="org-keyword">while </span><span class=
 "org-builtin">true</span>; <span class="org-keyword">do</span>
     <span class="org-keyword">case</span> <span class=
 "org-string">"$1"</span><span class="org-keyword"> in</span>
         -y ) <span class="org-variable-name">UPDATE_SRC</span>=<span class=
+"org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
+        --body-only ) <span class=
+"org-variable-name">BODY_ONLY</span>=<span class=
 "org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
         -h | --help ) Usage ;;
         * ) <span class="org-keyword">break</span> ;;
@@ -859,11 +874,25 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
 <span class="org-variable-name">TARGET_EXT</span>=html
 . orgmk-init
 
-<span class="org-builtin">eval</span> $<span class=
+<span class="org-keyword">case</span> $<span class=
+"org-variable-name">BODY_ONLY</span><span class="org-keyword"> in</span>
+    <span class="org-string">"yes"</span>)
+        <span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-body-only-to-html <span class="org-sh-escaped-newline">\</span>
+            || die <span class=
+"org-string">"Exported file wasn't produced"</span>
+        ;;
+    <span class="org-string">"no"</span>)
+        <span class="org-builtin">eval</span> $<span class=
 "org-variable-name">ORGMK</span> $<span class=
 "org-variable-name">FILE_SRC_ORIG</span> $<span class=
 "org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-to-html <span class="org-sh-escaped-newline">\</span>
-    || die <span class="org-string">"Exported file wasn't produced"</span>
+            || die <span class=
+"org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">esac</span>
+
 orgmk-update-src-check-diff <span class=
 "org-string">"$FILE_SRC_ORIG"</span> <span class=
 "org-string">"$FILE_SRC_UPDT"</span>
@@ -885,11 +914,25 @@ orgmk-update-src-check-diff <span class=
 <span class="org-variable-name">TARGET_EXT</span>=tex
 . orgmk-init
 
-<span class="org-builtin">eval</span> $<span class=
+<span class="org-keyword">case</span> $<span class=
+"org-variable-name">BODY_ONLY</span><span class="org-keyword"> in</span>
+    <span class="org-string">"yes"</span>)
+        <span class="org-builtin">eval</span> $<span class=
+"org-variable-name">ORGMK</span> $<span class=
+"org-variable-name">FILE_SRC_ORIG</span> $<span class=
+"org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-body-only-to-latex <span class="org-sh-escaped-newline">\</span>
+            || die <span class=
+"org-string">"Exported file wasn't produced"</span>
+        ;;
+    <span class="org-string">"no"</span>)
+        <span class="org-builtin">eval</span> $<span class=
 "org-variable-name">ORGMK</span> $<span class=
 "org-variable-name">FILE_SRC_ORIG</span> $<span class=
 "org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
-    || die <span class="org-string">"Exported file wasn't produced"</span>
+            || die <span class=
+"org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">esac</span>
+
 orgmk-update-src-check-diff <span class=
 "org-string">"$FILE_SRC_ORIG"</span> <span class=
 "org-string">"$FILE_SRC_UPDT"</span>
@@ -1499,7 +1542,7 @@ endif
                 <pre class="src src-makefile">
 <span class="org-comment-delimiter"># </span><span class=
 "org-comment">turn on shell debugging with SHELL_DE</span><span class=
-"org-comment"><span class="org-leuven-highlight">BUG</span></span><span class=
+"org-leuven-highlight"><span class="org-comment">BUG</span></span><span class=
 "org-comment">=1</span>
 ifdef SHELL_DE<span class="org-leuven-highlight">BUG</span>
     <span class="org-variable-name">SHELL</span> += -x
@@ -1606,92 +1649,92 @@ endif
 "org-makefile-targets">$(HTML_FILES_FROM_ORG)</span>: %.html: %.org   <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to HTML</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_INFO</span></span><span class=
-"org-string">)Exporting \`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/$</span><span class="org-string"><span class=
-"org-constant">&lt;</span></span><span class=
-"org-string">' to HTML...$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-constant"><span class=
+"org-string">&lt;</span></span><span class=
+"org-string">' to HTML...$(</span><span class="org-variable-name"><span class=
+"org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">LS</span>) -l -t $<span class=
 "org-constant">&lt;</span> <span class=
-"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
-"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-makefile-targets">$</span><span class="org-constant"><span class=
+"org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class=
 "org-string">"\.html"</span> &gt; /dev/null \
 <span class="org-whitespace-tab">        </span>|| { printf <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_FAILURE</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
-"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>; exit 1; }
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_SUCCESS</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
 "org-string">' successfully generated$(</span><span class=
-"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>
 
 <span class="org-makefile-targets">$(</span><span class=
-"org-variable-name"><span class=
-"org-makefile-targets">HTML_FILES_FROM_TXT</span></span><span class=
+"org-makefile-targets"><span class=
+"org-variable-name">HTML_FILES_FROM_TXT</span></span><span class=
 "org-makefile-targets">)</span>: %.html: %.txt   <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">Export an Org document to HTML</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_INFO</span></span><span class=
-"org-string">)Exporting \`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/$</span><span class="org-string"><span class=
-"org-constant">&lt;</span></span><span class=
-"org-string">' to HTML...$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-constant"><span class=
+"org-string">&lt;</span></span><span class=
+"org-string">' to HTML...$(</span><span class="org-variable-name"><span class=
+"org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">LS</span>) -l -t $<span class=
 "org-constant">&lt;</span> <span class=
-"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
-"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-makefile-targets">$</span><span class="org-constant"><span class=
+"org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class=
 "org-string">"\.html"</span> &gt; /dev/null \
 <span class="org-whitespace-tab">        </span>|| { printf <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_FAILURE</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
-"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>; exit 1; }
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_SUCCESS</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
 "org-string">' successfully generated$(</span><span class=
-"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>
 </pre>
             </div>
@@ -1702,44 +1745,44 @@ endif
               <pre class="src src-makefile" id="recipe-convert-to-html">
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_INFO</span></span><span class=
-"org-string">)Exporting \`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/$</span><span class="org-string"><span class=
-"org-constant">&lt;</span></span><span class=
-"org-string">' to HTML...$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-constant"><span class=
+"org-string">&lt;</span></span><span class=
+"org-string">' to HTML...$(</span><span class="org-variable-name"><span class=
+"org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">LS</span>) -l -t $<span class=
 "org-constant">&lt;</span> <span class=
-"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
-"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-makefile-targets">$</span><span class="org-constant"><span class=
+"org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class=
 "org-string">"\.html"</span> &gt; /dev/null \
 <span class="org-whitespace-tab">        </span>|| { printf <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_FAILURE</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
-"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>; exit 1; }
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_SUCCESS</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
 "org-string">' successfully generated$(</span><span class=
-"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>
 </pre>
             </div>
@@ -1783,92 +1826,92 @@ endif
 "org-makefile-targets">$(PDF_FILES_FROM_ORG)</span>: %.pdf: %.org     <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to PDF</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_INFO</span></span><span class=
-"org-string">)Exporting \`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/$</span><span class="org-string"><span class=
-"org-constant">&lt;</span></span><span class=
-"org-string">' to PDF...$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-constant"><span class=
+"org-string">&lt;</span></span><span class=
+"org-string">' to PDF...$(</span><span class="org-variable-name"><span class=
+"org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">LS</span>) -l -t $<span class=
 "org-constant">&lt;</span> <span class=
-"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
-"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-makefile-targets">$</span><span class="org-constant"><span class=
+"org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class=
 "org-string">"\.pdf"</span> &gt; /dev/null \
 <span class="org-whitespace-tab">        </span>|| { printf <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_FAILURE</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
-"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>; exit 1; }
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_SUCCESS</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
 "org-string">' successfully generated$(</span><span class=
-"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>
 
 <span class="org-makefile-targets">$(</span><span class=
-"org-variable-name"><span class=
-"org-makefile-targets">PDF_FILES_FROM_TXT</span></span><span class=
+"org-makefile-targets"><span class=
+"org-variable-name">PDF_FILES_FROM_TXT</span></span><span class=
 "org-makefile-targets">)</span>: %.pdf: %.txt     <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">Export an Org document to PDF</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_INFO</span></span><span class=
-"org-string">)Exporting \`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/$</span><span class="org-string"><span class=
-"org-constant">&lt;</span></span><span class=
-"org-string">' to PDF...$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-constant"><span class=
+"org-string">&lt;</span></span><span class=
+"org-string">' to PDF...$(</span><span class="org-variable-name"><span class=
+"org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">LS</span>) -l -t $<span class=
 "org-constant">&lt;</span> <span class=
-"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
-"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-makefile-targets">$</span><span class="org-constant"><span class=
+"org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class=
 "org-string">"\.pdf"</span> &gt; /dev/null \
 <span class="org-whitespace-tab">        </span>|| { printf <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_FAILURE</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
-"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>; exit 1; }
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_SUCCESS</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
 "org-string">' successfully generated$(</span><span class=
-"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>
 </pre>
             </div>
@@ -1887,44 +1930,44 @@ endif
               <pre class="src src-makefile" id="recipe-convert-to-pdf">
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_INFO</span></span><span class=
-"org-string">)Exporting \`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/$</span><span class="org-string"><span class=
-"org-constant">&lt;</span></span><span class=
-"org-string">' to PDF...$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class="org-string">)\n"</span>
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_INFO</span></span><span class=
+"org-string">)Exporting \`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class=
+"org-string">)/$</span><span class="org-constant"><span class=
+"org-string">&lt;</span></span><span class=
+"org-string">' to PDF...$(</span><span class="org-variable-name"><span class=
+"org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">LS</span>) -l -t $<span class=
 "org-constant">&lt;</span> <span class=
-"org-makefile-targets">$</span><span class="org-makefile-targets"><span class=
-"org-constant">@</span></span> | head -n 1 | grep -E <span class=
+"org-makefile-targets">$</span><span class="org-constant"><span class=
+"org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class=
 "org-string">"\.pdf"</span> &gt; /dev/null \
 <span class="org-whitespace-tab">        </span>|| { printf <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_FAILURE</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
-"org-string">' is NOT up to date$(</span><span class="org-string"><span class=
-"org-variable-name">C_RESET</span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_FAILURE</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
+"org-string">' is NOT up to date$(</span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>; exit 1; }
 <span class="org-whitespace-tab">        </span>$(<span class=
 "org-variable-name">PRINTF</span>) <span class=
-"org-string">"$(</span><span class="org-string"><span class=
-"org-variable-name">C_SUCCESS</span></span><span class=
-"org-string">)\`$(</span><span class="org-string"><span class=
-"org-variable-name">CURDIR</span></span><span class=
-"org-string">)/</span><span class="org-makefile-targets"><span class=
-"org-string">$</span></span><span class="org-makefile-targets"><span class=
-"org-string"><span class="org-constant">@</span></span></span><span class=
+"org-string">"$(</span><span class="org-variable-name"><span class=
+"org-string">C_SUCCESS</span></span><span class=
+"org-string">)\`$(</span><span class="org-variable-name"><span class=
+"org-string">CURDIR</span></span><span class="org-string">)/</span><span class=
+"org-string"><span class="org-makefile-targets">$</span></span><span class=
+"org-constant"><span class="org-string"><span class=
+"org-makefile-targets">@</span></span></span><span class=
 "org-string">' successfully generated$(</span><span class=
-"org-string"><span class="org-variable-name">C_RESET</span></span><span class=
+"org-variable-name"><span class="org-string">C_RESET</span></span><span class=
 "org-string">)\n"</span>
 </pre>
             </div>
@@ -2112,7 +2155,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
             <pre class="src src-emacs-lisp">
 <span class="org-comment-delimiter">;;; </span><span class=
 "org-comment">orgmk.el --- Emacs configuration file for `</span><span class=
-"org-comment"><span class="org-constant">orgmk</span></span><span class=
+"org-constant"><span class="org-comment">orgmk</span></span><span class=
 "org-comment">'</span>
 
 <span class="org-comment-delimiter">;;; </span><span class=
@@ -2221,8 +2264,8 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">shell</span>
 (message <span class="org-string">"Current value of `</span><span class=
-"org-string"><span class=
-"org-constant">shell-file-name</span></span><span class=
+"org-constant"><span class=
+"org-string">shell-file-name</span></span><span class=
 "org-string">': %s"</span> shell-file-name)
 (<span class="org-keyword">unless</span> (equal shell-file-name <span class=
 "org-string">"bash"</span>)
@@ -2258,14 +2301,18 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-string">"melpa"</span> . <span class=
 "org-string">"http://melpa.milkbox.net/packages/"</span>))
   (package-initialize))
+</pre>
+            </div>
 
+            <div class="org-src-container">
+              <pre class="src src-emacs-lisp">
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">version info</span>
 (<span class=
 "org-keyword">let</span> ((org-install-dir (file-name-directory (locate-library <span class="org-string">"org-loaddefs"</span>)))
       (org-dir (file-name-directory (locate-library <span class=
 "org-string">"org"</span>)))) <span class=
-"org-comment-delimiter">;; </span><span class="org-comment">org.(el|elc)</span>
+"org-comment-delimiter">; </span><span class="org-comment">org.(el|elc)</span>
   (message <span class="org-string">"Org mode version %s (org @ %s)"</span>
            (org-version)
            (<span class=
@@ -2282,14 +2329,18 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
   (<span class="org-keyword">when</span> (locate-library <span class=
 "org-string">"package"</span>)
     (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
-"org-string">"Install package `</span><span class="org-string"><span class=
-"org-constant">%s</span></span><span class="org-string">'? "</span> 'org))
+"org-string">"Install package `</span><span class="org-constant"><span class=
+"org-string">%s</span></span><span class="org-string">'? "</span> 'org))
         (<span class="org-keyword">ignore-errors</span>
           (package-install 'org))
       (setq debug-on-error nil)
       (<span class="org-warning">error</span> <span class=
 "org-string">"Please upgrade to 8 or later"</span>))))
+</pre>
+            </div>
 
+            <div class="org-src-container">
+              <pre class="src src-emacs-lisp">
 (<span class="org-keyword">when</span> (locate-library <span class=
 "org-string">"package"</span>)
   (<span class="org-keyword">unless</span> (locate-library <span class=
@@ -2298,8 +2349,8 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-comment">for syntax highlighting in org2html</span>
     (<span class="org-keyword">let</span> ((pkg 'htmlize))
       (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
-"org-string">"Install package `</span><span class="org-string"><span class=
-"org-constant">%s</span></span><span class="org-string">'? "</span> pkg))
+"org-string">"Install package `</span><span class="org-constant"><span class=
+"org-string">%s</span></span><span class="org-string">'? "</span> pkg))
           (<span class="org-keyword">ignore-errors</span>
             (package-install pkg))))))
 </pre>
@@ -2462,7 +2513,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
        (shell      . t)
        (sql        . t)))
   <span class="org-comment-delimiter">;; </span><span class=
-"org-comment"><span class="org-leuven-highlight">XXX</span></span><span class=
+"org-leuven-highlight"><span class="org-comment">XXX</span></span><span class=
 "org-comment"> (in the future) message saying "Upgrade to Org 8.3"</span>
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -2560,7 +2611,14 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 
   <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">turn inclusion of the default CSS style off</span>
-  (setq org-html-head-include-default-style nil))
+  (setq org-html-head-include-default-style nil)
+
+  (<span class="org-keyword">defun</span> <span class=
+"org-function-name">org-html-export-body-only-to-html</span> ()
+    <span class=
+"org-doc">"Export only code between between \"&lt;body&gt;\" and \"&lt;/body&gt;\" tags to a HTML file."</span>
+    (interactive)
+    (org-html-export-to-html nil nil nil t))))
 </pre>
           </div>
         </div>
@@ -2589,7 +2647,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 
   <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">;; This is disturbing when calling `</span><span class=
-"org-comment"><span class="org-constant">org2html</span></span><span class=
+"org-constant"><span class="org-comment">org2html</span></span><span class=
 "org-comment">'.</span>
   <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">(when (executable-find "latexmk")</span>
@@ -2628,32 +2686,32 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-string">"LaTeX command: %S"</span> org-latex-pdf-process)
 
   <span class="org-comment-delimiter">;; </span><span class=
-"org-comment">tell org to use `</span><span class="org-comment"><span class=
-"org-constant">listings</span></span><span class=
-"org-comment">' (instead of `</span><span class="org-comment"><span class=
-"org-constant">verbatim</span></span><span class=
+"org-comment">tell org to use `</span><span class="org-constant"><span class=
+"org-comment">listings</span></span><span class=
+"org-comment">' (instead of `</span><span class="org-constant"><span class=
+"org-comment">verbatim</span></span><span class=
 "org-comment">') for source code</span>
   (setq org-latex-listings t)
 
   <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">default packages to be inserted in the header</span>
   <span class="org-comment-delimiter">;; </span><span class=
-"org-comment">include the `</span><span class="org-comment"><span class=
-"org-constant">listings</span></span><span class=
+"org-comment">include the `</span><span class="org-constant"><span class=
+"org-comment">listings</span></span><span class=
 "org-comment">' package for fontified source code</span>
   (add-to-list 'org-latex-packages-alist '(<span class=
 "org-string">""</span> <span class="org-string">"listings"</span>) t)
 
   <span class="org-comment-delimiter">;; </span><span class=
-"org-comment">include the `</span><span class="org-comment"><span class=
-"org-constant">xcolor</span></span><span class=
+"org-comment">include the `</span><span class="org-constant"><span class=
+"org-comment">xcolor</span></span><span class=
 "org-comment">' package for colored source code</span>
   (add-to-list 'org-latex-packages-alist '(<span class=
 "org-string">""</span> <span class="org-string">"xcolor"</span>) t)
 
   <span class="org-comment-delimiter">;; </span><span class=
-"org-comment">include the `</span><span class="org-comment"><span class=
-"org-constant">babel</span></span><span class=
+"org-comment">include the `</span><span class="org-constant"><span class=
+"org-comment">babel</span></span><span class=
 "org-comment">' package for language-specific hyphenation and</span>
   <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">typography</span>
@@ -2663,7 +2721,14 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
   <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">default position for LaTeX figures</span>
   (setq org-latex-default-figure-position <span class=
-"org-string">"!htbp"</span>))
+"org-string">"!htbp"</span>)
+
+  (<span class="org-keyword">defun</span> <span class=
+"org-function-name">org-latex-export-body-only-to-latex</span> ()
+    <span class=
+"org-doc">"Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."</span>
+    (interactive)
+    (org-latex-export-to-latex nil nil nil t)))
 </pre>
           </div>
         </div>
@@ -2683,7 +2748,7 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
             <pre class="src src-emacs-lisp">
 <span class="org-comment-delimiter">;; </span><span class=
 "org-comment">require all files from `</span><span class=
-"org-comment"><span class="org-constant">lisp</span></span><span class=
+"org-constant"><span class="org-comment">lisp</span></span><span class=
 "org-comment">' directory</span>
 (<span class="org-keyword">dolist</span> (file (directory-files
                (concat orgmk-el-directory <span class=

@@ -3,6 +3,14 @@
 TARGET_EXT=tex
 . orgmk-init
 
-eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
-    || die "Exported file wasn't produced"
+case $BODY_ONLY in
+    "yes")
+        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-body-only-to-latex \
+            || die "Exported file wasn't produced"
+        ;;
+    "no")
+        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
+            || die "Exported file wasn't produced"
+esac
+
 orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
