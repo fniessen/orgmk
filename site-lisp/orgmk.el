@@ -168,7 +168,7 @@
   (defun org-html-export-body-only-to-html ()
     "Export only code between between \"<body>\" and \"</body>\" tags to a HTML file."
     (interactive)
-    (org-html-export-to-html nil nil nil t))))
+    (org-html-export-to-html nil nil nil t)))
 
 (when (require 'ox-latex)
 
