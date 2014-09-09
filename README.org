@@ -1426,6 +1426,11 @@ end of =orgmk='s initialization.
 ;;; org-latex-classes.el ends here
 #+end_src
 
+* Contributing
+
+I love contributions!  If you'd like to contribute, please send a patch file or
+submit a pull request via GitHub.
+
 * Standard disclaimer
 
 I am furnishing this item "as is". I do *NOT* provide *ANY WARRANTY* of the item
