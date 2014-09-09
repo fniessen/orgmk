@@ -705,7 +705,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140906.1257.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140909.2206.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -2163,9 +2163,6 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 
 <span class="org-comment-delimiter">;;; </span><span class=
 "org-comment">Code:</span>
-
-(<span class="org-keyword">require</span> '<span class=
-"org-constant">ob-lob</span>)
 </pre>
           </div>
         </div>
@@ -2306,36 +2303,23 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span class="org-comment-delimiter">;; </span><span class=
-"org-comment">version info</span>
-(<span class=
-"org-keyword">let</span> ((org-install-dir (file-name-directory (locate-library <span class="org-string">"org-loaddefs"</span>)))
-      (org-dir (file-name-directory (locate-library <span class=
-"org-string">"org"</span>)))) <span class=
-"org-comment-delimiter">; </span><span class="org-comment">org.(el|elc)</span>
-  (message <span class="org-string">"Org mode version %s (org @ %s)"</span>
-           (org-version)
-           (<span class=
-"org-keyword">if</span> (string= org-dir org-install-dir)
-               org-install-dir
-             (concat <span class=
-"org-string">"mixed installation! "</span> org-install-dir <span class=
-"org-string">" and "</span> org-dir))))
-
-(<span class="org-keyword">unless</span> (string-match <span class=
-"org-string">"^8"</span> (org-version))
+(<span class="org-keyword">unless</span> (locate-library <span class=
+"org-string">"ox"</span>)           <span class=
+"org-comment-delimiter">; </span><span class=
+"org-comment">trick to detect the presence of Org 8</span>
   (message <span class=
-"org-string">"This version of Org mode is no longer supported"</span>)
+"org-string">"The versions 6 and 7 of Org mode are no longer supported"</span>)
   (<span class="org-keyword">when</span> (locate-library <span class=
 "org-string">"package"</span>)
-    (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
+    (<span class="org-keyword">let</span> ((pkg 'org))
+      (<span class="org-keyword">if</span> (yes-or-no-p (format <span class=
 "org-string">"Install package `</span><span class="org-constant"><span class=
-"org-string">%s</span></span><span class="org-string">'? "</span> 'org))
-        (<span class="org-keyword">ignore-errors</span>
-          (package-install 'org))
-      (setq debug-on-error nil)
-      (<span class="org-warning">error</span> <span class=
-"org-string">"Please upgrade to 8 or later"</span>))))
+"org-string">%s</span></span><span class="org-string">'? "</span> pkg))
+          (<span class="org-keyword">ignore-errors</span>
+            (package-install pkg))
+        (setq debug-on-error nil)
+        (<span class="org-warning">error</span> <span class=
+"org-string">"Please upgrade to 8 or later"</span>)))))
 </pre>
             </div>
 
@@ -2353,6 +2337,26 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-string">%s</span></span><span class="org-string">'? "</span> pkg))
           (<span class="org-keyword">ignore-errors</span>
             (package-install pkg))))))
+</pre>
+            </div>
+
+            <div class="org-src-container">
+              <pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">version info</span>
+(<span class=
+"org-keyword">let</span> ((org-install-dir (file-name-directory (locate-library <span class="org-string">"org-loaddefs"</span>)))
+      (org-dir (file-name-directory (locate-library <span class=
+"org-string">"org"</span>)))) <span class=
+"org-comment-delimiter">; </span><span class="org-comment">org.(el|elc)</span>
+  (message <span class="org-string">"Org mode version %s (org @ %s)"</span>
+           (org-version)
+           (<span class=
+"org-keyword">if</span> (string= org-dir org-install-dir)
+               org-install-dir
+             (concat <span class=
+"org-string">"mixed installation! "</span> org-install-dir <span class=
+"org-string">" and "</span> org-dir))))
 </pre>
             </div>
           </div>

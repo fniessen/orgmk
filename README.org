@@ -1083,8 +1083,6 @@ error stream (=stderr=) instead. (To be precise, functions like =prin1=, =princ=
 ;;; Commentary:
 
 ;;; Code:
-
-(require 'ob-lob)
 #+end_src
 
 *** Library Search
@@ -1156,23 +1154,15 @@ Ensure that a recent version of Org mode is installed and loaded.
 #+end_src
 
 #+begin_src emacs-lisp
-;; version info
-(let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
-      (org-dir (file-name-directory (locate-library "org")))) ; org.(el|elc)
-  (message "Org mode version %s (org @ %s)"
-           (org-version)
-           (if (string= org-dir org-install-dir)
-               org-install-dir
-             (concat "mixed installation! " org-install-dir " and " org-dir))))
-
-(unless (string-match "^8" (org-version))
-  (message "This version of Org mode is no longer supported")
+(unless (locate-library "ox")           ; trick to detect the presence of Org 8
+  (message "The versions 6 and 7 of Org mode are no longer supported")
   (when (locate-library "package")
-    (if (yes-or-no-p (format "Install package `%s'? " 'org))
-        (ignore-errors
-          (package-install 'org))
-      (setq debug-on-error nil)
-      (error "Please upgrade to 8 or later"))))
+    (let ((pkg 'org))
+      (if (yes-or-no-p (format "Install package `%s'? " pkg))
+          (ignore-errors
+            (package-install pkg))
+        (setq debug-on-error nil)
+        (error "Please upgrade to 8 or later")))))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1182,6 +1172,17 @@ Ensure that a recent version of Org mode is installed and loaded.
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
             (package-install pkg))))))
+#+end_src
+
+#+begin_src emacs-lisp
+;; version info
+(let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
+      (org-dir (file-name-directory (locate-library "org")))) ; org.(el|elc)
+  (message "Org mode version %s (org @ %s)"
+           (org-version)
+           (if (string= org-dir org-install-dir)
+               org-install-dir
+             (concat "mixed installation! " org-install-dir " and " org-dir))))
 #+end_src
 
 *** Activation

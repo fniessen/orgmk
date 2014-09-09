@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(require 'ob-lob)
-
 ;; remember this directory
 (defconst orgmk-el-directory
   (file-name-directory (or load-file-name (buffer-file-name)))
@@ -39,6 +37,23 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
   (package-initialize))
 
+(unless (locate-library "ox")           ; trick to detect the presence of Org 8
+  (message "The versions 6 and 7 of Org mode are no longer supported")
+  (when (locate-library "package")
+    (let ((pkg 'org))
+      (if (yes-or-no-p (format "Install package `%s'? " pkg))
+          (ignore-errors
+            (package-install pkg))
+        (setq debug-on-error nil)
+        (error "Please upgrade to 8 or later")))))
+
+(when (locate-library "package")
+  (unless (locate-library "htmlize")    ; for syntax highlighting in org2html
+    (let ((pkg 'htmlize))
+      (if (yes-or-no-p (format "Install package `%s'? " pkg))
+          (ignore-errors
+            (package-install pkg))))))
+
 ;; version info
 (let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
       (org-dir (file-name-directory (locate-library "org")))) ; org.(el|elc)
@@ -47,22 +62,6 @@
            (if (string= org-dir org-install-dir)
                org-install-dir
              (concat "mixed installation! " org-install-dir " and " org-dir))))
-
-(unless (string-match "^8" (org-version))
-  (message "This version of Org mode is no longer supported")
-  (when (locate-library "package")
-    (if (yes-or-no-p (format "Install package `%s'? " 'org))
-        (ignore-errors
-          (package-install 'org))
-      (setq debug-on-error nil)
-      (error "Please upgrade to 8 or later"))))
-
-(when (locate-library "package")
-  (unless (locate-library "htmlize")    ; for syntax highlighting in org2html
-    (let ((pkg 'htmlize))
-      (if (yes-or-no-p (format "Install package `%s'? " pkg))
-          (ignore-errors
-            (package-install pkg))))))
 
 (require 'org)
 (require 'org-clock)
