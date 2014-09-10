@@ -18,6 +18,11 @@
 Orgmk is a suite of Bash scripts for *automating the conversion of Org mode
 documents to different formats* (such as HTML or PDF) from the command line.
 
+#+begin_html
+<script src="http://platform.twitter.com/widgets.js"></script>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="f_niessen">Tweet</a>
+#+end_html
+
 The scripts run on both Unix and Microsoft Windows (with Cygwin).
 
 ** Objectives
