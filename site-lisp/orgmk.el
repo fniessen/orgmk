@@ -102,7 +102,8 @@
 (if (locate-library "ob-shell")         ; ob-sh renamed on Dec 13th, 2013
     (org-babel-do-load-languages        ; loads org, gnus-sum, etc...
      'org-babel-load-languages
-     '((R          . t)                 ; requires R and ess-mode
+     '(
+       (R          . t)                 ; requires R and ess-mode
        (awk        . t)
        (ditaa      . t)                 ; sudo aptitude install openjdk-6-jre
        (dot        . t)
@@ -112,7 +113,8 @@
        (ledger     . t)                 ; requires ledger
        (org        . t)
        (shell      . t)
-       (sql        . t)))
+       (sql        . t)
+       ))
   ;; XXX (in the future) message saying "Upgrade to Org 8.3"
   (org-babel-do-load-languages
    'org-babel-load-languages

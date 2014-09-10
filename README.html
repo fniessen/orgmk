@@ -705,7 +705,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140910.0912.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140910.0917.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -2495,7 +2495,8 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-comment-delimiter">; </span><span class=
 "org-comment">loads org, gnus-sum, etc...</span>
      'org-babel-load-languages
-     '((R          . t)                 <span class=
+     '(
+       (R          . t)                 <span class=
 "org-comment-delimiter">; </span><span class=
 "org-comment">requires R and ess-mode</span>
        (awk        . t)
@@ -2513,7 +2514,8 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
 "org-comment">requires ledger</span>
        (org        . t)
        (shell      . t)
-       (sql        . t)))
+       (sql        . t)
+       ))
   <span class="org-comment-delimiter">;; </span><span class=
 "org-leuven-highlight"><span class="org-comment">XXX</span></span><span class=
 "org-comment"> (in the future) message saying "Upgrade to Org 8.3"</span>
