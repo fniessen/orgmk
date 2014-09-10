@@ -1191,7 +1191,6 @@ Ensure that a recent version of Org mode is installed and loaded.
 (require 'org)
 (require 'org-clock)
 (require 'ox)
-(require 'ob-R)
 
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 #+end_src

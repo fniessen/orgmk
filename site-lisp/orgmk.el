@@ -66,7 +66,6 @@
 (require 'org)
 (require 'org-clock)
 (require 'ox)
-(require 'ob-R)
 
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 
