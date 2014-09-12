@@ -83,25 +83,36 @@
 
       <div id="outline-container-sec-1-3" class="outline-3">
         <h3 id="sec-1-3"><span class="section-number-3">1.3</span>
+        Quotations</h3>
+
+        <div class="outline-text-3" id="text-1-3">
+          <p>“If one has been trying to bulk convert many quickly changing
+          org-documents, he will appreciate the power and flexibility of this
+          tool.” – z27</p>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-1-4" class="outline-3">
+        <h3 id="sec-1-4"><span class="section-number-3">1.4</span>
         Requirements</h3>
 
-        <div class="outline-text-3" id="text-1-3"></div>
+        <div class="outline-text-3" id="text-1-4"></div>
 
-        <div id="outline-container-sec-1-3-1" class="outline-4">
-          <h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Emacs
+        <div id="outline-container-sec-1-4-1" class="outline-4">
+          <h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> Emacs
           24</h4>
 
-          <div class="outline-text-4" id="text-1-3-1">
-            Emacs version 24 (for the “package” facility) must be in your
-            <code>PATH</code>.
+          <div class="outline-text-4" id="text-1-4-1">
+            <p>Emacs version 24 (for the “package” facility) must be in your
+            <code>PATH</code>.</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-1-3-2" class="outline-4">
-          <h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Org
+        <div id="outline-container-sec-1-4-2" class="outline-4">
+          <h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> Org
           8</h4>
 
-          <div class="outline-text-4" id="text-1-3-2">
+          <div class="outline-text-4" id="text-1-4-2">
             <p>Org mode version 8 (or later) is required.</p>
 
             <p>If such a version is not bundled with your Emacs, Org 8 will be
@@ -109,14 +120,14 @@
           </div>
         </div>
 
-        <div id="outline-container-sec-1-3-3" class="outline-4">
-          <h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> LaTeX
+        <div id="outline-container-sec-1-4-3" class="outline-4">
+          <h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> LaTeX
           (PDF)</h4>
 
-          <div class="outline-text-4" id="text-1-3-3">
-            A working LaTeX installation is required for exporting to PDF. If
-            it is not yet installed on your system, install <a href=
-            "http://www.tug.org/texlive/">TeX Live</a> (for example).
+          <div class="outline-text-4" id="text-1-4-3">
+            <p>A working LaTeX installation is required for exporting to PDF.
+            If it is not yet installed on your system, install <a href=
+            "http://www.tug.org/texlive/">TeX Live</a> (for example).</p>
           </div>
         </div>
       </div>
@@ -126,8 +137,8 @@
       <h2 id="sec-2"><span class="section-number-2">2</span> Usage</h2>
 
       <div class="outline-text-2" id="text-2">
-        Org files can have the extension <code>.org</code> or
-        <code>.txt</code>.
+        <p>Org files can have the extension <code>.org</code> or
+        <code>.txt</code>.</p>
       </div>
 
       <div id="outline-container-sec-2-1" class="outline-3">
@@ -262,7 +273,7 @@ orgmk [OPTION] [FILE]
       <h2 id="sec-4"><span class="section-number-2">4</span> Files</h2>
 
       <div class="outline-text-2" id="text-4">
-        <i>$HOME/.orgmk-rc</i>
+        <p><i>$HOME/.orgmk-rc</i></p>
       </div>
     </div>
 
@@ -335,9 +346,9 @@ org2pdf thesis.org
       <h2 id="sec-6"><span class="section-number-2">6</span> Installation</h2>
 
       <div class="outline-text-2" id="text-6">
-        The installation process consists of creating symbolic links from the
-        standard <b>final directories</b> on your machine to the
-        <code>orgmk</code> executables.
+        <p>The installation process consists of creating symbolic links from
+        the standard <b>final directories</b> on your machine to the
+        <code>orgmk</code> executables.</p>
       </div>
 
       <div id="outline-container-sec-6-1" class="outline-3">
@@ -597,8 +608,8 @@ endif
         Orgmk-init</h3>
 
         <div class="outline-text-3" id="text-7-1">
-          The <code>orgmk-init</code> script contains the common part used to
-          setup Emacs and Org in order to export to HTML, PDF, etc.
+          <p>The <code>orgmk-init</code> script contains the common part used
+          to setup Emacs and Org in order to export to HTML, PDF, etc.</p>
         </div>
 
         <div id="outline-container-sec-7-1-1" class="outline-4">
@@ -708,7 +719,7 @@ endif
               <pre class="src src-sh">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20140910.1734.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20140912.1344.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
             </div>
@@ -854,12 +865,12 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
             </div>
 
             <div class="note">
-              <b>Batch option</b><br />
+              <p><b>Batch option</b><br />
               Font Lock mode is disabled by default in batch mode. That
               generates errors with some Java code blocks. Hence, one
               workaround, in that case, is to call Emacs without batch mode
               (and, then, to add <code>-f kill-emacs</code> at the end of the
-              command line).
+              command line).</p>
             </div>
           </div>
         </div>
@@ -1062,8 +1073,8 @@ orgmk-update-src-check-diff <span class=
         Orgmk-update-src-check-diff</h3>
 
         <div class="outline-text-3" id="text-7-8">
-          Check whether dynamic blocks and tables have been updated, and (if
-          yes) propose to overwrite the source Org file.
+          <p>Check whether dynamic blocks and tables have been updated, and (if
+          yes) propose to overwrite the source Org file.</p>
         </div>
 
         <div id="outline-container-sec-7-8-1" class="outline-4">
@@ -1183,9 +1194,10 @@ orgmk-update-src-check-diff <span class=
             change, the new file is dropped.</p>
 
             <div class="note">
-              The time stamps in “Clock summary at …” will be different, each
-              time dynamic blocks are updated (if not done during the same
-              minute). In that case, <code>diff</code> will always “succeed”.
+              <p>The time stamps in “Clock summary at …” will be different,
+              each time dynamic blocks are updated (if not done during the same
+              minute). In that case, <code>diff</code> will always
+              “succeed”.</p>
             </div>
           </div>
         </div>
@@ -1255,10 +1267,12 @@ orgmk-update-src-check-diff <span class=
                   <td valign="top"><b><span class=
                   "todo TODO">TODO</span></b></td>
 
-                  <td width="100%"><b>Test whether Orgmk works with symbolic
-                  links</b><br />
-                  Does their modification time change to reflect the latest
-                  modification of the source?</td>
+                  <td width="100%">
+                    <b>Test whether Orgmk works with symbolic links</b><br />
+
+                    <p>Does their modification time change to reflect the
+                    latest modification of the source?</p>
+                  </td>
                 </tr>
               </table>
             </li>
@@ -1439,8 +1453,11 @@ endif
                   <td valign="top"><b><span class=
                   "todo TODO">TODO</span></b></td>
 
-                  <td width="100%"><b>Add Org_DIRS defaulting to .</b><br />
-                  Use Org_DIRS with foreach (?) in the following lists</td>
+                  <td width="100%">
+                    <b>Add Org_DIRS defaulting to .</b><br />
+
+                    <p>Use Org_DIRS with foreach (?) in the following lists</p>
+                  </td>
                 </tr>
               </table>
 
@@ -1920,11 +1937,11 @@ endif
             </div>
 
             <div class="note">
-              The drawback of updating the dblocks inside the the recipes for
-              HTML and PDF means that, if we have a file that’s <b>converted to
-              both file formats</b>, the update will be done twice (so, once at
-              least for nothing): once for HTML, then once again for PDF.
-              Though, this case is quite uncommon.
+              <p>The drawback of updating the dblocks inside the the recipes
+              for HTML and PDF means that, if we have a file that’s
+              <b>converted to both file formats</b>, the update will be done
+              twice (so, once at least for nothing): once for HTML, then once
+              again for PDF. Though, this case is quite uncommon.</p>
             </div>
 
             <p>The recipe to <b>convert Org to PDF</b> is:</p>
@@ -1980,12 +1997,15 @@ endif
                 <td valign="top"><b><span class=
                 "todo TODO">TODO</span></b></td>
 
-                <td width="100%"><b>Export as LaTeX?</b><br />
-                Maybe the export should be done to TeX, and then call (the
-                minimum number of times) PDFLaTeX from the
-                <code>orgmk.mk</code>? Check out if this is as robust as using
-                Org to build the PDF… (which goes on, even with some errors
-                occurring)</td>
+                <td width="100%">
+                  <b>Export as LaTeX?</b><br />
+
+                  <p>Maybe the export should be done to TeX, and then call (the
+                  minimum number of times) PDFLaTeX from the
+                  <code>orgmk.mk</code>? Check out if this is as robust as
+                  using Org to build the PDF… (which goes on, even with some
+                  errors occurring)</p>
+                </td>
               </tr>
             </table>
 
@@ -2140,13 +2160,13 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
         customization.</p>
 
         <div class="info">
-          In batch mode, […] Emacs functions that normally print a message in
-          the echo area will print to either the standard output stream
+          <p>In batch mode, […] Emacs functions that normally print a message
+          in the echo area will print to either the standard output stream
           (<code>stdout</code>) or the standard error stream
           (<code>stderr</code>) instead. (To be precise, functions like
           <code>prin1</code>, <code>princ</code> and <code>print</code> print
           to <code>stdout</code>, while <code>message</code> and
-          <code>error</code> print to <code>stderr</code>.)
+          <code>error</code> print to <code>stderr</code>.)</p>
         </div>
       </div>
 
@@ -2580,10 +2600,13 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
             <tr>
               <td valign="top"><b><span class="todo TODO">TODO</span></b></td>
 
-              <td width="100%"><b>Understand the hidden xx used for spacing
-              levels in column views</b><br />
-              Depending on interactive vs batch export to HTML, we still have
-              the above difference in the resulting HTML file.</td>
+              <td width="100%">
+                <b>Understand the hidden xx used for spacing levels in column
+                views</b><br />
+
+                <p>Depending on interactive vs batch export to HTML, we still
+                have the above difference in the resulting HTML file.</p>
+              </td>
             </tr>
           </table>
 
@@ -2832,8 +2855,8 @@ make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class=
       Contributing</h2>
 
       <div class="outline-text-2" id="text-11">
-        I love contributions! If you’d like to contribute, please send a patch
-        file or submit a pull request via GitHub.
+        <p>I love contributions! If you’d like to contribute, please send a
+        patch file or submit a pull request via GitHub.</p>
       </div>
     </div>
 

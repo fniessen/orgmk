@@ -37,6 +37,11 @@ Finally, the third goal is also to *offload compilation into an external batch
 Emacs process*, allowing you to go on editing or working while exporting the
 documents.
 
+** Quotations
+
+"If one has been trying to bulk convert many quickly changing org-documents, he
+will appreciate the power and flexibility of this tool." -- z27
+
 ** Requirements
    :PROPERTIES:
    :tangle:   no
