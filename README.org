@@ -1,7 +1,7 @@
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+DESCRIPTION:
-#+KEYWORDS:
+#+DESCRIPTION: Orgmk completely automates the export of Org documents
+#+KEYWORDS:  org-mode, export, automate
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:3 toc:nil
 
@@ -10,7 +10,7 @@
 #+PROPERTY:  comments no
 #+SETUPFILE: bigblow-pirilampo.setup
 
-* Export Org mode documents to HTML, PDF, etc. [[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]] [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=emacs%2dleuven%2dtheme&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif]]
+* Export Org mode documents to HTML, PDF, etc. [[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]] [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif]]
 
 ** Overview
 
@@ -1446,8 +1446,40 @@ end of =orgmk='s initialization.
 
 ** Contributing
 
-I love contributions!  If you'd like to contribute, please send a patch file or
-submit a pull request via GitHub.
+*** Issues
+
+Report issues and suggest features and improvements on the [[https://github.com/fniessen/orgmk/issues/new][GitHub issue tracker]].
+
+*** Patches
+
+I love contributions!  Patches under any form are always welcome!
+
+*** Donations
+
+If you like the emacs-leuven-theme project, you can show your appreciation and
+support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
+
+Regardless of the donations, emacs-leuven-theme will always be free both as in
+beer and as in speech.
+
+** License
+
+Copyright (C) 2003-2014 Fabrice Niessen
+
+Author: Fabrice Niessen \\
+Keywords: org mode export automation
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see http://www.gnu.org/licenses/.
 
 ** Standard disclaimer
 

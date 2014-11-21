@@ -38,7 +38,9 @@
   (package-initialize))
 
 (unless (locate-library "ox")           ; trick to detect the presence of Org 8
+  (ding)
   (message "The versions 6 and 7 of Org mode are no longer supported")
+  (message "Time to upgrade, don't you think?")
   (when (locate-library "package")
     (let ((pkg 'org))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
