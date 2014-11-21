@@ -1464,7 +1464,7 @@ beer and as in speech.
 
 ** License
 
-Copyright (C) 2003-2014 Fabrice Niessen
+Copyright (C) 2011-2014 Fabrice Niessen
 
 Author: Fabrice Niessen \\
 Keywords: org mode export automation
