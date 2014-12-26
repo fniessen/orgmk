@@ -1,7 +1,7 @@
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+DESCRIPTION: Orgmk completely automates the export of Org documents
-#+KEYWORDS:  org-mode, export, automate
+#+DESCRIPTION: Orgmk completely automates the export of Org documents.
+#+KEYWORDS:  org-mode, orgmk, export, automate, emacs, pdf, latex, html
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:3 toc:nil
 
@@ -187,6 +187,8 @@ The installation process consists of creating symbolic links from the standard
 *final directories* on your machine to the =orgmk= executables.
 
 *** New install
+
+# See one-line for installation at https://github.com/tj/git-extras
 
 1. *Extract* the latest version of =orgmk=.
 
