@@ -76,7 +76,7 @@ Org files can have the extension ~.org~ or ~.txt~.
 
 - For "weaving" files (producing the formatted documentation files):
 
-  #+begin_src sh
+  #+begin_src shell
   org2html [OPTION] FILE
   org2latex [OPTION] FILE
   org2pdf [OPTION] FILE
@@ -87,13 +87,13 @@ Org files can have the extension ~.org~ or ~.txt~.
 
 - For "tangling" files:
 
-  #+begin_src sh
+  #+begin_src shell
   org-tangle FILE
   #+end_src
 
 *** Makefile wrapper
 
-#+begin_src sh
+#+begin_src shell
 orgmk [OPTION]
 orgmk [OPTION] [html | pdf]
 orgmk [OPTION] [FILE]
@@ -152,7 +152,7 @@ Currently, =orgmk= does not tangle Org files.
 
 Regenerate HTML and/or PDF files for Org files that have been modified.
 
-#+begin_src sh
+#+begin_src shell
 orgmk
 #+end_src
 
@@ -160,7 +160,7 @@ orgmk
 
 Regenerate HTML only for the Org files that have been changed.
 
-#+begin_src sh
+#+begin_src shell
 orgmk html
 #+end_src
 
@@ -170,14 +170,14 @@ Regenerate (or create for the first time) the file ~thesis.pdf~ from the Org fil
 ~thesis.org~ or ~thesis.txt~. *Don't require confirmation for updating the source
 file.*
 
-#+begin_src sh
+#+begin_src shell
 orgmk thesis.pdf
 #+end_src
 
 Regenerate (or create for the first time) the file ~thesis.pdf~ from the Org file
 ~thesis.org~. Require confirmation for updating the source file.
 
-#+begin_src sh
+#+begin_src shell
 org2pdf thesis.org
 #+end_src
 
@@ -192,14 +192,14 @@ The installation process consists of creating symbolic links from the standard
 
 1. *Extract* the latest version of =orgmk=.
 
-   #+begin_src sh
+   #+begin_src shell
    git clone git@github.com:fniessen/orgmk.git
    #+end_src
 
 2. Create configuration files which record where =orgmk= has been extracted
    on your host machine.
 
-   #+begin_src sh
+   #+begin_src shell
    make
    #+end_src
 
@@ -219,7 +219,7 @@ The installation process consists of creating symbolic links from the standard
    *Install* =orgmk= (executable and standalone scripts that you run) to the
    =BIN_DIR= location by typing:
 
-   #+begin_src sh
+   #+begin_src shell
    make install
    #+end_src
 
@@ -323,7 +323,7 @@ and Org in order to export to HTML, PDF, etc.
 
 **** Functions
 
-#+begin_src sh
+#+begin_src shell
 Usage ()
 {
     cat << EOF 1>&2
@@ -340,14 +340,14 @@ EOF
 }
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 die () {
     printf "$(basename $0): $@\n" > /dev/stderr
     exit 2 # an error occurred
 }
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 CleanUp ()
 {
     # restore backed up target file if it hasn't been produced
@@ -383,19 +383,19 @@ CleanUp ()
 (format-time-string "%Y%m%d.%H%M")
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
     cat << EOF
 This is $(basename $0), version: <<current-time()>>.
 EOF
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 # perform housekeeping on program exit or a variety of signals
 # (EXIT, HUP, INT, QUIT, TERM)
 trap CleanUp 0 1 2 3 15
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 # load the system-wide config file (definition of `ORGMK_EL')
 . orgmk.conf
 
@@ -426,7 +426,7 @@ done
 # now do something with $@
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 if [ $# -ne 1 ]; then
     Usage
 fi
@@ -441,7 +441,7 @@ FILE_SRC_UPDT="${FILE_SRC_ORIG%.*}.orgmk" # replace extension
 # exported file will be named <orig file name>.<backend ext>.
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 FILE_LOG="${FILE_SRC_ORIG%.*}.log"
 rm -f $FILE_LOG
 #+end_src
@@ -454,7 +454,7 @@ disappear from the user attention.
 To avoid that, we must make a backup of the target file before the export, and
 put it back if there is no target file produced.
 
-#+begin_src sh
+#+begin_src shell
 FILE_TARGET="${FILE_SRC_ORIG%.*}.$TARGET_EXT"
 
 # back up previous version of target file
@@ -466,7 +466,7 @@ fi
 Note that, like with the ~patch~ command, the original file is saved with the
 =.orig= extension.
 
-#+begin_src sh
+#+begin_src shell
 EMACS=emacs
 
 WHICH_EMACS=$(which $EMACS)
@@ -479,10 +479,10 @@ ORGMK_UPDATE_FLAGS="-f org-update-all-dblocks -f org-table-iterate-buffer-tables
 
 #+begin_note
 *Batch option* \\
-Font Lock mode is disabled by default in batch mode.  That generates errors
-with some Java code blocks.  Hence, one workaround, in that case, is to call
-Emacs without batch mode (and, then, to add ~-f kill-emacs~ at the end of the
-command line).
+Font Lock mode is disabled by default in batch mode.  That generates errors with
+some Java code blocks.  Hence, one workaround, in that case, is to call Emacs
+without batch mode (and, then, to add ~-f kill-emacs~, or simply ~--kill~, at the
+end of the command line).
 #+end_note
 
 *** org2html
@@ -492,7 +492,7 @@ command line).
 
 The =org2html= script converts an Org file to HTML.
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=html
 . orgmk-init
 
@@ -516,7 +516,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 The =org2latex= script converts an Org file to LaTeX.
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=tex
 . orgmk-init
 
@@ -543,7 +543,7 @@ The =org2pdf= script converts an Org file to PDF.
 It tries to detect whether the target is a standard LaTeX document or a Beamer
 presentation by searching for the string =#+BEAMER_THEME:= inside the Org source.
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=pdf
 . orgmk-init
 
@@ -564,7 +564,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 The =org2beamerpdf= script converts an Org file to a Beamer presentation (PDF).
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=pdf
 . orgmk-init
 
@@ -580,7 +580,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 The =org2odt= script converts an Org file to ODT.
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=odt
 . orgmk-init
 
@@ -596,7 +596,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 The =org2txt= script converts an Org file to text.
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=txt
 . orgmk-init
 
@@ -615,7 +615,7 @@ to overwrite the source Org file.
 
 **** Functions
 
-#+begin_src sh
+#+begin_src shell
 ask () {
     while true; do
         if [ "${2:-}" = "Y" ]; then
@@ -650,7 +650,7 @@ ask () {
 
 **** Runtime
 
-#+begin_src sh
+#+begin_src shell
 FILE_SRC_ORIG=$1
 FILE_SRC_UPDT=$2
 
@@ -695,7 +695,7 @@ will always "succeed".
 
 The =org-tangle= tangles an Org file.
 
-#+begin_src sh
+#+begin_src shell
 TARGET_EXT=
 . orgmk-init
 
@@ -1034,7 +1034,7 @@ An addition is to create a symbolic link to the ~orgmk.mk~ into the
 directory of your Org files just for the duration of the script execution
 (on-the-fly install). The links can be safely removed after =make= has been run.
 
-#+begin_src sh
+#+begin_src shell
 Usage ()
 {
     cat << EOF 1>&2
@@ -1050,7 +1050,7 @@ EOF
 }
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 CleanUp ()
 {
     # remove the Makefile
@@ -1062,7 +1062,7 @@ CleanUp ()
 trap CleanUp 0 1 2 3 15
 #+end_src
 
-#+begin_src sh
+#+begin_src shell
 # install the Makefile where you are
 orgmk-stow-orgmk.mk
 

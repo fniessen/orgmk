@@ -22,7 +22,7 @@
   <link rel="stylesheet" type="text/css" href=
   "http://www.pirilampo.org/styles/bigblow/css/hideshow.css" />
 <script type="text/javascript" src=
-"http://www.pirilampo.org/styles/bigblow/js/jquery-1.9.1.min.js">
+"http://www.pirilampo.org/styles/bigblow/js/jquery-1.11.0.min.js">
 </script>
 <script type="text/javascript" src=
 "http://www.pirilampo.org/styles/bigblow/js/jquery-ui-1.10.2.min.js">
@@ -32,6 +32,9 @@
 </script>
 <script type="text/javascript" src=
 "http://www.pirilampo.org/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js">
+</script>
+<script type="text/javascript" src=
+"http://www.pirilampo.org/styles/bigblow/js/jquery.zclip.min.js">
 </script>
 <script type="text/javascript" src=
 "http://www.pirilampo.org/styles/bigblow/js/bigblow.js">
@@ -173,7 +176,7 @@
                 files):</p>
 
                 <div class="org-src-container">
-                  <pre class="src src-sh">
+                  <pre class="src src-shell">
 org2html [OPTION] FILE
 org2latex [OPTION] FILE
 org2pdf [OPTION] FILE
@@ -188,7 +191,7 @@ org2txt [OPTION] FILE
                 <p>For “tangling” files:</p>
 
                 <div class="org-src-container">
-                  <pre class="src src-sh">
+                  <pre class="src src-shell">
 org-tangle FILE
 </pre>
                 </div>
@@ -203,7 +206,7 @@ org-tangle FILE
 
           <div class="outline-text-4" id="text-1-2-2">
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 orgmk [OPTION]
 orgmk [OPTION] [html | pdf]
 orgmk [OPTION] [FILE]
@@ -313,7 +316,7 @@ orgmk [OPTION] [FILE]
             modified.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 orgmk
 </pre>
             </div>
@@ -329,7 +332,7 @@ orgmk
             changed.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 orgmk html
 </pre>
             </div>
@@ -347,7 +350,7 @@ orgmk html
             updating the source file.</b></p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 orgmk thesis.pdf
 </pre>
             </div>
@@ -357,7 +360,7 @@ orgmk thesis.pdf
             Require confirmation for updating the source file.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 org2pdf thesis.org
 </pre>
             </div>
@@ -385,7 +388,7 @@ org2pdf thesis.org
                 <p><b>Extract</b> the latest version of <code>orgmk</code>.</p>
 
                 <div class="org-src-container">
-                  <pre class="src src-sh">
+                  <pre class="src src-shell">
 git clone git@github.com:fniessen/orgmk.git
 </pre>
                 </div>
@@ -396,7 +399,7 @@ git clone git@github.com:fniessen/orgmk.git
                 <code>orgmk</code> has been extracted on your host machine.</p>
 
                 <div class="org-src-container">
-                  <pre class="src src-sh">
+                  <pre class="src src-shell">
 make
 </pre>
                 </div>
@@ -426,7 +429,7 @@ make
                 typing:</p>
 
                 <div class="org-src-container">
-                  <pre class="src src-sh">
+                  <pre class="src src-shell">
 make install
 </pre>
                 </div>
@@ -642,7 +645,7 @@ endif
 
             <div class="outline-text-5" id="text-unnumbered-4">
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-function-name">Usage</span> ()
 {
     cat &lt;&lt; EOF 1&gt;&amp;2
@@ -664,7 +667,7 @@ endif
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-function-name">die</span> () {
     printf <span class=
 "org-string">"$(basename $0): $@\n"</span> &gt; /dev/stderr
@@ -676,7 +679,7 @@ endif
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-function-name">CleanUp</span> ()
 {
     <span class="org-comment-delimiter"># </span><span class=
@@ -739,16 +742,16 @@ endif
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
     cat &lt;&lt; EOF
 <span class=
-"org-sh-heredoc">This is $(basename $0), version: 20141226.1406.</span>
+"org-sh-heredoc">This is $(basename $0), version: 20150219.1617.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-comment-delimiter"># </span><span class=
 "org-comment">perform housekeeping on program exit or a variety of signals</span>
 <span class="org-comment-delimiter"># </span><span class=
@@ -758,7 +761,7 @@ endif
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-comment-delimiter"># </span><span class=
 "org-comment">load the system-wide config file (definition of `ORGMK_EL')</span>
 . orgmk.conf
@@ -807,7 +810,7 @@ endif
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-keyword">if</span> [ $<span class=
 "org-variable-name">#</span> -ne 1 ]; <span class="org-keyword">then</span>
     Usage
@@ -833,7 +836,7 @@ endif
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-variable-name">FILE_LOG</span>=<span class=
 "org-string">"${FILE_SRC_ORIG%.*}.log"</span>
 rm -f $<span class="org-variable-name">FILE_LOG</span>
@@ -851,7 +854,7 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
               produced.</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-variable-name">FILE_TARGET</span>=<span class=
 "org-string">"${FILE_SRC_ORIG%.*}.$TARGET_EXT"</span>
 
@@ -869,7 +872,7 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
               original file is saved with the <code>.orig</code> extension.</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-variable-name">EMACS</span>=emacs
 
 <span class="org-variable-name">WHICH_EMACS</span>=$(<span class=
@@ -892,8 +895,8 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
                 Font Lock mode is disabled by default in batch mode. That
                 generates errors with some Java code blocks. Hence, one
                 workaround, in that case, is to call Emacs without batch mode
-                (and, then, to add <code>-f kill-emacs</code> at the end of the
-                command line).</p>
+                (and, then, to add <code>-f kill-emacs</code>, or simply
+                <code>--kill</code>, at the end of the command line).</p>
               </div>
             </div>
           </div>
@@ -908,7 +911,7 @@ rm -f $<span class="org-variable-name">FILE_LOG</span>
             HTML.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=html
 . orgmk-init
 
@@ -948,7 +951,7 @@ orgmk-update-src-check-diff <span class=
             LaTeX.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=tex
 . orgmk-init
 
@@ -991,7 +994,7 @@ orgmk-update-src-check-diff <span class=
             <code>#+BEAMER_THEME:</code> inside the Org source.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=pdf
 . orgmk-init
 
@@ -1028,7 +1031,7 @@ orgmk-update-src-check-diff <span class=
             Beamer presentation (PDF).</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=pdf
 . orgmk-init
 
@@ -1053,7 +1056,7 @@ orgmk-update-src-check-diff <span class=
             <p>The <code>org2odt</code> script converts an Org file to ODT.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=odt
 . orgmk-init
 
@@ -1079,7 +1082,7 @@ orgmk-update-src-check-diff <span class=
             text.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=txt
 . orgmk-init
 
@@ -1110,7 +1113,7 @@ orgmk-update-src-check-diff <span class=
 
             <div class="outline-text-5" id="text-unnumbered-6">
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-function-name">ask</span> () {
     <span class="org-keyword">while </span><span class=
 "org-builtin">true</span>; <span class="org-keyword">do</span>
@@ -1167,7 +1170,7 @@ orgmk-update-src-check-diff <span class=
 
             <div class="outline-text-5" id="text-unnumbered-7">
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class=
 "org-variable-name">1</span>
 <span class="org-variable-name">FILE_SRC_UPDT</span>=$<span class=
@@ -1237,7 +1240,7 @@ orgmk-update-src-check-diff <span class=
             <p>The <code>org-tangle</code> tangles an Org file.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-variable-name">TARGET_EXT</span>=
 . orgmk-init
 
@@ -2118,7 +2121,7 @@ endif
             run.</p>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-function-name">Usage</span> ()
 {
     cat &lt;&lt; EOF 1&gt;&amp;2
@@ -2140,7 +2143,7 @@ endif
             </div>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-function-name">CleanUp</span> ()
 {
     <span class="org-comment-delimiter"># </span><span class=
@@ -2157,7 +2160,7 @@ endif
             </div>
 
             <div class="org-src-container">
-              <pre class="src src-sh">
+              <pre class="src src-shell">
 <span class="org-comment-delimiter"># </span><span class=
 "org-comment">install the Makefile where you are</span>
 orgmk-stow-orgmk.mk
