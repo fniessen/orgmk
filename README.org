@@ -1311,16 +1311,16 @@ difference in the resulting HTML file.
   ;; export the CSS selectors only, when formatting code snippets
   (setq org-html-htmlize-output-type 'css)
 
-  ;; XML encoding
-  (setq org-html-xml-declaration
-        '(("html" . "<!-- <xml version=\"1.0\" encoding=\"%s\"> -->")))
+  ;; ;; XML encoding
+  ;; (setq org-html-xml-declaration
+  ;;       '(("html" . "<!-- <xml version=\"1.0\" encoding=\"%s\"> -->")))
 
   ;; coding system for HTML export
   (setq org-html-coding-system 'utf-8)
 
-  ;; format for the HTML postamble
-  (setq org-html-postamble
-        "  <div id=\"footer\"><div id=\"copyright\">\n    Copyright &copy; %d %a\n  </div></div>")
+  ;; ;; format for the HTML postamble
+  ;; (setq org-html-postamble
+  ;;       "  <div id=\"footer\"><div id=\"copyright\">\n    Copyright &copy; %d %a\n  </div></div>")
 
   ;; don't include the JavaScript snippets in exported HTML files
   (setq org-html-head-include-scripts nil)

@@ -565,7 +565,7 @@ and Org in order to export to HTML, PDF, etc.
 <div class="org-src-container">
 
 <pre class="src src-shell">    cat &lt;&lt; EOF
-<span class="org-sh-heredoc">This is $(basename $0), version: 20150306.1231.</span>
+<span class="org-sh-heredoc">This is $(basename $0), version: 20150306.1325.</span>
 <span class="org-sh-heredoc">EOF</span>
 </pre>
 </div>
@@ -1819,16 +1819,16 @@ difference in the resulting HTML file.
   <span class="org-comment-delimiter">;; </span><span class="org-comment">export the CSS selectors only, when formatting code snippets</span>
   (setq org-html-htmlize-output-type 'css)
 
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">XML encoding</span>
-  (setq org-html-xml-declaration
-        '((<span class="org-string">"html"</span> . <span class="org-string">"&lt;!-- &lt;xml version=\"1.0\" encoding=\"%s\"&gt; --&gt;"</span>)))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; XML encoding</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq org-html-xml-declaration</span>
+  <span class="org-comment-delimiter">;;       </span><span class="org-comment">'(("html" . "&lt;!-- &lt;xml version=\"1.0\" encoding=\"%s\"&gt; --&gt;")))</span>
 
   <span class="org-comment-delimiter">;; </span><span class="org-comment">coding system for HTML export</span>
   (setq org-html-coding-system 'utf-8)
 
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">format for the HTML postamble</span>
-  (setq org-html-postamble
-        <span class="org-string">"  &lt;div id=\"footer\"&gt;&lt;div id=\"copyright\"&gt;\n    Copyright &amp;copy; %d %a\n  &lt;/div&gt;&lt;/div&gt;"</span>)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; format for the HTML postamble</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq org-html-postamble</span>
+  <span class="org-comment-delimiter">;;       </span><span class="org-comment">"  &lt;div id=\"footer\"&gt;&lt;div id=\"copyright\"&gt;\n    Copyright &amp;copy; %d %a\n  &lt;/div&gt;&lt;/div&gt;")</span>
 
   <span class="org-comment-delimiter">;; </span><span class="org-comment">don't include the JavaScript snippets in exported HTML files</span>
   (setq org-html-head-include-scripts nil)
