@@ -101,36 +101,22 @@
 (setq org-export-allow-bind-keywords t)
 
 ;; configure Babel to support most languages
-(if (locate-library "ob-shell")         ; ob-sh renamed on Dec 13th, 2013
-    (org-babel-do-load-languages        ; loads org, gnus-sum, etc...
-     'org-babel-load-languages
-     '(
-       (R          . t)                 ; requires R and ess-mode
-       (awk        . t)
-       (ditaa      . t)                 ; sudo aptitude install openjdk-6-jre
-       (dot        . t)
-       (emacs-lisp . t)
-       (java       . t)
-       (latex      . t)                 ; shouldn't you use #+begin/end_latex blocks instead?
-       (ledger     . t)                 ; requires ledger
-       (org        . t)
-       (shell      . t)
-       (sql        . t)
-       ))
-  ;; XXX (in the future) message saying "Upgrade to Org 8.3"
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((R          . t)
-     (awk        . t)
-     (ditaa      . t)
-     (dot        . t)
-     (emacs-lisp . t)
-     (java       . t)
-     (latex      . t)
-     (ledger     . t)
-     (org        . t)
-     (sh         . t)
-     (sql        . t))))
+(add-to-list 'org-babel-load-languages '(R . t)) ; Requires R and ess-mode.
+(add-to-list 'org-babel-load-languages '(awk . t))
+(add-to-list 'org-babel-load-languages '(ditaa . t)) ; Sudo aptitude install openjdk-6-jre.
+(add-to-list 'org-babel-load-languages '(dot . t))
+(add-to-list 'org-babel-load-languages '(java . t))
+(add-to-list 'org-babel-load-languages '(latex . t)) ; Shouldn't you use #+begin/end_latex blocks instead?
+(add-to-list 'org-babel-load-languages '(ledger . t)) ; Requires ledger.
+(add-to-list 'org-babel-load-languages '(makefile . t))
+(add-to-list 'org-babel-load-languages '(org . t))
+(if (locate-library "ob-shell")         ; ob-sh renamed on 2013-12-13
+    (add-to-list 'org-babel-load-languages '(shell . t))
+  (add-to-list 'org-babel-load-languages '(sh . t)))
+(add-to-list 'org-babel-load-languages '(sql . t))
+
+(org-babel-do-load-languages            ; loads org, gnus-sum, etc...
+ 'org-babel-load-languages org-babel-load-languages)
 
 ;; accented characters on graphics
 (setq org-babel-R-command
