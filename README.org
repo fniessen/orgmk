@@ -144,7 +144,7 @@ Currently, =orgmk= does not tangle Org files.
 
 ** Files
 
-[[$HOME/.orgmk-rc]]
+[[~/.orgmk-rc]]
 
 ** Examples
 
@@ -540,8 +540,10 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 The =org2pdf= script converts an Org file to PDF.
 
+#+begin_note
 It tries to detect whether the target is a standard LaTeX document or a Beamer
 presentation by searching for the string =#+BEAMER_THEME:= inside the Org source.
+#+end_note
 
 #+begin_src shell
 TARGET_EXT=pdf
