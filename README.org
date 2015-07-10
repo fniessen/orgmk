@@ -6,9 +6,7 @@
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 toc:t num:nil
 
-#+PROPERTY:  eval     no
-#+PROPERTY:  noweb    yes
-#+PROPERTY:  comments no
+#+PROPERTY:  header-args :eval no :noweb yes :comments no
 #+SETUPFILE: bigblow-pirilampo.setup
 # #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
@@ -1179,7 +1177,9 @@ Ensure that a recent version of Org mode is installed and loaded.
   (require 'package)
   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-  (package-initialize))
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents)))
 #+end_src
 
 #+begin_src emacs-lisp
