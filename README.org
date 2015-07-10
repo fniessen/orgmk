@@ -57,7 +57,7 @@ documents.
 
 ** Requirements
    :PROPERTIES:
-   :tangle:   no
+   :header-args+: :tangle no
    :END:
 
 *** Emacs 24
@@ -235,8 +235,7 @@ At this point, everything should be ready for use.
 
 ** Makefile for installation
    :PROPERTIES:
-   :shebang:  ""
-   :tangle:   Makefile
+   :header-args+: :shebang "" :tangle Makefile
    :END:
 
 #+begin_src makefile
@@ -318,12 +317,12 @@ install:                                # Create symlinks to Orgmk scripts
 
 * Standalone scripts
   :PROPERTIES:
-  :shebang:  "#!/bin/sh\n"
+  :header-args+: :shebang "#!/bin/sh\n"
   :END:
 
 ** Orgmk-init
    :PROPERTIES:
-   :tangle:   bin/orgmk-init
+   :header-args+: :tangle bin/orgmk-init
    :END:
 
 The =orgmk-init= script contains the common part used to setup Emacs
@@ -495,7 +494,7 @@ end of the command line).
 
 ** org2html
    :PROPERTIES:
-   :tangle:   bin/org2html
+   :header-args+: :tangle bin/org2html
    :END:
 
 The =org2html= script converts an Org file to HTML.
@@ -519,7 +518,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2latex
    :PROPERTIES:
-   :tangle:   bin/org2latex
+   :header-args+: :tangle bin/org2latex
    :END:
 
 The =org2latex= script converts an Org file to LaTeX.
@@ -543,7 +542,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2pdf
    :PROPERTIES:
-   :tangle:   bin/org2pdf
+   :header-args+: :tangle bin/org2pdf
    :END:
 
 The =org2pdf= script converts an Org file to PDF.
@@ -569,7 +568,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2beamerpdf
    :PROPERTIES:
-   :tangle:   bin/org2beamerpdf
+   :header-args+: :tangle bin/org2beamerpdf
    :END:
 
 The =org2beamerpdf= script converts an Org file to a Beamer presentation (PDF).
@@ -585,7 +584,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2odt
    :PROPERTIES:
-   :tangle:   bin/org2odt
+   :header-args+: :tangle bin/org2odt
    :END:
 
 The =org2odt= script converts an Org file to ODT.
@@ -601,7 +600,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2txt
    :PROPERTIES:
-   :tangle:   bin/org2txt
+   :header-args+: :tangle bin/org2txt
    :END:
 
 The =org2txt= script converts an Org file to text.
@@ -617,7 +616,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** Orgmk-update-src-check-diff
    :PROPERTIES:
-   :tangle:   bin/orgmk-update-src-check-diff
+   :header-args+: :tangle bin/orgmk-update-src-check-diff
    :END:
 
 Check whether dynamic blocks and tables have been updated, and (if yes) propose
@@ -700,7 +699,7 @@ will always "succeed".
 
 ** org-tangle
    :PROPERTIES:
-   :tangle:   bin/org-tangle
+   :header-args+: :tangle bin/org-tangle
    :END:
 
 The =org-tangle= tangles an Org file.
@@ -717,7 +716,7 @@ eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-babel-tangle \
 
 ** Orgmk.mk
    :PROPERTIES:
-   :tangle:   bin/orgmk.mk
+   :header-args+: :tangle bin/orgmk.mk
    :END:
 
 Here is the "ultimate" Makefile to *automate the generation of HTML or PDF*
@@ -1032,8 +1031,7 @@ The only thing that's not done yet automatically is: tangling this file!
 
 ** Makefile wrapper
    :PROPERTIES:
-   :tangle:   bin/orgmk
-   :shebang:  "#!/bin/sh\n"
+   :header-args+: :tangle bin/orgmk :shebang "#!/bin/sh\n"
    :END:
 
 As you could want to run the batch scripts from a (development) directory
@@ -1090,7 +1088,7 @@ make -f orgmk.mk $FLAGS $*
 
 * Orgmk configuration file
   :PROPERTIES:
-  :tangle:   site-lisp/orgmk.el
+  :header-args+: :tangle site-lisp/orgmk.el
   :END:
 
 I use a setup file =orgmk.el= to hold minimal customization.
@@ -1418,7 +1416,7 @@ end of =orgmk='s initialization.
 
 ** Custom LaTeX classes
    :PROPERTIES:
-   :tangle:   lisp/org-latex-classes.el
+   :header-args+: :tangle lisp/org-latex-classes.el
    :END:
 
 #+begin_src emacs-lisp
