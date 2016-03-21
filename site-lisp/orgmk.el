@@ -57,7 +57,7 @@
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
             (package-install pkg)))))
-  (unless (locate-library "ox-gfm")
+  (unless (locate-library "ox-gfm")     ; for exporting to GFM
     (let ((pkg 'ox-gfm))
       (if (yes-or-no-p (format "Install package `%s`? " pkg))
           (ignore-errors
