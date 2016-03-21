@@ -1,0 +1,8 @@
+#!/bin/sh
+
+TARGET_EXT=md
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-gfm-export-to-markdown \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"

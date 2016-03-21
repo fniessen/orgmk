@@ -56,6 +56,11 @@
     (let ((pkg 'htmlize))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
+            (package-install pkg)))))
+  (unless (locate-library "ox-gfm")
+    (let ((pkg 'ox-gfm))
+      (if (yes-or-no-p (format "Install package `%s`? " pkg))
+          (ignore-errors
             (package-install pkg))))))
 
 ;; version info
