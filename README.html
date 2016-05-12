@@ -3,14 +3,99 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Export Org mode documents to HTML, PDF, etc.</title>
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Fabrice Niessen" />
-<meta  name="description" content="Orgmk completely automates the export of Org documents."
+<meta name="generator" content="Org-mode" />
+<meta name="author" content="Fabrice Niessen" />
+<meta name="description" content="Orgmk completely automates the export of Org documents."
  />
-<meta  name="keywords" content="org-mode, orgmk, export, automate, emacs, pdf, latex, html" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="keywords" content="org-mode, orgmk, export, automate, emacs, pdf, latex, html" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
 <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/htmlize.css"/>
 <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/bigblow.css"/>
 <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/hideshow.css"/>
@@ -65,7 +150,7 @@
 </li>
 <li><a href="#orgheadline20">Installation</a>
 <ul>
-<li><a href="#orgheadline21">New install</a></li>
+<li><a href="#orgheadline21">Installing from the Git repository</a></li>
 <li><a href="#orgheadline22">Makefile for installation</a></li>
 </ul>
 </li>
@@ -166,13 +251,21 @@
 </ul>
 </div>
 </div>
-<a href="http://opensource.org/licenses/GPL-3.0">
-  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
-</a>
+<div class="html">
+<p>
+&lt;a href=&ldquo;<a href="http://opensource.org/licenses/GPL-3.0">http://opensource.org/licenses/GPL-3.0</a>&rdquo;&gt;
+  &lt;img src=&ldquo;<object type="image/svg+xml" data="http://img.shields.io/:license-gpl-blue.svg" >
+Sorry, your browser does not support SVG.</object>&rdquo; alt=&ldquo;:license-gpl-blue.svg&rdquo; /&gt;
+&lt;/a&gt;
+</p>
 
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
-</a>
+<p>
+&lt;a href=&ldquo;<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=orgmk&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted</a>&rdquo;&gt;
+  &lt;img src=&ldquo;<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />&rdquo; alt=&ldquo;btn_donate_LG.gif&rdquo; /&gt;
+&lt;/a&gt;
+</p>
+
+</div>
 
 <div id="outline-container-orgheadline8" class="outline-2">
 <h2 id="orgheadline8">Overview</h2>
@@ -185,8 +278,13 @@ Orgmk is a suite of Bash scripts for <b>automating the conversion of Org mode
 documents to different formats</b> (such as HTML or PDF) from the command line.
 </p>
 
-<script src="http://platform.twitter.com/widgets.js"></script>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="f_niessen">Tweet</a>
+<div class="html">
+<p>
+&lt;script src=&ldquo;<a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a>&rdquo;&gt;&lt;/script&gt;
+&lt;a href=&ldquo;<a href="https://twitter.com/share">https://twitter.com/share</a>&rdquo; class=&ldquo;twitter-share-button&rdquo; data-via=&ldquo;f_niessen&rdquo;&gt;Tweet&lt;/a&gt;
+</p>
+
+</div>
 
 <p>
 The scripts run on both Unix and Microsoft Windows (with Cygwin).
@@ -289,12 +387,12 @@ For &ldquo;weaving&rdquo; files (producing the formatted documentation files):
 
 <div class="org-src-container">
 
-<pre class="src src-shell">org2html [OPTION] FILE
-org2latex [OPTION] FILE
-org2pdf [OPTION] FILE
-org2beamerpdf [OPTION] FILE
-org2odt [OPTION] FILE
-org2txt [OPTION] FILE
+<pre class="src src-shell">org2html [OPTION] FILE
+org2latex [OPTION] FILE
+org2pdf [OPTION] FILE
+org2beamerpdf [OPTION] FILE
+org2odt [OPTION] FILE
+org2txt [OPTION] FILE
 </pre>
 </div></li>
 
@@ -304,7 +402,7 @@ For &ldquo;tangling&rdquo; files:
 
 <div class="org-src-container">
 
-<pre class="src src-shell">org-tangle FILE
+<pre class="src src-shell">org-tangle FILE
 </pre>
 </div></li>
 </ul>
@@ -316,9 +414,9 @@ For &ldquo;tangling&rdquo; files:
 <div class="outline-text-3" id="text-orgheadline11">
 <div class="org-src-container">
 
-<pre class="src src-shell">orgmk [OPTION]
-orgmk [OPTION] [html | pdf]
-orgmk [OPTION] [FILE]
+<pre class="src src-shell">orgmk [OPTION]
+orgmk [OPTION] [html | pdf]
+orgmk [OPTION] [FILE]
 </pre>
 </div>
 
@@ -395,7 +493,7 @@ directory only.
 <h2 id="orgheadline15">Files</h2>
 <div class="outline-text-2" id="text-orgheadline15">
 <p>
-<a href="file:///cygdrive/d/Users/fni/.orgmk-rc">file:///cygdrive/d/Users/fni/.orgmk-rc</a>
+<a href="file://d:/Users/fni/.orgmk-rc">file://d:/Users/fni/.orgmk-rc</a>
 </p>
 </div>
 </div>
@@ -412,7 +510,7 @@ Regenerate HTML and/or PDF files for Org files that have been modified.
 
 <div class="org-src-container">
 
-<pre class="src src-shell">orgmk
+<pre class="src src-shell">orgmk
 </pre>
 </div>
 </div>
@@ -427,7 +525,7 @@ Regenerate HTML only for the Org files that have been changed.
 
 <div class="org-src-container">
 
-<pre class="src src-shell">orgmk html
+<pre class="src src-shell">orgmk html
 </pre>
 </div>
 </div>
@@ -444,7 +542,7 @@ file.</b>
 
 <div class="org-src-container">
 
-<pre class="src src-shell">orgmk thesis.pdf
+<pre class="src src-shell">orgmk thesis.pdf
 </pre>
 </div>
 
@@ -455,7 +553,7 @@ Regenerate (or create for the first time) the file <code>thesis.pdf</code> from 
 
 <div class="org-src-container">
 
-<pre class="src src-shell">org2pdf thesis.org
+<pre class="src src-shell">org2pdf thesis.org
 </pre>
 </div>
 </div>
@@ -472,7 +570,7 @@ The installation process consists of creating symbolic links from the standard
 </div>
 
 <div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">New install</h3>
+<h3 id="orgheadline21">Installing from the Git repository</h3>
 <div class="outline-text-3" id="text-orgheadline21">
 <ol class="org-ol">
 <li><p>
@@ -481,7 +579,7 @@ The installation process consists of creating symbolic links from the standard
 
 <div class="org-src-container">
 
-<pre class="src src-shell">git clone git@github.com:fniessen/orgmk.git
+<pre class="src src-shell">git clone git@github.com:fniessen/orgmk.git
 </pre>
 </div></li>
 
@@ -492,7 +590,7 @@ on your host machine.
 
 <div class="org-src-container">
 
-<pre class="src src-shell">make
+<pre class="src src-shell">make
 </pre>
 </div></li>
 
@@ -509,7 +607,7 @@ with the target directory. For example:
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">BIN_DIR</span>=~/bin
+<pre class="src src-makefile"><span class="org-variable-name">BIN_DIR</span>=~/bin
 </pre>
 </div>
 
@@ -524,7 +622,7 @@ If needed, add that directory to your <code>PATH</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-shell">make install
+<pre class="src src-shell">make install
 </pre>
 </div></li>
 </ol>
@@ -540,80 +638,79 @@ At this point, everything should be ready for use.
 <div class="outline-text-3" id="text-orgheadline22">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-comment-delimiter">### </span><span class="org-comment">-*- Makefile -*- definition file for Orgmk</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">To install `orgmk', type `make' and then `make install'.</span>
-
-<span class="org-variable-name">PWD</span>=$(<span class="org-variable-name">shell</span> pwd)
-
-<span class="org-variable-name">BIN_DIR</span>=/usr/local/bin
-
--include Make.params
-
-<span class="org-variable-name">ORGMK_ROOT</span>=$(<span class="org-variable-name">PWD</span>)
-<span class="org-variable-name">ORGMK_EL</span>=$(<span class="org-variable-name">ORGMK_ROOT</span>)/site-lisp/orgmk.el
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">WARNING: ORGMK_EL must contain the correct path to the</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">`orgmk.el' file according to the Emacs version used (Windows,</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">Cygwin or Linux path)</span>
-<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>=$(<span class="org-variable-name">shell</span> emacs -batch --eval <span class="org-string">"(message \"%s\" system-type)"</span> 2&gt;&amp;1)
-ifeq ($(<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>),windows-nt)
-    <span class="org-variable-name">ORGMK_EL</span>:=<span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">shell</span></span><span class="org-string"> cygpath --mixed $(</span><span class="org-variable-name"><span class="org-string">ORGMK_EL</span></span><span class="org-string">))"</span>
-endif
-
-<span class="org-variable-name">ORGMK_INIT</span>=orgmk-init
-<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>=orgmk.conf
-<span class="org-variable-name">ORGMK_UPDATE</span>=orgmk-update-src
-<span class="org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>=orgmk-update-src-check-diff
-<span class="org-variable-name">ORG2HTML</span>=org2html
-<span class="org-variable-name">ORG2LATEX</span>=org2latex
-<span class="org-variable-name">ORG2PDF</span>=org2pdf
-<span class="org-variable-name">ORG2BEAMERPDF</span>=org2beamerpdf
-<span class="org-variable-name">ORG2ODT</span>=org2odt
-<span class="org-variable-name">ORG2TXT</span>=org2txt
-<span class="org-variable-name">ORGTANGLE</span>=org-tangle
-<span class="org-variable-name">ORGMK_MAKE_SETUP</span>=orgmk-stow-orgmk.mk
-<span class="org-variable-name">ORGMK_MAKE_RUN</span>=orgmk
-
-<span class="org-comment-delimiter">## </span><span class="org-comment">MAKE</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">Ensure `all' is the default target</span>
-<span class="org-makefile-targets">all</span>: orgmk-system-config orgmk-stow-mk  <span class="org-comment-delimiter"># </span><span class="org-comment">Create Orgmk system files</span>
-
-<span class="org-makefile-targets">.PHONY</span>: orgmk-system-config
-<span class="org-makefile-targets">orgmk-system-config</span>:                    <span class="org-comment-delimiter"># </span><span class="org-comment">Create file with location of `orgmk.el'</span>
-<span class="org-whitespace-tab">        </span><span class="org-type">@</span><span class="org-makefile-shell">echo </span><span class="org-makefile-shell"><span class="org-string">"Generating system-wide configuration file..."</span></span>
-<span class="org-whitespace-tab">        </span>echo <span class="org-string">"ORGMK_EL=$(</span><span class="org-variable-name"><span class="org-string">ORGMK_EL</span></span><span class="org-string">)"</span> &gt; bin/$(<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
-<span class="org-whitespace-tab">        </span><span class="org-type">@</span><span class="org-makefile-shell">echo</span>
-
-<span class="org-makefile-targets">.PHONY</span>: orgmk-stow-mk
-<span class="org-makefile-targets">orgmk-stow-mk</span>:                          <span class="org-comment-delimiter"># </span><span class="org-comment">Create core file for `orgmk'</span>
-<span class="org-whitespace-tab">        </span><span class="org-type">@</span><span class="org-makefile-shell">echo </span><span class="org-makefile-shell"><span class="org-string">"Generating setup file..."</span></span>
-<span class="org-whitespace-tab">        </span>echo <span class="org-string">"#!/bin/sh"</span> &gt; bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
-<span class="org-whitespace-tab">        </span>echo <span class="org-string">"ln -f -s $(</span><span class="org-variable-name"><span class="org-string">PWD</span></span><span class="org-string">)/bin/orgmk.mk orgmk.mk"</span> &gt;&gt; bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
-<span class="org-whitespace-tab">        </span>chmod u+x bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
-<span class="org-whitespace-tab">        </span><span class="org-type">@</span><span class="org-makefile-shell">echo</span>
-
-<span class="org-comment-delimiter">## </span><span class="org-comment">MAKE INSTALL</span>
-
-<span class="org-makefile-targets">.PHONY</span>: install
-<span class="org-makefile-targets">install</span>:                                <span class="org-comment-delimiter"># </span><span class="org-comment">Create symlinks to Orgmk scripts</span>
-<span class="org-whitespace-tab">        </span><span class="org-type">@</span><span class="org-makefile-shell">echo </span><span class="org-makefile-shell"><span class="org-string">"Creating symlinks..."</span></span>
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_INIT</span>)              $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_INIT</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>)     $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_UPDATE</span>)            $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_UPDATE</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>) $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2HTML</span>)                $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2HTML</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2LATEX</span>)               $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2LATEX</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2PDF</span>)                 $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2PDF</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2BEAMERPDF</span>)           $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2BEAMERPDF</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2ODT</span>)                 $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2ODT</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2TXT</span>)                 $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2TXT</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGTANGLE</span>)               $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGTANGLE</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)        $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
-<span class="org-whitespace-tab">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_MAKE_RUN</span>)          $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_MAKE_RUN</span>)
-
-<span class="org-comment-delimiter">### </span><span class="org-comment">Makefile ends here</span>
+<pre class="src src-makefile"><span class="org-comment-delimiter">### </span><span class="org-comment">-*- Makefile -*- definition file for Orgmk</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">To install `orgmk', type `make' and then `make install'.</span>
+
+<span class="org-variable-name">PWD</span>=$(<span class="org-variable-name">shell</span> pwd)
+
+<span class="org-variable-name">BIN_DIR</span>=/usr/local/bin
+
+-include Make.params
+
+<span class="org-variable-name">ORGMK_ROOT</span>=$(<span class="org-variable-name">PWD</span>)
+<span class="org-variable-name">ORGMK_EL</span>=$(<span class="org-variable-name">ORGMK_ROOT</span>)/site-lisp/orgmk.el
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">WARNING -- ORGMK_EL must contain the correct path to the `orgmk.el' file</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">according to the Emacs version used (Windows, Cygwin or Linux path).</span>
+<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>=$(<span class="org-variable-name">shell</span> emacs -batch --eval <span class="org-string">"(message \"%s\" system-type)"</span> 2&gt;&amp;1)
+ifeq ($(<span class="org-variable-name">EMACS_SYSTEM_TYPE</span>),windows-nt)
+    <span class="org-variable-name">ORGMK_EL</span>:=<span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">shell</span></span><span class="org-string"> cygpath --mixed $(</span><span class="org-variable-name"><span class="org-string">ORGMK_EL</span></span><span class="org-string">))"</span>
+endif
+
+<span class="org-variable-name">ORGMK_INIT</span>=orgmk-init
+<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>=orgmk.conf
+<span class="org-variable-name">ORGMK_UPDATE</span>=orgmk-update-src
+<span class="org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>=orgmk-update-src-check-diff
+<span class="org-variable-name">ORG2HTML</span>=org2html
+<span class="org-variable-name">ORG2LATEX</span>=org2latex
+<span class="org-variable-name">ORG2PDF</span>=org2pdf
+<span class="org-variable-name">ORG2BEAMERPDF</span>=org2beamerpdf
+<span class="org-variable-name">ORG2ODT</span>=org2odt
+<span class="org-variable-name">ORG2TXT</span>=org2txt
+<span class="org-variable-name">ORGTANGLE</span>=org-tangle
+<span class="org-variable-name">ORGMK_MAKE_SETUP</span>=orgmk-stow-orgmk.mk
+<span class="org-variable-name">ORGMK_MAKE_RUN</span>=orgmk
+
+<span class="org-comment-delimiter">## </span><span class="org-comment">MAKE</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">Ensure `all' is the default target</span>
+<span class="org-makefile-targets">all</span>: orgmk-system-config orgmk-stow-mk  <span class="org-comment-delimiter"># </span><span class="org-comment">Create Orgmk system files</span>
+
+<span class="org-makefile-targets">.PHONY</span>: orgmk-system-config
+<span class="org-makefile-targets">orgmk-system-config</span>:                    <span class="org-comment-delimiter"># </span><span class="org-comment">Create file with location of `orgmk.el'</span>
+<span class="org-whitespace-indentation">        </span>@echo <span class="org-string">"Generating system-wide configuration file..."</span>
+<span class="org-whitespace-indentation">        </span>echo <span class="org-string">"ORGMK_EL=$(</span><span class="org-variable-name"><span class="org-string">ORGMK_EL</span></span><span class="org-string">)"</span> &gt; bin/$(<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
+<span class="org-whitespace-indentation">        </span>@echo
+
+<span class="org-makefile-targets">.PHONY</span>: orgmk-stow-mk
+<span class="org-makefile-targets">orgmk-stow-mk</span>:                          <span class="org-comment-delimiter"># </span><span class="org-comment">Create core file for `orgmk'</span>
+<span class="org-whitespace-indentation">        </span>@echo <span class="org-string">"Generating setup file..."</span>
+<span class="org-whitespace-indentation">        </span>echo <span class="org-string">"#!/bin/sh"</span> &gt; bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-indentation">        </span>echo <span class="org-string">"ln -f -s $(</span><span class="org-variable-name"><span class="org-string">PWD</span></span><span class="org-string">)/bin/orgmk.mk orgmk.mk"</span> &gt;&gt; bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-indentation">        </span>chmod u+x bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-indentation">        </span>@echo
+
+<span class="org-comment-delimiter">## </span><span class="org-comment">MAKE INSTALL</span>
+
+<span class="org-makefile-targets">.PHONY</span>: install
+<span class="org-makefile-targets">install</span>:                                <span class="org-comment-delimiter"># </span><span class="org-comment">Create symlinks to Orgmk scripts</span>
+<span class="org-whitespace-indentation">        </span>@echo <span class="org-string">"Creating symlinks..."</span>
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_INIT</span>)              $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_INIT</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>)     $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_SYSTEM_CONFIG</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_UPDATE</span>)            $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_UPDATE</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>) $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_UPDATE_CHECK_DIFF</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2HTML</span>)                $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2HTML</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2LATEX</span>)               $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2LATEX</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2PDF</span>)                 $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2PDF</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2BEAMERPDF</span>)           $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2BEAMERPDF</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2ODT</span>)                 $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2ODT</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORG2TXT</span>)                 $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORG2TXT</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGTANGLE</span>)               $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGTANGLE</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)        $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_MAKE_SETUP</span>)
+<span class="org-whitespace-indentation">        </span>ln -f -s $(<span class="org-variable-name">PWD</span>)/bin/$(<span class="org-variable-name">ORGMK_MAKE_RUN</span>)          $(<span class="org-variable-name">BIN_DIR</span>)/$(<span class="org-variable-name">ORGMK_MAKE_RUN</span>)
+
+<span class="org-comment-delimiter">### </span><span class="org-comment">Makefile ends here</span>
 </pre>
 </div>
 </div>
@@ -639,60 +736,60 @@ and Org in order to export to HTML, PDF, etc.
 <div class="outline-text-4" id="text-orgheadline25">
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-function-name">Usage</span> ()
-{
-    cat &lt;&lt; EOF 1&gt;&amp;2
-<span class="org-sh-heredoc">Usage: $(basename $0) [OPTION] FILE</span>
-<span class="org-sh-heredoc">Convert FILE to another format.</span>
-
-<span class="org-sh-heredoc">  -h, --help     display this help and exit</span>
-<span class="org-sh-heredoc">  -y             authorize update of the source file without confirmation</span>
-<span class="org-sh-heredoc">  --body-only    export only body (for HTML and LaTeX exports)</span>
-
-<span class="org-sh-heredoc">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
-<span class="org-sh-heredoc">EOF</span>
-    <span class="org-keyword">exit</span> 1
-}
+<pre class="src src-shell"><span class="org-function-name">Usage</span> ()
+{
+    cat &lt;&lt; EOF 1&gt;&amp;2
+<span class="org-sh-heredoc">Usage: $(</span><span class="org-sh-quoted-exec">basename</span><span class="org-sh-heredoc"> $0) [OPTION] FILE</span>
+<span class="org-sh-heredoc">Convert FILE to another format.</span>
+
+<span class="org-sh-heredoc">  -h, --help     display this help and exit</span>
+<span class="org-sh-heredoc">  -y             authorize update of the source file without confirmation</span>
+<span class="org-sh-heredoc">  --body-only    export only body (for HTML and LaTeX exports)</span>
+
+<span class="org-sh-heredoc">Report $(</span><span class="org-sh-quoted-exec">basename</span><span class="org-sh-heredoc"> $0) bugs to fni@missioncriticalit.com</span>
+<span class="org-sh-heredoc">EOF</span>
+    <span class="org-keyword">exit</span> 1
+}
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-function-name">die</span> () {
-    printf <span class="org-string">"$(basename $0): $@\n"</span> &gt; /dev/stderr
-    <span class="org-keyword">exit</span> 2 <span class="org-comment-delimiter"># </span><span class="org-comment">an error occurred</span>
-}
+<pre class="src src-shell"><span class="org-function-name">die</span> () {
+    <span class="org-builtin">printf</span> <span class="org-string">"$(</span><span class="org-sh-quoted-exec">basename</span><span class="org-string"> $0): $@\n"</span> &gt; /dev/stderr
+    <span class="org-keyword">exit</span> 2 <span class="org-comment-delimiter"># </span><span class="org-comment">an error occurred</span>
+}
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-function-name">CleanUp</span> ()
-{
-    <span class="org-comment-delimiter"># </span><span class="org-comment">restore backed up target file if it hasn't been produced</span>
-    <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -z $<span class="org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
-        <span class="org-keyword">if</span> [ -r $<span class="org-variable-name">FILE_TARGET</span>.orig ]; <span class="org-keyword">then</span>
-            <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -r $<span class="org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
-                printf <span class="org-string">"Recovering OLD file $FILE_TARGET...\n"</span>
-                mv $<span class="org-variable-name">FILE_TARGET</span>.orig $<span class="org-variable-name">FILE_TARGET</span>
-            <span class="org-keyword">else</span>
-                rm $<span class="org-variable-name">FILE_TARGET</span>.orig
-            <span class="org-keyword">fi</span>
-        <span class="org-keyword">fi</span>
-    <span class="org-keyword">fi</span>
-
-    <span class="org-comment-delimiter"># </span><span class="org-comment">display log file, if present</span>
-    <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -z $<span class="org-variable-name">FILE_LOG</span> ]; <span class="org-keyword">then</span>
-        <span class="org-keyword">if</span> [ -r $<span class="org-variable-name">FILE_LOG</span> ]; <span class="org-keyword">then</span>
-            grep -e <span class="org-string">"^!.*"</span> -A 3 -B 1 $<span class="org-variable-name">FILE_LOG</span>
-        <span class="org-keyword">fi</span>
-    <span class="org-keyword">fi</span>
-
-    <span class="org-comment-delimiter"># </span><span class="org-comment">remove the temporary copy of the source Org file</span>
-    <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -z $<span class="org-variable-name">FILE_SRC_UPDT</span> ]; <span class="org-keyword">then</span>
-        rm -f $<span class="org-variable-name">FILE_SRC_UPDT</span>
-    <span class="org-keyword">fi</span>
-}
+<pre class="src src-shell"><span class="org-function-name">CleanUp</span> ()
+{
+    <span class="org-comment-delimiter"># </span><span class="org-comment">restore backed up target file if it hasn't been produced</span>
+    <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -z $<span class="org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
+        <span class="org-keyword">if</span> [ -r $<span class="org-variable-name">FILE_TARGET</span>.orig ]; <span class="org-keyword">then</span>
+            <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -r $<span class="org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
+                <span class="org-builtin">printf</span> <span class="org-string">"Recovering OLD file $FILE_TARGET...\n"</span>
+                mv $<span class="org-variable-name">FILE_TARGET</span>.orig $<span class="org-variable-name">FILE_TARGET</span>
+            <span class="org-keyword">else</span>
+                rm $<span class="org-variable-name">FILE_TARGET</span>.orig
+            <span class="org-keyword">fi</span>
+        <span class="org-keyword">fi</span>
+    <span class="org-keyword">fi</span>
+
+    <span class="org-comment-delimiter"># </span><span class="org-comment">display log file, if present</span>
+    <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -z $<span class="org-variable-name">FILE_LOG</span> ]; <span class="org-keyword">then</span>
+        <span class="org-keyword">if</span> [ -r $<span class="org-variable-name">FILE_LOG</span> ]; <span class="org-keyword">then</span>
+            grep -e <span class="org-string">"^!.*"</span> -A 3 -B 1 $<span class="org-variable-name">FILE_LOG</span>
+        <span class="org-keyword">fi</span>
+    <span class="org-keyword">fi</span>
+
+    <span class="org-comment-delimiter"># </span><span class="org-comment">remove the temporary copy of the source Org file</span>
+    <span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -z $<span class="org-variable-name">FILE_SRC_UPDT</span> ]; <span class="org-keyword">then</span>
+        rm -f $<span class="org-variable-name">FILE_SRC_UPDT</span>
+    <span class="org-keyword">fi</span>
+}
 </pre>
 </div>
 </div>
@@ -703,80 +800,80 @@ and Org in order to export to HTML, PDF, etc.
 <div class="outline-text-4" id="text-orgheadline26">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp" id="orgsrcblock1">(format-time-string <span class="org-string">"%Y%m%d.%H%M"</span>)
+<pre class="src src-emacs-lisp" id="orgsrcblock1">(format-time-string <span class="org-string">"%Y%m%d.%H%M"</span>)
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell">    cat &lt;&lt; EOF
-<span class="org-sh-heredoc">This is $(basename $0), version: 20150528.0943.</span>
-<span class="org-sh-heredoc">EOF</span>
+<pre class="src src-shell">    cat &lt;&lt; EOF
+<span class="org-sh-heredoc">This is $(</span><span class="org-sh-quoted-exec">basename</span><span class="org-sh-heredoc"> $0), version: 20160106.2332.</span>
+<span class="org-sh-heredoc">EOF</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">perform housekeeping on program exit or a variety of signals</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">(EXIT, HUP, INT, QUIT, TERM)</span>
-<span class="org-keyword">trap</span> CleanUp 0 1 2 3 15
+<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">perform housekeeping on program exit or a variety of signals</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">(EXIT, HUP, INT, QUIT, TERM)</span>
+<span class="org-keyword">trap</span> CleanUp 0 1 2 3 15
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">load the system-wide config file (definition of `ORGMK_EL')</span>
-. orgmk.conf
-
-<span class="org-keyword">if</span> [ <span class="org-string">"$ORGMK_EL"</span> = <span class="org-string">""</span> ]; <span class="org-keyword">then</span>
-    printf <span class="org-string">"ORGMK_EL variable not defined, please check your setup!\n"</span>
-    <span class="org-keyword">exit</span> 2
-<span class="org-keyword">fi</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">source the user config file (default for `UPDATE_SRC', etc.)</span>
-<span class="org-variable-name">ORGMK_USER_CONF</span>=$<span class="org-variable-name">HOME</span>/.orgmk-rc
-<span class="org-keyword">if</span> [ -r $<span class="org-variable-name">ORGMK_USER_CONF</span> ]; <span class="org-keyword">then</span>
-    . $<span class="org-variable-name">ORGMK_USER_CONF</span>
-<span class="org-keyword">fi</span>
-
-<span class="org-builtin">export</span> UPDATE_SRC
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">set a default value</span>
-<span class="org-builtin">export</span> <span class="org-variable-name">BODY_ONLY</span>=<span class="org-string">"no"</span>
-
-<span class="org-keyword">while </span><span class="org-builtin">true</span>; <span class="org-keyword">do</span>
-    <span class="org-keyword">case</span> <span class="org-string">"$1"</span><span class="org-keyword"> in</span>
-        -y ) <span class="org-variable-name">UPDATE_SRC</span>=<span class="org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
-        --body-only ) <span class="org-variable-name">BODY_ONLY</span>=<span class="org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
-        -h | --help ) Usage ;;
-        * ) <span class="org-keyword">break</span> ;;
-    <span class="org-keyword">esac</span>
-<span class="org-keyword">done</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">now do something with $@</span>
+<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">load the system-wide config file (definition of `ORGMK_EL')</span>
+<span class="org-builtin">.</span> orgmk.conf
+
+<span class="org-keyword">if</span> [ <span class="org-string">"$ORGMK_EL"</span> = <span class="org-string">""</span> ]; <span class="org-keyword">then</span>
+    <span class="org-builtin">printf</span> <span class="org-string">"ORGMK_EL variable not defined, please check your setup!\n"</span>
+    <span class="org-keyword">exit</span> 2
+<span class="org-keyword">fi</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">source the user config file (default for `UPDATE_SRC', etc.)</span>
+<span class="org-variable-name">ORGMK_USER_CONF</span>=$<span class="org-variable-name">HOME</span>/.orgmk-rc
+<span class="org-keyword">if</span> [ -r $<span class="org-variable-name">ORGMK_USER_CONF</span> ]; <span class="org-keyword">then</span>
+    <span class="org-builtin">.</span> $<span class="org-variable-name">ORGMK_USER_CONF</span>
+<span class="org-keyword">fi</span>
+
+<span class="org-builtin">export</span> UPDATE_SRC
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">set a default value</span>
+<span class="org-builtin">export</span> <span class="org-variable-name">BODY_ONLY</span>=<span class="org-string">"no"</span>
+
+<span class="org-keyword">while</span> true; <span class="org-keyword">do</span>
+    <span class="org-keyword">case</span> <span class="org-string">"$1"</span><span class="org-keyword"> in</span>
+        -y ) <span class="org-variable-name">UPDATE_SRC</span>=<span class="org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
+        --body-only ) <span class="org-variable-name">BODY_ONLY</span>=<span class="org-string">"yes"</span>; <span class="org-builtin">shift</span> ;;
+        -h | --help ) Usage ;;
+        * ) <span class="org-keyword">break</span> ;;
+    <span class="org-keyword">esac</span>
+<span class="org-keyword">done</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">now do something with $@</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-keyword">if</span> [ $<span class="org-variable-name">#</span> -ne 1 ]; <span class="org-keyword">then</span>
-    Usage
-<span class="org-keyword">fi</span>
-
-<span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class="org-variable-name">1</span>
-<span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -r <span class="org-string">"$FILE_SRC_ORIG"</span> ]; <span class="org-keyword">then</span>
-    die <span class="org-string">"Cannot read file $FILE_SRC_ORIG"</span>
-<span class="org-keyword">fi</span>
-
-<span class="org-variable-name">FILE_SRC_UPDT</span>=<span class="org-string">"${FILE_SRC_ORIG%.*}.orgmk"</span> <span class="org-comment-delimiter"># </span><span class="org-comment">replace extension</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">The temporary file only differ by its extension (`.orgmk'), so that the</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">exported file will be named &lt;orig file name&gt;.&lt;backend ext&gt;.</span>
+<pre class="src src-shell"><span class="org-keyword">if</span> [ $<span class="org-variable-name">#</span> -ne 1 ]; <span class="org-keyword">then</span>
+    Usage
+<span class="org-keyword">fi</span>
+
+<span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class="org-variable-name">1</span>
+<span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -r <span class="org-string">"$FILE_SRC_ORIG"</span> ]; <span class="org-keyword">then</span>
+    die <span class="org-string">"Cannot read file $FILE_SRC_ORIG"</span>
+<span class="org-keyword">fi</span>
+
+<span class="org-variable-name">FILE_SRC_UPDT</span>=<span class="org-string">"${FILE_SRC_ORIG%.*}.orgmk"</span> <span class="org-comment-delimiter"># </span><span class="org-comment">replace extension</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">The temporary file only differ by its extension (`.orgmk'), so that the</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">exported file will be named &lt;orig file name&gt;.&lt;backend ext&gt;.</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">FILE_LOG</span>=<span class="org-string">"${FILE_SRC_ORIG%.*}.log"</span>
-rm -f $<span class="org-variable-name">FILE_LOG</span>
+<pre class="src src-shell"><span class="org-variable-name">FILE_LOG</span>=<span class="org-string">"${FILE_SRC_ORIG%.*}.log"</span>
+rm -f $<span class="org-variable-name">FILE_LOG</span>
 </pre>
 </div>
 
@@ -794,12 +891,12 @@ put it back if there is no target file produced.
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">FILE_TARGET</span>=<span class="org-string">"${FILE_SRC_ORIG%.*}.$TARGET_EXT"</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">back up previous version of target file</span>
-<span class="org-keyword">if</span> [ -r $<span class="org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
-    mv $<span class="org-variable-name">FILE_TARGET</span> $<span class="org-variable-name">FILE_TARGET</span>.orig
-<span class="org-keyword">fi</span>
+<pre class="src src-shell"><span class="org-variable-name">FILE_TARGET</span>=<span class="org-string">"${FILE_SRC_ORIG%.*}.$TARGET_EXT"</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">back up previous version of target file</span>
+<span class="org-keyword">if</span> [ -r $<span class="org-variable-name">FILE_TARGET</span> ]; <span class="org-keyword">then</span>
+    mv $<span class="org-variable-name">FILE_TARGET</span> $<span class="org-variable-name">FILE_TARGET</span>.orig
+<span class="org-keyword">fi</span>
 </pre>
 </div>
 
@@ -810,14 +907,14 @@ Note that, like with the <code>patch</code> command, the original file is saved 
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">EMACS</span>=emacs
-
-<span class="org-variable-name">WHICH_EMACS</span>=$(<span class="org-builtin">which</span> $<span class="org-variable-name">EMACS</span>)
-<span class="org-variable-name">EMACS_FLAGS</span>=<span class="org-string">"--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""</span>
-<span class="org-variable-name">EMACS_BATCH</span>=<span class="org-string">"emacs --batch -Q $EMACS_FLAGS"</span>
-<span class="org-variable-name">ORG_FLAGS</span>=<span class="org-string">""</span>
-<span class="org-variable-name">ORGMK</span>=<span class="org-string">"$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"</span>
-<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span>=<span class="org-string">"-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\""</span> <span class="org-comment-delimiter"># </span><span class="org-comment">base name</span>
+<pre class="src src-shell"><span class="org-variable-name">EMACS</span>=emacs
+
+<span class="org-variable-name">WHICH_EMACS</span>=$(<span class="org-sh-quoted-exec">which</span> $<span class="org-variable-name">EMACS</span>)
+<span class="org-variable-name">EMACS_FLAGS</span>=<span class="org-string">"--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""</span>
+<span class="org-variable-name">EMACS_BATCH</span>=<span class="org-string">"emacs --batch -Q $EMACS_FLAGS"</span>
+<span class="org-variable-name">ORG_FLAGS</span>=<span class="org-string">""</span>
+<span class="org-variable-name">ORGMK</span>=<span class="org-string">"$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"</span>
+<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span>=<span class="org-string">"-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\""</span> <span class="org-comment-delimiter"># </span><span class="org-comment">base name</span>
 </pre>
 </div>
 
@@ -844,20 +941,20 @@ The <code>org2html</code> script converts an Org file to HTML.
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=html
-. orgmk-init
-
-<span class="org-keyword">case</span> $<span class="org-variable-name">BODY_ONLY</span><span class="org-keyword"> in</span>
-    <span class="org-string">"yes"</span>)
-        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-body-only-to-html <span class="org-sh-escaped-newline">\</span>
-            || die <span class="org-string">"Exported file wasn't produced"</span>
-        ;;
-    <span class="org-string">"no"</span>)
-        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-to-html <span class="org-sh-escaped-newline">\</span>
-            || die <span class="org-string">"Exported file wasn't produced"</span>
-<span class="org-keyword">esac</span>
-
-orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=html
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-keyword">case</span> $<span class="org-variable-name">BODY_ONLY</span><span class="org-keyword"> in</span>
+    <span class="org-string">"yes"</span>)
+        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-body-only-to-html <span class="org-sh-escaped-newline">\</span>
+            || die <span class="org-string">"Exported file wasn't produced"</span>
+        ;;
+    <span class="org-string">"no"</span>)
+        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-html-export-to-html <span class="org-sh-escaped-newline">\</span>
+            || die <span class="org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">esac</span>
+
+orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
 </pre>
 </div>
 </div>
@@ -872,20 +969,20 @@ The <code>org2latex</code> script converts an Org file to LaTeX.
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=tex
-. orgmk-init
-
-<span class="org-keyword">case</span> $<span class="org-variable-name">BODY_ONLY</span><span class="org-keyword"> in</span>
-    <span class="org-string">"yes"</span>)
-        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-body-only-to-latex <span class="org-sh-escaped-newline">\</span>
-            || die <span class="org-string">"Exported file wasn't produced"</span>
-        ;;
-    <span class="org-string">"no"</span>)
-        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
-            || die <span class="org-string">"Exported file wasn't produced"</span>
-<span class="org-keyword">esac</span>
-
-orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=tex
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-keyword">case</span> $<span class="org-variable-name">BODY_ONLY</span><span class="org-keyword"> in</span>
+    <span class="org-string">"yes"</span>)
+        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-body-only-to-latex <span class="org-sh-escaped-newline">\</span>
+            || die <span class="org-string">"Exported file wasn't produced"</span>
+        ;;
+    <span class="org-string">"no"</span>)
+        <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
+            || die <span class="org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">esac</span>
+
+orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
 </pre>
 </div>
 </div>
@@ -908,17 +1005,17 @@ presentation by searching for the string <code>#+BEAMER_THEME:</code> inside the
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=pdf
-. orgmk-init
-
-<span class="org-keyword">if</span> grep -E <span class="org-string">"^#\+BEAMER_THEME: "</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> &gt; /dev/null; <span class="org-keyword">then</span>
-    <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-latex <span class="org-sh-escaped-newline">\</span>
-        || die <span class="org-string">"Exported file wasn't produced"</span>
-<span class="org-keyword">else</span>
-    <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
-        || die <span class="org-string">"Exported file wasn't produced"</span>
-<span class="org-keyword">fi</span>
-orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=pdf
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-keyword">if</span> grep -E <span class="org-string">"^#\+BEAMER_THEME: "</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> &gt; /dev/null; <span class="org-keyword">then</span>
+    <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-latex <span class="org-sh-escaped-newline">\</span>
+        || die <span class="org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">else</span>
+    <span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-latex-export-to-latex <span class="org-sh-escaped-newline">\</span>
+        || die <span class="org-string">"Exported file wasn't produced"</span>
+<span class="org-keyword">fi</span>
+orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
 </pre>
 </div>
 </div>
@@ -933,12 +1030,12 @@ The <code>org2beamerpdf</code> script converts an Org file to a Beamer presentat
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=pdf
-. orgmk-init
-
-<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-pdf <span class="org-sh-escaped-newline">\</span>
-    || die <span class="org-string">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=pdf
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-beamer-export-to-pdf <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
 </pre>
 </div>
 </div>
@@ -953,12 +1050,12 @@ The <code>org2odt</code> script converts an Org file to ODT.
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=odt
-. orgmk-init
-
-<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-odt-export-to-odt <span class="org-sh-escaped-newline">\</span>
-    || die <span class="org-string">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=odt
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-odt-export-to-odt <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
 </pre>
 </div>
 </div>
@@ -973,12 +1070,12 @@ The <code>org2txt</code> script converts an Org file to text.
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=txt
-. orgmk-init
-
-<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-ascii-export-to-ascii <span class="org-sh-escaped-newline">\</span>
-    || die <span class="org-string">"Exported file wasn't produced"</span>
-orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=txt
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-ascii-export-to-ascii <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"Exported file wasn't produced"</span>
+orgmk-update-src-check-diff <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span>
 </pre>
 </div>
 </div>
@@ -998,36 +1095,36 @@ to overwrite the source Org file.
 <div class="outline-text-4" id="text-orgheadline34">
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-function-name">ask</span> () {
-    <span class="org-keyword">while </span><span class="org-builtin">true</span>; <span class="org-keyword">do</span>
-        <span class="org-keyword">if</span> [ <span class="org-string">"${2:-}"</span> = <span class="org-string">"Y"</span> ]; <span class="org-keyword">then</span>
-            <span class="org-variable-name">prompt</span>=<span class="org-string">"Y/n"</span>
-            <span class="org-variable-name">default</span>=Y
-        <span class="org-keyword">elif</span> [ <span class="org-string">"${2:-}"</span> = <span class="org-string">"N"</span> ]; <span class="org-keyword">then</span>
-            <span class="org-variable-name">prompt</span>=<span class="org-string">"y/N"</span>
-            <span class="org-variable-name">default</span>=N
-        <span class="org-keyword">else</span>
-            <span class="org-variable-name">prompt</span>=<span class="org-string">"y/n"</span>
-            <span class="org-variable-name">default</span>=
-        <span class="org-keyword">fi</span>
-
-        <span class="org-comment-delimiter"># </span><span class="org-comment">ask the question (without the need to press RET)</span>
-        printf <span class="org-string">"$1 ($prompt): "</span>
-        <span class="org-builtin">read</span> -n 1 -r REPLY
-        printf <span class="org-string">"\n"</span> <span class="org-comment-delimiter"># </span><span class="org-comment">just a final linefeed</span>
-
-        <span class="org-comment-delimiter"># </span><span class="org-comment">default?</span>
-        <span class="org-keyword">if</span> [ -z <span class="org-string">"$REPLY"</span> ]; <span class="org-keyword">then</span>
-            <span class="org-variable-name">REPLY</span>=$<span class="org-variable-name">default</span>
-        <span class="org-keyword">fi</span>
-
-        <span class="org-comment-delimiter"># </span><span class="org-comment">check if the reply is valid</span>
-        <span class="org-keyword">case</span> <span class="org-string">"$REPLY"</span><span class="org-keyword"> in</span>
-            y*|Y*) <span class="org-keyword">return</span> 0 ;;
-            n*|N*) <span class="org-keyword">return</span> 1 ;;
-        <span class="org-keyword">esac</span>
-    <span class="org-keyword">done</span>
-}
+<pre class="src src-shell"><span class="org-function-name">ask</span> () {
+    <span class="org-keyword">while</span> true; <span class="org-keyword">do</span>
+        <span class="org-keyword">if</span> [ <span class="org-string">"${2:-}"</span> = <span class="org-string">"Y"</span> ]; <span class="org-keyword">then</span>
+            <span class="org-variable-name">prompt</span>=<span class="org-string">"Y/n"</span>
+            <span class="org-variable-name">default</span>=Y
+        <span class="org-keyword">elif</span> [ <span class="org-string">"${2:-}"</span> = <span class="org-string">"N"</span> ]; <span class="org-keyword">then</span>
+            <span class="org-variable-name">prompt</span>=<span class="org-string">"y/N"</span>
+            <span class="org-variable-name">default</span>=N
+        <span class="org-keyword">else</span>
+            <span class="org-variable-name">prompt</span>=<span class="org-string">"y/n"</span>
+            <span class="org-variable-name">default</span>=
+        <span class="org-keyword">fi</span>
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">ask the question (without the need to press RET)</span>
+        <span class="org-builtin">printf</span> <span class="org-string">"$1 ($prompt): "</span>
+        <span class="org-builtin">read</span> -n 1 -r REPLY
+        <span class="org-builtin">printf</span> <span class="org-string">"\n"</span> <span class="org-comment-delimiter"># </span><span class="org-comment">just a final linefeed</span>
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">default?</span>
+        <span class="org-keyword">if</span> [ -z <span class="org-string">"$REPLY"</span> ]; <span class="org-keyword">then</span>
+            <span class="org-variable-name">REPLY</span>=$<span class="org-variable-name">default</span>
+        <span class="org-keyword">fi</span>
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">check if the reply is valid</span>
+        <span class="org-keyword">case</span> <span class="org-string">"$REPLY"</span><span class="org-keyword"> in</span>
+            y*|Y*) <span class="org-keyword">return</span> 0 ;;
+            n*|N*) <span class="org-keyword">return</span> 1 ;;
+        <span class="org-keyword">esac</span>
+    <span class="org-keyword">done</span>
+}
 </pre>
 </div>
 </div>
@@ -1038,30 +1135,30 @@ to overwrite the source Org file.
 <div class="outline-text-4" id="text-orgheadline35">
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class="org-variable-name">1</span>
-<span class="org-variable-name">FILE_SRC_UPDT</span>=$<span class="org-variable-name">2</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">set a default value</span>
-: ${<span class="org-variable-name">UPDATE_SRC</span>:=<span class="org-string">"query"</span>}
-
-<span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -r <span class="org-string">"$FILE_SRC_UPDT"</span> ]; <span class="org-keyword">then</span>
-    printf <span class="org-string">"Cannot read file $FILE_SRC_UPDT\n"</span>
-<span class="org-keyword">else</span>
-    <span class="org-keyword">if</span> diff -q <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span> &gt; /dev/null; <span class="org-keyword">then</span>
-        rm <span class="org-string">"$FILE_SRC_UPDT"</span>
-    <span class="org-keyword">else</span>
-        <span class="org-keyword">if</span> [[ <span class="org-string">"$UPDATE_SRC"</span> = <span class="org-string">"query"</span> ]]; <span class="org-keyword">then</span>
-            ask <span class="org-string">"Update source file?"</span> &amp;&amp; <span class="org-variable-name">UPDATE_SRC</span>=<span class="org-string">"yes"</span> || <span class="org-variable-name">UPDATE_SRC</span>=<span class="org-string">"no"</span>
-        <span class="org-keyword">fi</span>
-
-        <span class="org-keyword">if</span> [[ <span class="org-string">"$UPDATE_SRC"</span> = <span class="org-string">"yes"</span> ]]; <span class="org-keyword">then</span>
-            mv <span class="org-string">"$FILE_SRC_UPDT"</span> <span class="org-string">"$FILE_SRC_ORIG"</span>
-            printf <span class="org-string">"${C_INFO}Dynamic blocks and tables in \`$FILE_SRC_ORIG' successfully updated${C_RESET}\n"</span>
-        <span class="org-keyword">else</span>
-            printf <span class="org-string">"Nothing gets updated...\n"</span>
-        <span class="org-keyword">fi</span>
-    <span class="org-keyword">fi</span>
-<span class="org-keyword">fi</span>
+<pre class="src src-shell"><span class="org-variable-name">FILE_SRC_ORIG</span>=$<span class="org-variable-name">1</span>
+<span class="org-variable-name">FILE_SRC_UPDT</span>=$<span class="org-variable-name">2</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">set a default value</span>
+: ${<span class="org-variable-name">UPDATE_SRC</span>:=<span class="org-string">"query"</span>}
+
+<span class="org-keyword">if</span> [ <span class="org-negation-char">!</span> -r <span class="org-string">"$FILE_SRC_UPDT"</span> ]; <span class="org-keyword">then</span>
+    <span class="org-builtin">printf</span> <span class="org-string">"Cannot read file $FILE_SRC_UPDT\n"</span>
+<span class="org-keyword">else</span>
+    <span class="org-keyword">if</span> diff -q <span class="org-string">"$FILE_SRC_ORIG"</span> <span class="org-string">"$FILE_SRC_UPDT"</span> &gt; /dev/null; <span class="org-keyword">then</span>
+        rm <span class="org-string">"$FILE_SRC_UPDT"</span>
+    <span class="org-keyword">else</span>
+        <span class="org-keyword">if</span> [[ <span class="org-string">"$UPDATE_SRC"</span> = <span class="org-string">"query"</span> ]]; <span class="org-keyword">then</span>
+            ask <span class="org-string">"Update source file?"</span> &amp;&amp; <span class="org-variable-name">UPDATE_SRC</span>=<span class="org-string">"yes"</span> || <span class="org-variable-name">UPDATE_SRC</span>=<span class="org-string">"no"</span>
+        <span class="org-keyword">fi</span>
+
+        <span class="org-keyword">if</span> [[ <span class="org-string">"$UPDATE_SRC"</span> = <span class="org-string">"yes"</span> ]]; <span class="org-keyword">then</span>
+            mv <span class="org-string">"$FILE_SRC_UPDT"</span> <span class="org-string">"$FILE_SRC_ORIG"</span>
+            <span class="org-builtin">printf</span> <span class="org-string">"${C_INFO}Dynamic blocks and tables in \`$FILE_SRC_ORIG' successfully updated${C_RESET}\n"</span>
+        <span class="org-keyword">else</span>
+            <span class="org-builtin">printf</span> <span class="org-string">"Nothing gets updated...\n"</span>
+        <span class="org-keyword">fi</span>
+    <span class="org-keyword">fi</span>
+<span class="org-keyword">fi</span>
 </pre>
 </div>
 
@@ -1093,11 +1190,11 @@ The <code>org-tangle</code> tangles an Org file.
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=
-. orgmk-init
-
-<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-babel-tangle <span class="org-sh-escaped-newline">\</span>
-    || die <span class="org-string">"File wasn't tangled"</span>
+<pre class="src src-shell"><span class="org-variable-name">TARGET_EXT</span>=
+<span class="org-builtin">.</span> orgmk-init
+
+<span class="org-builtin">eval</span> $<span class="org-variable-name">ORGMK</span> $<span class="org-variable-name">FILE_SRC_ORIG</span> $<span class="org-variable-name">ORGMK_UPDATE_FLAGS</span> -f org-babel-tangle <span class="org-sh-escaped-newline">\</span>
+    || die <span class="org-string">"File wasn't tangled"</span>
 </pre>
 </div>
 </div>
@@ -1146,7 +1243,7 @@ source?
 <div class="outline-text-4" id="text-orgheadline38">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-comment-delimiter">### </span><span class="org-comment">-*- Makefile -*- definition file for Orgmk</span>
+<pre class="src src-makefile"><span class="org-comment-delimiter">### </span><span class="org-comment">-*- Makefile -*- definition file for Orgmk</span>
 </pre>
 </div>
 </div>
@@ -1156,7 +1253,7 @@ source?
 <div class="outline-text-5" id="text-orgheadline39">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">SHELL</span> = /bin/sh
+<pre class="src src-makefile"><span class="org-variable-name">SHELL</span> = /bin/sh
 </pre>
 </div>
 </div>
@@ -1172,10 +1269,10 @@ after dblocks update and tables re-computation.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">ORG2_FLAGS</span>=-y
-
-<span class="org-variable-name">ORG2HTML</span>=org2html $(<span class="org-variable-name">ORG2_FLAGS</span>)
-<span class="org-variable-name">ORG2PDF</span>=org2pdf $(<span class="org-variable-name">ORG2_FLAGS</span>)
+<pre class="src src-makefile"><span class="org-variable-name">ORG2_FLAGS</span>=-y
+
+<span class="org-variable-name">ORG2HTML</span>=org2html $(<span class="org-variable-name">ORG2_FLAGS</span>)
+<span class="org-variable-name">ORG2PDF</span>=org2pdf $(<span class="org-variable-name">ORG2_FLAGS</span>)
 </pre>
 </div>
 </div>
@@ -1186,8 +1283,8 @@ after dblocks update and tables re-computation.
 <div class="outline-text-5" id="text-orgheadline41">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">VIEW_HTML</span> ?= firefox
-<span class="org-variable-name">VIEW_PDF</span> ?= xpdf
+<pre class="src src-makefile"><span class="org-variable-name">VIEW_HTML</span> ?= firefox
+<span class="org-variable-name">VIEW_PDF</span> ?= xpdf
 </pre>
 </div>
 </div>
@@ -1198,33 +1295,33 @@ after dblocks update and tables re-computation.
 <div class="outline-text-5" id="text-orgheadline42">
 <div class="org-src-container">
 
-<pre class="src src-makefile">ifdef NO_COLOR
-    <span class="org-variable-name">tput</span> =
-else
-    <span class="org-variable-name">tput</span> = $(<span class="org-variable-name">shell</span> $(<span class="org-variable-name">TPUT</span>) $<span class="org-constant">1</span>)
-endif
-
-<span class="org-variable-name">black</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,setaf 0)
-<span class="org-variable-name">red</span><span class="org-whitespace-tab">     </span>:= $(<span class="org-variable-name">call</span> tput,setaf 1)
-<span class="org-variable-name">green</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,setaf 2)
-<span class="org-variable-name">yellow</span><span class="org-whitespace-tab">  </span>:= $(<span class="org-variable-name">call</span> tput,setaf 3)
-<span class="org-variable-name">blue</span><span class="org-whitespace-tab">    </span>:= $(<span class="org-variable-name">call</span> tput,setaf 4)
-<span class="org-variable-name">magenta</span><span class="org-whitespace-tab"> </span>:= $(<span class="org-variable-name">call</span> tput,setaf 5)
-<span class="org-variable-name">cyan</span><span class="org-whitespace-tab">    </span>:= $(<span class="org-variable-name">call</span> tput,setaf 6)
-<span class="org-variable-name">white</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,setaf 7)
-<span class="org-variable-name">bold</span><span class="org-whitespace-tab">    </span>:= $(<span class="org-variable-name">call</span> tput,bold)
-<span class="org-variable-name">uline</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,smul)
-<span class="org-variable-name">reset</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,sgr0)
+<pre class="src src-makefile">ifdef NO_COLOR
+    <span class="org-variable-name">tput</span> =
+else
+    <span class="org-variable-name">tput</span> = $(<span class="org-variable-name">shell</span> $(<span class="org-variable-name">TPUT</span>) $<span class="org-constant">1</span>)
+endif
+
+<span class="org-variable-name">black</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,setaf 0)
+<span class="org-variable-name">red</span><span class="org-whitespace-tab">     </span>:= $(<span class="org-variable-name">call</span> tput,setaf 1)
+<span class="org-variable-name">green</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,setaf 2)
+<span class="org-variable-name">yellow</span><span class="org-whitespace-tab">  </span>:= $(<span class="org-variable-name">call</span> tput,setaf 3)
+<span class="org-variable-name">blue</span><span class="org-whitespace-tab">    </span>:= $(<span class="org-variable-name">call</span> tput,setaf 4)
+<span class="org-variable-name">magenta</span><span class="org-whitespace-tab"> </span>:= $(<span class="org-variable-name">call</span> tput,setaf 5)
+<span class="org-variable-name">cyan</span><span class="org-whitespace-tab">    </span>:= $(<span class="org-variable-name">call</span> tput,setaf 6)
+<span class="org-variable-name">white</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,setaf 7)
+<span class="org-variable-name">bold</span><span class="org-whitespace-tab">    </span>:= $(<span class="org-variable-name">call</span> tput,bold)
+<span class="org-variable-name">uline</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,smul)
+<span class="org-variable-name">reset</span><span class="org-whitespace-tab">   </span>:= $(<span class="org-variable-name">call</span> tput,sgr0)
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">C_INFO</span>=<span class="org-string">"\\e[32m"</span>
-<span class="org-variable-name">C_WARNING</span>=<span class="org-string">"\\e[35m"</span>
-<span class="org-variable-name">C_SUCCESS</span>=<span class="org-string">"\\e[1\;32m"</span>
-<span class="org-variable-name">C_FAILURE</span>=<span class="org-string">"\\e[1\;31m"</span>
-<span class="org-variable-name">C_RESET</span>=<span class="org-string">"\\e[0m"</span>
+<pre class="src src-makefile"><span class="org-variable-name">C_INFO</span>=<span class="org-string">"\\e[32m"</span>
+<span class="org-variable-name">C_WARNING</span>=<span class="org-string">"\\e[35m"</span>
+<span class="org-variable-name">C_SUCCESS</span>=<span class="org-string">"\\e[1\;32m"</span>
+<span class="org-variable-name">C_FAILURE</span>=<span class="org-string">"\\e[1\;31m"</span>
+<span class="org-variable-name">C_RESET</span>=<span class="org-string">"\\e[0m"</span>
 </pre>
 </div>
 </div>
@@ -1244,19 +1341,19 @@ subtree).
 
 <div class="org-src-container">
 
-<pre class="src src-makefile">ifeq ($(<span class="org-variable-name">ALLSUBDIRS</span>),yes)
-    <span class="org-variable-name">TXT_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.txt)
-    <span class="org-variable-name">ORG_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.org)
-    <span class="org-variable-name">HTML_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.html)
-    <span class="org-variable-name">PDF_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.pdf)
-else
-    <span class="org-variable-name">TXT_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.txt)
-    <span class="org-variable-name">ORG_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.org)
-    <span class="org-variable-name">HTML_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.html)
-    <span class="org-variable-name">PDF_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.pdf)
-endif
-
-<span class="org-variable-name">FILES_TO_TANGLE</span> := $(<span class="org-variable-name">join</span> $(<span class="org-variable-name">ORG_FILES</span>), $(<span class="org-variable-name">TXT_FILES</span>))
+<pre class="src src-makefile">ifeq ($(<span class="org-variable-name">ALLSUBDIRS</span>),yes)
+    <span class="org-variable-name">TXT_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.txt)
+    <span class="org-variable-name">ORG_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.org)
+    <span class="org-variable-name">HTML_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.html)
+    <span class="org-variable-name">PDF_FILES</span>=$(<span class="org-variable-name">shell</span> find . -name \*.pdf)
+else
+    <span class="org-variable-name">TXT_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.txt)
+    <span class="org-variable-name">ORG_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.org)
+    <span class="org-variable-name">HTML_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.html)
+    <span class="org-variable-name">PDF_FILES</span>=$(<span class="org-variable-name">shell</span> find . -maxdepth 1 -name \*.pdf)
+endif
+
+<span class="org-variable-name">FILES_TO_TANGLE</span> := $(<span class="org-variable-name">join</span> $(<span class="org-variable-name">ORG_FILES</span>), $(<span class="org-variable-name">TXT_FILES</span>))
 </pre>
 </div>
 
@@ -1291,8 +1388,8 @@ List of HTML files which can be generated:
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">HTML_FILES_FROM_ORG</span> = $(<span class="org-variable-name">patsubst</span> %.org,%.html,$(<span class="org-variable-name">ORG_FILES</span>))
-<span class="org-variable-name">HTML_FILES_FROM_TXT</span> = $(<span class="org-variable-name">patsubst</span> %.txt,%.html,$(<span class="org-variable-name">TXT_FILES</span>))
+<pre class="src src-makefile"><span class="org-variable-name">HTML_FILES_FROM_ORG</span> = $(<span class="org-variable-name">patsubst</span> %.org,%.html,$(<span class="org-variable-name">ORG_FILES</span>))
+<span class="org-variable-name">HTML_FILES_FROM_TXT</span> = $(<span class="org-variable-name">patsubst</span> %.txt,%.html,$(<span class="org-variable-name">TXT_FILES</span>))
 </pre>
 </div>
 
@@ -1302,7 +1399,7 @@ List of HTML files to be re-generated (if they have an Org counterpart):
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">CUR_HTML_FILES</span> := $(<span class="org-variable-name">HTML_FILES</span>)
+<pre class="src src-makefile"><span class="org-variable-name">CUR_HTML_FILES</span> := $(<span class="org-variable-name">HTML_FILES</span>)
 </pre>
 </div>
 </div>
@@ -1317,8 +1414,8 @@ List of PDF files which can be generated:
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">PDF_FILES_FROM_ORG</span> = $(<span class="org-variable-name">patsubst</span> %.org,%.pdf,$(<span class="org-variable-name">ORG_FILES</span>))
-<span class="org-variable-name">PDF_FILES_FROM_TXT</span> = $(<span class="org-variable-name">patsubst</span> %.txt,%.pdf,$(<span class="org-variable-name">TXT_FILES</span>))
+<pre class="src src-makefile"><span class="org-variable-name">PDF_FILES_FROM_ORG</span> = $(<span class="org-variable-name">patsubst</span> %.org,%.pdf,$(<span class="org-variable-name">ORG_FILES</span>))
+<span class="org-variable-name">PDF_FILES_FROM_TXT</span> = $(<span class="org-variable-name">patsubst</span> %.txt,%.pdf,$(<span class="org-variable-name">TXT_FILES</span>))
 </pre>
 </div>
 
@@ -1328,7 +1425,7 @@ List of PDF files to be re-generated (if they have an Org counterpart):
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">CUR_PDF_FILES</span> := $(<span class="org-variable-name">PDF_FILES</span>)
+<pre class="src src-makefile"><span class="org-variable-name">CUR_PDF_FILES</span> := $(<span class="org-variable-name">PDF_FILES</span>)
 </pre>
 </div>
 </div>
@@ -1339,10 +1436,10 @@ List of PDF files to be re-generated (if they have an Org counterpart):
 <div class="outline-text-5" id="text-orgheadline46">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-comment-delimiter"># </span><span class="org-comment">turn command echo'ing back on with VERBOSE=1</span>
-ifndef VERBOSE
-    <span class="org-variable-name">QUIET</span> := @
-endif
+<pre class="src src-makefile"><span class="org-comment-delimiter"># </span><span class="org-comment">turn command echo'ing back on with VERBOSE=1</span>
+ifndef VERBOSE
+    <span class="org-variable-name">QUIET</span> := @
+endif
 </pre>
 </div>
 
@@ -1352,10 +1449,10 @@ endif
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-comment-delimiter"># </span><span class="org-comment">turn on shell debugging with SHELL_DE</span><span class="org-leuven-highlight"><span class="org-comment">BUG</span></span><span class="org-comment">=1</span>
-ifdef SHELL_DE<span class="org-leuven-highlight">BUG</span>
-    <span class="org-variable-name">SHELL</span> += -x
-endif
+<pre class="src src-makefile"><span class="org-comment-delimiter"># </span><span class="org-comment">turn on shell debugging with SHELL_DE</span><span class="org-leuven-highlight"><span class="org-comment">BUG</span></span><span class="org-comment">=1</span>
+ifdef SHELL_DE<span class="org-leuven-highlight">BUG</span>
+    <span class="org-variable-name">SHELL</span> += -x
+endif
 </pre>
 </div>
 </div>
@@ -1370,9 +1467,9 @@ Define variables for each command used in targets:
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-variable-name">PRINTF</span>=$(<span class="org-variable-name">QUIET</span>)printf
-<span class="org-variable-name">EGREP</span>=$(<span class="org-variable-name">QUIET</span>)egrep
-<span class="org-variable-name">LS</span>=$(<span class="org-variable-name">QUIET</span>)ls
+<pre class="src src-makefile"><span class="org-variable-name">PRINTF</span>=$(<span class="org-variable-name">QUIET</span>)printf
+<span class="org-variable-name">EGREP</span>=$(<span class="org-variable-name">QUIET</span>)egrep
+<span class="org-variable-name">LS</span>=$(<span class="org-variable-name">QUIET</span>)ls
 </pre>
 </div>
 </div>
@@ -1384,8 +1481,8 @@ Define variables for each command used in targets:
 <div class="outline-text-4" id="text-orgheadline49">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: all
-<span class="org-makefile-targets">all</span>: html pdf                           <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all HTML and PDF files</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: all
+<span class="org-makefile-targets">all</span>: html pdf                           <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all HTML and PDF files</span>
 </pre>
 </div>
 </div>
@@ -1400,13 +1497,13 @@ Get help.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: help
-<span class="org-makefile-targets">help</span>:                                   <span class="org-comment-delimiter"># </span><span class="org-comment">Display callable targets</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"Usage: orgmk [OPTION]... [TARGET]...\n"</span> &gt; /dev/stderr
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"What target do you want?\n"</span> &gt; /dev/stderr
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">EGREP</span>) <span class="org-string">"^[^</span><span class="org-whitespace-tab">   </span><span class="org-string">#A-Z]+:"</span> [Mm]akefile \
-<span class="org-whitespace-tab">        </span>| sed <span class="org-string">'s/:[^#]*//'</span> | sed <span class="org-string">'s/^/\n/g'</span> | sed <span class="org-string">'s/# /\n\t/g'</span> &gt; /dev/stderr
+<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: help
+<span class="org-makefile-targets">help</span>:                                   <span class="org-comment-delimiter"># </span><span class="org-comment">Display callable targets</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"Usage: orgmk [OPTION]... [TARGET]...\n"</span> &gt; /dev/stderr
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"What target do you want?\n"</span> &gt; /dev/stderr
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">EGREP</span>) <span class="org-string">"^[^</span><span class="org-whitespace-tab">   </span><span class="org-string">#A-Z]+:"</span> [Mm]akefile \
+<span class="org-whitespace-tab">        </span>| sed <span class="org-string">'s/:[^#]*//'</span> | sed <span class="org-string">'s/^/\n/g'</span> | sed <span class="org-string">'s/# /\n\t/g'</span> &gt; /dev/stderr
 </pre>
 </div>
 </div>
@@ -1422,8 +1519,8 @@ directory, and whose source Org file has changed.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: html
-<span class="org-makefile-targets">html</span>: $(<span class="org-variable-name">CUR_HTML_FILES</span>)                 <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all HTML documents from Org</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: html
+<span class="org-makefile-targets">html</span>: $(<span class="org-variable-name">CUR_HTML_FILES</span>)                 <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all HTML documents from Org</span>
 </pre>
 </div>
 
@@ -1434,19 +1531,19 @@ ignore other Org files in the directory.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">$(HTML_FILES_FROM_ORG)</span>: %.html: %.org   <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to HTML</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to HTML...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.html"</span> &gt; /dev/null \
-<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-
-<span class="org-makefile-targets">$(</span><span class="org-makefile-targets"><span class="org-variable-name">HTML_FILES_FROM_TXT</span></span><span class="org-makefile-targets">)</span>: %.html: %.txt   <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to HTML</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to HTML...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.html"</span> &gt; /dev/null \
-<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">$(HTML_FILES_FROM_ORG)</span>: %.html: %.org   <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to HTML</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to HTML...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.html"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+
+<span class="org-makefile-targets">$(</span><span class="org-makefile-targets"><span class="org-variable-name">HTML_FILES_FROM_TXT</span></span><span class="org-makefile-targets">)</span>: %.html: %.txt   <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to HTML</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to HTML...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.html"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 </pre>
 </div>
 
@@ -1456,11 +1553,11 @@ The recipe to <b>convert Org to HTML</b> is:
 
 <div class="org-src-container">
 
-<pre class="src src-makefile" id="orgsrcblock2"><span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to HTML...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.html"</span> &gt; /dev/null \
-<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<pre class="src src-makefile" id="orgsrcblock2"><span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to HTML...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2HTML</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.html"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 </pre>
 </div>
 
@@ -1470,7 +1567,7 @@ What about <code>org-export-as-html-batch</code> and <code>org-export-as-html-an
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">view-html</span>:                              <span class="org-comment-delimiter"># </span><span class="org-comment">Generate the HTML files, then show the result</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">view-html</span>:                              <span class="org-comment-delimiter"># </span><span class="org-comment">Generate the HTML files, then show the result</span>
 </pre>
 </div>
 </div>
@@ -1486,8 +1583,8 @@ regenerate all of them.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: pdf
-<span class="org-makefile-targets">pdf</span>: $(<span class="org-variable-name">CUR_PDF_FILES</span>)                   <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all PDF documents from Org</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: pdf
+<span class="org-makefile-targets">pdf</span>: $(<span class="org-variable-name">CUR_PDF_FILES</span>)                   <span class="org-comment-delimiter"># </span><span class="org-comment">Regenerate all PDF documents from Org</span>
 </pre>
 </div>
 
@@ -1497,19 +1594,19 @@ Type <code>orgmk file.pdf</code> to generate only the specified PDF file.
 
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">$(PDF_FILES_FROM_ORG)</span>: %.pdf: %.org     <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to PDF</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to PDF...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.pdf"</span> &gt; /dev/null \
-<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-
-<span class="org-makefile-targets">$(</span><span class="org-makefile-targets"><span class="org-variable-name">PDF_FILES_FROM_TXT</span></span><span class="org-makefile-targets">)</span>: %.pdf: %.txt     <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to PDF</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to PDF...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.pdf"</span> &gt; /dev/null \
-<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">$(PDF_FILES_FROM_ORG)</span>: %.pdf: %.org     <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to PDF</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to PDF...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.pdf"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+
+<span class="org-makefile-targets">$(</span><span class="org-makefile-targets"><span class="org-variable-name">PDF_FILES_FROM_TXT</span></span><span class="org-makefile-targets">)</span>: %.pdf: %.txt     <span class="org-comment-delimiter"># </span><span class="org-comment">Export an Org document to PDF</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to PDF...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.pdf"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 </pre>
 </div>
 
@@ -1529,11 +1626,11 @@ The recipe to <b>convert Org to PDF</b> is:
 
 <div class="org-src-container">
 
-<pre class="src src-makefile" id="orgsrcblock3"><span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to PDF...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.pdf"</span> &gt; /dev/null \
-<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
-<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<pre class="src src-makefile" id="orgsrcblock3"><span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_INFO</span></span><span class="org-string">)Exporting \`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/$</span><span class="org-constant"><span class="org-string">&lt;</span></span><span class="org-string">' to PDF...$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">ORG2PDF</span>) $<span class="org-constant">&lt;</span>
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">LS</span>) -l -t $<span class="org-constant">&lt;</span> <span class="org-makefile-targets">$</span><span class="org-constant"><span class="org-makefile-targets">@</span></span> | head -n 1 | grep -E <span class="org-string">"\.pdf"</span> &gt; /dev/null \
+<span class="org-whitespace-tab">        </span>|| { printf <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_FAILURE</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' is NOT up to date$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>; exit 1; }
+<span class="org-whitespace-tab">        </span>$(<span class="org-variable-name">PRINTF</span>) <span class="org-string">"$(</span><span class="org-variable-name"><span class="org-string">C_SUCCESS</span></span><span class="org-string">)\`$(</span><span class="org-variable-name"><span class="org-string">CURDIR</span></span><span class="org-string">)/</span><span class="org-string"><span class="org-makefile-targets">$</span></span><span class="org-constant"><span class="org-string"><span class="org-makefile-targets">@</span></span></span><span class="org-string">' successfully generated$(</span><span class="org-variable-name"><span class="org-string">C_RESET</span></span><span class="org-string">)\n"</span>
 </pre>
 </div>
 
@@ -1575,8 +1672,8 @@ no need to delete it at startup&#x2026;
 <div class="outline-text-4" id="text-orgheadline53">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: clean
-<span class="org-makefile-targets">clean</span>:                                  <span class="org-comment-delimiter"># </span><span class="org-comment">Delete all temporary files created by Org export</span>
+<pre class="src src-makefile"><span class="org-makefile-targets">.PHONY</span>: clean
+<span class="org-makefile-targets">clean</span>:                                  <span class="org-comment-delimiter"># </span><span class="org-comment">Delete all temporary files created by Org export</span>
 </pre>
 </div>
 </div>
@@ -1601,7 +1698,7 @@ The only thing that&rsquo;s not done yet automatically is: tangling this file!
 <div class="outline-text-4" id="text-orgheadline55">
 <div class="org-src-container">
 
-<pre class="src src-makefile"><span class="org-comment-delimiter">### </span><span class="org-comment">orgmk.mk ends here</span>
+<pre class="src src-makefile"><span class="org-comment-delimiter">### </span><span class="org-comment">orgmk.mk ends here</span>
 </pre>
 </div>
 </div>
@@ -1625,51 +1722,51 @@ directory of your Org files just for the duration of the script execution
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-function-name">Usage</span> ()
-{
-    cat &lt;&lt; EOF 1&gt;&amp;2
-<span class="org-sh-heredoc">Usage: $(basename $0) [OPTION] FILE</span>
-<span class="org-sh-heredoc">Export Org source files whenever they are updated.</span>
-
-<span class="org-sh-heredoc">  -h, --help          display this help and exit</span>
-<span class="org-sh-heredoc">  -r, --recursive     export all Org files under each directory, recursively</span>
-
-<span class="org-sh-heredoc">Report $(basename $0) bugs to fni@missioncriticalit.com</span>
-<span class="org-sh-heredoc">EOF</span>
-    <span class="org-keyword">exit</span> 1
-}
+<pre class="src src-shell"><span class="org-function-name">Usage</span> ()
+{
+    cat &lt;&lt; EOF 1&gt;&amp;2
+<span class="org-sh-heredoc">Usage: $(</span><span class="org-sh-quoted-exec">basename</span><span class="org-sh-heredoc"> $0) [OPTION] FILE</span>
+<span class="org-sh-heredoc">Export Org source files whenever they are updated.</span>
+
+<span class="org-sh-heredoc">  -h, --help          display this help and exit</span>
+<span class="org-sh-heredoc">  -r, --recursive     export all Org files under each directory, recursively</span>
+
+<span class="org-sh-heredoc">Report $(</span><span class="org-sh-quoted-exec">basename</span><span class="org-sh-heredoc"> $0) bugs to fni@missioncriticalit.com</span>
+<span class="org-sh-heredoc">EOF</span>
+    <span class="org-keyword">exit</span> 1
+}
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-function-name">CleanUp</span> ()
-{
-    <span class="org-comment-delimiter"># </span><span class="org-comment">remove the Makefile</span>
-    rm orgmk.mk
-}
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">perform housekeeping on program exit or a variety of signals</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">(EXIT, HUP, INT, QUIT, TERM)</span>
-<span class="org-keyword">trap</span> CleanUp 0 1 2 3 15
+<pre class="src src-shell"><span class="org-function-name">CleanUp</span> ()
+{
+    <span class="org-comment-delimiter"># </span><span class="org-comment">remove the Makefile</span>
+    rm orgmk.mk
+}
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">perform housekeeping on program exit or a variety of signals</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">(EXIT, HUP, INT, QUIT, TERM)</span>
+<span class="org-keyword">trap</span> CleanUp 0 1 2 3 15
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">install the Makefile where you are</span>
-orgmk-stow-orgmk.mk
-
-<span class="org-variable-name">FLAGS</span>=<span class="org-string">""</span>
-<span class="org-keyword">while </span><span class="org-builtin">true</span>; <span class="org-keyword">do</span>
-    <span class="org-keyword">case</span> <span class="org-string">"$1"</span><span class="org-keyword"> in</span>
-        -h | --help ) Usage ;;
-        -r | --recursive) <span class="org-variable-name">FLAGS</span>=<span class="org-string">"ALLSUBDIRS=yes"</span>; <span class="org-builtin">shift</span> ;;
-        * ) <span class="org-keyword">break</span> ;;
-    <span class="org-keyword">esac</span>
-<span class="org-keyword">done</span>
-
-make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class="org-variable-name">*</span>
+<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">install the Makefile where you are</span>
+orgmk-stow-orgmk.mk
+
+<span class="org-variable-name">FLAGS</span>=<span class="org-string">""</span>
+<span class="org-keyword">while</span> true; <span class="org-keyword">do</span>
+    <span class="org-keyword">case</span> <span class="org-string">"$1"</span><span class="org-keyword"> in</span>
+        -h | --help ) Usage ;;
+        -r | --recursive) <span class="org-variable-name">FLAGS</span>=<span class="org-string">"ALLSUBDIRS=yes"</span>; <span class="org-builtin">shift</span> ;;
+        * ) <span class="org-keyword">break</span> ;;
+    <span class="org-keyword">esac</span>
+<span class="org-keyword">done</span>
+
+make -f orgmk.mk $<span class="org-variable-name">FLAGS</span> $<span class="org-variable-name">*</span>
 </pre>
 </div>
 </div>
@@ -1699,11 +1796,11 @@ error stream (<code>stderr</code>) instead. (To be precise, functions like <code
 <div class="outline-text-3" id="text-orgheadline59">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;;; </span><span class="org-comment">orgmk.el --- Emacs configuration file for `</span><span class="org-constant"><span class="org-comment">orgmk</span></span><span class="org-comment">'</span>
-
-<span class="org-comment-delimiter">;;; </span><span class="org-comment">Commentary:</span>
-
-<span class="org-comment-delimiter">;;; </span><span class="org-comment">Code:</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;;; </span><span class="org-comment">orgmk.el --- Emacs configuration file for `</span><span class="org-constant"><span class="org-comment">orgmk</span></span><span class="org-comment">'</span>
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">Commentary:</span>
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">Code:</span>
 </pre>
 </div>
 </div>
@@ -1717,10 +1814,10 @@ Remember current directory.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">remember this directory</span>
-(<span class="org-keyword">defconst</span> <span class="org-variable-name">orgmk-el-directory</span>
-  (file-name-directory (or load-file-name (buffer-file-name)))
-  <span class="org-doc">"Directory path of Orgmk."</span>)
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">remember this directory</span>
+(<span class="org-keyword">defconst</span> <span class="org-variable-name">orgmk-el-directory</span>
+  (file-name-directory (<span class="org-keyword">or</span> load-file-name (buffer-file-name)))
+  <span class="org-doc">"Directory path of Orgmk."</span>)
 </pre>
 </div>
 </div>
@@ -1731,12 +1828,12 @@ Remember current directory.
 <div class="outline-text-4" id="text-orgheadline61">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">;; activate debugging</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(setq debug-on-error t)</span>
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">no limit when printing values</span>
-(setq eval-expression-print-length nil)
-(setq eval-expression-print-level nil)
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">;; activate debugging</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">(setq debug-on-error t)</span>
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">no limit when printing values</span>
+(<span class="org-keyword">setq</span> eval-expression-print-length nil)
+(<span class="org-keyword">setq</span> eval-expression-print-level nil)
 </pre>
 </div>
 </div>
@@ -1747,8 +1844,8 @@ Remember current directory.
 <div class="outline-text-4" id="text-orgheadline62">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">don't make a backup of files</span>
-(setq backup-inhibited t)
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">don't make a backup of files</span>
+(<span class="org-keyword">setq</span> backup-inhibited t)
 </pre>
 </div>
 </div>
@@ -1763,11 +1860,11 @@ When running an native Microsoft Windows version of Emacs:
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; &lt;- adjust</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(when (eq system-type 'windows-nt)</span>
-<span class="org-comment-delimiter">;;   </span><span class="org-comment">(when (try-require 'cygwin-mount)</span>
-<span class="org-comment-delimiter">;;     </span><span class="org-comment">(cygwin-mount-activate)))</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">(add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; &lt;- adjust</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">(when (eq system-type 'windows-nt)</span>
+<span class="org-comment-delimiter">;;   </span><span class="org-comment">(when (try-require 'cygwin-mount)</span>
+<span class="org-comment-delimiter">;;     </span><span class="org-comment">(cygwin-mount-activate)))</span>
 </pre>
 </div>
 </div>
@@ -1783,11 +1880,11 @@ program <code>/bin/bash</code>) is not found under Windows Emacs.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">shell</span>
-(message <span class="org-string">"Current value of `</span><span class="org-constant"><span class="org-string">shell-file-name</span></span><span class="org-string">': %s"</span> shell-file-name)
-(<span class="org-keyword">unless</span> (equal shell-file-name <span class="org-string">"bash"</span>)
-  (setq shell-file-name <span class="org-string">"bash"</span>)
-  (message <span class="org-string">"... changed to: %s"</span> shell-file-name))
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">shell</span>
+(message <span class="org-string">"Current value of `</span><span class="org-constant"><span class="org-string">shell-file-name</span></span><span class="org-string">': %s"</span> shell-file-name)
+(<span class="org-keyword">unless</span> (equal shell-file-name <span class="org-string">"bash"</span>)
+  (<span class="org-keyword">setq</span> shell-file-name <span class="org-string">"bash"</span>)
+  (message <span class="org-string">"... changed to: %s"</span> shell-file-name))
 </pre>
 </div>
 
@@ -1806,51 +1903,53 @@ Ensure that a recent version of Org mode is installed and loaded.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (locate-library <span class="org-string">"package"</span>)
-  (<span class="org-keyword">require</span> '<span class="org-constant">package</span>)
-  (add-to-list 'package-archives '(<span class="org-string">"org"</span> . <span class="org-string">"http://orgmode.org/elpa/"</span>))
-  (add-to-list 'package-archives '(<span class="org-string">"melpa"</span> . <span class="org-string">"http://melpa.milkbox.net/packages/"</span>))
-  (package-initialize))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (locate-library <span class="org-string">"package"</span>)
+  (<span class="org-keyword">require</span> '<span class="org-constant">package</span>)
+  (add-to-list 'package-archives '(<span class="org-string">"org"</span> . <span class="org-string">"http://orgmode.org/elpa/"</span>))
+  (add-to-list 'package-archives '(<span class="org-string">"melpa"</span> . <span class="org-string">"http://melpa.milkbox.net/packages/"</span>))
+  (package-initialize)
+  (<span class="org-keyword">unless</span> package-archive-contents
+    (package-refresh-contents)))
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">unless</span> (locate-library <span class="org-string">"ox"</span>)           <span class="org-comment-delimiter">; </span><span class="org-comment">trick to detect the presence of Org 8</span>
-  (ding)
-  (message <span class="org-string">"The versions 6 and 7 of Org mode are no longer supported"</span>)
-  (message <span class="org-string">"Time to upgrade, don't you think?"</span>)
-  (<span class="org-keyword">when</span> (locate-library <span class="org-string">"package"</span>)
-    (<span class="org-keyword">let</span> ((pkg 'org))
-      (<span class="org-keyword">if</span> (yes-or-no-p (format <span class="org-string">"Install package `</span><span class="org-constant"><span class="org-string">%s</span></span><span class="org-string">'? "</span> pkg))
-          (<span class="org-keyword">ignore-errors</span>
-            (package-install pkg))
-        (setq debug-on-error nil)
-        (<span class="org-warning">error</span> <span class="org-string">"Please upgrade to 8 or later"</span>)))))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">unless</span> (locate-library <span class="org-string">"ox"</span>)           <span class="org-comment-delimiter">; </span><span class="org-comment">trick to detect the presence of Org 8</span>
+  (ding)
+  (message <span class="org-string">"The versions 6 and 7 of Org mode are no longer supported"</span>)
+  (message <span class="org-string">"Time to upgrade, don't you think?"</span>)
+  (<span class="org-keyword">when</span> (locate-library <span class="org-string">"package"</span>)
+    (<span class="org-keyword">let</span> ((pkg 'org))
+      (<span class="org-keyword">if</span> (yes-or-no-p (format <span class="org-string">"Install package `</span><span class="org-constant"><span class="org-string">%s</span></span><span class="org-string">'? "</span> pkg))
+          (<span class="org-keyword">ignore-errors</span>
+            (package-install pkg))
+        (<span class="org-keyword">setq</span> debug-on-error nil)
+        (<span class="org-warning">error</span> <span class="org-string">"Please upgrade to 8 or later"</span>)))))
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (locate-library <span class="org-string">"package"</span>)
-  (<span class="org-keyword">unless</span> (locate-library <span class="org-string">"htmlize"</span>)    <span class="org-comment-delimiter">; </span><span class="org-comment">for syntax highlighting in org2html</span>
-    (<span class="org-keyword">let</span> ((pkg 'htmlize))
-      (<span class="org-keyword">if</span> (yes-or-no-p (format <span class="org-string">"Install package `</span><span class="org-constant"><span class="org-string">%s</span></span><span class="org-string">'? "</span> pkg))
-          (<span class="org-keyword">ignore-errors</span>
-            (package-install pkg))))))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (locate-library <span class="org-string">"package"</span>)
+  (<span class="org-keyword">unless</span> (locate-library <span class="org-string">"htmlize"</span>)    <span class="org-comment-delimiter">; </span><span class="org-comment">for syntax highlighting in org2html</span>
+    (<span class="org-keyword">let</span> ((pkg 'htmlize))
+      (<span class="org-keyword">if</span> (yes-or-no-p (format <span class="org-string">"Install package `</span><span class="org-constant"><span class="org-string">%s</span></span><span class="org-string">'? "</span> pkg))
+          (<span class="org-keyword">ignore-errors</span>
+            (package-install pkg))))))
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">version info</span>
-(<span class="org-keyword">let</span> ((org-install-dir (file-name-directory (locate-library <span class="org-string">"org-loaddefs"</span>)))
-      (org-dir (file-name-directory (locate-library <span class="org-string">"org"</span>)))) <span class="org-comment-delimiter">; </span><span class="org-comment">org.(el|elc)</span>
-  (message <span class="org-string">"Org mode version %s (org @ %s)"</span>
-           (org-version)
-           (<span class="org-keyword">if</span> (string= org-dir org-install-dir)
-               org-install-dir
-             (concat <span class="org-string">"mixed installation! "</span> org-install-dir <span class="org-string">" and "</span> org-dir))))
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">version info</span>
+(<span class="org-keyword">let</span> ((org-install-dir (file-name-directory (locate-library <span class="org-string">"org-loaddefs"</span>)))
+      (org-dir (file-name-directory (locate-library <span class="org-string">"org"</span>)))) <span class="org-comment-delimiter">; </span><span class="org-comment">org.(el|elc)</span>
+  (message <span class="org-string">"Org mode version %s (org @ %s)"</span>
+           (org-version)
+           (<span class="org-keyword">if</span> (string= org-dir org-install-dir)
+               org-install-dir
+             (concat <span class="org-string">"mixed installation! "</span> org-install-dir <span class="org-string">" and "</span> org-dir))))
 </pre>
 </div>
 </div>
@@ -1861,11 +1960,11 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline66">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">org-clock</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">ox</span>)
-
-(add-to-list 'auto-mode-alist '(<span class="org-string">"\\.txt\\'"</span> . org-mode))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">org-clock</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">ox</span>)
+
+(add-to-list 'auto-mode-alist '(<span class="org-string">"\\.txt\\'"</span> . org-mode))
 </pre>
 </div>
 </div>
@@ -1876,8 +1975,8 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline67">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">make sure that timestamps appear in English</span>
-(setq system-time-locale <span class="org-string">"C"</span>)           <span class="org-comment-delimiter">; </span><span class="org-comment">[default: nil]</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">make sure that timestamps appear in English</span>
+(<span class="org-keyword">setq</span> system-time-locale <span class="org-string">"C"</span>)           <span class="org-comment-delimiter">; </span><span class="org-comment">[default: nil]</span>
 </pre>
 </div>
 </div>
@@ -1888,16 +1987,16 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline68">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">format string used when creating CLOCKSUM lines and when generating a</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">time duration (avoid showing days)</span>
-(setq org-time-clocksum-format
-      '(<span class="org-builtin">:hours</span> <span class="org-string">"%d"</span> <span class="org-builtin">:require-hours</span> t <span class="org-builtin">:minutes</span> <span class="org-string">":%02d"</span> <span class="org-builtin">:require-minutes</span> t))
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">format string for the total time cells</span>
-(setq org-clock-total-time-cell-format <span class="org-string">"%s"</span>)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">format string for the file time cells</span>
-(setq org-clock-file-time-cell-format <span class="org-string">"%s"</span>)
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">format string used when creating CLOCKSUM lines and when generating a</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">time duration (avoid showing days)</span>
+(<span class="org-keyword">setq</span> org-time-clocksum-format
+      '(<span class="org-builtin">:hours</span> <span class="org-string">"%d"</span> <span class="org-builtin">:require-hours</span> t <span class="org-builtin">:minutes</span> <span class="org-string">":%02d"</span> <span class="org-builtin">:require-minutes</span> t))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">format string for the total time cells</span>
+(<span class="org-keyword">setq</span> org-clock-total-time-cell-format <span class="org-string">"%s"</span>)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">format string for the file time cells</span>
+(<span class="org-keyword">setq</span> org-clock-file-time-cell-format <span class="org-string">"%s"</span>)
 </pre>
 </div>
 </div>
@@ -1908,8 +2007,8 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline69">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">hide the emphasis marker characters</span>
-(setq org-hide-emphasis-markers t)      <span class="org-comment-delimiter">; </span><span class="org-comment">impact on table alignment!</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">hide the emphasis marker characters</span>
+(<span class="org-keyword">setq</span> org-hide-emphasis-markers t)      <span class="org-comment-delimiter">; </span><span class="org-comment">impact on table alignment!</span>
 </pre>
 </div>
 </div>
@@ -1920,17 +2019,17 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline70">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">don't insert a time stamp into the exported file</span>
-(setq org-export-time-stamp-file nil)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">activate smart quotes during export (convert " to \og, \fg in French)</span>
-(setq org-export-with-smart-quotes t)   <span class="org-comment-delimiter">; </span><span class="org-comment">curly quotes in HTML</span>
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">interpret "_" and "^" for export when braces are used</span>
-(setq org-export-with-sub-superscripts '{})
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">allow #+BIND to define local variable values for export</span>
-(setq org-export-allow-bind-keywords t)
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">don't insert a time stamp into the exported file</span>
+(<span class="org-keyword">setq</span> org-export-time-stamp-file nil)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">activate smart quotes during export (convert " to \og, \fg in French)</span>
+(<span class="org-keyword">setq</span> org-export-with-smart-quotes t)   <span class="org-comment-delimiter">; </span><span class="org-comment">curly quotes in HTML</span>
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">interpret "_" and "^" for export when braces are used</span>
+(<span class="org-keyword">setq</span> org-export-with-sub-superscripts '{})
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">allow #+BIND to define local variable values for export</span>
+(<span class="org-keyword">setq</span> org-export-allow-bind-keywords t)
 </pre>
 </div>
 </div>
@@ -1941,30 +2040,30 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline71">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">configure Babel to support most languages</span>
-(add-to-list 'org-babel-load-languages '(R . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Requires R and ess-mode.</span>
-(add-to-list 'org-babel-load-languages '(awk . t))
-(add-to-list 'org-babel-load-languages '(ditaa . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Sudo aptitude install openjdk-6-jre.</span>
-(add-to-list 'org-babel-load-languages '(dot . t))
-(add-to-list 'org-babel-load-languages '(java . t))
-(add-to-list 'org-babel-load-languages '(latex . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Shouldn't you use #+begin/end_latex blocks instead?</span>
-(add-to-list 'org-babel-load-languages '(ledger . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Requires ledger.</span>
-(add-to-list 'org-babel-load-languages '(makefile . t))
-(add-to-list 'org-babel-load-languages '(org . t))
-(<span class="org-keyword">if</span> (locate-library <span class="org-string">"ob-shell"</span>)         <span class="org-comment-delimiter">; </span><span class="org-comment">ob-sh renamed on 2013-12-13</span>
-    (add-to-list 'org-babel-load-languages '(shell . t))
-  (add-to-list 'org-babel-load-languages '(sh . t)))
-(add-to-list 'org-babel-load-languages '(sql . t))
-
-(org-babel-do-load-languages            <span class="org-comment-delimiter">; </span><span class="org-comment">loads org, gnus-sum, etc...</span>
- 'org-babel-load-languages org-babel-load-languages)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">accented characters on graphics</span>
-(setq org-babel-R-command
-      (concat org-babel-R-command <span class="org-string">" --encoding=UTF-8"</span>))
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">don't require confirmation before evaluating code blocks</span>
-(setq org-confirm-babel-evaluate nil)
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">configure Babel to support most languages</span>
+(add-to-list 'org-babel-load-languages '(R . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Requires R and ess-mode.</span>
+(add-to-list 'org-babel-load-languages '(awk . t))
+(add-to-list 'org-babel-load-languages '(ditaa . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Sudo aptitude install openjdk-6-jre.</span>
+(add-to-list 'org-babel-load-languages '(dot . t))
+(add-to-list 'org-babel-load-languages '(java . t))
+(add-to-list 'org-babel-load-languages '(latex . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Shouldn't you use #+begin/end_latex blocks instead?</span>
+(add-to-list 'org-babel-load-languages '(ledger . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Requires ledger.</span>
+(add-to-list 'org-babel-load-languages '(makefile . t))
+(add-to-list 'org-babel-load-languages '(org . t))
+(<span class="org-keyword">if</span> (locate-library <span class="org-string">"ob-shell"</span>)         <span class="org-comment-delimiter">; </span><span class="org-comment">ob-sh renamed on 2013-12-13</span>
+    (add-to-list 'org-babel-load-languages '(shell . t))
+  (add-to-list 'org-babel-load-languages '(sh . t)))
+(add-to-list 'org-babel-load-languages '(sql . t))
+
+(org-babel-do-load-languages            <span class="org-comment-delimiter">; </span><span class="org-comment">loads org, gnus-sum, etc...</span>
+ 'org-babel-load-languages org-babel-load-languages)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">accented characters on graphics</span>
+(<span class="org-keyword">setq</span> org-babel-R-command
+      (concat org-babel-R-command <span class="org-string">" --encoding=UTF-8"</span>))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">don't require confirmation before evaluating code blocks</span>
+(<span class="org-keyword">setq</span> org-confirm-babel-evaluate nil)
 </pre>
 </div>
 </div>
@@ -1975,11 +2074,11 @@ Ensure that a recent version of Org mode is installed and loaded.
 <div class="outline-text-4" id="text-orgheadline72">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">load up Babel libraries</span>
-(<span class="org-keyword">let</span> ((lob-file (concat (file-name-directory (locate-library <span class="org-string">"org"</span>))
-                        <span class="org-string">"../doc/library-of-babel.org"</span>)))
-  (<span class="org-keyword">when</span> (file-exists-p lob-file)
-    (org-babel-lob-ingest lob-file)))
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">load up Babel libraries</span>
+(<span class="org-keyword">let</span> ((lob-file (concat (file-name-directory (locate-library <span class="org-string">"org"</span>))
+                        <span class="org-string">"../doc/library-of-babel.org"</span>)))
+  (<span class="org-keyword">when</span> (file-exists-p lob-file)
+    (org-babel-lob-ingest lob-file)))
 </pre>
 </div>
 </div>
@@ -1999,32 +2098,32 @@ difference in the resulting HTML file.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (<span class="org-keyword">require</span> '<span class="org-constant">ox-html</span>)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">export the CSS selectors only, when formatting code snippets</span>
-  (setq org-html-htmlize-output-type 'css)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; XML encoding</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq org-html-xml-declaration</span>
-  <span class="org-comment-delimiter">;;       </span><span class="org-comment">'(("html" . "&lt;!-- &lt;xml version=\"1.0\" encoding=\"%s\"&gt; --&gt;")))</span>
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">coding system for HTML export</span>
-  (setq org-html-coding-system 'utf-8)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; format for the HTML postamble</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq org-html-postamble</span>
-  <span class="org-comment-delimiter">;;       </span><span class="org-comment">"  &lt;div id=\"footer\"&gt;&lt;div id=\"copyright\"&gt;\n    Copyright &amp;copy; %d %a\n  &lt;/div&gt;&lt;/div&gt;")</span>
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">don't include the JavaScript snippets in exported HTML files</span>
-  (setq org-html-head-include-scripts nil)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">turn inclusion of the default CSS style off</span>
-  (setq org-html-head-include-default-style nil)
-
-  (<span class="org-keyword">defun</span> <span class="org-function-name">org-html-export-body-only-to-html</span> ()
-    <span class="org-doc">"Export only code between between \"&lt;body&gt;\" and \"&lt;/body&gt;\" tags to a HTML file."</span>
-    (interactive)
-    (org-html-export-to-html nil nil nil t)))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (<span class="org-keyword">require</span> '<span class="org-constant">ox-html</span>)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">export the CSS selectors only, when formatting code snippets</span>
+  (<span class="org-keyword">setq</span> org-html-htmlize-output-type 'css)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; XML encoding</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq org-html-xml-declaration</span>
+  <span class="org-comment-delimiter">;;       </span><span class="org-comment">'(("html" . "&lt;!-- &lt;xml version=\"1.0\" encoding=\"%s\"&gt; --&gt;")))</span>
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">coding system for HTML export</span>
+  (<span class="org-keyword">setq</span> org-html-coding-system 'utf-8)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; format for the HTML postamble</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq org-html-postamble</span>
+  <span class="org-comment-delimiter">;;       </span><span class="org-comment">"  &lt;div id=\"footer\"&gt;&lt;div id=\"copyright\"&gt;\n    Copyright &amp;copy; %d %a\n  &lt;/div&gt;&lt;/div&gt;")</span>
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">don't include the JavaScript snippets in exported HTML files</span>
+  (<span class="org-keyword">setq</span> org-html-head-include-scripts nil)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">turn inclusion of the default CSS style off</span>
+  (<span class="org-keyword">setq</span> org-html-head-include-default-style nil)
+
+  (<span class="org-keyword">defun</span> <span class="org-function-name">org-html-export-body-only-to-html</span> ()
+    <span class="org-doc">"Export only code between between \"&lt;body&gt;\" and \"&lt;/body&gt;\" tags to a HTML file."</span>
+    (<span class="org-keyword">interactive</span>)
+    (org-html-export-to-html nil nil nil t)))
 </pre>
 </div>
 </div>
@@ -2039,49 +2138,49 @@ nil</div>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (<span class="org-keyword">require</span> '<span class="org-constant">ox-latex</span>)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; This is disturbing when calling `</span><span class="org-constant"><span class="org-comment">org2html</span></span><span class="org-comment">'.</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(when (executable-find "latexmk")</span>
-  <span class="org-comment-delimiter">;;   </span><span class="org-comment">(message "%s" (shell-command-to-string "latexmk --version")))</span>
-
-  (setq org-latex-pdf-process
-        (<span class="org-keyword">if</span> (eq system-type 'cygwin) <span class="org-comment-delimiter">;; </span><span class="org-comment">running a Cygwin version of Emacs</span>
-            <span class="org-comment-delimiter">;; </span><span class="org-comment">use Latexmk (if installed with LaTeX)</span>
-            (<span class="org-keyword">if</span> (executable-find <span class="org-string">"latexmk"</span>)
-                '(<span class="org-string">"latexmk -CF -pdf $(cygpath -m %f) &amp;&amp; latexmk -c"</span>)
-              '(<span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
-                <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
-                <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>))
-          (<span class="org-keyword">if</span> (executable-find <span class="org-string">"latexmk"</span>)
-              '(<span class="org-string">"latexmk -CF -pdf %f &amp;&amp; latexmk -c"</span>)
-            '(<span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
-              <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
-              <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>))))
-
-  (message <span class="org-string">"LaTeX command: %S"</span> org-latex-pdf-process)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">tell org to use `</span><span class="org-constant"><span class="org-comment">listings</span></span><span class="org-comment">' (instead of `</span><span class="org-constant"><span class="org-comment">verbatim</span></span><span class="org-comment">') for source code</span>
-  (setq org-latex-listings t)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">default packages to be inserted in the header</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">include the `</span><span class="org-constant"><span class="org-comment">listings</span></span><span class="org-comment">' package for fontified source code</span>
-  (add-to-list 'org-latex-packages-alist '(<span class="org-string">""</span> <span class="org-string">"listings"</span>) t)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">include the `</span><span class="org-constant"><span class="org-comment">xcolor</span></span><span class="org-comment">' package for colored source code</span>
-  (add-to-list 'org-latex-packages-alist '(<span class="org-string">""</span> <span class="org-string">"xcolor"</span>) t)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">include the `</span><span class="org-constant"><span class="org-comment">babel</span></span><span class="org-comment">' package for language-specific hyphenation and</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">typography</span>
-  (add-to-list 'org-latex-packages-alist '(<span class="org-string">"english"</span> <span class="org-string">"babel"</span>) t)
-
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">default position for LaTeX figures</span>
-  (setq org-latex-default-figure-position <span class="org-string">"!htbp"</span>)
-
-  (<span class="org-keyword">defun</span> <span class="org-function-name">org-latex-export-body-only-to-latex</span> ()
-    <span class="org-doc">"Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."</span>
-    (interactive)
-    (org-latex-export-to-latex nil nil nil t)))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (<span class="org-keyword">require</span> '<span class="org-constant">ox-latex</span>)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">;; This is disturbing when calling `</span><span class="org-constant"><span class="org-comment">org2html</span></span><span class="org-comment">'.</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(when (executable-find "latexmk")</span>
+  <span class="org-comment-delimiter">;;   </span><span class="org-comment">(message "%s" (shell-command-to-string "latexmk --version")))</span>
+
+  (<span class="org-keyword">setq</span> org-latex-pdf-process
+        (<span class="org-keyword">if</span> (eq system-type 'cygwin) <span class="org-comment-delimiter">;; </span><span class="org-comment">running a Cygwin version of Emacs</span>
+            <span class="org-comment-delimiter">;; </span><span class="org-comment">use Latexmk (if installed with LaTeX)</span>
+            (<span class="org-keyword">if</span> (executable-find <span class="org-string">"latexmk"</span>)
+                '(<span class="org-string">"latexmk -CF -pdf $(cygpath -m %f) &amp;&amp; latexmk -c"</span>)
+              '(<span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
+                <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>
+                <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"</span>))
+          (<span class="org-keyword">if</span> (executable-find <span class="org-string">"latexmk"</span>)
+              '(<span class="org-string">"latexmk -CF -pdf %f &amp;&amp; latexmk -c"</span>)
+            '(<span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
+              <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>
+              <span class="org-string">"pdflatex -interaction=nonstopmode -output-directory=%o %f"</span>))))
+
+  (message <span class="org-string">"LaTeX command: %S"</span> org-latex-pdf-process)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">tell org to use `</span><span class="org-constant"><span class="org-comment">listings</span></span><span class="org-comment">' (instead of `</span><span class="org-constant"><span class="org-comment">verbatim</span></span><span class="org-comment">') for source code</span>
+  (<span class="org-keyword">setq</span> org-latex-listings t)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">default packages to be inserted in the header</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">include the `</span><span class="org-constant"><span class="org-comment">listings</span></span><span class="org-comment">' package for fontified source code</span>
+  (add-to-list 'org-latex-packages-alist '(<span class="org-string">""</span> <span class="org-string">"listings"</span>) t)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">include the `</span><span class="org-constant"><span class="org-comment">xcolor</span></span><span class="org-comment">' package for colored source code</span>
+  (add-to-list 'org-latex-packages-alist '(<span class="org-string">""</span> <span class="org-string">"xcolor"</span>) t)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">include the `</span><span class="org-constant"><span class="org-comment">babel</span></span><span class="org-comment">' package for language-specific hyphenation and</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">typography</span>
+  (add-to-list 'org-latex-packages-alist '(<span class="org-string">"english"</span> <span class="org-string">"babel"</span>) t)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">default position for LaTeX figures</span>
+  (<span class="org-keyword">setq</span> org-latex-default-figure-position <span class="org-string">"!htbp"</span>)
+
+  (<span class="org-keyword">defun</span> <span class="org-function-name">org-latex-export-body-only-to-latex</span> ()
+    <span class="org-doc">"Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."</span>
+    (<span class="org-keyword">interactive</span>)
+    (org-latex-export-to-latex nil nil nil t)))
 </pre>
 </div>
 </div>
@@ -2098,16 +2197,16 @@ end of <code>orgmk</code>&rsquo;s initialization.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">require all files from `</span><span class="org-constant"><span class="org-comment">lisp</span></span><span class="org-comment">' directory</span>
-(<span class="org-keyword">dolist</span> (file (directory-files
-               (concat orgmk-el-directory <span class="org-string">"../lisp/"</span>) t <span class="org-string">".+\\.elc?$"</span>))
-  (load-file file))
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">require all files from `</span><span class="org-constant"><span class="org-comment">lisp</span></span><span class="org-comment">' directory</span>
+(<span class="org-keyword">dolist</span> (file (directory-files
+               (concat orgmk-el-directory <span class="org-string">"../lisp/"</span>) t <span class="org-string">".+\\.elc?$"</span>))
+  (load-file file))
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;;; </span><span class="org-comment">orgmk.el ends here</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;;; </span><span class="org-comment">orgmk.el ends here</span>
 </pre>
 </div>
 </div>
@@ -2122,26 +2221,26 @@ end of <code>orgmk</code>&rsquo;s initialization.
 <div class="outline-text-3" id="text-orgheadline76">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;;; </span><span class="org-comment">org-latex-classes.el --- Sample configuration file for LaTeX</span>
-
-<span class="org-comment-delimiter">;;; </span><span class="org-comment">Commentary:</span>
-
-<span class="org-comment-delimiter">;;; </span><span class="org-comment">Code:</span>
-
-(<span class="org-keyword">require</span> '<span class="org-constant">ox-latex</span>)
-
-(add-to-list 'org-latex-classes
-             '(<span class="org-string">"koma-article"</span>
-               <span class="org-string">"\\documentclass{scrartcl}</span>
-<span class="org-string">               [NO-DEFAULT-PACKAGES]</span>
-<span class="org-string">               [EXTRA]"</span>
-               (<span class="org-string">"\\section{%s}"</span> . <span class="org-string">"\\section*{%s}"</span>)
-               (<span class="org-string">"\\subsection{%s}"</span> . <span class="org-string">"\\subsection*{%s}"</span>)
-               (<span class="org-string">"\\subsubsection{%s}"</span> . <span class="org-string">"\\subsubsection*{%s}"</span>)
-               (<span class="org-string">"\\paragraph{%s}"</span> . <span class="org-string">"\\paragraph*{%s}"</span>)
-               (<span class="org-string">"\\subparagraph{%s}"</span> . <span class="org-string">"\\subparagraph*{%s}"</span>)))
-
-<span class="org-comment-delimiter">;;; </span><span class="org-comment">org-latex-classes.el ends here</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;;; </span><span class="org-comment">org-latex-classes.el --- Sample configuration file for LaTeX</span>
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">Commentary:</span>
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">Code:</span>
+
+(<span class="org-keyword">require</span> '<span class="org-constant">ox-latex</span>)
+
+(add-to-list 'org-latex-classes
+             '(<span class="org-string">"koma-article"</span>
+               <span class="org-string">"\\documentclass{scrartcl}</span>
+<span class="org-string">               [NO-DEFAULT-PACKAGES]</span>
+<span class="org-string">               [EXTRA]"</span>
+               (<span class="org-string">"\\section{%s}"</span> . <span class="org-string">"\\section*{%s}"</span>)
+               (<span class="org-string">"\\subsection{%s}"</span> . <span class="org-string">"\\subsection*{%s}"</span>)
+               (<span class="org-string">"\\subsubsection{%s}"</span> . <span class="org-string">"\\subsubsection*{%s}"</span>)
+               (<span class="org-string">"\\paragraph{%s}"</span> . <span class="org-string">"\\paragraph*{%s}"</span>)
+               (<span class="org-string">"\\subparagraph{%s}"</span> . <span class="org-string">"\\subparagraph*{%s}"</span>)))
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">org-latex-classes.el ends here</span>
 </pre>
 </div>
 </div>
@@ -2189,7 +2288,7 @@ speech.
 <h2 id="orgheadline82">License</h2>
 <div class="outline-text-2" id="text-orgheadline82">
 <p>
-Copyright (C) 2011-2015 Fabrice Niessen
+Copyright (C) 2011-2016 Fabrice Niessen
 </p>
 
 <p>
@@ -2237,13 +2336,21 @@ sustained from, or arose out of, the results of, the item, or any services that
 may be provided by me.
 </p>
 
-<a href="http://opensource.org/licenses/GPL-3.0">
-  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
-</a>
+<div class="html">
+<p>
+&lt;a href=&ldquo;<a href="http://opensource.org/licenses/GPL-3.0">http://opensource.org/licenses/GPL-3.0</a>&rdquo;&gt;
+  &lt;img src=&ldquo;<object type="image/svg+xml" data="http://img.shields.io/:license-gpl-blue.svg" >
+Sorry, your browser does not support SVG.</object>&rdquo; alt=&ldquo;:license-gpl-blue.svg&rdquo; /&gt;
+&lt;/a&gt;
+</p>
 
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
-</a>
+<p>
+&lt;a href=&ldquo;<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=orgmk&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted</a>&rdquo;&gt;
+  &lt;img src=&ldquo;<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />&rdquo; alt=&ldquo;btn_donate_LG.gif&rdquo; /&gt;
+&lt;/a&gt;
+</p>
+
+</div>
 </div>
 </div>
 </div>
