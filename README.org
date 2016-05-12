@@ -613,6 +613,22 @@ eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-ascii-export-to-ascii \
 orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 #+end_src
 
+** org2gfm
+    :PROPERTIES:
+    :header-args+: :tangle bin/org2gfm
+    :END:
+
+The =org2gfm= script converts an Org file to Github Flavored Markdown.
+
+#+BEGIN_SRC shell
+TARGET_EXT=md
+. orgmk-init
+
+eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-gfm-export-to-markdown \
+    || die "Exported file wasn't produced"
+orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
+#+END_SRC
+
 ** Orgmk-update-src-check-diff
    :PROPERTIES:
    :header-args+: :tangle bin/orgmk-update-src-check-diff
@@ -1198,6 +1214,11 @@ Ensure that a recent version of Org mode is installed and loaded.
   (unless (locate-library "htmlize")    ; for syntax highlighting in org2html
     (let ((pkg 'htmlize))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
+          (ignore-errors
+            (package-install pkg)))))
+  (unless (locate-library "ox-gfm")     ; for exporting to GFM
+    (let ((pkg 'ox-gfm))
+      (if (yes-or-no-p (format "Install package `%s`? " pkg))
           (ignore-errors
             (package-install pkg))))))
 #+end_src
