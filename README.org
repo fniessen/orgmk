@@ -256,7 +256,7 @@ ORGMK_EL=$(ORGMK_ROOT)/site-lisp/orgmk.el
 # according to the Emacs version used (Windows, Cygwin or Linux path).
 EMACS_SYSTEM_TYPE=$(shell emacs -batch --eval "(message \"%s\" system-type)" 2>&1)
 ifeq ($(EMACS_SYSTEM_TYPE),windows-nt)
-    ORGMK_EL:="$(shell cygpath --mixed $(ORGMK_EL))"
+	ORGMK_EL:="$(shell cygpath --mixed $(ORGMK_EL))"
 endif
 
 ORGMK_INIT=orgmk-init
