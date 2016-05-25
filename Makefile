@@ -54,7 +54,7 @@ orgmk-stow-mk:                          # Create core file for `orgmk'
 ## MAKE INSTALL
 
 .PHONY: install
-install:                                # Create symlinks to Orgmk scripts
+install: all                            # Create symlinks to Orgmk scripts
 	@echo "Creating symlinks..."
 	ln -f -s $(PWD)/bin/$(ORGMK_INIT)              $(BIN_DIR)/$(ORGMK_INIT)
 	ln -f -s $(PWD)/bin/$(ORGMK_SYSTEM_CONFIG)     $(BIN_DIR)/$(ORGMK_SYSTEM_CONFIG)
