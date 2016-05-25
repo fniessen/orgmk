@@ -111,7 +111,7 @@ EMACS=emacs
 
 WHICH_EMACS=$(which $EMACS)
 EMACS_FLAGS="--eval \"(progn (message \\\"Launching $WHICH_EMACS...\\\") (message \\\"Emacs %s (%s)\\\" emacs-version system-type))\""
-EMACS_BATCH="emacs --batch -Q $EMACS_FLAGS"
-ORG_FLAGS=""
-ORGMK="$EMACS_BATCH $ORG_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"
+EMACS_BATCH="emacs --batch $EMACS_FLAGS"
+[ "$ORGMK_FLAGS" ] || ORGMK_FLAGS=""
+ORGMK="$EMACS_BATCH $ORGMK_FLAGS --eval \"(message \\\"Loading ${ORGMK_EL}...\\\")\" -l $ORGMK_EL"
 ORGMK_UPDATE_FLAGS="-f org-update-all-dblocks -f org-table-iterate-buffer-tables --eval \"(write-file \\\"${FILE_SRC_UPDT##*/}\\\")\"" # base name
