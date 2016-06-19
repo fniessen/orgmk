@@ -23,6 +23,7 @@ ORGMK_SYSTEM_CONFIG=orgmk.conf
 ORGMK_UPDATE=orgmk-update-src
 ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
 ORG2HTML=org2html
+ORG2GFM=org2gfm
 ORG2LATEX=org2latex
 ORG2PDF=org2pdf
 ORG2BEAMERPDF=org2beamerpdf
