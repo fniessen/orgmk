@@ -80,6 +80,7 @@
 (require 'org)
 (require 'org-clock)
 (require 'ox)
+(require 'ox-reveal)
 
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 
