@@ -44,7 +44,7 @@
   (message "The versions 6 and 7 of Org mode are no longer supported")
   (message "Time to upgrade, don't you think?")
   (when (locate-library "package")
-    (let ((pkg 'org))
+    (let ((pkg 'org-plus-contrib))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
             (package-install pkg))
