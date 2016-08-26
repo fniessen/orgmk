@@ -360,6 +360,7 @@ At this point, everything should be ready for use.
     ORGMK_UPDATE=orgmk-update-src
     ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
     ORG2HTML=org2html
+    ORG2GFM=org2gfm
     ORG2LATEX=org2latex
     ORG2PDF=org2pdf
     ORG2BEAMERPDF=org2beamerpdf
@@ -471,7 +472,7 @@ and Org in order to export to HTML, PDF, etc.
     (format-time-string "%Y%m%d.%H%M")
 
         cat << EOF
-    This is $(basename $0), version: 20160826.2220.
+    This is $(basename $0), version: 20160827.0008.
     EOF
 
     # perform housekeeping on program exit or a variety of signals

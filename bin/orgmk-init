@@ -48,7 +48,7 @@ CleanUp ()
 }
 
     cat << EOF
-This is $(basename $0), version: 20160826.2219.
+This is $(basename $0), version: 20160827.0010.
 EOF
 
 # perform housekeeping on program exit or a variety of signals
