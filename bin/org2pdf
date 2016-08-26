@@ -4,10 +4,10 @@ TARGET_EXT=pdf
 . orgmk-init
 
 if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG > /dev/null; then
-    eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-pdf \
+    eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-latex \
         || die "Exported file wasn't produced"
 else
-    eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-pdf \
+    eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
         || die "Exported file wasn't produced"
 fi
 orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"

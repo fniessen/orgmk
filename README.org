@@ -295,7 +295,7 @@ orgmk-stow-mk:                          # Create core file for `orgmk'
 ## MAKE INSTALL
 
 .PHONY: install
-install:                                # Create symlinks to Orgmk scripts
+install: all                            # Create symlinks to Orgmk scripts
 	@echo "Creating symlinks..."
 	ln -f -s $(PWD)/bin/$(ORGMK_INIT)              $(BIN_DIR)/$(ORGMK_INIT)
 	ln -f -s $(PWD)/bin/$(ORGMK_SYSTEM_CONFIG)     $(BIN_DIR)/$(ORGMK_SYSTEM_CONFIG)
@@ -315,13 +315,10 @@ install:                                # Create symlinks to Orgmk scripts
 #+end_src
 
 * Standalone scripts
-  :PROPERTIES:
-  :header-args+: :shebang "#!/bin/sh\n"
-  :END:
 
 ** Orgmk-init
    :PROPERTIES:
-   :header-args+: :tangle bin/orgmk-init
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/orgmk-init
    :END:
 
 The =orgmk-init= script contains the common part used to setup Emacs
@@ -493,7 +490,7 @@ end of the command line).
 
 ** org2html
    :PROPERTIES:
-   :header-args+: :tangle bin/org2html
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2html
    :END:
 
 The =org2html= script converts an Org file to HTML.
@@ -517,7 +514,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2latex
    :PROPERTIES:
-   :header-args+: :tangle bin/org2latex
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2latex
    :END:
 
 The =org2latex= script converts an Org file to LaTeX.
@@ -541,7 +538,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2pdf
    :PROPERTIES:
-   :header-args+: :tangle bin/org2pdf
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2pdf
    :END:
 
 The =org2pdf= script converts an Org file to PDF.
@@ -567,7 +564,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2beamerpdf
    :PROPERTIES:
-   :header-args+: :tangle bin/org2beamerpdf
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2beamerpdf
    :END:
 
 The =org2beamerpdf= script converts an Org file to a Beamer presentation (PDF).
@@ -583,7 +580,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2odt
    :PROPERTIES:
-   :header-args+: :tangle bin/org2odt
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2odt
    :END:
 
 The =org2odt= script converts an Org file to ODT.
@@ -599,7 +596,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2txt
    :PROPERTIES:
-   :header-args+: :tangle bin/org2txt
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2txt
    :END:
 
 The =org2txt= script converts an Org file to text.
@@ -615,7 +612,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** org2gfm
     :PROPERTIES:
-    :header-args+: :tangle bin/org2gfm
+    :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org2gfm
     :END:
 
 The =org2gfm= script converts an Org file to Github Flavored Markdown.
@@ -631,7 +628,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** Orgmk-update-src-check-diff
    :PROPERTIES:
-   :header-args+: :tangle bin/orgmk-update-src-check-diff
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/orgmk-update-src-check-diff
    :END:
 
 Check whether dynamic blocks and tables have been updated, and (if yes) propose
@@ -714,7 +711,7 @@ will always "succeed".
 
 ** org-tangle
    :PROPERTIES:
-   :header-args+: :tangle bin/org-tangle
+   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/org-tangle
    :END:
 
 The =org-tangle= tangles an Org file.
