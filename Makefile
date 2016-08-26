@@ -23,6 +23,7 @@ ORGMK_SYSTEM_CONFIG=orgmk.conf
 ORGMK_UPDATE=orgmk-update-src
 ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
 ORG2HTML=org2html
+ORG2GFM=org2gfm
 ORG2LATEX=org2latex
 ORG2PDF=org2pdf
 ORG2BEAMERPDF=org2beamerpdf
@@ -61,6 +62,7 @@ install: all                            # Create symlinks to Orgmk scripts
 	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE)            $(BIN_DIR)/$(ORGMK_UPDATE)
 	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE_CHECK_DIFF) $(BIN_DIR)/$(ORGMK_UPDATE_CHECK_DIFF)
 	ln -f -s $(PWD)/bin/$(ORG2HTML)                $(BIN_DIR)/$(ORG2HTML)
+	ln -f -s $(PWD)/bin/$(ORG2GFM)                 $(BIN_DIR)/$(ORG2GFM)
 	ln -f -s $(PWD)/bin/$(ORG2LATEX)               $(BIN_DIR)/$(ORG2LATEX)
 	ln -f -s $(PWD)/bin/$(ORG2PDF)                 $(BIN_DIR)/$(ORG2PDF)
 	ln -f -s $(PWD)/bin/$(ORG2BEAMERPDF)           $(BIN_DIR)/$(ORG2BEAMERPDF)
