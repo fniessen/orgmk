@@ -4,7 +4,7 @@
 
 PWD=$(shell pwd)
 
-BIN_DIR=/usr/local/bin
+BIN_DIR=$(HOME)/bin
 
 -include Make.params
 

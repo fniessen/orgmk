@@ -9,8 +9,13 @@ case $BODY_ONLY in
             || die "Exported file wasn't produced"
         ;;
     "no")
-        eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
-            || die "Exported file wasn't produced"
+        if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG > /dev/null; then
+            eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-latex \
+                || die "Exported file wasn't produced"
+        else
+            eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-latex-export-to-latex \
+                || die "Exported file wasn't produced"
+        fi
 esac
 
 orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
