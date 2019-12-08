@@ -7,10 +7,9 @@
 #+OPTIONS:   H:4 toc:t num:nil
 
 #+PROPERTY:  header-args :eval no :noweb yes :comments no
-#+SETUPFILE: bigblow-pirilampo.setup
-# #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
-#+begin_html
+#+begin_export html
 <a href="http://opensource.org/licenses/GPL-3.0">
   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
 </a>
@@ -18,7 +17,7 @@
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
   <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
-#+end_html
+#+end_export
 
 * Overview
 
@@ -27,10 +26,10 @@
 Orgmk is a suite of Bash scripts for *automating the conversion of Org mode
 documents to different formats* (such as HTML or PDF) from the command line.
 
-#+begin_html
+#+begin_export html
 <script src="http://platform.twitter.com/widgets.js"></script>
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="f_niessen">Tweet</a>
-#+end_html
+#+end_export
 
 The scripts run on both Unix and Microsoft Windows (with Cygwin).
 
@@ -60,11 +59,11 @@ documents.
    :header-args+: :tangle no
    :END:
 
-*** Emacs 24
+*** Emacs 24+
 
 Emacs version 24 (for the ~package~ facility) must be in your =PATH=.
 
-*** Org 8
+*** Org 8+
 
 Org mode version 8 (or later) is required.
 
