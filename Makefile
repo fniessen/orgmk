@@ -36,16 +36,14 @@ ORGMK_MAKE_RUN=orgmk
 ## MAKE
 
 # Ensure `all' is the default target
-all: orgmk-system-config orgmk-stow-mk  # Create Orgmk system files
+all: bin/$(ORGMK_SYSTEM_CONFIG) bin/$(ORGMK_MAKE_SETUP)  # Create Orgmk system files
 
-.PHONY: orgmk-system-config
-orgmk-system-config:                    # Create file with location of `orgmk.el'
+bin/$(ORGMK_SYSTEM_CONFIG):                    # Create file with location of `orgmk.el'
 	@echo "Generating system-wide configuration file..."
 	echo "ORGMK_EL=$(ORGMK_EL)" > bin/$(ORGMK_SYSTEM_CONFIG)
 	@echo
 
-.PHONY: orgmk-stow-mk
-orgmk-stow-mk:                          # Create core file for `orgmk'
+bin/$(ORGMK_MAKE_SETUP):                          # Create core file for `orgmk'
 	@echo "Generating setup file..."
 	echo "#!/bin/sh" > bin/$(ORGMK_MAKE_SETUP)
 	echo "ln -f -s $(PWD)/bin/orgmk.mk orgmk.mk" >> bin/$(ORGMK_MAKE_SETUP)
