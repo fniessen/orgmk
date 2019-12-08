@@ -627,7 +627,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** Orgmk-update-src-check-diff
    :PROPERTIES:
-   :header-args+: :shebang "#!/bin/sh\n" :tangle bin/orgmk-update-src-check-diff
+   :header-args+: :shebang "#!/bin/bash\n" :tangle bin/orgmk-update-src-check-diff
    :END:
 
 Check whether dynamic blocks and tables have been updated, and (if yes) propose
