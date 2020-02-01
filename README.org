@@ -1521,7 +1521,7 @@ sustained by persons or property or otherwise; and whether or not loss was
 sustained from, or arose out of, the results of, the item, or any services that
 may be provided by me.
 
-#+begin_html
+#+begin_export html
 <a href="http://opensource.org/licenses/GPL-3.0">
   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
 </a>
@@ -1529,7 +1529,7 @@ may be provided by me.
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
   <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
-#+end_html
+#+end_export
 
 # This is for the sake of Emacs.
 # Local Variables:

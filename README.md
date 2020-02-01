@@ -1,90 +1,90 @@
 
 # Table of Contents
 
--   [Overview](#org3cdea83)
-    -   [Description](#org59b6e60)
-    -   [Objectives](#orgfdfe208)
-    -   [Quotations](#org4272779)
-    -   [Requirements](#org5bfc166)
-        -   [Emacs 24+](#orgd787a80)
-        -   [Org 8+](#orgf7152a4)
-        -   [LaTeX (PDF)](#org9a0ff02)
--   [Usage](#orgf630d83)
-    -   [Standalone scripts](#org6805eb7)
-    -   [Makefile wrapper](#orgc3904cc)
--   [Options](#org35eef73)
-    -   [Standalone scripts](#org7f24839)
-    -   [Makefile wrapper](#org6d02880)
--   [Files](#orge770843)
--   [Examples](#orgc9a3265)
-    -   [Update all documents](#org83f8523)
-    -   [Update specific types of documents](#orgcf14c73)
-    -   [Update specific document](#orga7bec3a)
--   [Installation](#org579b796)
-    -   [Installing from the Git repository](#orgb12b8b6)
-    -   [Makefile for installation](#org6b4e76f)
--   [Standalone scripts](#orgccda99a)
-    -   [Orgmk-init](#orgcd2b219)
-        -   [Functions](#org4fcf4b0)
-        -   [Runtime](#org1e5a8d9)
-    -   [org2html](#orgfec9ac5)
-    -   [org2latex](#org3548394)
-    -   [org2pdf](#org2931abc)
-    -   [org2beamerpdf](#org5d51f1a)
-    -   [org2odt](#org2ed74f9)
-    -   [org2txt](#org6fc44c6)
-    -   [org2gfm](#orgb56ed94)
-    -   [Orgmk-update-src-check-diff](#org2285b8a)
-        -   [Functions](#orgdb559ed)
-        -   [Runtime](#org0139a60)
-    -   [org-tangle](#orgd09baac)
--   [Orgmk](#org1cc9096)
-    -   [Orgmk.mk](#org9883385)
-        -   [Some system-dependent stuff](#org57ac323)
-            -   [Default shell](#org20c4a46)
-            -   [Exportation scripts](#org3d8a329)
-            -   [Viewing stuff](#org8eac7ca)
-            -   [Color output](#org0221512)
-        -   [Basic configuration](#orgcd89b5e)
-            -   [Org Sources](#org591e955)
-            -   [HTML Targets](#org5d69d2e)
-            -   [PDF Targets](#orgfd168a8)
-            -   [Debugging](#org3869a8f)
-            -   [Commands](#org970c1f0)
-        -   [All](#org0522d44)
-        -   [Help](#orgfc10265)
-        -   [HTML](#org56dea65)
-        -   [PDF](#org2767d6b)
-        -   [Clean](#org5ab7fda)
-        -   [Orgmk init file](#org2223541)
-        -   [Footer](#orgedc3a02)
-    -   [Makefile wrapper](#orgb8c7f93)
--   [Orgmk configuration file](#org6e4c96f)
-    -   [Common](#org3b014f2)
-        -   [Library Search](#org455c666)
-        -   [Feedback](#orgb0871e2)
-        -   [Auto Save](#orgd5534ca)
-        -   [Initialization for MS Windows](#orgb06cf14)
-        -   [Shell](#org126a593)
-        -   [Installation of version 8 or later](#org1b9eed4)
-        -   [Activation](#org6a4684b)
-        -   [Language Environment](#org55aa4b3)
-        -   [Clock table](#org0f0d0b2)
-        -   [Markup](#org0a892a4)
-        -   [Export options](#orgdba75e4)
-        -   [Org-Babel](#org9cedcd2)
-        -   [Library of Babel](#org5d23567)
-    -   [HTML export](#orgbd2efec)
-    -   [PDF LaTeX export](#org1baa8f4)
-    -   [Extra customization files](#orge1e0169)
--   [Sample parameters](#org46b0e89)
-    -   [Custom LaTeX classes](#org5750076)
--   [Contributing](#org78cce19)
-    -   [Issues](#org49a287d)
-    -   [Patches](#org08ecacb)
-    -   [Donations](#org71694b6)
--   [License](#orgc4d545d)
--   [Standard disclaimer](#org8dcc250)
+-   [Overview](#org56823fe)
+    -   [Description](#orgea82205)
+    -   [Objectives](#org1085aff)
+    -   [Quotations](#orgadc7807)
+    -   [Requirements](#org6c87480)
+        -   [Emacs 24+](#orgc699fdb)
+        -   [Org 8+](#org11f4d9d)
+        -   [LaTeX (PDF)](#orga5c356a)
+-   [Usage](#org2743dca)
+    -   [Standalone scripts](#org9227633)
+    -   [Makefile wrapper](#orgace6b45)
+-   [Options](#orge064245)
+    -   [Standalone scripts](#org634fe17)
+    -   [Makefile wrapper](#org308a7a1)
+-   [Files](#org6c3070e)
+-   [Examples](#org4765b13)
+    -   [Update all documents](#orgf6ce390)
+    -   [Update specific types of documents](#orgf61e257)
+    -   [Update specific document](#orgd252c81)
+-   [Installation](#orga966e29)
+    -   [Installing from the Git repository](#orge26882b)
+    -   [Makefile for installation](#org5bee527)
+-   [Standalone scripts](#org7d5f203)
+    -   [Orgmk-init](#org6c976dd)
+        -   [Functions](#orge8b7757)
+        -   [Runtime](#orge3d6f42)
+    -   [org2html](#org562463b)
+    -   [org2latex](#orgc914b90)
+    -   [org2pdf](#orge37b6cb)
+    -   [org2beamerpdf](#org53f097e)
+    -   [org2odt](#org580af89)
+    -   [org2txt](#orgdca489f)
+    -   [org2gfm](#org9ff5822)
+    -   [Orgmk-update-src-check-diff](#org6d566e3)
+        -   [Functions](#org28243a6)
+        -   [Runtime](#orgca1f3cc)
+    -   [org-tangle](#orgcea2eea)
+-   [Orgmk](#org9bdd430)
+    -   [Orgmk.mk](#orge259810)
+        -   [Some system-dependent stuff](#org3de26a7)
+            -   [Default shell](#org8c08ebc)
+            -   [Exportation scripts](#org264b964)
+            -   [Viewing stuff](#orgf70a93e)
+            -   [Color output](#org384c9ea)
+        -   [Basic configuration](#org099a772)
+            -   [Org Sources](#org7cde9e9)
+            -   [HTML Targets](#org1a071cc)
+            -   [PDF Targets](#orgc66d44b)
+            -   [Debugging](#org5cafe90)
+            -   [Commands](#org0d6e6df)
+        -   [All](#org06e677b)
+        -   [Help](#org1a72292)
+        -   [HTML](#orgfa30645)
+        -   [PDF](#org285546b)
+        -   [Clean](#org092b114)
+        -   [Orgmk init file](#org083f8f5)
+        -   [Footer](#org8109675)
+    -   [Makefile wrapper](#org501a022)
+-   [Orgmk configuration file](#org9e0827a)
+    -   [Common](#org5b76cca)
+        -   [Library Search](#org7af3681)
+        -   [Feedback](#orgfa37d6e)
+        -   [Auto Save](#org7a71d72)
+        -   [Initialization for MS Windows](#org2721c9f)
+        -   [Shell](#org546d260)
+        -   [Installation of version 8 or later](#orgf8586ca)
+        -   [Activation](#org080a116)
+        -   [Language Environment](#org042549d)
+        -   [Clock table](#orgae024b2)
+        -   [Markup](#org2b35e8f)
+        -   [Export options](#orgb09698a)
+        -   [Org-Babel](#orgb21d7ea)
+        -   [Library of Babel](#org3e3fc85)
+    -   [HTML export](#org8e13c1f)
+    -   [PDF LaTeX export](#org2f68b6d)
+    -   [Extra customization files](#org63985fd)
+-   [Sample parameters](#org1f5332d)
+    -   [Custom LaTeX classes](#org26ef576)
+-   [Contributing](#orgc0b9691)
+    -   [Issues](#org501c1c1)
+    -   [Patches](#org8081608)
+    -   [Donations](#org757d7a9)
+-   [License](#orgd3aee29)
+-   [Standard disclaimer](#orgcf56e3d)
 
 <a href="http://opensource.org/licenses/GPL-3.0">
   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
@@ -95,12 +95,12 @@
 </a>
 
 
-<a id="org3cdea83"></a>
+<a id="org56823fe"></a>
 
 # Overview
 
 
-<a id="org59b6e60"></a>
+<a id="orgea82205"></a>
 
 ## Description
 
@@ -113,7 +113,7 @@ documents to different formats** (such as HTML or PDF) from the command line.
 The scripts run on both Unix and Microsoft Windows (with Cygwin).
 
 
-<a id="orgfdfe208"></a>
+<a id="org1085aff"></a>
 
 ## Objectives
 
@@ -128,7 +128,7 @@ Emacs process**, allowing you to go on editing or working while exporting the
 documents.
 
 
-<a id="org4272779"></a>
+<a id="orgadc7807"></a>
 
 ## Quotations
 
@@ -140,19 +140,19 @@ documents.
 &#x2013; *Priyadarshan*
 
 
-<a id="org5bfc166"></a>
+<a id="org6c87480"></a>
 
 ## Requirements
 
 
-<a id="orgd787a80"></a>
+<a id="orgc699fdb"></a>
 
 ### Emacs 24+
 
 Emacs version 24 (for the `package` facility) must be in your `PATH`.
 
 
-<a id="orgf7152a4"></a>
+<a id="org11f4d9d"></a>
 
 ### Org 8+
 
@@ -162,7 +162,7 @@ If such a version is not bundled with your Emacs, Org 8 will be automatically
 installed &#x2013; if you accept it! &#x2013; through ELPA.
 
 
-<a id="org9a0ff02"></a>
+<a id="orga5c356a"></a>
 
 ### LaTeX (PDF)
 
@@ -170,14 +170,14 @@ A working LaTeX installation is required for exporting to PDF. If it is not
 yet installed on your system, install [TeX Live](http://www.tug.org/texlive/) (for example).
 
 
-<a id="orgf630d83"></a>
+<a id="org2743dca"></a>
 
 # Usage
 
 Org files can have the extension `.org` or `.txt`.
 
 
-<a id="org6805eb7"></a>
+<a id="org9227633"></a>
 
 ## Standalone scripts
 
@@ -195,7 +195,7 @@ Org files can have the extension `.org` or `.txt`.
         org-tangle FILE
 
 
-<a id="orgc3904cc"></a>
+<a id="orgace6b45"></a>
 
 ## Makefile wrapper
 
@@ -206,12 +206,12 @@ Org files can have the extension `.org` or `.txt`.
 Currently, `orgmk` does not tangle Org files.
 
 
-<a id="org35eef73"></a>
+<a id="orge064245"></a>
 
 # Options
 
 
-<a id="org7f24839"></a>
+<a id="org634fe17"></a>
 
 ## Standalone scripts
 
@@ -237,7 +237,7 @@ Currently, `orgmk` does not tangle Org files.
 -   **`--body-only`:** Export only body (for HTML and LaTeX).
 
 
-<a id="org6d02880"></a>
+<a id="org308a7a1"></a>
 
 ## Makefile wrapper
 
@@ -251,19 +251,19 @@ Currently, `orgmk` does not tangle Org files.
     directory only.
 
 
-<a id="orge770843"></a>
+<a id="org6c3070e"></a>
 
 # Files
 
 <file:///cygdrive/d/Users/fni/.orgmk-rc>
 
 
-<a id="orgc9a3265"></a>
+<a id="org4765b13"></a>
 
 # Examples
 
 
-<a id="org83f8523"></a>
+<a id="orgf6ce390"></a>
 
 ## Update all documents
 
@@ -272,7 +272,7 @@ Regenerate HTML and/or PDF files for Org files that have been modified.
     orgmk
 
 
-<a id="orgcf14c73"></a>
+<a id="orgf61e257"></a>
 
 ## Update specific types of documents
 
@@ -281,7 +281,7 @@ Regenerate HTML only for the Org files that have been changed.
     orgmk html
 
 
-<a id="orga7bec3a"></a>
+<a id="orgd252c81"></a>
 
 ## Update specific document
 
@@ -297,7 +297,7 @@ Regenerate (or create for the first time) the file `thesis.pdf` from the Org fil
     org2pdf thesis.org
 
 
-<a id="org579b796"></a>
+<a id="orga966e29"></a>
 
 # Installation
 
@@ -305,7 +305,7 @@ The installation process consists of creating symbolic links from the standard
 **final directories** on your machine to the `orgmk` executables.
 
 
-<a id="orgb12b8b6"></a>
+<a id="orge26882b"></a>
 
 ## Installing from the Git repository
 
@@ -337,7 +337,7 @@ The installation process consists of creating symbolic links from the standard
 At this point, everything should be ready for use.
 
 
-<a id="org6b4e76f"></a>
+<a id="org5bee527"></a>
 
 ## Makefile for installation
 
@@ -418,12 +418,12 @@ At this point, everything should be ready for use.
     ### Makefile ends here
 
 
-<a id="orgccda99a"></a>
+<a id="org7d5f203"></a>
 
 # Standalone scripts
 
 
-<a id="orgcd2b219"></a>
+<a id="org6c976dd"></a>
 
 ## Orgmk-init
 
@@ -431,7 +431,7 @@ The `orgmk-init` script contains the common part used to setup Emacs
 and Org in order to export to HTML, PDF, etc.
 
 
-<a id="org4fcf4b0"></a>
+<a id="orge8b7757"></a>
 
 ### Functions
 
@@ -481,14 +481,14 @@ and Org in order to export to HTML, PDF, etc.
     }
 
 
-<a id="org1e5a8d9"></a>
+<a id="orge3d6f42"></a>
 
 ### Runtime
 
     (format-time-string "%Y%m%d.%H%M")
 
         cat << EOF
-    This is $(basename $0), version: 20200201.1653.
+    This is $(basename $0), version: 20200201.1657.
     EOF
 
     # perform housekeeping on program exit or a variety of signals
@@ -577,7 +577,7 @@ end of the command line).
 </div>
 
 
-<a id="orgfec9ac5"></a>
+<a id="org562463b"></a>
 
 ## org2html
 
@@ -599,7 +599,7 @@ The `org2html` script converts an Org file to HTML.
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="org3548394"></a>
+<a id="orgc914b90"></a>
 
 ## org2latex
 
@@ -626,7 +626,7 @@ The `org2latex` script converts an Org file to LaTeX.
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="org2931abc"></a>
+<a id="orge37b6cb"></a>
 
 ## org2pdf
 
@@ -651,7 +651,7 @@ presentation by searching for the string `#+BEAMER_THEME:` inside the Org source
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="org5d51f1a"></a>
+<a id="org53f097e"></a>
 
 ## org2beamerpdf
 
@@ -665,7 +665,7 @@ The `org2beamerpdf` script converts an Org file to a Beamer presentation (PDF).
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="org2ed74f9"></a>
+<a id="org580af89"></a>
 
 ## org2odt
 
@@ -679,7 +679,7 @@ The `org2odt` script converts an Org file to ODT.
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="org6fc44c6"></a>
+<a id="orgdca489f"></a>
 
 ## org2txt
 
@@ -693,7 +693,7 @@ The `org2txt` script converts an Org file to text.
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="orgb56ed94"></a>
+<a id="org9ff5822"></a>
 
 ## org2gfm
 
@@ -707,7 +707,7 @@ The `org2gfm` script converts an Org file to Github Flavored Markdown.
     orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 
-<a id="org2285b8a"></a>
+<a id="org6d566e3"></a>
 
 ## Orgmk-update-src-check-diff
 
@@ -715,7 +715,7 @@ Check whether dynamic blocks and tables have been updated, and (if yes) propose
 to overwrite the source Org file.
 
 
-<a id="orgdb559ed"></a>
+<a id="org28243a6"></a>
 
 ### Functions
 
@@ -751,7 +751,7 @@ to overwrite the source Org file.
     }
 
 
-<a id="org0139a60"></a>
+<a id="orgca1f3cc"></a>
 
 ### Runtime
 
@@ -793,7 +793,7 @@ will always &ldquo;succeed&rdquo;.
 </div>
 
 
-<a id="orgd09baac"></a>
+<a id="orgcea2eea"></a>
 
 ## org-tangle
 
@@ -806,12 +806,12 @@ The `org-tangle` tangles an Org file.
         || die "File wasn't tangled"
 
 
-<a id="org1cc9096"></a>
+<a id="org9bdd430"></a>
 
 # Orgmk
 
 
-<a id="org9883385"></a>
+<a id="orge259810"></a>
 
 ## Orgmk.mk
 
@@ -836,21 +836,21 @@ It is designed to solve tedious tasks nicely, such as updating:
     </div>
 
 
-<a id="org57ac323"></a>
+<a id="org3de26a7"></a>
 
 ### Some system-dependent stuff
 
     ### -*- Makefile -*- definition file for Orgmk
 
 
-<a id="org20c4a46"></a>
+<a id="org8c08ebc"></a>
 
 #### Default shell
 
     SHELL = /bin/sh
 
 
-<a id="org3d8a329"></a>
+<a id="org264b964"></a>
 
 #### Exportation scripts
 
@@ -863,7 +863,7 @@ after dblocks update and tables re-computation.
     ORG2PDF=org2pdf $(ORG2_FLAGS)
 
 
-<a id="org8eac7ca"></a>
+<a id="orgf70a93e"></a>
 
 #### Viewing stuff
 
@@ -871,7 +871,7 @@ after dblocks update and tables re-computation.
     VIEW_PDF ?= xpdf
 
 
-<a id="org0221512"></a>
+<a id="org384c9ea"></a>
 
 #### Color output
 
@@ -900,12 +900,12 @@ after dblocks update and tables re-computation.
     C_RESET="\\e[0m"
 
 
-<a id="orgcd89b5e"></a>
+<a id="org099a772"></a>
 
 ### Basic configuration
 
 
-<a id="org591e955"></a>
+<a id="org7cde9e9"></a>
 
 #### Org Sources
 
@@ -941,7 +941,7 @@ Makefile:89: warning: ignoring old recipe for target \`plot.html&rsquo;
 </div>
 
 
-<a id="org5d69d2e"></a>
+<a id="org1a071cc"></a>
 
 #### HTML Targets
 
@@ -955,7 +955,7 @@ List of HTML files to be re-generated (if they have an Org counterpart):
     CUR_HTML_FILES := $(HTML_FILES)
 
 
-<a id="orgfd168a8"></a>
+<a id="orgc66d44b"></a>
 
 #### PDF Targets
 
@@ -969,7 +969,7 @@ List of PDF files to be re-generated (if they have an Org counterpart):
     CUR_PDF_FILES := $(PDF_FILES)
 
 
-<a id="org3869a8f"></a>
+<a id="org5cafe90"></a>
 
 #### Debugging
 
@@ -986,7 +986,7 @@ List of PDF files to be re-generated (if they have an Org counterpart):
     endif
 
 
-<a id="org970c1f0"></a>
+<a id="org0d6e6df"></a>
 
 #### Commands
 
@@ -997,7 +997,7 @@ Define variables for each command used in targets:
     LS=$(QUIET)ls
 
 
-<a id="org0522d44"></a>
+<a id="org06e677b"></a>
 
 ### All
 
@@ -1005,7 +1005,7 @@ Define variables for each command used in targets:
     all: html pdf                           # Regenerate all HTML and PDF files
 
 
-<a id="orgfc10265"></a>
+<a id="org1a72292"></a>
 
 ### Help
 
@@ -1020,7 +1020,7 @@ Get help.
     	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' > /dev/stderr
 
 
-<a id="org56dea65"></a>
+<a id="orgfa30645"></a>
 
 ### HTML
 
@@ -1060,7 +1060,7 @@ What about `org-export-as-html-batch` and `org-export-as-html-and-open`?
     view-html:                              # Generate the HTML files, then show the result
 
 
-<a id="org2767d6b"></a>
+<a id="org285546b"></a>
 
 ### PDF
 
@@ -1124,7 +1124,7 @@ no need to delete it at startup&#x2026;
 `orgmk pdf`. We then have to explicitly `orgmk file.pdf`.
 
 
-<a id="org5ab7fda"></a>
+<a id="org092b114"></a>
 
 ### Clean
 
@@ -1132,7 +1132,7 @@ no need to delete it at startup&#x2026;
     clean:                                  # Delete all temporary files created by Org export
 
 
-<a id="org2223541"></a>
+<a id="org083f8f5"></a>
 
 ### TODO Orgmk init file
 
@@ -1142,14 +1142,14 @@ just once&#x2026;
 The only thing that&rsquo;s not done yet automatically is: tangling this file!
 
 
-<a id="orgedc3a02"></a>
+<a id="org8109675"></a>
 
 ### Footer
 
     ### orgmk.mk ends here
 
 
-<a id="orgb8c7f93"></a>
+<a id="org501a022"></a>
 
 ## Makefile wrapper
 
@@ -1200,7 +1200,7 @@ directory of your Org files just for the duration of the script execution
     make -f orgmk.mk $FLAGS $*
 
 
-<a id="org6e4c96f"></a>
+<a id="org9e0827a"></a>
 
 # Orgmk configuration file
 
@@ -1215,7 +1215,7 @@ error stream (`stderr`) instead. (To be precise, functions like `prin1`, `princ`
 </div>
 
 
-<a id="org3b014f2"></a>
+<a id="org5b76cca"></a>
 
 ## Common
 
@@ -1226,7 +1226,7 @@ error stream (`stderr`) instead. (To be precise, functions like `prin1`, `princ`
     ;;; Code:
 
 
-<a id="org455c666"></a>
+<a id="org7af3681"></a>
 
 ### Library Search
 
@@ -1238,7 +1238,7 @@ Remember current directory.
       "Directory path of Orgmk.")
 
 
-<a id="orgb0871e2"></a>
+<a id="orgfa37d6e"></a>
 
 ### Feedback
 
@@ -1250,7 +1250,7 @@ Remember current directory.
     (setq eval-expression-print-level nil)
 
 
-<a id="orgd5534ca"></a>
+<a id="org7a71d72"></a>
 
 ### Auto Save
 
@@ -1258,7 +1258,7 @@ Remember current directory.
     (setq backup-inhibited t)
 
 
-<a id="orgb06cf14"></a>
+<a id="org2721c9f"></a>
 
 ### Initialization for MS Windows
 
@@ -1271,7 +1271,7 @@ When running an native Microsoft Windows version of Emacs:
     ;;     (cygwin-mount-activate)))
 
 
-<a id="org126a593"></a>
+<a id="org546d260"></a>
 
 ### Shell
 
@@ -1287,7 +1287,7 @@ program `/bin/bash`) is not found under Windows Emacs.
 This is important when launching external tools, such as `PDFLaTeX` or `Latexmk`.
 
 
-<a id="org1b9eed4"></a>
+<a id="orgf8586ca"></a>
 
 ### Installation of version 8 or later
 
@@ -1340,7 +1340,7 @@ Ensure that a recent version of Org mode is installed and loaded.
                  (concat "mixed installation! " org-install-dir " and " org-dir))))
 
 
-<a id="org6a4684b"></a>
+<a id="org080a116"></a>
 
 ### Activation
 
@@ -1352,7 +1352,7 @@ Ensure that a recent version of Org mode is installed and loaded.
     (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 
 
-<a id="org55aa4b3"></a>
+<a id="org042549d"></a>
 
 ### Language Environment
 
@@ -1360,7 +1360,7 @@ Ensure that a recent version of Org mode is installed and loaded.
     (setq system-time-locale "C")           ; [default: nil]
 
 
-<a id="org0f0d0b2"></a>
+<a id="orgae024b2"></a>
 
 ### Clock table
 
@@ -1376,7 +1376,7 @@ Ensure that a recent version of Org mode is installed and loaded.
     (setq org-clock-file-time-cell-format "%s")
 
 
-<a id="org0a892a4"></a>
+<a id="org2b35e8f"></a>
 
 ### Markup
 
@@ -1384,7 +1384,7 @@ Ensure that a recent version of Org mode is installed and loaded.
     (setq org-hide-emphasis-markers t)      ; impact on table alignment!
 
 
-<a id="orgdba75e4"></a>
+<a id="orgb09698a"></a>
 
 ### Export options
 
@@ -1401,7 +1401,7 @@ Ensure that a recent version of Org mode is installed and loaded.
     (setq org-export-allow-bind-keywords t)
 
 
-<a id="org9cedcd2"></a>
+<a id="orgb21d7ea"></a>
 
 ### Org-Babel
 
@@ -1431,7 +1431,7 @@ Ensure that a recent version of Org mode is installed and loaded.
     (setq org-confirm-babel-evaluate nil)
 
 
-<a id="org5d23567"></a>
+<a id="org3e3fc85"></a>
 
 ### Library of Babel
 
@@ -1442,7 +1442,7 @@ Ensure that a recent version of Org mode is installed and loaded.
         (org-babel-lob-ingest lob-file)))
 
 
-<a id="orgbd2efec"></a>
+<a id="org8e13c1f"></a>
 
 ## HTML export
 
@@ -1480,7 +1480,7 @@ difference in the resulting HTML file.
         (org-html-export-to-html nil nil nil t)))
 
 
-<a id="org1baa8f4"></a>
+<a id="org2f68b6d"></a>
 
 ## PDF LaTeX export
 
@@ -1533,7 +1533,7 @@ nil</div>
         (org-latex-export-to-latex nil nil nil t)))
 
 
-<a id="orge1e0169"></a>
+<a id="org63985fd"></a>
 
 ## Extra customization files
 
@@ -1549,12 +1549,12 @@ end of `orgmk`&rsquo;s initialization.
     ;;; orgmk.el ends here
 
 
-<a id="org46b0e89"></a>
+<a id="org1f5332d"></a>
 
 # Sample parameters
 
 
-<a id="org5750076"></a>
+<a id="org26ef576"></a>
 
 ## Custom LaTeX classes
 
@@ -1580,26 +1580,26 @@ end of `orgmk`&rsquo;s initialization.
     ;;; org-latex-classes.el ends here
 
 
-<a id="org78cce19"></a>
+<a id="orgc0b9691"></a>
 
 # Contributing
 
 
-<a id="org49a287d"></a>
+<a id="org501c1c1"></a>
 
 ## Issues
 
 Report issues and suggest features and improvements on the [GitHub issue tracker](https://github.com/fniessen/orgmk/issues/new).
 
 
-<a id="org08ecacb"></a>
+<a id="org8081608"></a>
 
 ## Patches
 
 I love contributions!  Patches under any form are always welcome!
 
 
-<a id="org71694b6"></a>
+<a id="org757d7a9"></a>
 
 ## Donations
 
@@ -1610,7 +1610,7 @@ Regardless of the donations, Orgmk will always be free both as in beer and as in
 speech.
 
 
-<a id="orgc4d545d"></a>
+<a id="orgd3aee29"></a>
 
 # License
 
@@ -1632,7 +1632,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-<a id="org8dcc250"></a>
+<a id="orgcf56e3d"></a>
 
 # Standard disclaimer
 
@@ -1649,14 +1649,11 @@ sustained by persons or property or otherwise; and whether or not loss was
 sustained from, or arose out of, the results of, the item, or any services that
 may be provided by me.
 
-<div class="html">
-<a href=&ldquo;<http://opensource.org/licenses/GPL-3.0>&rdquo;>
-  <img src=&ldquo;![img](http://img.shields.io/:license-gpl-blue.svg)&rdquo; alt=&ldquo;:license-gpl-blue.svg&rdquo; />
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
 </a>
 
-<a href=&ldquo;<https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted>&rdquo;>
-  <img src=&ldquo;![img](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)&rdquo; alt=&ldquo;btn\_donate\_LG.gif&rdquo; />
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=orgmk&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
-
-</div>
 
