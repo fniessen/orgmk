@@ -9,8 +9,6 @@ Convert FILE to another format.
   -h, --help     display this help and exit
   -y             authorize update of the source file without confirmation
   --body-only    export only body (for HTML and LaTeX exports)
-
-Report $(basename $0) bugs to fni@missioncriticalit.com
 EOF
     exit 1
 }
@@ -48,7 +46,7 @@ CleanUp ()
 }
 
     cat << EOF
-This is $(basename $0), version: 20160827.0010.
+This is $(basename $0), version: 20200201.1615.
 EOF
 
 # perform housekeeping on program exit or a variety of signals
