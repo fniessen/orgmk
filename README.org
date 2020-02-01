@@ -264,6 +264,7 @@ ORGMK_UPDATE=orgmk-update-src
 ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
 ORG2HTML=org2html
 ORG2GFM=org2gfm
+ORG2REVEAL=org2reveal
 ORG2LATEX=org2latex
 ORG2PDF=org2pdf
 ORG2BEAMERPDF=org2beamerpdf
@@ -301,6 +302,7 @@ install: all                            # Create symlinks to Orgmk scripts
 	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE_CHECK_DIFF) $(BIN_DIR)/$(ORGMK_UPDATE_CHECK_DIFF)
 	ln -f -s $(PWD)/bin/$(ORG2HTML)                $(BIN_DIR)/$(ORG2HTML)
 	ln -f -s $(PWD)/bin/$(ORG2GFM)                 $(BIN_DIR)/$(ORG2GFM)
+	ln -f -s $(PWD)/bin/$(ORG2REVEAL)              $(BIN_DIR)/$(ORG2REVEAL)
 	ln -f -s $(PWD)/bin/$(ORG2LATEX)               $(BIN_DIR)/$(ORG2LATEX)
 	ln -f -s $(PWD)/bin/$(ORG2PDF)                 $(BIN_DIR)/$(ORG2PDF)
 	ln -f -s $(PWD)/bin/$(ORG2BEAMERPDF)           $(BIN_DIR)/$(ORG2BEAMERPDF)
@@ -1200,7 +1202,7 @@ Ensure that a recent version of Org mode is installed and loaded.
   (message "The versions 6 and 7 of Org mode are no longer supported")
   (message "Time to upgrade, don't you think?")
   (when (locate-library "package")
-    (let ((pkg 'org))
+    (let ((pkg 'org-plus-contrib))
       (if (yes-or-no-p (format "Install package `%s'? " pkg))
           (ignore-errors
             (package-install pkg))
@@ -1217,6 +1219,11 @@ Ensure that a recent version of Org mode is installed and loaded.
             (package-install pkg)))))
   (unless (locate-library "ox-gfm")     ; for exporting to GFM
     (let ((pkg 'ox-gfm))
+      (if (yes-or-no-p (format "Install package `%s`? " pkg))
+          (ignore-errors
+            (package-install pkg)))))
+  (unless (locate-library "ox-reveal")     ; for exporting to Reveal
+    (let ((pkg 'ox-reveal))
       (if (yes-or-no-p (format "Install package `%s`? " pkg))
           (ignore-errors
             (package-install pkg))))))
@@ -1239,6 +1246,7 @@ Ensure that a recent version of Org mode is installed and loaded.
 (require 'org)
 (require 'org-clock)
 (require 'ox)
+(require 'ox-reveal)
 
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 #+end_src
