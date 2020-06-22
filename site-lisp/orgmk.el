@@ -119,6 +119,7 @@
 (add-to-list 'org-babel-load-languages '(ditaa . t)) ; Sudo aptitude install openjdk-6-jre.
 (add-to-list 'org-babel-load-languages '(dot . t))
 (add-to-list 'org-babel-load-languages '(java . t))
+(add-to-list 'org-babel-load-languages '(perl . t))
 (add-to-list 'org-babel-load-languages '(latex . t)) ; Shouldn't you use #+begin/end_latex blocks instead?
 (add-to-list 'org-babel-load-languages '(ledger . t)) ; Requires ledger.
 (add-to-list 'org-babel-load-languages '(makefile . t))
