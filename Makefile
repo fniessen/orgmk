@@ -24,6 +24,7 @@ ORGMK_UPDATE=orgmk-update-src
 ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
 ORG2HTML=org2html
 ORG2GFM=org2gfm
+ORG2MD=org2md
 ORG2REVEAL=org2reveal
 ORG2LATEX=org2latex
 ORG2PDF=org2pdf
@@ -62,6 +63,7 @@ install: all                            # Create symlinks to Orgmk scripts
 	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE_CHECK_DIFF) $(BIN_DIR)/$(ORGMK_UPDATE_CHECK_DIFF)
 	ln -f -s $(PWD)/bin/$(ORG2HTML)                $(BIN_DIR)/$(ORG2HTML)
 	ln -f -s $(PWD)/bin/$(ORG2GFM)                 $(BIN_DIR)/$(ORG2GFM)
+	ln -f -s $(PWD)/bin/$(ORG2MD)                  $(BIN_DIR)/$(ORG2MD)
 	ln -f -s $(PWD)/bin/$(ORG2REVEAL)              $(BIN_DIR)/$(ORG2REVEAL)
 	ln -f -s $(PWD)/bin/$(ORG2LATEX)               $(BIN_DIR)/$(ORG2LATEX)
 	ln -f -s $(PWD)/bin/$(ORG2PDF)                 $(BIN_DIR)/$(ORG2PDF)
