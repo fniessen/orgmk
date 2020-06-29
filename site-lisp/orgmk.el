@@ -178,6 +178,10 @@
   ;; (when (executable-find "latexmk")
   ;;   (message "%s" (shell-command-to-string "latexmk --version")))
 
+  ;; remove grffile from default packages, as it is depricated (usage included in normal graphicx),
+  ;; and causes xelatex and lualatex to fail when including graphics
+  (delete (rassoc '("grffile" t) org-latex-default-packages-alist) org-latex-default-packages-alist)
+
   (setq org-latex-pdf-process
         (if (eq system-type 'cygwin) ;; running a Cygwin version of Emacs
             ;; use Latexmk (if installed with LaTeX)
