@@ -182,12 +182,12 @@
         (if (eq system-type 'cygwin) ;; running a Cygwin version of Emacs
             ;; use Latexmk (if installed with LaTeX)
             (if (executable-find "latexmk")
-                '("latexmk -CF -%latex $(cygpath -m %f) && latexmk -c")
+                '("latexmk -CF -%latex -norc $(cygpath -m %f) && latexmk -c")
               '("%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
                 "%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
                 "%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"))
           (if (executable-find "latexmk")
-              '("latexmk -CF -%latex %f && latexmk -c")
+              '("latexmk -CF -%latex -norc %f && latexmk -c")
             '("%latex -interaction=nonstopmode -output-directory=%o %f"
               "%latex -interaction=nonstopmode -output-directory=%o %f"
               "%latex -interaction=nonstopmode -output-directory=%o %f"))))
