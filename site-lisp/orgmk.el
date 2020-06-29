@@ -182,15 +182,15 @@
         (if (eq system-type 'cygwin) ;; running a Cygwin version of Emacs
             ;; use Latexmk (if installed with LaTeX)
             (if (executable-find "latexmk")
-                '("latexmk -CF -pdf $(cygpath -m %f) && latexmk -c")
-              '("pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
-                "pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
-                "pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"))
+                '("latexmk -CF -%latex $(cygpath -m %f) && latexmk -c")
+              '("%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
+                "%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
+                "%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"))
           (if (executable-find "latexmk")
-              '("latexmk -CF -pdf %f && latexmk -c")
-            '("pdflatex -interaction=nonstopmode -output-directory=%o %f"
-              "pdflatex -interaction=nonstopmode -output-directory=%o %f"
-              "pdflatex -interaction=nonstopmode -output-directory=%o %f"))))
+              '("latexmk -CF -%latex %f && latexmk -c")
+            '("%latex -interaction=nonstopmode -output-directory=%o %f"
+              "%latex -interaction=nonstopmode -output-directory=%o %f"
+              "%latex -interaction=nonstopmode -output-directory=%o %f"))))
 
   (message "LaTeX command: %S" org-latex-pdf-process)
 

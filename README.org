@@ -1377,49 +1377,49 @@ difference in the resulting HTML file.
 *************** END
 
 #+begin_src emacs-lisp
-(when (require 'ox-latex)
+  (when (require 'ox-latex)
 
-  ;; ;; This is disturbing when calling `org2html'.
-  ;; (when (executable-find "latexmk")
-  ;;   (message "%s" (shell-command-to-string "latexmk --version")))
+    ;; ;; This is disturbing when calling `org2html'.
+    ;; (when (executable-find "latexmk")
+    ;;   (message "%s" (shell-command-to-string "latexmk --version")))
 
-  (setq org-latex-pdf-process
-        (if (eq system-type 'cygwin) ;; running a Cygwin version of Emacs
-            ;; use Latexmk (if installed with LaTeX)
+    (setq org-latex-pdf-process
+          (if (eq system-type 'cygwin) ;; running a Cygwin version of Emacs
+              ;; use Latexmk (if installed with LaTeX)
+              (if (executable-find "latexmk")
+                  '("latexmk -CF -%latex $(cygpath -m %f) && latexmk -c")
+                '("%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
+                  "%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
+                  "%latex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"))
             (if (executable-find "latexmk")
-                '("latexmk -CF -pdf $(cygpath -m %f) && latexmk -c")
-              '("pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
-                "pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"
-                "pdflatex -interaction=nonstopmode -output-directory=%o $(cygpath -m %f)"))
-          (if (executable-find "latexmk")
-              '("latexmk -CF -pdf %f && latexmk -c")
-            '("pdflatex -interaction=nonstopmode -output-directory=%o %f"
-              "pdflatex -interaction=nonstopmode -output-directory=%o %f"
-              "pdflatex -interaction=nonstopmode -output-directory=%o %f"))))
+                '("latexmk -CF -%latex %f && latexmk -c")
+              '("%latex -interaction=nonstopmode -output-directory=%o %f"
+                "%latex -interaction=nonstopmode -output-directory=%o %f"
+                "%latex -interaction=nonstopmode -output-directory=%o %f"))))
 
-  (message "LaTeX command: %S" org-latex-pdf-process)
+    (message "LaTeX command: %S" org-latex-pdf-process)
+  
+    ;; tell org to use `listings' (instead of `verbatim') for source code
+    (setq org-latex-listings t)
 
-  ;; tell org to use `listings' (instead of `verbatim') for source code
-  (setq org-latex-listings t)
+    ;; default packages to be inserted in the header
+    ;; include the `listings' package for fontified source code
+    (add-to-list 'org-latex-packages-alist '("" "listings") t)
 
-  ;; default packages to be inserted in the header
-  ;; include the `listings' package for fontified source code
-  (add-to-list 'org-latex-packages-alist '("" "listings") t)
+    ;; include the `xcolor' package for colored source code
+    (add-to-list 'org-latex-packages-alist '("" "xcolor") t)
 
-  ;; include the `xcolor' package for colored source code
-  (add-to-list 'org-latex-packages-alist '("" "xcolor") t)
+    ;; include the `babel' package for language-specific hyphenation and
+    ;; typography
+    (add-to-list 'org-latex-packages-alist '("english" "babel") t)
 
-  ;; include the `babel' package for language-specific hyphenation and
-  ;; typography
-  (add-to-list 'org-latex-packages-alist '("english" "babel") t)
+    ;; default position for LaTeX figures
+    (setq org-latex-default-figure-position "!htbp")
 
-  ;; default position for LaTeX figures
-  (setq org-latex-default-figure-position "!htbp")
-
-  (defun org-latex-export-body-only-to-latex ()
-    "Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."
-    (interactive)
-    (org-latex-export-to-latex nil nil nil t)))
+    (defun org-latex-export-body-only-to-latex ()
+      "Export only code between \"\begin{document}\" and \"\end{document}\" to a LaTeX file."
+      (interactive)
+      (org-latex-export-to-latex nil nil nil t)))
 #+end_src
 
 ** Extra customization files
