@@ -7,7 +7,7 @@
 #+OPTIONS:   H:4 toc:t num:nil
 
 #+PROPERTY:  header-args :eval no :noweb yes :comments no
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/org/theme-readtheorg.setup
 
 #+begin_export html
 <a href="http://opensource.org/licenses/GPL-3.0">
@@ -1489,7 +1489,7 @@ speech.
 
 * License
 
-Copyright (C) 2011-2020 Fabrice Niessen
+Copyright (C) 2011-2021 Fabrice Niessen
 
 Author: Fabrice Niessen \\
 Keywords: org mode export automation
