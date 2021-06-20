@@ -20,7 +20,6 @@ endif
 
 ORGMK_INIT=orgmk-init
 ORGMK_SYSTEM_CONFIG=orgmk.conf
-ORGMK_UPDATE=orgmk-update-src
 ORGMK_UPDATE_CHECK_DIFF=orgmk-update-src-check-diff
 ORG2HTML=org2html
 ORG2GFM=org2gfm
@@ -59,7 +58,6 @@ install: all                            # Create symlinks to Orgmk scripts
 	@echo "Creating symlinks..."
 	ln -f -s $(PWD)/bin/$(ORGMK_INIT)              $(BIN_DIR)/$(ORGMK_INIT)
 	ln -f -s $(PWD)/bin/$(ORGMK_SYSTEM_CONFIG)     $(BIN_DIR)/$(ORGMK_SYSTEM_CONFIG)
-	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE)            $(BIN_DIR)/$(ORGMK_UPDATE)
 	ln -f -s $(PWD)/bin/$(ORGMK_UPDATE_CHECK_DIFF) $(BIN_DIR)/$(ORGMK_UPDATE_CHECK_DIFF)
 	ln -f -s $(PWD)/bin/$(ORG2HTML)                $(BIN_DIR)/$(ORG2HTML)
 	ln -f -s $(PWD)/bin/$(ORG2GFM)                 $(BIN_DIR)/$(ORG2GFM)
