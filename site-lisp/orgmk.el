@@ -62,11 +62,12 @@
       (if (yes-or-no-p (format "Install package `%s`? " pkg))
           (ignore-errors
             (package-install pkg)))))
-  (unless (locate-library "ox-reveal")     ; for exporting to Reveal
-    (let ((pkg 'ox-reveal))
-      (if (yes-or-no-p (format "Install package `%s`? " pkg))
-          (ignore-errors
-            (package-install pkg))))))
+  ;; (unless (locate-library "ox-reveal")     ; for exporting to Reveal
+  ;;   (let ((pkg 'ox-reveal))
+  ;;     (if (yes-or-no-p (format "Install package `%s`? " pkg))
+  ;;         (ignore-errors
+  ;;           (package-install pkg)))))
+  )
 
 ;; version info
 (let ((org-install-dir (file-name-directory (locate-library "org-loaddefs")))
@@ -80,7 +81,7 @@
 (require 'org)
 (require 'org-clock)
 (require 'ox)
-(require 'ox-reveal)
+;; (require 'ox-reveal)
 
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 
