@@ -21,8 +21,8 @@
 
 * ADVERT: Elevate Your Emacs Skills in Paris, Rotterdam, Leuven or Valencia!
 
-Unlock the power of Emacs in Paris!  Join my next *exclusive "Emacs Boost" course*
-on November 9th and 10th, 2023!
+Unlock the power of Emacs in Valencia!  Join my next *exclusive "Emacs Boost" course*
+on April 11th and 12th, 2023!
 
 Are you ready to *supercharge your productivity* and become an Emacs ninja?  Ready
 to become an Emacs pro?  Look no further!
@@ -36,8 +36,8 @@ What you'll learn:
 - And much more!
 
 #+begin_quote
-- When: November 9th and 10th (Thu and Fri)
-- Where: Paris, France
+- When: April 11th and 12th (Thu + Fri)
+- Where: Valencia, Spain
 - Who should attend: Anyone interested in Emacs, from beginners to advanced
   users.
 #+end_quote
@@ -55,7 +55,7 @@ Seats are limited, so reserve yours today.
 Visit https://emacsboost.com/ for more information, other dates and other
 locations, and to *reserve your seat*.
 
-/See you in Paris!/  [[https://emacsboost.com/][#EmacsBoostParis]]
+/See you in Valencia!/  [[https://emacsboost.com/][#EmacsBoostValencia]]
 
 * Overview
 
