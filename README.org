@@ -19,43 +19,37 @@
 </a>
 #+end_export
 
-* ADVERT: Elevate Your Emacs Skills in Paris, Rotterdam, Leuven or Valencia!
+#+begin_quote
+[!TIP]
 
-Unlock the power of Emacs in Valencia!  Join my next *exclusive "Emacs Boost" course*
-on April 11th and 12th, 2023!
+*** Elevate your Emacs skills in Paris, Utrecht, Leuven or Valencia!
+*Unlock the power of Emacs!  Join my next exclusive "Emacs Boost" course!*
 
-Are you ready to *supercharge your productivity* and become an Emacs ninja?  Ready
-to become an Emacs pro?  Look no further!
+Ready to /supercharge your productivity/ and become an Emacs ninja?  Look no
+further!
 
-What you'll learn:
-
+*What you'll learn:*
 - Master Emacs from the basics to advanced tricks.
-- Boost your editing efficiency and streamline your workflow.
+- /Boost your editing efficiency/ and streamline your workflow.
 - Customize Emacs to fit your unique needs.
-- Collaborate with fellow Emacs enthusiasts.
 - And much more!
 
-#+begin_quote
-- When: April 11th and 12th (Thu + Fri)
-- Where: Valencia, Spain
-- Who should attend: Anyone interested in Emacs, from beginners to advanced
-  users.
-#+end_quote
+*Audience:*
 
-Why choose my course?
+Open to anyone interested in Emacs, from beginners to advanced
+users.
 
-- Expert instructor with 24 years of Emacs experience.
-- Hands-on exercises to reinforce your learning.
-- Networking opportunities with like-minded Emacs enthusiasts.
+*Why choose my course?*
+- Expert instructor with 25 years of Emacs experience.
+- /Hands-on exercises/ to reinforce your learning.
+- /Networking opportunities/ with like-minded Emacs enthusiasts.
 - Personalized attention.
 
 Don't miss this opportunity to take your Emacs skills to the next level! \\
-Seats are limited, so reserve yours today.
 
-Visit https://emacsboost.com/ for more information, other dates and other
-locations, and to *reserve your seat*.
-
-/See you in Valencia!/  [[https://emacsboost.com/][#EmacsBoostValencia]]
+Visit https://emacsboost.com/en/ for more information, dates and locations, and
+to /reserve your seat/.
+#+end_quote
 
 * Overview
 
@@ -942,7 +936,7 @@ Define variables for each command used in targets:
 
 #+begin_src makefile
 PRINTF=$(QUIET)printf
-EGREP=$(QUIET)egrep
+EGREP=$(QUIET)grep -E
 LS=$(QUIET)ls
 #+end_src
 

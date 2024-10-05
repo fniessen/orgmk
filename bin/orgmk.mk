@@ -51,7 +51,7 @@ ifdef SHELL_DEBUG
 endif
 
 PRINTF=$(QUIET)printf
-EGREP=$(QUIET)egrep
+EGREP=$(QUIET)grep -E
 LS=$(QUIET)ls
 
 .PHONY: all
