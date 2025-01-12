@@ -414,7 +414,7 @@ CleanUp ()
 
 #+name: current-time
 #+begin_src emacs-lisp :eval yes :results silent :tangle no
-(format-time-string "%Y%m%d.%H%M")
+(format-time-string "<%Y%m%d.%H%M>")
 #+end_src
 
 #+begin_src shell
