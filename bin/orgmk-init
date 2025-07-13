@@ -14,14 +14,14 @@ EOF
 }
 
 die () {
-    printf "$(basename $0): $@\n" > /dev/stderr
+    printf >&2 "$(basename $0): $@\n"
     exit 2 # an error occurred
 }
 
 CleanUp ()
 {
     # restore backed up target file if it hasn't been produced
-    if [ ! -z $FILE_TARGET ]; then
+    if [ -n $FILE_TARGET ]; then
         if [ -r $FILE_TARGET.orig ]; then
             if [ ! -r $FILE_TARGET ]; then
                 printf "Recovering OLD file $FILE_TARGET...\n"
@@ -33,14 +33,14 @@ CleanUp ()
     fi
 
     # display log file, if present
-    if [ ! -z $FILE_LOG ]; then
+    if [ -n $FILE_LOG ]; then
         if [ -r $FILE_LOG ]; then
             grep -e "^!.*" -A 3 -B 1 $FILE_LOG
         fi
     fi
 
     # remove the temporary copy of the source Org file
-    if [ ! -z $FILE_SRC_UPDT ]; then
+    if [ -n $FILE_SRC_UPDT ]; then
         rm -f $FILE_SRC_UPDT
     fi
 }

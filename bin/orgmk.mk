@@ -59,11 +59,11 @@ all: html pdf                           # Regenerate all HTML and PDF files
 
 .PHONY: help
 help:                                   # Display callable targets
-	$(PRINTF) "Usage: orgmk [OPTION]... [TARGET]...\n" > /dev/stderr
+	$(PRINTF) >&2 "Usage: orgmk [OPTION]... [TARGET]...\n"
 	$(PRINTF) "\n"
-	$(PRINTF) "What target do you want?\n" > /dev/stderr
+	$(PRINTF) >&2 "What target do you want?\n"
 	$(EGREP) "^[^	#A-Z]+:" [Mm]akefile \
-	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' > /dev/stderr
+	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' >&2
 
 .PHONY: html
 html: $(CUR_HTML_FILES)                 # Regenerate all HTML documents from Org

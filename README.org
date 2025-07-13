@@ -376,7 +376,7 @@ EOF
 
 #+begin_src shell
 die () {
-    printf "$(basename $0): $@\n" > /dev/stderr
+    printf >&2 "$(basename $0): $@\n"
     exit 2 # an error occurred
 }
 #+end_src
@@ -385,7 +385,7 @@ die () {
 CleanUp ()
 {
     # restore backed up target file if it hasn't been produced
-    if [ ! -z $FILE_TARGET ]; then
+    if [ -n $FILE_TARGET ]; then
         if [ -r $FILE_TARGET.orig ]; then
             if [ ! -r $FILE_TARGET ]; then
                 printf "Recovering OLD file $FILE_TARGET...\n"
@@ -397,14 +397,14 @@ CleanUp ()
     fi
 
     # display log file, if present
-    if [ ! -z $FILE_LOG ]; then
+    if [ -n $FILE_LOG ]; then
         if [ -r $FILE_LOG ]; then
             grep -e "^!.*" -A 3 -B 1 $FILE_LOG
         fi
     fi
 
     # remove the temporary copy of the source Org file
-    if [ ! -z $FILE_SRC_UPDT ]; then
+    if [ -n $FILE_SRC_UPDT ]; then
         rm -f $FILE_SRC_UPDT
     fi
 }
@@ -413,7 +413,7 @@ CleanUp ()
 *** Runtime
 
 #+name: current-time
-#+begin_src emacs-lisp :eval yes :results silent :tangle no
+#+begin_src emacs-lisp :eval yes :results value :tangle no
 (format-time-string "<%Y%m%d.%H%M>")
 #+end_src
 
@@ -664,7 +664,7 @@ orgmk-update-src-check-diff "$FILE_SRC_ORIG" "$FILE_SRC_UPDT"
 
 ** Orgmk-update-src-check-diff
    :PROPERTIES:
-   :header-args+: :shebang "#!/bin/bash\n" :tangle bin/orgmk-update-src-check-diff
+   :header-args+: :shebang "#!/usr/bin/env bash\n" :tangle bin/orgmk-update-src-check-diff
    :END:
 
 Check whether dynamic blocks and tables have been updated, and (if yes) propose
@@ -954,11 +954,11 @@ Get help.
 #+begin_src makefile
 .PHONY: help
 help:                                   # Display callable targets
-	$(PRINTF) "Usage: orgmk [OPTION]... [TARGET]...\n" > /dev/stderr
+	$(PRINTF) >&2 "Usage: orgmk [OPTION]... [TARGET]...\n"
 	$(PRINTF) "\n"
-	$(PRINTF) "What target do you want?\n" > /dev/stderr
+	$(PRINTF) >&2 "What target do you want?\n"
 	$(EGREP) "^[^	#A-Z]+:" [Mm]akefile \
-	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' > /dev/stderr
+	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' >&2
 #+end_src
 
 *** HTML
