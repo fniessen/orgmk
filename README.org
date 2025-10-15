@@ -22,8 +22,8 @@
 #+begin_quote
 [!TIP]
 
-*** Transform your Emacs experience in the vibrant cities of Paris, Utrecht, Leuven, or Valencia!
-*Unlock unparalleled productivity with my exclusive "EmacsBoost" course!*
+*** Transform your Emacs experience in Paris from 24 to 28 November 2025!
+Unlock unparalleled productivity with my exclusive "EmacsBoost" course!*
 
 Are you ready to /supercharge your productivity/ and become an unstoppable Emacs
 ninja?  This is the opportunity you've been waiting for!
@@ -1189,18 +1189,6 @@ Remember current directory.
 #+begin_src emacs-lisp
 ;; don't make a backup of files
 (setq backup-inhibited t)
-#+end_src
-
-*** Initialization for MS Windows
-
-When running an native Microsoft Windows version of Emacs:
-
-#+begin_src emacs-lisp
-;; ;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)
-;; (add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; <- adjust
-;; (when (eq system-type 'windows-nt)
-;;   (when (try-require 'cygwin-mount)
-;;     (cygwin-mount-activate)))
 #+end_src
 
 *** Shell
