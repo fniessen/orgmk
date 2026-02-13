@@ -63,7 +63,7 @@ help:                                   # Display callable targets
 	$(PRINTF) "\n"
 	$(PRINTF) >&2 "What target do you want?\n"
 	$(EGREP) "^[^	#A-Z]+:" [Mm]akefile \
-	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' >&2
+	| sed 's_:[^#]*__' | sed 's_^_\n_g' | sed 's_# _\n\t_g' >&2
 
 .PHONY: html
 html: $(CUR_HTML_FILES)                 # Regenerate all HTML documents from Org

@@ -7,7 +7,7 @@
 #+OPTIONS:   H:4 toc:t num:nil
 
 #+PROPERTY:  header-args :eval no :noweb yes :comments no
-#+SETUPFILE: ~/org/theme-readtheorg.setup
+#+SETUPFILE: ~/org/html-theme-readtheorg.setup
 
 #+begin_export html
 <a href="http://opensource.org/licenses/GPL-3.0">
@@ -962,7 +962,7 @@ help:                                   # Display callable targets
 	$(PRINTF) "\n"
 	$(PRINTF) >&2 "What target do you want?\n"
 	$(EGREP) "^[^	#A-Z]+:" [Mm]akefile \
-	| sed 's/:[^#]*//' | sed 's/^/\n/g' | sed 's/# /\n\t/g' >&2
+	| sed 's_:[^#]*__' | sed 's_^_\n_g' | sed 's_# _\n\t_g' >&2
 #+end_src
 
 *** HTML
