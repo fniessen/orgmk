@@ -19,12 +19,6 @@
 ;; don't make a backup of files
 (setq backup-inhibited t)
 
-;; ;; let Emacs recognize Cygwin paths (e.g. /usr/local/lib)
-;; (add-to-list 'load-path "~/Downloads/emacs/site-lisp") ;; <- adjust
-;; (when (eq system-type 'windows-nt)
-;;   (when (try-require 'cygwin-mount)
-;;     (cygwin-mount-activate)))
-
 ;; shell
 (message "Current value of `shell-file-name': %s" shell-file-name)
 (unless (equal shell-file-name "bash")
