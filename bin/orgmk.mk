@@ -71,14 +71,14 @@ html: $(CUR_HTML_FILES)                 # Regenerate all HTML documents from Org
 $(HTML_FILES_FROM_ORG): %.html: %.org   # Export an Org document to HTML
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to HTML...$(C_RESET)\n"
 	$(ORG2HTML) $<
-	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" > /dev/null \
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" >/dev/null \
 	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 
 $(HTML_FILES_FROM_TXT): %.html: %.txt   # Export an Org document to HTML
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to HTML...$(C_RESET)\n"
 	$(ORG2HTML) $<
-	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" > /dev/null \
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" >/dev/null \
 	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 
@@ -90,14 +90,14 @@ pdf: $(CUR_PDF_FILES)                   # Regenerate all PDF documents from Org
 $(PDF_FILES_FROM_ORG): %.pdf: %.org     # Export an Org document to PDF
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to PDF...$(C_RESET)\n"
 	$(ORG2PDF) $<
-	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" > /dev/null \
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" >/dev/null \
 	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 
 $(PDF_FILES_FROM_TXT): %.pdf: %.txt     # Export an Org document to PDF
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to PDF...$(C_RESET)\n"
 	$(ORG2PDF) $<
-	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" > /dev/null \
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" >/dev/null \
 	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 

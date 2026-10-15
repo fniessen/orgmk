@@ -9,7 +9,7 @@ case $BODY_ONLY in
             || die "Exported file wasn't produced"
         ;;
     "no")
-        if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG > /dev/null; then
+        if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG >/dev/null; then
             eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-latex \
                 || die "Exported file wasn't produced"
         else

@@ -14,7 +14,7 @@ EOF
 }
 
 die () {
-    printf >&2 "$(basename $0): $@\n"
+    printf "$(basename $0): $@\n" >&2
     exit 2 # an error occurred
 }
 

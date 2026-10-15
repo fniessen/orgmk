@@ -40,7 +40,7 @@ FILE_SRC_UPDT=$2
 if [ ! -r "$FILE_SRC_UPDT" ]; then
     printf "Cannot read file $FILE_SRC_UPDT\n"
 else
-    if diff -q "$FILE_SRC_ORIG" "$FILE_SRC_UPDT" > /dev/null; then
+    if diff -q "$FILE_SRC_ORIG" "$FILE_SRC_UPDT" >/dev/null; then
         rm "$FILE_SRC_UPDT"
     else
         if [[ "$UPDATE_SRC" = "query" ]]; then
