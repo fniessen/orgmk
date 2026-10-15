@@ -7,7 +7,7 @@
 #+OPTIONS:   H:4 toc:t num:nil
 
 #+PROPERTY:  header-args :eval no :noweb yes :comments no
-#+SETUPFILE: ~/org/html-theme-readtheorg.setup
+#+SETUPFILE: ~/org/setup/html-theme-readtheorg.setup
 
 #+begin_export html
 <a href="http://opensource.org/licenses/GPL-3.0">
@@ -380,7 +380,7 @@ EOF
 
 #+begin_src shell
 die () {
-    printf >&2 "$(basename $0): $@\n"
+    printf "$(basename $0): $@\n" >&2
     exit 2 # an error occurred
 }
 #+end_src
@@ -564,7 +564,7 @@ case $BODY_ONLY in
             || die "Exported file wasn't produced"
         ;;
     "no")
-        if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG > /dev/null; then
+        if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG >/dev/null; then
             eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-latex \
                 || die "Exported file wasn't produced"
         else
@@ -592,7 +592,7 @@ presentation by searching for the string =#+BEAMER_THEME:= inside the Org source
 TARGET_EXT=pdf
 . orgmk-init
 
-if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG > /dev/null; then
+if grep -E "^#\+BEAMER_THEME: " $FILE_SRC_ORIG >/dev/null; then
     eval $ORGMK $FILE_SRC_ORIG $ORGMK_UPDATE_FLAGS -f org-beamer-export-to-latex \
         || die "Exported file wasn't produced"
 else
@@ -721,7 +721,7 @@ FILE_SRC_UPDT=$2
 if [ ! -r "$FILE_SRC_UPDT" ]; then
     printf "Cannot read file $FILE_SRC_UPDT\n"
 else
-    if diff -q "$FILE_SRC_ORIG" "$FILE_SRC_UPDT" > /dev/null; then
+    if diff -q "$FILE_SRC_ORIG" "$FILE_SRC_UPDT" >/dev/null; then
         rm "$FILE_SRC_UPDT"
     else
         if [[ "$UPDATE_SRC" = "query" ]]; then
@@ -992,7 +992,7 @@ The recipe to *convert Org to HTML* is:
 #+begin_src makefile :tangle no
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to HTML...$(C_RESET)\n"
 	$(ORG2HTML) $<
-	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" > /dev/null \
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.html" >/dev/null \
 	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 #+end_src
@@ -1036,7 +1036,7 @@ The recipe to *convert Org to PDF* is:
 #+begin_src makefile :tangle no
 	$(PRINTF) "$(C_INFO)Exporting \`$(CURDIR)/$<' to PDF...$(C_RESET)\n"
 	$(ORG2PDF) $<
-	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" > /dev/null \
+	$(LS) -l -t $< $@ | head -n 1 | grep -E "\.pdf" >/dev/null \
 	|| { printf "$(C_FAILURE)\`$(CURDIR)/$@' is NOT up to date$(C_RESET)\n"; exit 1; }
 	$(PRINTF) "$(C_SUCCESS)\`$(CURDIR)/$@' successfully generated$(C_RESET)\n"
 #+end_src
