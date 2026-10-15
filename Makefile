@@ -36,6 +36,24 @@ ORGMK_MAKE_RUN=orgmk
 
 ## MAKE
 
+# Show this help.
+help:
+	@printf '%s\n' "Usage: make TARGET" "" "Targets:"
+	@awk '\
+	/^[[:space:]]*#[[:space:]]/ { \
+		description = $$0; \
+		sub(/^[[:space:]]*#[[:space:]]*/, "", description); \
+		next; \
+	} \
+	/^[a-zA-Z0-9_-]+:/ { \
+		target = $$0; \
+		sub(/:.*/, "", target); \
+		printf "  %-15s %s\n", target, description; \
+		description = ""; \
+		next; \
+	} \
+	{ description = "" }' [Mm]akefile
+
 # Ensure `all' is the default target
 all: bin/$(ORGMK_SYSTEM_CONFIG) bin/$(ORGMK_MAKE_SETUP)  # Create Orgmk system files
 
